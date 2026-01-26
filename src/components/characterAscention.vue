@@ -9,12 +9,12 @@
             </option>
         </select>
         <div>
-            <select type="number" max="80" v-model="upgradeConfig.level.current">
+            <select v-model="upgradeConfig.level.current">
                 <option v-for="lvl in possibleCharacterLevels">
                     {{ lvl }}
                 </option>
             </select>
-            <select type="number" max="80" v-model="upgradeConfig.level.target">
+            <select v-model="upgradeConfig.level.target">
                 <option v-for="lvl in possibleCharacterLevels">
                     {{ lvl }}
                 </option>
@@ -63,6 +63,7 @@
         </div>
 
         <CharacterMaterials v-if="hasCharacterSelected" :upgrade-config="upgradeConfig" :key="selectedCharacter" />
+
     </div>
 </template>
 <script lang="ts" setup>

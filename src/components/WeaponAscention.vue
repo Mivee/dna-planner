@@ -10,28 +10,31 @@
             </option>
         </select>
         <div>
-            <select type="number" max="80" v-model="upgradeConfig.level.current">
+            <select v-model="upgradeConfig.level.current">
                 <option v-for="lvl in weaponsLevels">
                     {{ lvl }}
                 </option>
             </select>
-            <select type="number" max="80" v-model="upgradeConfig.level.target">
+            <select v-model="upgradeConfig.level.target">
                 <option v-for="lvl in weaponsLevels">
                     {{ lvl }}
                 </option>
             </select>
         </div>
         <WeaponMaterials v-if="hasWeaponSelected" :upgrade-config="upgradeConfig" :key="selectedWeapon" />
+        <input type="checkbox" v-model="includeForge" />
+        <Forge v-if="selectedWeapon && includeForge" :weapon="selectedWeapon" />
     </div>
 </template>
 <script lang="ts" setup>
 import type { WeaponUpgrade } from '../types/upgradeConfig';
 import { computed, ref } from 'vue';
-import WeaponMaterials from './WeaponMaterials.vue';
+import WeaponMaterials from './weaponMaterials.vue';
+import Forge from './weaponForge.vue';
 import { weapons, weaponLevelingMaterials } from '../definitions/weapon';
 
 const upgradeConfig = ref<WeaponUpgrade>({
-    name: null,
+    name: "",
     level: { current: null, target: null },
     type: "Weapon",
 });
@@ -43,5 +46,5 @@ const imgSource = computed(() => "");
 const hasWeaponSelected = computed(() => !!upgradeConfig.value.name)
 
 const selectedWeapon = computed(() => upgradeConfig.value.name || "");
-
+const includeForge = ref(false);
 </script>
