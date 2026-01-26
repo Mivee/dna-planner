@@ -1,0 +1,47 @@
+<template>
+    <div>
+
+        <div>
+            <img :src="imgSource" />
+        </div>
+        <select v-model="upgradeConfig.name">
+            <option v-for="value in weapons">
+                {{ value.name }}
+            </option>
+        </select>
+        <div>
+            <select type="number" max="80" v-model="upgradeConfig.level.current">
+                <option v-for="lvl in weaponsLevels">
+                    {{ lvl }}
+                </option>
+            </select>
+            <select type="number" max="80" v-model="upgradeConfig.level.target">
+                <option v-for="lvl in weaponsLevels">
+                    {{ lvl }}
+                </option>
+            </select>
+        </div>
+        <WeaponMaterials v-if="hasWeaponSelected" :upgrade-config="upgradeConfig" :key="selectedWeapon" />
+    </div>
+</template>
+<script lang="ts" setup>
+import type { WeaponUpgrade } from '../types/upgradeConfig';
+import { computed, ref } from 'vue';
+import WeaponMaterials from './WeaponMaterials.vue';
+import { weapons, weaponLevelingMaterials } from '../definitions/weapon';
+
+const upgradeConfig = ref<WeaponUpgrade>({
+    name: null,
+    level: { current: null, target: null },
+    type: "Weapon",
+});
+
+const weaponsLevels = computed(() => weaponLevelingMaterials.map(x => x.level));
+
+const imgSource = computed(() => "");
+
+const hasWeaponSelected = computed(() => !!upgradeConfig.value.name)
+
+const selectedWeapon = computed(() => upgradeConfig.value.name || "");
+
+</script>
