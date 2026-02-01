@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <img :src="imgSource" />
+            <img :src="imgSource" width="600" height="600" />
         </div>
         <select v-model="upgradeConfig.name">
             <option v-for="value in characters">
@@ -64,6 +64,8 @@
 
         <CharacterMaterials v-if="hasCharacterSelected" :upgrade-config="upgradeConfig" :key="selectedCharacter" />
 
+        <button @click="addItem('Humectant')">click me</button>
+        <button @click="addItem('Water Purifier')">click me</button>
     </div>
 </template>
 <script lang="ts" setup>
@@ -72,7 +74,7 @@ import { characters } from '../definitions/character';
 import CharacterMaterials from './characterMaterials.vue';
 import type { CharacterUpgrade } from '../types/upgradeConfig';
 import { characterLevelingMaterials } from '../definitions/characterAscention';
-
+import { useInventory } from '../stores/inventory';
 
 const hasCharacterSelected = computed(() => upgradeConfig.value.name != "" && upgradeConfig.value.name != null);
 const possibleCharacterLevels = computed(() => characterLevelingMaterials.map(x => x.level));
@@ -83,9 +85,7 @@ const imgSource = computed(() => {
     if (selectedCharacter.value) {
         return "assets/characters/" + selectedCharacter.value.toLowerCase() + ".png"
     }
-})
-
-
+});
 
 const upgradeConfig = ref<CharacterUpgrade>({
     name: null,
@@ -125,4 +125,8 @@ const upgradeConfig = ref<CharacterUpgrade>({
         }
     }
 });
+function addItem(name: string) {
+    const { setQuantity } = useInventory();
+    setQuantity(name, 1)
+}
 </script>

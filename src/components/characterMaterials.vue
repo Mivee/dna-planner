@@ -7,27 +7,29 @@
             coins {{ summary.coins }}
         </div>
         <div>
-            Green Elem Mats {{ summary.character.ascensionMaterials.T1_Green }} ({{
-                getMaterialName('Green', "Ascention") }})
+            Green Elem Mats ({{
+                getMissingMaterialString(summary.character.ascensionMaterials.T1_Green, 'Green', "Ascention") }})
 
         </div>
         <div>
-            Blue Elem Mats {{ summary.character.ascensionMaterials.T1_Green }} ({{ getMaterialName('Blue', "Ascention")
-            }})
+            Blue Elem Mats {{ getMissingMaterialString(summary.character.ascensionMaterials.T1_Green, "Blue",
+                "Ascention") }}
         </div>
         <div>
-            Purple Elem Mats {{ summary.character.ascensionMaterials.T1_Green }} ({{ getMaterialName('Purple',
+            Purple Elem Mats ({{ getMissingMaterialString(summary.character.ascensionMaterials.T1_Green, 'Purple',
                 "Ascention") }})
         </div>
         <!-- Talens -->
         <div>
-            Green Elem Mats {{ summary.skills.forgingMaterials.T1Green }} ({{ getMaterialName('Green', "Forging") }})
+            Green Elem Mats ({{ getMissingMaterialString(summary.skills.forgingMaterials.T1Green, 'Green', "Forging")
+            }})
         </div>
         <div>
-            Blue Elem Mats {{ summary.skills.forgingMaterials.T2Blue }} ({{ getMaterialName('Blue', "Forging") }})
+            Blue Elem Mats ({{ getMissingMaterialString(summary.skills.forgingMaterials.T2Blue, 'Blue', "Forging") }})
         </div>
         <div>
-            Purple Elem Mats {{ summary.skills.forgingMaterials.T3Purple }} ({{ getMaterialName('Purple', "Forging") }})
+            Purple Elem Mats ({{ getMissingMaterialString(summary.skills.forgingMaterials.T3Purple, 'Purple', "Forging")
+            }})
         </div>
 
     </div>
@@ -42,6 +44,8 @@ import type { SkillLevelingMaterial } from '../types/skillLeveling';
 import type { SkillLevel } from '../types/skill';
 import type { CharacterLevelingMaterial } from '../types/characterLeveling';
 import type { Range } from '../types/range';
+import { useInventory } from '../stores/inventory';
+import { useUiStore } from '../stores/ui';
 
 interface Props {
     upgradeConfig: UpgradeConfig
@@ -59,17 +63,17 @@ const characterAscentionMaterials = computed(() => {
 const skillLevelMaterials = computed(() => {
 
     // skill
-    let skillMaterials = getSkillMaterials(props.upgradeConfig.skill!.current, props.upgradeConfig.skill!.target);
+    let skillMaterials = [getSkillMaterials(props.upgradeConfig.skill!.current, props.upgradeConfig.skill!.target)];
     let skillNodeMaterials = getNodeMaterials(props.upgradeConfig.skill!);
     skillMaterials.push(...skillNodeMaterials.map(oo => toSkillLevel(oo)));
 
     // ult
-    let ultimateMaterials = getSkillMaterials(props.upgradeConfig.ult!.current, props.upgradeConfig.ult!.target);
+    let ultimateMaterials = [getSkillMaterials(props.upgradeConfig.ult!.current, props.upgradeConfig.ult!.target)];
     let ultimateNodeMaterials = getNodeMaterials(props.upgradeConfig.ult!);
     skillMaterials.push(...ultimateNodeMaterials.map(oo => toSkillLevel(oo)));
 
     //passive
-    let passiveMaterials = getSkillMaterials(props.upgradeConfig.passive!.current, props.upgradeConfig.passive!.target);
+    let passiveMaterials = [getSkillMaterials(props.upgradeConfig.passive!.current, props.upgradeConfig.passive!.target)];
     let passiveNodeMaterials = getNodeMaterials(props.upgradeConfig.passive!);
     skillMaterials.push(...passiveNodeMaterials.map(oo => toSkillLevel(oo)));
 
@@ -80,8 +84,7 @@ function getSkillMaterials(current: number, target: number) {
     const start = CharacterSkillLevels.find(mat => mat.level == current);
     const end = CharacterSkillLevels.find(mat => mat.level == target);
 
-    return [mergeRange({ start, end })]
-    // return { start, end } as Range<SkillLevel>;
+    return mergeRange({ start, end });
 }
 
 function mergeRange(range: Range<SkillLevel>) {
@@ -133,7 +136,10 @@ function toSkillLevel(m: SkillLevelingMaterial) {
     } as SkillLevel
 }
 
-function getMaterialName(color: "Green" | "Blue" | "Purple" | "Gold", type: "Ascention" | "Forging") {
+type materialColor = "Green" | "Blue" | "Purple" | "Gold";
+type materialType = "Ascention" | "Forging";
+
+function getMaterialName(color: materialColor, type: "Ascention" | "Forging") {
     if (type == "Ascention") {
 
         switch (color) {
@@ -155,4 +161,18 @@ function getMaterialName(color: "Green" | "Blue" | "Purple" | "Gold", type: "Asc
     return null;
 }
 
+const { getAmount } = useInventory();
+
+function getMissingMaterialString(amount: number, color: materialColor, type: materialType) {
+    const { plannerMode } = useUiStore();
+    const materialName = getMaterialName(color, type);
+
+    let missing = amount;
+    if (plannerMode == "Inventory") {
+        const inventoryAmount = getAmount(materialName!);
+        missing = Math.max(amount - inventoryAmount, 0)
+    }
+
+    return `${missing}x ${materialName}`;
+}
 </script>

@@ -43,6 +43,7 @@
             Blue Secondary Mats {{ summary.ascensionMaterials.secondary.T2_Blue }} ({{ getMaterialName('Blue',
                 "Forging") }})
         </div>
+        {{ inventory }}
     </div>
 </template>
 <script lang="ts" setup>
@@ -52,6 +53,7 @@ import { useWeapon } from '../composeables/useWeapon';
 import { weaponLevelingMaterials } from '../definitions/weapon';
 import type { Range } from '../types/range';
 import type { WeaponLevelingMaterial } from '../types/ascention';
+import { useInventory } from '../stores/inventory';
 
 interface Props {
     upgradeConfig: UpgradeConfig
@@ -86,5 +88,7 @@ function getMaterialName(value: "Green" | "Blue" | "Primary" | "Secondary", type
     }
     return null;
 }
+
+const { items: inventory } = useInventory();
 
 </script>

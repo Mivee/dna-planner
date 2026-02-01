@@ -1,8 +1,6 @@
 <template>
-    <characterAscention />
     <Inventory />
 </template>
 <script lang="ts" setup>
-import characterAscention from '../components/characterAscention.vue';
 import Inventory from '../components/inventory.vue';
 </script>
