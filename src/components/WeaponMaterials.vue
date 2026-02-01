@@ -8,32 +8,40 @@
         </div>
         <!-- Primary -->
         <div>
-            Green Primary Mats {{ summary.ascensionMaterials.primary.T1_Green }} ({{getMaterialName('Primary', "Ascention") }})
+            Green Primary Mats {{ summary.ascensionMaterials.primary.T1_Green }} ({{ getMaterialName('Primary',
+                "Ascention") }})
         </div>
         <div>
-            Blue Primary Mats {{ summary.ascensionMaterials.primary.T2_Blue }} ({{ getMaterialName('Primary', "Ascention")}})
+            Blue Primary Mats {{ summary.ascensionMaterials.primary.T2_Blue }} ({{ getMaterialName('Primary',
+                "Ascention") }})
         </div>
-          <div>
-            Purple Primary Mats {{ summary.ascensionMaterials.primary.T2_Blue }} ({{ getMaterialName('Primary', "Ascention")}})
+        <div>
+            Purple Primary Mats {{ summary.ascensionMaterials.primary.T2_Blue }} ({{ getMaterialName('Primary',
+                "Ascention") }})
         </div>
 
         <!-- Seconary -->
         <div>
-           Green Secondary Mats {{ summary.ascensionMaterials.secondary.T1_Green }} ({{ getMaterialName('Secondary', "Ascention") }})
+            Green Secondary Mats {{ summary.ascensionMaterials.secondary.T1_Green }} ({{ getMaterialName('Secondary',
+                "Ascention") }})
         </div>
         <div>
-            Blue Secondary Mats {{ summary.ascensionMaterials.secondary.T2_Blue }} ({{ getMaterialName('Secondary', "Ascention") }})
+            Blue Secondary Mats {{ summary.ascensionMaterials.secondary.T2_Blue }} ({{ getMaterialName('Secondary',
+                "Ascention") }})
         </div>
         <div>
-            Purple Secondary Mats {{ summary.ascensionMaterials.secondary.T3_Purple }} ({{ getMaterialName('Secondary', "Ascention") }})
+            Purple Secondary Mats {{ summary.ascensionMaterials.secondary.T3_Purple }} ({{ getMaterialName('Secondary',
+                "Ascention") }})
         </div>
 
         <!-- Forging -->
         <div>
-           Green Secondary Mats {{ summary.ascensionMaterials.secondary.T1_Green }} ({{ getMaterialName('Green', "Forging") }})
+            Green Secondary Mats {{ summary.ascensionMaterials.secondary.T1_Green }} ({{ getMaterialName('Green',
+                "Forging") }})
         </div>
         <div>
-            Blue Secondary Mats {{ summary.ascensionMaterials.secondary.T2_Blue }} ({{ getMaterialName('Blue', "Forging") }})
+            Blue Secondary Mats {{ summary.ascensionMaterials.secondary.T2_Blue }} ({{ getMaterialName('Blue',
+                "Forging") }})
         </div>
     </div>
 </template>
@@ -42,6 +50,8 @@ import type { UpgradeConfig } from '../types/upgradeConfig';
 import { computed } from 'vue';
 import { useWeapon } from '../composeables/useWeapon';
 import { weaponLevelingMaterials } from '../definitions/weapon';
+import type { Range } from '../types/range';
+import type { WeaponLevelingMaterial } from '../types/ascention';
 
 interface Props {
     upgradeConfig: UpgradeConfig
@@ -52,9 +62,9 @@ const { upgradeMaterials, buildSummary } = useWeapon(props.upgradeConfig.name!);
 const summary = computed(() => buildSummary(items.value));
 
 const items = computed(() => {
-    const start = weaponLevelingMaterials.findIndex(w => w.level == props.upgradeConfig.level.current);
-    const end = weaponLevelingMaterials.findIndex(w => w.level == props.upgradeConfig.level.target);
-    return weaponLevelingMaterials.filter((e, ix) => ix > start && ix <= end)
+    const start = weaponLevelingMaterials.find(w => w.level == props.upgradeConfig.level.start);
+    const end = weaponLevelingMaterials.find(w => w.level == props.upgradeConfig.level.end);
+    return { start, end } as Range<WeaponLevelingMaterial>
 });
 
 

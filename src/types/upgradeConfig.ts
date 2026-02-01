@@ -1,3 +1,5 @@
+import type { Range } from "./range";
+
 interface NodeUpgrade {
 	isUnlocked: boolean;
 }
@@ -12,10 +14,7 @@ export interface SkillUpgrade {
 export interface UpgradeConfig {
 	name: string | null;
 	type: "Character" | "Weapon";
-	level: {
-		current: string | null;
-		target: string | null;
-	};
+	level: Range<string>;
 	skill?: SkillUpgrade;
 	ult?: SkillUpgrade;
 	passive?: SkillUpgrade;

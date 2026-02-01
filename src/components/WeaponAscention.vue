@@ -10,12 +10,12 @@
             </option>
         </select>
         <div>
-            <select v-model="upgradeConfig.level.current">
+            <select v-model="upgradeConfig.level.start">
                 <option v-for="lvl in weaponsLevels">
                     {{ lvl }}
                 </option>
             </select>
-            <select v-model="upgradeConfig.level.target">
+            <select v-model="upgradeConfig.level.end">
                 <option v-for="lvl in weaponsLevels">
                     {{ lvl }}
                 </option>
@@ -33,11 +33,7 @@ import WeaponMaterials from './weaponMaterials.vue';
 import Forge from './weaponForge.vue';
 import { weapons, weaponLevelingMaterials } from '../definitions/weapon';
 
-const upgradeConfig = ref<WeaponUpgrade>({
-    name: "",
-    level: { current: null, target: null },
-    type: "Weapon",
-});
+
 
 const weaponsLevels = computed(() => weaponLevelingMaterials.map(x => x.level));
 
@@ -47,4 +43,10 @@ const hasWeaponSelected = computed(() => !!upgradeConfig.value.name)
 
 const selectedWeapon = computed(() => upgradeConfig.value.name || "");
 const includeForge = ref(false);
+
+const upgradeConfig = ref<WeaponUpgrade>({
+    name: "",
+    level: { start: weaponsLevels.value[0], end: weaponsLevels.value[0] },
+    type: "Weapon",
+});
 </script>

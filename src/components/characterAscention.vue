@@ -9,12 +9,12 @@
             </option>
         </select>
         <div>
-            <select v-model="upgradeConfig.level.current">
+            <select v-model="upgradeConfig.level.start">
                 <option v-for="lvl in possibleCharacterLevels">
                     {{ lvl }}
                 </option>
             </select>
-            <select v-model="upgradeConfig.level.target">
+            <select v-model="upgradeConfig.level.end">
                 <option v-for="lvl in possibleCharacterLevels">
                     {{ lvl }}
                 </option>
@@ -74,42 +74,6 @@ import type { CharacterUpgrade } from '../types/upgradeConfig';
 import { characterLevelingMaterials } from '../definitions/characterAscention';
 
 
-const upgradeConfig = ref<CharacterUpgrade>({
-    name: null,
-    level: { current: null, target: null },
-    type: "Character",
-    skill: {
-        current: 0,
-        target: 0,
-        node1: {
-            isUnlocked: false
-        },
-        node2: {
-            isUnlocked: false
-        }
-    },
-    ult: {
-        current: 0,
-        target: 0,
-        node1: {
-            isUnlocked: false
-        },
-        node2: {
-            isUnlocked: false
-        }
-    },
-    passive: {
-        current: 0,
-        target: 0,
-        node1: {
-            isUnlocked: false
-        },
-        node2: {
-            isUnlocked: false
-        }
-    }
-});
-
 const hasCharacterSelected = computed(() => upgradeConfig.value.name != "" && upgradeConfig.value.name != null);
 const possibleCharacterLevels = computed(() => characterLevelingMaterials.map(x => x.level));
 
@@ -120,4 +84,45 @@ const imgSource = computed(() => {
         return "assets/characters/" + selectedCharacter.value.toLowerCase() + ".png"
     }
 })
+
+
+
+const upgradeConfig = ref<CharacterUpgrade>({
+    name: null,
+    level: {
+        start: possibleCharacterLevels.value[0],
+        end: possibleCharacterLevels.value[0]
+    },
+    type: "Character",
+    skill: {
+        current: 1,
+        target: 1,
+        node1: {
+            isUnlocked: false
+        },
+        node2: {
+            isUnlocked: false
+        }
+    },
+    ult: {
+        current: 1,
+        target: 1,
+        node1: {
+            isUnlocked: false
+        },
+        node2: {
+            isUnlocked: false
+        }
+    },
+    passive: {
+        current: 1,
+        target: 1,
+        node1: {
+            isUnlocked: false
+        },
+        node2: {
+            isUnlocked: false
+        }
+    }
+});
 </script>

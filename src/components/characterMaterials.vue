@@ -40,6 +40,8 @@ import { computed } from 'vue';
 import { CharacterSkillLevels, skillTrack1Materials } from '../definitions/skillLeveling';
 import type { SkillLevelingMaterial } from '../types/skillLeveling';
 import type { SkillLevel } from '../types/skill';
+import type { CharacterLevelingMaterial } from '../types/characterLeveling';
+import type { Range } from '../types/range';
 
 interface Props {
     upgradeConfig: UpgradeConfig
@@ -49,11 +51,9 @@ const props = defineProps<Props>()
 const { upgradeMaterials, buildSummary } = useCharacter(props.upgradeConfig.name!);
 const summary = computed(() => buildSummary(characterAscentionMaterials.value, [...skillLevelMaterials.value.passive, ...skillLevelMaterials.value.skill, ...skillLevelMaterials.value.ult]));
 const characterAscentionMaterials = computed(() => {
-    const start = characterLevelingMaterials.findIndex(mat => mat.level == props.upgradeConfig.level.current);
-    const end = characterLevelingMaterials.findIndex(mat => mat.level == props.upgradeConfig.level.target);
-    return characterLevelingMaterials.filter((mat, ix) => {
-        return ix >= start && ix <= end;
-    });
+    const start = characterLevelingMaterials.find(mat => mat.level == props.upgradeConfig.level.start)!;
+    const end = characterLevelingMaterials.find(mat => mat.level == props.upgradeConfig.level.end)!;
+    return { start, end } as Range<CharacterLevelingMaterial>
 });
 
 const skillLevelMaterials = computed(() => {
@@ -77,10 +77,28 @@ const skillLevelMaterials = computed(() => {
 });
 
 function getSkillMaterials(current: number, target: number) {
-    const start = CharacterSkillLevels.findIndex(mat => mat.level == current);
-    const end = CharacterSkillLevels.findIndex(mat => mat.level == target);
+    const start = CharacterSkillLevels.find(mat => mat.level == current);
+    const end = CharacterSkillLevels.find(mat => mat.level == target);
 
-    return CharacterSkillLevels.filter((item, ix) => ix > start && ix <= end);
+    return [mergeRange({ start, end })]
+    // return { start, end } as Range<SkillLevel>;
+}
+
+function mergeRange(range: Range<SkillLevel>) {
+    return {
+        coinsGroupA: range.end!.coinsGroupA - range.start!.coinsGroupA,
+        coinsGroupB: range.end!.coinsGroupA - range.start!.coinsGroupA,
+        forgingMaterials: {
+            T1Green: range.end!.forgingMaterials.T1Green - range.start!.forgingMaterials.T1Green,
+            T2Blue: range.end!.forgingMaterials.T2Blue - range.start!.forgingMaterials.T2Blue,
+            T3Purple: range.end!.forgingMaterials.T3Purple - range.start!.forgingMaterials.T3Purple,
+            T4Gold: range.end!.forgingMaterials.T4Gold - range.start!.forgingMaterials.T4Gold,
+        },
+        level: range.end!.level - range.start!.level,
+        lunoMomento: range.end!.lunoMomento - range.start!.lunoMomento,
+        nocturnalEcho: range.end!.nocturnalEcho - range.start!.nocturnalEcho,
+        twilightTread: range.end!.nocturnalEcho - range.start!.nocturnalEcho,
+    } as SkillLevel
 }
 
 function getNodeMaterials(skill: SkillUpgrade) {
@@ -125,7 +143,7 @@ function getMaterialName(color: "Green" | "Blue" | "Purple" | "Gold", type: "Asc
             default: return null;
         }
     }
-    else if (type == "Skill") {
+    else if (type == "Forging") {
         switch (color) {
             case "Green": return upgradeMaterials.value?.forgingMaterials.t1;
             case "Blue": return upgradeMaterials.value?.forgingMaterials.t2;
