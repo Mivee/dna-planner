@@ -1,7 +1,6 @@
 <template>
     <div>
-        <button @click="isOpen = !isOpen" class="text-on-primary bg-primary">Edit</button>
-        <Modal v-model:is-open="isOpen" @save="onSave">
+        <Modal v-model:is-open="isOpen" @save="onSave" @closed="emit('closed')">
 
             <img :src="imgSource" class="w-full" />
 
@@ -29,95 +28,58 @@
             </div>
 
         </Modal>
-        <template v-if="hasConfigSelected">
-            <CharacterResultList />
-            <!-- <CharacterMaterials v-if="hasConfigSelected" :upgrade-config="internalUpgradeConfig" :key="selectedCharacter" /> -->
-        </template>
+
     </div>
 </template>
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import { characters } from '../definitions/character';
+import { characters, defaultCharacterUpgrade } from '../definitions/character';
 import type { CharacterUpgrade } from '../types/upgradeConfig';
 import { characterLevelingMaterials } from '../definitions/characterAscention';
-import { useInventory } from '../stores/inventory';
 import Modal from './modal.vue';
 import SkillUpgrade from './skillUpgrade.vue';
 import { useUiStore } from '../stores/ui';
-import CharacterResultList from './characterResultList.vue';
 import { useCharacter } from '../composeables/useCharacter';
+import { useClone } from '../composeables/utils';
 
 interface Props {
-    upgradeConfig: CharacterUpgrade
+    upgradeConfig?: CharacterUpgrade,
 }
 
 const possibleCharacterLevels = computed(() => characterLevelingMaterials.map(x => x.level));
 
 const props = withDefaults(defineProps<Props>(), {
     upgradeConfig: () => {
-        return {
-            name: "",
-            level: {
-                start: "1",
-                end: "80"
-            },
-            type: "Character",
-            skill: {
-                current: 1,
-                target: 1,
-                node1: {
-                    isUnlocked: false
-                },
-                node2: {
-                    isUnlocked: false
-                }
-            },
-            ult: {
-                current: 1,
-                target: 1,
-                node1: {
-                    isUnlocked: false
-                },
-                node2: {
-                    isUnlocked: false
-                }
-            },
-            passive: {
-                current: 1,
-                target: 1,
-                node1: {
-                    isUnlocked: false
-                },
-                node2: {
-                    isUnlocked: false
-                }
-            }
-        }
-    }
+        return defaultCharacterUpgrade;
+    },
+    openModal: false
 });
 
+const emit = defineEmits(["saved", "closed"]);
 
-const internalUpgradeConfig = ref(props.upgradeConfig);
+// const clone = JSON.parse(JSON.stringify(props.upgradeConfig))
 
+const internalUpgradeConfig = ref(useClone(props.upgradeConfig));
 
 const selectedCharacter = computed(() => internalUpgradeConfig.value.name || "");
+
 
 const imgSource = computed(() => {
     if (selectedCharacter.value) {
         return useCharacter(selectedCharacter.value).imageUrl.value;
     }
 });
-const isOpen = ref(false);
-function addItem(name: string) {
-    const { setQuantity } = useInventory();
-    setQuantity(name, 1)
-}
+const isOpen = ref(true);
 
 const hasConfigSelected = ref(false);
 
 function onSave() {
     hasConfigSelected.value = true;
     const { addConfiguration } = useUiStore();
+
     addConfiguration(internalUpgradeConfig.value);
+
+    emit("saved")
 }
+
 </script>

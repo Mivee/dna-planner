@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+	--color-primary: rgb(var(--color-black));
+	--color-secondary: rgb(var(--color-white));
+
+	--color-on-primary: var(--color-secondary);
+	--color-on-secondary: var(--color-primary);
+}

@@ -2,9 +2,9 @@
     <div v-for="value in items">
         {{ value.quantity }}x {{ value.name }}
     </div>
-    <button @click="toggleModal">open modal</button>
-    <Modal v-if="isModalOpen">
-        <template #body>
+    <button @click="toggleModal">open inventory</button>
+    <Modal v-if="isModalOpen" v-model:is-open="isModalOpen" @save="addItem(toAdd)">
+        <template #default>
             <div>select an item</div>
             <div>
                 <select v-model="toAdd.name">
@@ -14,9 +14,8 @@
                 </select>
                 <input type="number" v-model="toAdd.quantity" />
             </div>
-
-            <button @click="addItem(toAdd)">add</button>
         </template>
+
     </Modal>
 </template>
 

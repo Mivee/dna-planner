@@ -25,7 +25,6 @@ export function useCharacter(name: string) {
 	) {
 		let skillCosts = reduceSkillItems(skillMaterials);
 		let characterItems = buildCharacterAscentionCost(materials);
-		console.log({ skillCosts, characterItems });
 		const isA = character.value?.rank == "A";
 		return {
 			character: {
@@ -61,10 +60,19 @@ export function useCharacter(name: string) {
 		} as BuildSummary;
 	}
 
+	const imageUrl = computed(() => {
+		return (
+			"assets/characters/" +
+			character.value?.name.toLowerCase().replace(" ", "-") +
+			".png"
+		);
+	});
+
 	return {
 		character,
 		upgradeMaterials,
 		buildSummary,
+		imageUrl,
 	};
 }
 function buildCharacterAscentionCost(
