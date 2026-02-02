@@ -11,16 +11,7 @@
                 </option>
             </select>
             <div>
-                <select v-model="internalUpgradeConfig.level.start">
-                    <option v-for="lvl in possibleCharacterLevels">
-                        {{ lvl }}
-                    </option>
-                </select>
-                <select v-model="internalUpgradeConfig.level.end">""
-                    <option v-for="lvl in possibleCharacterLevels">
-                        {{ lvl }}
-                    </option>
-                </select>
+                <RangeSelect v-model:range="internalUpgradeConfig.level" :options="possibleCharacterLevels" />
             </div>
             <div class="flex flex-col gap-4">
                 <SkillUpgrade v-model:skill="internalUpgradeConfig.skill" talentName="Skill" />
@@ -46,6 +37,7 @@ import SkillUpgrade from './skillUpgrade.vue';
 import { useUiStore } from '../stores/ui';
 import CharacterResultList from './characterResultList.vue';
 import { useCharacter } from '../composeables/useCharacter';
+import RangeSelect from './rangeSelect.vue';
 
 interface Props {
     upgradeConfig: CharacterUpgrade

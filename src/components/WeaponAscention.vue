@@ -1,25 +1,16 @@
 <template>
     <div>
-
         <div>
             <img :src="imgSource" />
         </div>
-        <select v-model="upgradeConfig.name">
+        <select v-model="upgradeConfig.name" class="bg-primary text-on-primary">
             <option v-for="value in weapons">
                 {{ value.name }}
             </option>
         </select>
         <div>
-            <select v-model="upgradeConfig.level.start">
-                <option v-for="lvl in weaponsLevels">
-                    {{ lvl }}
-                </option>
-            </select>
-            <select v-model="upgradeConfig.level.end">
-                <option v-for="lvl in weaponsLevels">
-                    {{ lvl }}
-                </option>
-            </select>
+            <RangeSelect v-model:range="upgradeConfig.level" :options="weaponsLevels" select-color="Primary"
+                select-text="Primary" />
         </div>
         <WeaponMaterials v-if="hasWeaponSelected" :upgrade-config="upgradeConfig" :key="selectedWeapon" />
         <input type="checkbox" v-model="includeForge" />
@@ -32,6 +23,7 @@ import { computed, ref } from 'vue';
 import WeaponMaterials from './weaponMaterials.vue';
 import Forge from './weaponForge.vue';
 import { weapons, weaponLevelingMaterials } from '../definitions/weapon';
+import RangeSelect from './rangeSelect.vue';
 
 
 
