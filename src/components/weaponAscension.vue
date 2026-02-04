@@ -18,7 +18,7 @@
     </div>
 </template>
 <script lang="ts" setup>
-import type { WeaponUpgrade } from '../types/upgradeConfig';
+import type { WeaponUpgradeConfig } from '../types/upgradeConfig';
 import { computed, ref } from 'vue';
 import WeaponMaterials from './weaponMaterials.vue';
 import Forge from './weaponForge.vue';
@@ -36,7 +36,7 @@ const hasWeaponSelected = computed(() => !!upgradeConfig.value.name)
 const selectedWeapon = computed(() => upgradeConfig.value.name || "");
 const includeForge = ref(false);
 
-const upgradeConfig = ref<WeaponUpgrade>({
+const upgradeConfig = ref<WeaponUpgradeConfig>({
     name: "",
     level: { start: weaponsLevels.value[0], end: weaponsLevels.value[0] },
     type: "Weapon",

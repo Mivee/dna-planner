@@ -29,8 +29,8 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import { characters } from '../definitions/character';
-import type { CharacterUpgrade } from '../types/upgradeConfig';
-import { characterLevelingMaterials } from '../definitions/characterAscention';
+import type { CharacterUpgradeConfig } from '../types/upgradeConfig';
+import { characterLevelingMaterials } from '../definitions/characterAscension';
 import { useInventory } from '../stores/inventory';
 import Modal from './modal.vue';
 import SkillUpgrade from './skillUpgrade.vue';

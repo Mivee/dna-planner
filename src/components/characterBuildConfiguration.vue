@@ -25,8 +25,8 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import { characters, defaultCharacterUpgrade } from '../definitions/character';
-import type { CharacterUpgrade } from '../types/upgradeConfig';
-import { characterLevelingMaterials } from '../definitions/characterAscention';
+import type { CharacterUpgradeConfig } from '../types/upgradeConfig';
+import { characterLevelingMaterials } from '../definitions/characterAscension';
 import Modal from './modal.vue';
 import SkillUpgrade from './skillUpgrade.vue';
 import { useUiStore } from '../stores/ui';
@@ -35,7 +35,7 @@ import { useClone } from '../composeables/utils';
 import RangeSelect from './rangeSelect.vue';
 
 interface Props {
-    upgradeConfig?: CharacterUpgrade,
+    upgradeConfig?: CharacterUpgradeConfig,
 }
 
 const possibleCharacterLevels = computed(() => characterLevelingMaterials.map(x => x.level));

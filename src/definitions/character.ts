@@ -1,6 +1,6 @@
 import type { Character } from "../types/character";
 import type { ElementUpgradeMaterials } from "../types/elementUpgradeMaterials";
-import type { CharacterUpgrade } from "../types/upgradeConfig";
+import type { CharacterUpgradeConfig } from "../types/upgradeConfig";
 
 export const characters: Character[] = [
 	{

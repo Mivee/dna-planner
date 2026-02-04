@@ -1,5 +1,5 @@
-// Define the interface for a skill level entry
-export interface SkillLevel {
+// Cost data for upgrading skills at each level
+export interface SkillLevelCost {
   level: number;
   coinsGroupA: number;
   coinsGroupB: number;

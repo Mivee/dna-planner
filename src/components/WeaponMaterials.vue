@@ -9,29 +9,29 @@
         <!-- Primary -->
         <div>
             Green Primary Mats {{ summary.ascensionMaterials.primary.T1_Green }} ({{ getMaterialName('Primary',
-                "Ascention") }})
+                "Ascension") }})
         </div>
         <div>
             Blue Primary Mats {{ summary.ascensionMaterials.primary.T2_Blue }} ({{ getMaterialName('Primary',
-                "Ascention") }})
+                "Ascension") }})
         </div>
         <div>
             Purple Primary Mats {{ summary.ascensionMaterials.primary.T2_Blue }} ({{ getMaterialName('Primary',
-                "Ascention") }})
+                "Ascension") }})
         </div>
 
         <!-- Seconary -->
         <div>
             Green Secondary Mats {{ summary.ascensionMaterials.secondary.T1_Green }} ({{ getMaterialName('Secondary',
-                "Ascention") }})
+                "Ascension") }})
         </div>
         <div>
             Blue Secondary Mats {{ summary.ascensionMaterials.secondary.T2_Blue }} ({{ getMaterialName('Secondary',
-                "Ascention") }})
+                "Ascension") }})
         </div>
         <div>
             Purple Secondary Mats {{ summary.ascensionMaterials.secondary.T3_Purple }} ({{ getMaterialName('Secondary',
-                "Ascention") }})
+                "Ascension") }})
         </div>
 
         <!-- Forging -->
@@ -47,16 +47,16 @@
     </div>
 </template>
 <script lang="ts" setup>
-import type { UpgradeConfig } from '../types/upgradeConfig';
+import type { BaseUpgradeConfig } from '../types/upgradeConfig';
 import { computed } from 'vue';
 import { useWeapon } from '../composeables/useWeapon';
 import { weaponLevelingMaterials } from '../definitions/weapon';
-import type { Range } from '../types/range';
-import type { WeaponLevelingMaterial } from '../types/ascention';
+import type { LevelRange } from '../types/range';
+import type { WeaponLevelingMaterial } from '../types/ascension';
 import { useInventory } from '../stores/inventory';
 
 interface Props {
-    upgradeConfig: UpgradeConfig
+    upgradeConfig: BaseUpgradeConfig
 }
 const props = defineProps<Props>()
 
@@ -66,12 +66,12 @@ const summary = computed(() => buildSummary(items.value));
 const items = computed(() => {
     const start = weaponLevelingMaterials.find(w => w.level == props.upgradeConfig.level.start);
     const end = weaponLevelingMaterials.find(w => w.level == props.upgradeConfig.level.end);
-    return { start, end } as Range<WeaponLevelingMaterial>
+    return { start, end } as LevelRange<WeaponLevelingMaterial>
 });
 
 
-function getMaterialName(value: "Green" | "Blue" | "Primary" | "Secondary", type: "Ascention" | "Forging") {
-    if (type == "Ascention") {
+function getMaterialName(value: "Green" | "Blue" | "Primary" | "Secondary", type: "Ascension" | "Forging") {
+    if (type == "Ascension") {
 
         switch (value) {
             case "Primary": return upgradeMaterials.value?.ascensionMaterials.primary;

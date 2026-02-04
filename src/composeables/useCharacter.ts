@@ -2,10 +2,10 @@ import { elementUpgradeMaterials } from "../definitions/character";
 import type { Character } from "../types/character";
 import { characters } from "../definitions/character";
 import { computed, ref } from "vue";
-import type { CharacterLevelingMaterial } from "../types/ascention";
-import type { SkillLevel } from "../types/skill";
-import type { BuildSummary } from "../types/characterSummary";
-import type { Range } from "../types/range";
+import type { CharacterLevelingMaterial } from "../types/ascension";
+import type { SkillLevelCost } from "../types/skill";
+import type { CharacterBuildSummary } from "../types/characterSummary";
+import type { LevelRange } from "../types/range";
 
 export function getElementMaterials(character: Character) {
 	return elementUpgradeMaterials.find((m) => m.element === character.element);
@@ -20,11 +20,11 @@ export function useCharacter(name: string) {
 	);
 
 	function buildSummary(
-		materials: Range<CharacterLevelingMaterial>,
-		skillMaterials: SkillLevel[]
+		materials: LevelRange<CharacterLevelingMaterial>,
+		skillMaterials: SkillLevelCost[]
 	) {
 		let skillCosts = reduceSkillItems(skillMaterials);
-		let characterItems = buildCharacterAscentionCost(materials);
+		let characterItems = buildCharacterAscensionCost(materials);
 		const isA = character.value?.rank == "A";
 		return {
 			character: {
@@ -57,7 +57,7 @@ export function useCharacter(name: string) {
 			lunoMomento: skillCosts.lunoMomento,
 			nocturnalEcho: skillCosts.nocturnalEcho,
 			twilightTread: skillCosts.twilightTread,
-		} as BuildSummary;
+		} as CharacterBuildSummary;
 	}
 
 	const imageUrl = computed(() => {
@@ -75,8 +75,8 @@ export function useCharacter(name: string) {
 		imageUrl,
 	};
 }
-function buildCharacterAscentionCost(
-	materials: Range<CharacterLevelingMaterial>
+function buildCharacterAscensionCost(
+	materials: LevelRange<CharacterLevelingMaterial>
 ) {
 	let result: CharacterLevelingMaterial = {
 		ascensionMaterials: {

@@ -1,4 +1,4 @@
-import type { WeaponLevelingMaterial } from "../types/ascention";
+import type { WeaponLevelingMaterial } from "../types/ascension";
 import type { Weapon } from "../types/weapon";
 import type { WeaponUpgradeMaterials } from "../types/weaponUpgrades";
 

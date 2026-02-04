@@ -23,9 +23,9 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import CharacterMaterials from './characterMaterials.vue';
-import type { CharacterUpgrade } from '../types/upgradeConfig';
+import type { CharacterUpgradeConfig } from '../types/upgradeConfig';
 import { useCharacter } from '../composeables/useCharacter';
-import CharacterAscention from './characterAscention.vue';
+import CharacterAscension from './characterAscension.vue';
 import CharacterBuildConfiguration from './characterBuildConfiguration.vue';
 
 interface Props {

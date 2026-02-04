@@ -1,32 +1,32 @@
-import type { Range } from "./range";
+import type { LevelRange } from "./range";
 
-interface NodeUpgrade {
+interface SkillNodeState {
 	isUnlocked: boolean;
 }
 
-export interface SkillUpgrade {
+export interface SkillUpgradeConfig {
 	current: number;
 	target: number;
-	node1: NodeUpgrade;
-	node2: NodeUpgrade;
+	node1: SkillNodeState;
+	node2: SkillNodeState;
 }
 
-export interface UpgradeConfig {
+export interface BaseUpgradeConfig {
 	name: string | null;
 	type: "Character" | "Weapon";
-	level: Range<string>;
-	skill?: SkillUpgrade;
-	ult?: SkillUpgrade;
-	passive?: SkillUpgrade;
+	level: LevelRange<string>;
+	skill?: SkillUpgradeConfig;
+	ult?: SkillUpgradeConfig;
+	passive?: SkillUpgradeConfig;
 }
 
-export interface CharacterUpgrade extends UpgradeConfig {
-	skill: SkillUpgrade;
-	ult: SkillUpgrade;
-	passive: SkillUpgrade;
+export interface CharacterUpgradeConfig extends BaseUpgradeConfig {
+	skill: SkillUpgradeConfig;
+	ult: SkillUpgradeConfig;
+	passive: SkillUpgradeConfig;
 	type: "Character";
 }
 
-export interface WeaponUpgrade extends UpgradeConfig {
+export interface WeaponUpgradeConfig extends BaseUpgradeConfig {
 	type: "Weapon";
 }

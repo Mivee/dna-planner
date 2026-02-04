@@ -36,8 +36,8 @@
 </template>
 <script lang="ts" setup>
 import { useCharacter } from '../composeables/useCharacter';
-import type { SkillUpgrade, UpgradeConfig } from '../types/upgradeConfig';
-import { characterLevelingMaterials } from '../definitions/characterAscention';
+import type { SkillUpgradeConfig, BaseUpgradeConfig } from '../types/upgradeConfig';
+import { characterLevelingMaterials } from '../definitions/characterAscension';
 import { computed } from 'vue';
 import { CharacterSkillLevels, skillTrack1Materials } from '../definitions/skillLeveling';
 import type { SkillLevelingMaterial } from '../types/skillLeveling';
@@ -53,11 +53,11 @@ interface Props {
 const props = defineProps<Props>()
 
 const { upgradeMaterials, buildSummary } = useCharacter(props.upgradeConfig.name!);
-const summary = computed(() => buildSummary(characterAscentionMaterials.value, [...skillLevelMaterials.value.passive, ...skillLevelMaterials.value.skill, ...skillLevelMaterials.value.ult]));
-const characterAscentionMaterials = computed(() => {
+const summary = computed(() => buildSummary(characterAscensionMaterials.value, [...skillLevelMaterials.value.passive, ...skillLevelMaterials.value.skill, ...skillLevelMaterials.value.ult]));
+const characterAscensionMaterials = computed(() => {
     const start = characterLevelingMaterials.find(mat => mat.level == props.upgradeConfig.level.start)!;
     const end = characterLevelingMaterials.find(mat => mat.level == props.upgradeConfig.level.end)!;
-    return { start, end } as Range<CharacterLevelingMaterial>
+    return { start, end } as LevelRange<CharacterLevelingMaterial>
 });
 
 const skillLevelMaterials = computed(() => {
@@ -137,10 +137,10 @@ function toSkillLevel(m: SkillLevelingMaterial) {
 }
 
 type materialColor = "Green" | "Blue" | "Purple" | "Gold";
-type materialType = "Ascention" | "Forging";
+type materialType = "Ascension" | "Forging";
 
-function getMaterialName(color: materialColor, type: "Ascention" | "Forging") {
-    if (type == "Ascention") {
+function getMaterialName(color: materialColor, type: "Ascension" | "Forging") {
+    if (type == "Ascension") {
 
         switch (color) {
             case "Green": return upgradeMaterials.value?.ascensionMaterials.t1;

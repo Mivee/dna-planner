@@ -1,18 +1,46 @@
 import { defineStore } from "pinia";
 import type { InventoryItem } from "../types/inventoryItem";
-import { ref } from "vue";
-import { isTemplateExpression } from "typescript";
+import { ref, watch } from "vue";
+
+const STORAGE_KEY = "dna-planner-inventory";
 
 export const useInventory = defineStore("inventory", () => {
-	const items = ref(new Array<InventoryItem>());
+	// Load initial state from localStorage
+	const loadFromStorage = (): InventoryItem[] => {
+		try {
+			const stored = localStorage.getItem(STORAGE_KEY);
+			if (stored) {
+				return JSON.parse(stored);
+			}
+		} catch (error) {
+			console.error("Failed to load inventory from localStorage:", error);
+		}
+		return [];
+	};
 
-	function setQuantity(name: string, quantity: number) {
+	const items = ref<InventoryItem[]>(loadFromStorage());
+
+	// Persist state to localStorage
+	const saveToStorage = () => {
+		try {
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(items.value));
+		} catch (error) {
+			console.error("Failed to save inventory to localStorage:", error);
+		}
+	};
+
+	// Watch for changes and persist
+	watch(items, saveToStorage, { deep: true });
+
+	function setQuantity(name: string, quantity: number): boolean {
 		const item = items.value.find((i) => i.name == name);
 		if (item == null) {
-			return null;
+			console.warn(`Item "${name}" not found in inventory`);
+			return false;
 		}
 
 		item.quantity = quantity;
+		return true;
 	}
 
 	function getAmount(name: string) {
@@ -20,12 +48,14 @@ export const useInventory = defineStore("inventory", () => {
 		return item?.quantity ?? 0;
 	}
 
-	function addItem(item: InventoryItem) {
+	function addItem(item: InventoryItem): boolean {
 		if (items.value.some((i) => i.name == item.name)) {
-			return;
+			console.warn(`Item "${item.name}" already exists in inventory`);
+			return false;
 		}
 
 		items.value.push(item);
+		return true;
 	}
 
 	return {

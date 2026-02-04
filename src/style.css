@@ -1,57 +1,181 @@
 :root {
-	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
+	font-family: 'Philosopher', 'Segoe UI', sans-serif;
+	line-height: 1.6;
 	font-weight: 400;
 
-	color-scheme: light dark;
-	color: var(--color-secondary);
-	background-color: var(--color-primary);
+	color-scheme: dark;
+	
+	/* Genshin-inspired color palette */
+	--color-bg-primary: #1e1e2e;
+	--color-bg-secondary: #2a2a3e;
+	--color-bg-tertiary: #353546;
+	--color-bg-card: #2d2d44;
+	
+	--color-accent-primary: #ece5d8;
+	--color-accent-gold: #e6c574;
+	--color-accent-blue: #5ba3d0;
+	--color-accent-purple: #b794f6;
+	--color-accent-green: #73dda6;
+	--color-accent-orange: #f0a563;
+	
+	--color-text-primary: #ece5d8;
+	--color-text-secondary: #a79b8c;
+	--color-text-muted: #6b6659;
+	
+	--gradient-card: linear-gradient(135deg, #2d2d44 0%, #353546 100%);
+	--gradient-header: linear-gradient(180deg, #2a2a3e 0%, #1e1e2e 100%);
+	
+	--shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+	--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+	--shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+	--shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
+	
+	color: var(--color-text-primary);
+	background: #1e1e2e;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
-	--color-black: 0 0 0;
-	--color-white: 255 255 255;
 }
 
-a {
-	font-weight: 500;
-	color: #646cff;
-	text-decoration: inherit;
-}
-a:hover {
-	color: #535bf2;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
 	margin: 0;
-	display: flex;
-	place-items: center;
 	min-width: 320px;
+	min-height: 100vh;
+	background: #1e1e2e;
+}
+
+#app {
+	width: 100%;
 	min-height: 100vh;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Philosopher', sans-serif;
+	font-weight: 700;
+	color: var(--color-text-primary);
+}
+
 h1 {
-	font-size: 3.2em;
-	line-height: 1.1;
+	font-size: 2rem;
+	line-height: 1.2;
+}
+
+h2 {
+	font-size: 1.5rem;
+	line-height: 1.3;
+}
+
+a {
+	color: var(--color-accent-blue);
+	text-decoration: none;
+	transition: all 0.2s ease;
+}
+
+a:hover {
+	color: var(--color-accent-gold);
 }
 
 button {
-	border-radius: 8px;
-	border: 1px solid transparent;
-	padding: 0.6em 1.2em;
-	font-size: 1em;
-	font-weight: 500;
-	font-family: inherit;
+	position: relative;
+	border: none;
+	background: var(--color-accent-blue);
+	color: white;
+	padding: 0.625rem 1.25rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	font-family: 'Philosopher', sans-serif;
 	cursor: pointer;
-	transition: border-color 0.25s;
+	transition: all 0.2s ease;
+	border-radius: 6px;
+	box-shadow: var(--shadow-sm);
+}
+
+button:hover {
+	background: #6bb9e0;
+	box-shadow: var(--shadow-md);
+	transform: translateY(-1px);
+}
+
+button:active {
+	transform: translateY(0);
+	box-shadow: var(--shadow-sm);
 }
 
 button:focus,
 button:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
+	outline: 2px solid var(--color-accent-blue);
+	outline-offset: 2px;
+}
+
+button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	transform: none;
+}
+
+button.primary {
+	background: var(--color-accent-blue);
+}
+
+button.secondary {
+	background: var(--color-bg-tertiary);
+	color: var(--color-text-primary);
+}
+
+button.success {
+	background: var(--color-accent-green);
+}
+
+button.warning {
+	background: var(--color-accent-orange);
+}
+
+select, input {
+	background: var(--color-bg-tertiary);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	color: var(--color-text-primary);
+	padding: 0.5rem 0.75rem;
+	font-family: 'Philosopher', sans-serif;
+	font-size: 0.875rem;
+	border-radius: 6px;
+	transition: all 0.2s ease;
+}
+
+select:focus, input:focus {
+	outline: none;
+	border-color: var(--color-accent-blue);
+	background: var(--color-bg-card);
+}
+
+select:hover, input:hover {
+	border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--color-bg-tertiary);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--color-accent-blue);
 }
 
 .card {
@@ -59,22 +183,9 @@ button:focus-visible {
 }
 
 #app {
-	max-width: 1280px;
+	max-width: 1400px;
 	margin: 0 auto;
-	padding: 2rem;
-	text-align: center;
+	padding: 1rem;
 }
 
-@media (prefers-color-scheme: light) {
-	:root {
-		color: #213547;
-		background-color: #ffffff;
-	}
-	a:hover {
-		color: #747bff;
-	}
-	button {
-		background-color: #f9f9f9;
-	}
-}
 @import "./tailwind.css";

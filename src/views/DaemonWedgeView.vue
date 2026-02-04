@@ -1,21 +1,21 @@
 <template>
-    <div class="inventory-view">
+    <div class="wedge-view">
         <div class="view-header">
             <h2 class="view-title">
-                <i class="fas fa-box-archive"></i>
-                Inventory
+                <i class="fas fa-gem"></i>
+                Daemon Wedges
             </h2>
         </div>
-        <Inventory />
+        <DaemonWedges />
     </div>
 </template>
 
 <script lang="ts" setup>
-import Inventory from '../components/inventory.vue';
+import DaemonWedges from '../components/daemonWedges.vue'
 </script>
 
 <style scoped>
-.inventory-view {
+.wedge-view {
     animation: fadeIn 0.3s ease;
 }
 
@@ -43,7 +43,7 @@ import Inventory from '../components/inventory.vue';
 
 .view-title i {
     font-size: 1.25rem;
-    color: var(--color-accent-gold);
+    color: var(--color-accent-purple);
 }
 
 @keyframes fadeIn {

@@ -1,4 +1,4 @@
-export interface BuildSummary {
+export interface CharacterBuildSummary {
   character: {
     ascensionMaterials: {
       T1_Green: number;
