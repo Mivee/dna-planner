@@ -16,7 +16,7 @@ const routes = [
 	},
 	{
 		path: "/weapon",
-		component: WeaponView,
+		redirect: "/character",
 	},
 	{
 		path: "/wedges",

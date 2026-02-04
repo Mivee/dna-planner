@@ -3,9 +3,14 @@
         <!-- Title Section -->
         <div class="flex justify-between items-center px-5 py-4 bg-gradient-to-br from-[#e6c574]/10 to-[#5ba3d0]/10 border-b border-white/10">
             <h3 class="m-0 text-xl font-bold text-[var(--color-text-primary)]">{{ selectedCharacter }}</h3>
-            <button class="px-3 py-2 bg-white/5 border border-white/10 rounded-md text-[var(--color-text-secondary)] cursor-pointer transition-all duration-200 hover:bg-[#e6c574]/20 hover:border-[var(--color-accent-gold)] hover:text-[var(--color-accent-gold)]" @click="edit" aria-label="Edit character">
-                <i class="fa-solid fa-pencil"></i>
-            </button>
+            <div class="flex gap-2">
+                <button class="px-3 py-2 bg-white/5 border border-white/10 rounded-md text-[var(--color-text-secondary)] cursor-pointer transition-all duration-200 hover:bg-[#e6c574]/20 hover:border-[var(--color-accent-gold)] hover:text-[var(--color-accent-gold)]" @click="edit" aria-label="Edit character">
+                    <i class="fa-solid fa-pencil"></i>
+                </button>
+                <button class="px-3 py-2 bg-white/5 border border-white/10 rounded-md text-[var(--color-text-secondary)] cursor-pointer transition-all duration-200 hover:bg-red-500/20 hover:border-red-500 hover:text-red-500" @click="remove" aria-label="Remove character">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
         </div>
 
         <!-- Image & Summary Section -->
@@ -46,11 +51,15 @@ import CharacterMaterials from './characterMaterials.vue';
 import type { CharacterUpgradeConfig } from '../types/upgradeConfig';
 import { useCharacter } from '../composeables/useCharacter';
 import CharacterBuildConfiguration from './characterBuildConfiguration.vue';
+import { useUiStore } from '../stores/ui';
 
 interface Props {
     config: CharacterUpgradeConfig
 }
 const props = defineProps<Props>();
+
+const { removeConfiguration } = useUiStore();
+
 const hasCharacterSelected = computed(() => props.config.name != "" && props.config.name != null);
 
 const selectedCharacter = computed(() => props.config.name || "Berenica");
@@ -68,6 +77,12 @@ function toggleIsEditing() {
 
 function edit() {
     isEditing.value = true;
+}
+
+function remove() {
+    if (confirm(`Remove ${selectedCharacter.value}?`)) {
+        removeConfiguration(props.config.name!);
+    }
 }
 </script>
 

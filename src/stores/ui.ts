@@ -64,10 +64,24 @@ export const useUiStore = defineStore("ui", () => {
 		) as CharacterUpgradeConfig[];
 	});
 
+	const weaponConfigurations = computed(() => {
+		return [...upgradeConfiguration.value.values()].filter(
+			(c) => c.type == "Weapon"
+		);
+	});
+
+	function removeConfiguration(name: string) {
+		const map = new Map(upgradeConfiguration.value);
+		map.delete(name);
+		upgradeConfiguration.value = map;
+	}
+
 	return {
 		plannerMode,
 		addConfiguration,
+		removeConfiguration,
 		characterConfigurations,
+		weaponConfigurations,
 		getConfiguration,
 		upgradeConfiguration,
 	};

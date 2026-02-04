@@ -89,30 +89,37 @@ const totalMaterials = computed(() => {
     characterConfigurations.value.forEach(config => {
         if (!config.name) return;
         
-        const { buildSummary, character } = useCharacter(config.name);
-        
-        // Calculate character ascension materials
-        const start = characterLevelingMaterials.find(mat => mat.level == config.level.start);
-        const end = characterLevelingMaterials.find(mat => mat.level == config.level.end);
-        if (!start || !end) return;
-        
-        const characterAscensionMaterials = { start, end } as LevelRange<CharacterLevelingMaterial>;
-        
-        // Calculate skill materials
-        const skillMaterials = calculateSkillMaterials(config);
-        
-        // Get summary
-        const summary = buildSummary(characterAscensionMaterials, skillMaterials);
-        
-        // Add to totals
-        totals.coins += summary.coins;
-        totals.exp += summary.exp;
-        totals.ascension.green += summary.character.ascensionMaterials.T1_Green;
-        totals.ascension.blue += summary.character.ascensionMaterials.T2_Blue;
-        totals.ascension.purple += summary.character.ascensionMaterials.T3_Purple;
-        totals.forging.green += summary.skills.forgingMaterials.T1Green;
-        totals.forging.blue += summary.skills.forgingMaterials.T2Blue;
-        totals.forging.purple += summary.skills.forgingMaterials.T3Purple;
+        try {
+            const { buildSummary, character } = useCharacter(config.name);
+            
+            // Skip if character not found
+            if (!character.value) return;
+            
+            // Calculate character ascension materials
+            const start = characterLevelingMaterials.find(mat => mat.level == config.level.start);
+            const end = characterLevelingMaterials.find(mat => mat.level == config.level.end);
+            if (!start || !end) return;
+            
+            const characterAscensionMaterials = { start, end } as LevelRange<CharacterLevelingMaterial>;
+            
+            // Calculate skill materials
+            const skillMaterials = calculateSkillMaterials(config);
+            
+            // Get summary
+            const summary = buildSummary(characterAscensionMaterials, skillMaterials);
+            
+            // Add to totals
+            totals.coins += summary.coins || 0;
+            totals.exp += summary.exp || 0;
+            totals.ascension.green += summary.character.ascensionMaterials.T1_Green || 0;
+            totals.ascension.blue += summary.character.ascensionMaterials.T2_Blue || 0;
+            totals.ascension.purple += summary.character.ascensionMaterials.T3_Purple || 0;
+            totals.forging.green += summary.skills.forgingMaterials.T1Green || 0;
+            totals.forging.blue += summary.skills.forgingMaterials.T2Blue || 0;
+            totals.forging.purple += summary.skills.forgingMaterials.T3Purple || 0;
+        } catch (error) {
+            console.warn(`Failed to calculate materials for ${config.name}:`, error);
+        }
     });
 
     return totals;
