@@ -1,24 +1,33 @@
 <template>
-    <div class="character-view">
-        <div class="view-header">
-            <h2 class="view-title">
-                <i class="fas fa-users"></i>
+    <div class="animate-[fadeIn_0.3s_ease]">
+        <div class="flex justify-between items-center mb-6 px-5 py-4 bg-[var(--color-bg-card)] border border-white/10 rounded-lg shadow-[var(--shadow-card)] sm:flex-col sm:gap-4 sm:items-stretch">
+            <h2 class="m-0 text-2xl flex items-center gap-3 text-[var(--color-text-primary)] font-bold">
+                <i class="fas fa-users text-xl text-[var(--color-accent-gold)]"></i>
                 Characters
             </h2>
-            <button class="add-button" @click="openModal">
+            <button class="flex items-center gap-2 whitespace-nowrap sm:justify-center" @click="openModal">
                 <i class="fas fa-plus"></i>
                 Add Character
             </button>
         </div>
         
+        <div class="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 items-start">
+            <div class="order-2 md:order-1">
+                <MaterialSummary />
+            </div>
+            <div class="order-1 md:order-2">
+                <CharacterResultList />
+            </div>
+        </div>
+        
         <CharacterBuildConfiguration v-if="isConfigVisible" @saved="closeModal" @closed="closeModal" />
-        <CharacterResultList />
     </div>
 </template>
 
 <script lang="ts" setup>
 import CharacterBuildConfiguration from '../components/characterBuildConfiguration.vue';
 import CharacterResultList from '../components/characterResultList.vue';
+import MaterialSummary from '../components/materialSummary.vue';
 import { ref } from 'vue';
 
 const isConfigVisible = ref(false);
@@ -33,44 +42,6 @@ function closeModal() {
 </script>
 
 <style scoped>
-.character-view {
-    animation: fadeIn 0.3s ease;
-}
-
-.view-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    padding: 1.25rem;
-    background: var(--color-bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    box-shadow: var(--shadow-card);
-}
-
-.view-title {
-    margin: 0;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--color-text-primary);
-    font-weight: 700;
-}
-
-.view-title i {
-    font-size: 1.25rem;
-    color: var(--color-accent-gold);
-}
-
-.add-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    white-space: nowrap;
-}
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -79,18 +50,6 @@ function closeModal() {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@media (max-width: 640px) {
-    .view-header {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: stretch;
-    }
-    
-    .add-button {
-        justify-content: center;
     }
 }
 </style>

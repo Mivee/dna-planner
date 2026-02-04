@@ -1,51 +1,39 @@
 <template>
-    <div class="weapon-view">
-        <div class="view-header">
-            <h2 class="view-title">
-                <i class="fas fa-sword"></i>
+    <div class="animate-[fadeIn_0.3s_ease]">
+        <div class="flex justify-between items-center mb-6 px-5 py-4 bg-[var(--color-bg-card)] border border-white/10 rounded-lg shadow-[var(--shadow-card)] sm:flex-col sm:gap-4 sm:items-stretch">
+            <h2 class="m-0 text-2xl flex items-center gap-3 text-[var(--color-text-primary)] font-bold">
+                <i class="fas fa-sword text-xl text-[var(--color-accent-gold)]"></i>
                 Weapons
             </h2>
+            <button class="flex items-center gap-2 whitespace-nowrap sm:justify-center" @click="addWeapon">
+                <i class="fas fa-plus"></i>
+                Add Weapon
+            </button>
         </div>
-        <WeaponAscension />
+        
+        <div class="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 items-start">
+            <div class="order-2 md:order-1">
+                <WeaponMaterialSummary />
+            </div>
+            <div class="order-1 md:order-2">
+                <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-6">
+                    <WeaponResult />
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import WeaponAscension from '../components/weaponAscension.vue';
+import WeaponResult from '../components/weaponResult.vue';
+import WeaponMaterialSummary from '../components/weaponMaterialSummary.vue';
+
+function addWeapon() {
+    // Add weapon functionality
+}
 </script>
 
 <style scoped>
-.weapon-view {
-    animation: fadeIn 0.3s ease;
-}
-
-.view-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    padding: 1.25rem;
-    background: var(--color-bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    box-shadow: var(--shadow-card);
-}
-
-.view-title {
-    margin: 0;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--color-text-primary);
-    font-weight: 700;
-}
-
-.view-title i {
-    font-size: 1.25rem;
-    color: var(--color-accent-gold);
-}
-
 @keyframes fadeIn {
     from {
         opacity: 0;
