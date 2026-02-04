@@ -24,40 +24,24 @@
 
             <div class="flex flex-col gap-2" v-if="hasAscensionMaterials">
                 <h4 class="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider m-0 mb-2">Ascension Materials</h4>
-                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors" v-if="totalMaterials.ascension.green > 0">
-                    <div class="w-5 h-5 rounded bg-gradient-to-br from-[#4ade80] to-[#22c55e] shrink-0"></div>
-                    <span class="flex-1 text-sm text-[var(--color-text-primary)]">Green</span>
-                    <span class="font-bold text-[var(--color-accent-gold)] text-sm">{{ totalMaterials.ascension.green }}</span>
-                </div>
-                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors" v-if="totalMaterials.ascension.blue > 0">
-                    <div class="w-5 h-5 rounded bg-gradient-to-br from-[#60a5fa] to-[#3b82f6] shrink-0"></div>
-                    <span class="flex-1 text-sm text-[var(--color-text-primary)]">Blue</span>
-                    <span class="font-bold text-[var(--color-accent-gold)] text-sm">{{ totalMaterials.ascension.blue }}</span>
-                </div>
-                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors" v-if="totalMaterials.ascension.purple > 0">
-                    <div class="w-5 h-5 rounded bg-gradient-to-br from-[#c084fc] to-[#a855f7] shrink-0"></div>
-                    <span class="flex-1 text-sm text-[var(--color-text-primary)]">Purple</span>
-                    <span class="font-bold text-[var(--color-accent-gold)] text-sm">{{ totalMaterials.ascension.purple }}</span>
-                </div>
+                <template v-for="(material, key) in ascensionMaterialsList" :key="key">
+                    <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
+                        <div class="w-5 h-5 rounded shrink-0" :class="material.colorClass"></div>
+                        <span class="flex-1 text-sm text-[var(--color-text-primary)]">{{ material.name }}</span>
+                        <span class="font-bold text-[var(--color-accent-gold)] text-sm">{{ material.quantity }}</span>
+                    </div>
+                </template>
             </div>
 
             <div class="flex flex-col gap-2" v-if="hasForgingMaterials">
                 <h4 class="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider m-0 mb-2">Forging Materials</h4>
-                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors" v-if="totalMaterials.forging.green > 0">
-                    <div class="w-5 h-5 rounded bg-gradient-to-br from-[#4ade80] to-[#22c55e] shrink-0"></div>
-                    <span class="flex-1 text-sm text-[var(--color-text-primary)]">Green</span>
-                    <span class="font-bold text-[var(--color-accent-gold)] text-sm">{{ totalMaterials.forging.green }}</span>
-                </div>
-                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors" v-if="totalMaterials.forging.blue > 0">
-                    <div class="w-5 h-5 rounded bg-gradient-to-br from-[#60a5fa] to-[#3b82f6] shrink-0"></div>
-                    <span class="flex-1 text-sm text-[var(--color-text-primary)]">Blue</span>
-                    <span class="font-bold text-[var(--color-accent-gold)] text-sm">{{ totalMaterials.forging.blue }}</span>
-                </div>
-                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors" v-if="totalMaterials.forging.purple > 0">
-                    <div class="w-5 h-5 rounded bg-gradient-to-br from-[#c084fc] to-[#a855f7] shrink-0"></div>
-                    <span class="flex-1 text-sm text-[var(--color-text-primary)]">Purple</span>
-                    <span class="font-bold text-[var(--color-accent-gold)] text-sm">{{ totalMaterials.forging.purple }}</span>
-                </div>
+                <template v-for="(material, key) in forgingMaterialsList" :key="key">
+                    <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
+                        <div class="w-5 h-5 rounded shrink-0" :class="material.colorClass"></div>
+                        <span class="flex-1 text-sm text-[var(--color-text-primary)]">{{ material.name }}</span>
+                        <span class="font-bold text-[var(--color-accent-gold)] text-sm">{{ material.quantity }}</span>
+                    </div>
+                </template>
             </div>
         </div>
     </div>
@@ -70,20 +54,29 @@ import { useUiStore } from '../stores/ui';
 import { useCharacter } from '../composeables/useCharacter';
 import { characterLevelingMaterials } from '../definitions/characterAscension';
 import { CharacterSkillLevels, skillTrack1Materials } from '../definitions/skillLeveling';
+import { elementUpgradeMaterials } from '../definitions/character';
 import type { CharacterLevelingMaterial } from '../types/characterLeveling';
 import type { LevelRange } from '../types/range';
-import type { SkillLevel } from '../types/skill';
+import type { SkillLevelCost } from '../types/skill';
 import type { SkillLevelingMaterial } from '../types/skillLeveling';
 import type { SkillUpgradeConfig } from '../types/upgradeConfig';
 
 const { characterConfigurations } = storeToRefs(useUiStore());
+
+interface MaterialDetail {
+    name: string;
+    quantity: number;
+    colorClass: string;
+}
 
 const totalMaterials = computed(() => {
     const totals = {
         coins: 0,
         exp: 0,
         ascension: { green: 0, blue: 0, purple: 0 },
-        forging: { green: 0, blue: 0, purple: 0 }
+        forging: { green: 0, blue: 0, purple: 0 },
+        ascensionDetails: new Map<string, { tier: string, quantity: number }>(),
+        forgingDetails: new Map<string, { tier: string, quantity: number }>()
     };
 
     characterConfigurations.value.forEach(config => {
@@ -94,6 +87,9 @@ const totalMaterials = computed(() => {
             
             // Skip if character not found
             if (!character.value) return;
+            
+            // Get element materials for this character
+            const elementMats = elementUpgradeMaterials.find(m => m.element === character.value?.element);
             
             // Calculate character ascension materials
             const start = characterLevelingMaterials.find(mat => mat.level == config.level.start);
@@ -117,6 +113,52 @@ const totalMaterials = computed(() => {
             totals.forging.green += summary.skills.forgingMaterials.T1Green || 0;
             totals.forging.blue += summary.skills.forgingMaterials.T2Blue || 0;
             totals.forging.purple += summary.skills.forgingMaterials.T3Purple || 0;
+            
+            // Track material names for ascension materials
+            if (elementMats && summary.character.ascensionMaterials.T1_Green > 0) {
+                const existing = totals.ascensionDetails.get(elementMats.ascensionMaterials.t1);
+                totals.ascensionDetails.set(elementMats.ascensionMaterials.t1, {
+                    tier: 'green',
+                    quantity: (existing?.quantity || 0) + summary.character.ascensionMaterials.T1_Green
+                });
+            }
+            if (elementMats && summary.character.ascensionMaterials.T2_Blue > 0) {
+                const existing = totals.ascensionDetails.get(elementMats.ascensionMaterials.t2);
+                totals.ascensionDetails.set(elementMats.ascensionMaterials.t2, {
+                    tier: 'blue',
+                    quantity: (existing?.quantity || 0) + summary.character.ascensionMaterials.T2_Blue
+                });
+            }
+            if (elementMats && summary.character.ascensionMaterials.T3_Purple > 0) {
+                const existing = totals.ascensionDetails.get(elementMats.ascensionMaterials.t3);
+                totals.ascensionDetails.set(elementMats.ascensionMaterials.t3, {
+                    tier: 'purple',
+                    quantity: (existing?.quantity || 0) + summary.character.ascensionMaterials.T3_Purple
+                });
+            }
+            
+            // Track material names for forging materials
+            if (elementMats && summary.skills.forgingMaterials.T1Green > 0) {
+                const existing = totals.forgingDetails.get(elementMats.forgingMaterials.t1);
+                totals.forgingDetails.set(elementMats.forgingMaterials.t1, {
+                    tier: 'green',
+                    quantity: (existing?.quantity || 0) + summary.skills.forgingMaterials.T1Green
+                });
+            }
+            if (elementMats && summary.skills.forgingMaterials.T2Blue > 0) {
+                const existing = totals.forgingDetails.get(elementMats.forgingMaterials.t2);
+                totals.forgingDetails.set(elementMats.forgingMaterials.t2, {
+                    tier: 'blue',
+                    quantity: (existing?.quantity || 0) + summary.skills.forgingMaterials.T2Blue
+                });
+            }
+            if (elementMats && summary.skills.forgingMaterials.T3Purple > 0) {
+                const existing = totals.forgingDetails.get(elementMats.forgingMaterials.t3);
+                totals.forgingDetails.set(elementMats.forgingMaterials.t3, {
+                    tier: 'purple',
+                    quantity: (existing?.quantity || 0) + summary.skills.forgingMaterials.T3Purple
+                });
+            }
         } catch (error) {
             console.warn(`Failed to calculate materials for ${config.name}:`, error);
         }
@@ -126,7 +168,7 @@ const totalMaterials = computed(() => {
 });
 
 function calculateSkillMaterials(config: any) {
-    const skillMaterials: SkillLevel[] = [];
+    const skillMaterials: SkillLevelCost[] = [];
     
     // Skill
     if (config.skill) {
@@ -149,7 +191,7 @@ function calculateSkillMaterials(config: any) {
     return skillMaterials;
 }
 
-function getSkillMaterials(current: number, target: number): SkillLevel {
+function getSkillMaterials(current: number, target: number): SkillLevelCost {
     const start = CharacterSkillLevels.find(mat => mat.level == current);
     const end = CharacterSkillLevels.find(mat => mat.level == target);
     
@@ -158,7 +200,7 @@ function getSkillMaterials(current: number, target: number): SkillLevel {
             coinsGroupA: 0, coinsGroupB: 0,
             forgingMaterials: { T1Green: 0, T2Blue: 0, T3Purple: 0, T4Gold: 0 },
             level: 0, lunoMomento: 0, nocturnalEcho: 0, twilightTread: 0
-        } as SkillLevel;
+        } as SkillLevelCost;
     }
     
     return {
@@ -174,11 +216,11 @@ function getSkillMaterials(current: number, target: number): SkillLevel {
         lunoMomento: end.lunoMomento - start.lunoMomento,
         nocturnalEcho: end.nocturnalEcho - start.nocturnalEcho,
         twilightTread: end.twilightTread - start.twilightTread,
-    } as SkillLevel;
+    } as SkillLevelCost;
 }
 
-function getNodeMaterials(skill: SkillUpgradeConfig): SkillLevel[] {
-    const results: SkillLevel[] = [];
+function getNodeMaterials(skill: SkillUpgradeConfig): SkillLevelCost[] {
+    const results: SkillLevelCost[] = [];
     
     if (skill.node1?.isUnlocked) {
         const m = skillTrack1Materials.find(mat => mat.node == 1);
@@ -192,7 +234,7 @@ function getNodeMaterials(skill: SkillUpgradeConfig): SkillLevel[] {
     return results;
 }
 
-function toSkillLevel(m: SkillLevelingMaterial): SkillLevel {
+function toSkillLevel(m: SkillLevelingMaterial): SkillLevelCost {
     return {
         coinsGroupA: m.coins.default,
         coinsGroupB: m.coins.default,
@@ -206,20 +248,68 @@ function toSkillLevel(m: SkillLevelingMaterial): SkillLevel {
         lunoMomento: 0,
         nocturnalEcho: m.forgingMaterials.NocturnalEcho,
         twilightTread: m.forgingMaterials.TwilightTread,
-    } as SkillLevel;
+    } as SkillLevelCost;
 }
 
 const hasAscensionMaterials = computed(() => 
-    totalMaterials.value.ascension.green > 0 || 
-    totalMaterials.value.ascension.blue > 0 || 
-    totalMaterials.value.ascension.purple > 0
+    totalMaterials.value.ascensionDetails.size > 0
 );
 
 const hasForgingMaterials = computed(() => 
-    totalMaterials.value.forging.green > 0 || 
-    totalMaterials.value.forging.blue > 0 || 
-    totalMaterials.value.forging.purple > 0
+    totalMaterials.value.forgingDetails.size > 0
 );
+
+const ascensionMaterialsList = computed(() => {
+    const materials: MaterialDetail[] = [];
+    const tierOrder = { green: 0, blue: 1, purple: 2 };
+    const tierColors = {
+        green: 'bg-gradient-to-br from-[#4ade80] to-[#22c55e]',
+        blue: 'bg-gradient-to-br from-[#60a5fa] to-[#3b82f6]',
+        purple: 'bg-gradient-to-br from-[#c084fc] to-[#a855f7]'
+    };
+    
+    totalMaterials.value.ascensionDetails.forEach((detail, name) => {
+        materials.push({
+            name,
+            quantity: detail.quantity,
+            colorClass: tierColors[detail.tier as keyof typeof tierColors]
+        });
+    });
+    
+    // Sort by tier (green, blue, purple) then by name
+    return materials.sort((a, b) => {
+        const tierA = totalMaterials.value.ascensionDetails.get(a.name)?.tier || 'green';
+        const tierB = totalMaterials.value.ascensionDetails.get(b.name)?.tier || 'green';
+        const tierDiff = tierOrder[tierA as keyof typeof tierOrder] - tierOrder[tierB as keyof typeof tierOrder];
+        return tierDiff !== 0 ? tierDiff : a.name.localeCompare(b.name);
+    });
+});
+
+const forgingMaterialsList = computed(() => {
+    const materials: MaterialDetail[] = [];
+    const tierOrder = { green: 0, blue: 1, purple: 2 };
+    const tierColors = {
+        green: 'bg-gradient-to-br from-[#4ade80] to-[#22c55e]',
+        blue: 'bg-gradient-to-br from-[#60a5fa] to-[#3b82f6]',
+        purple: 'bg-gradient-to-br from-[#c084fc] to-[#a855f7]'
+    };
+    
+    totalMaterials.value.forgingDetails.forEach((detail, name) => {
+        materials.push({
+            name,
+            quantity: detail.quantity,
+            colorClass: tierColors[detail.tier as keyof typeof tierColors]
+        });
+    });
+    
+    // Sort by tier (green, blue, purple) then by name
+    return materials.sort((a, b) => {
+        const tierA = totalMaterials.value.forgingDetails.get(a.name)?.tier || 'green';
+        const tierB = totalMaterials.value.forgingDetails.get(b.name)?.tier || 'green';
+        const tierDiff = tierOrder[tierA as keyof typeof tierOrder] - tierOrder[tierB as keyof typeof tierOrder];
+        return tierDiff !== 0 ? tierDiff : a.name.localeCompare(b.name);
+    });
+});
 </script>
 
 <style scoped>
