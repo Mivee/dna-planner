@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import type { WeaponUpgradeConfig } from '../types/upgradeConfig';
 import { computed, ref } from 'vue';
-import WeaponMaterials from './weaponMaterials.vue';
+import WeaponMaterials from './WeaponMaterials.vue';
 import Forge from './weaponForge.vue';
 import { weapons, weaponLevelingMaterials } from '../definitions/weapon';
 import RangeSelect from './rangeSelect.vue';

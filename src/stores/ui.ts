@@ -1,7 +1,11 @@
 import { defineStore } from "pinia";
 import type { PlannerMode } from "../types/plannerModes";
 import { computed, ref, watch } from "vue";
-import type { CharacterUpgradeConfig, BaseUpgradeConfig } from "../types/upgradeConfig";
+import type {
+	CharacterUpgradeConfig,
+	BaseUpgradeConfig,
+	WeaponUpgradeConfig,
+} from "../types/upgradeConfig";
 import { useClone } from "../composeables/utils";
 
 const STORAGE_KEY = "dna-planner-ui";
@@ -15,13 +19,18 @@ export const useUiStore = defineStore("ui", () => {
 				const data = JSON.parse(stored);
 				return {
 					plannerMode: data.plannerMode || "Inventory",
-					upgradeConfiguration: new Map(Object.entries(data.upgradeConfiguration || {}))
+					upgradeConfiguration: new Map<string, BaseUpgradeConfig>(
+						Object.entries(data.upgradeConfiguration || {})
+					),
 				};
 			}
 		} catch (error) {
 			console.error("Failed to load UI state from localStorage:", error);
 		}
-		return { plannerMode: "Inventory" as PlannerMode, upgradeConfiguration: new Map<string, BaseUpgradeConfig>() };
+		return {
+			plannerMode: "Inventory" as PlannerMode,
+			upgradeConfiguration: new Map<string, BaseUpgradeConfig>(),
+		};
 	};
 
 	const initialState = loadFromStorage();
@@ -33,7 +42,9 @@ export const useUiStore = defineStore("ui", () => {
 		try {
 			const data = {
 				plannerMode: plannerMode.value,
-				upgradeConfiguration: Object.fromEntries(upgradeConfiguration.value)
+				upgradeConfiguration: Object.fromEntries(
+					upgradeConfiguration.value
+				),
 			};
 			localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 		} catch (error) {
@@ -67,7 +78,7 @@ export const useUiStore = defineStore("ui", () => {
 	const weaponConfigurations = computed(() => {
 		return [...upgradeConfiguration.value.values()].filter(
 			(c) => c.type == "Weapon"
-		);
+		) as WeaponUpgradeConfig[];
 	});
 
 	function removeConfiguration(name: string) {

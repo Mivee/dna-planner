@@ -1,34 +1,40 @@
 <template>
     <div class="bg-secondary border border-white/10 rounded-lg overflow-hidden sticky top-4 h-fit">
-        <div class="p-4 bg-gradient-to-br from-accent/10 to-info/10 border-b border-white/10">
+        <div class="p-4 bg-linear-to-br from-accent/10 to-info/10 border-b border-white/10">
             <h3 class="text-lg font-bold text-on-primary flex items-center gap-2 m-0">
                 <i class="fas fa-list-check text-accent"></i>
                 Total Materials
-                <span v-if="plannerMode === 'Inventory'" class="ml-auto text-xs font-medium text-info bg-info/10 px-2 py-1 rounded border border-info/30">
+                <span v-if="plannerMode === 'Inventory'"
+                    class="ml-auto text-xs font-medium text-info bg-info/10 px-2 py-1 rounded border border-info/30">
                     <i class="fas fa-box-archive mr-1"></i>Adjusted
                 </span>
             </h3>
         </div>
-        
+
         <div class="p-4 flex flex-col gap-6">
             <div class="flex flex-col gap-2">
                 <h4 class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">Currency</h4>
-                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
+                <div
+                    class="flex items-center gap-3 p-2 bg-secondary/3 rounded-md hover:bg-secondary/5 transition-colors">
                     <i class="fas fa-coins w-5 text-center text-accent"></i>
                     <span class="flex-1 text-sm text-on-primary">Coins</span>
-                    <span class="font-bold text-accent text-sm">{{ getAdjustedQuantity('Coins', totalMaterials.coins).toLocaleString() }}</span>
+                    <span class="font-bold text-accent text-sm">{{ getAdjustedQuantity('Coins',
+                        totalMaterials.coins).toLocaleString() }}</span>
                 </div>
-                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
+                <div
+                    class="flex items-center gap-3 p-2 bg-secondary/3 rounded-md hover:bg-secondary/5 transition-colors">
                     <i class="fas fa-star w-5 text-center text-accent"></i>
                     <span class="flex-1 text-sm text-on-primary">XP</span>
-                    <span class="font-bold text-accent text-sm">{{ getAdjustedQuantity('XP', totalMaterials.exp).toLocaleString() }}</span>
+                    <span class="font-bold text-accent text-sm">{{ getAdjustedQuantity('XP',
+                        totalMaterials.exp).toLocaleString() }}</span>
                 </div>
             </div>
 
             <div class="flex flex-col gap-2" v-if="hasAscensionMaterials">
-                <h4 class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">Ascension Materials</h4>
+                <h4 class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">Ascension
+                    Materials</h4>
                 <template v-for="(material, key) in ascensionMaterialsList" :key="key">
-                    <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
+                    <div class="flex items-center gap-3 p-2 bg-white/3 rounded-md hover:bg-white/5 transition-colors">
                         <div class="w-5 h-5 rounded shrink-0" :class="material.colorClass"></div>
                         <span class="flex-1 text-sm text-on-primary">{{ material.name }}</span>
                         <span class="font-bold text-accent text-sm">{{ material.adjustedQuantity }}</span>
@@ -37,9 +43,11 @@
             </div>
 
             <div class="flex flex-col gap-2" v-if="hasForgingMaterials">
-                <h4 class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">Forging Materials</h4>
+                <h4 class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">Forging Materials
+                </h4>
                 <template v-for="(material, key) in forgingMaterialsList" :key="key">
-                    <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
+                    <div
+                        class="flex items-center gap-3 p-2 bg-secondary/3 rounded-md hover:bg-secondary/5 transition-colors">
                         <div class="w-5 h-5 rounded shrink-0" :class="material.colorClass"></div>
                         <span class="flex-1 text-sm text-on-primary">{{ material.name }}</span>
                         <span class="font-bold text-accent text-sm">{{ material.adjustedQuantity }}</span>
@@ -97,29 +105,29 @@ const totalMaterials = computed(() => {
 
     characterConfigurations.value.forEach(config => {
         if (!config.name) return;
-        
+
         try {
             const { buildSummary, character } = useCharacter(config.name);
-            
+
             // Skip if character not found
             if (!character.value) return;
-            
+
             // Get element materials for this character
             const elementMats = elementUpgradeMaterials.find(m => m.element === character.value?.element);
-            
+
             // Calculate character ascension materials
             const start = characterLevelingMaterials.find(mat => mat.level == config.level.start);
             const end = characterLevelingMaterials.find(mat => mat.level == config.level.end);
             if (!start || !end) return;
-            
+
             const characterAscensionMaterials = { start, end } as LevelRange<CharacterLevelingMaterial>;
-            
+
             // Calculate skill materials
             const skillMaterials = calculateSkillMaterials(config);
-            
+
             // Get summary
             const summary = buildSummary(characterAscensionMaterials, skillMaterials);
-            
+
             // Add to totals
             totals.coins += summary.coins || 0;
             totals.exp += summary.exp || 0;
@@ -129,7 +137,7 @@ const totalMaterials = computed(() => {
             totals.forging.green += summary.skills.forgingMaterials.T1Green || 0;
             totals.forging.blue += summary.skills.forgingMaterials.T2Blue || 0;
             totals.forging.purple += summary.skills.forgingMaterials.T3Purple || 0;
-            
+
             // Track material names for ascension materials
             if (elementMats && summary.character.ascensionMaterials.T1_Green > 0) {
                 const existing = totals.ascensionDetails.get(elementMats.ascensionMaterials.t1);
@@ -152,7 +160,7 @@ const totalMaterials = computed(() => {
                     quantity: (existing?.quantity || 0) + summary.character.ascensionMaterials.T3_Purple
                 });
             }
-            
+
             // Track material names for forging materials
             if (elementMats && summary.skills.forgingMaterials.T1Green > 0) {
                 const existing = totals.forgingDetails.get(elementMats.forgingMaterials.t1);
@@ -185,32 +193,32 @@ const totalMaterials = computed(() => {
 
 function calculateSkillMaterials(config: any) {
     const skillMaterials: SkillLevelCost[] = [];
-    
+
     // Skill
     if (config.skill) {
         skillMaterials.push(getSkillMaterials(config.skill.current, config.skill.target));
         skillMaterials.push(...getNodeMaterials(config.skill));
     }
-    
+
     // Ultimate
     if (config.ult) {
         skillMaterials.push(getSkillMaterials(config.ult.current, config.ult.target));
         skillMaterials.push(...getNodeMaterials(config.ult));
     }
-    
+
     // Passive
     if (config.passive) {
         skillMaterials.push(getSkillMaterials(config.passive.current, config.passive.target));
         skillMaterials.push(...getNodeMaterials(config.passive));
     }
-    
+
     return skillMaterials;
 }
 
 function getSkillMaterials(current: number, target: number): SkillLevelCost {
     const start = CharacterSkillLevels.find(mat => mat.level == current);
     const end = CharacterSkillLevels.find(mat => mat.level == target);
-    
+
     if (!start || !end) {
         return {
             coinsGroupA: 0, coinsGroupB: 0,
@@ -218,7 +226,7 @@ function getSkillMaterials(current: number, target: number): SkillLevelCost {
             level: 0, lunoMomento: 0, nocturnalEcho: 0, twilightTread: 0
         } as SkillLevelCost;
     }
-    
+
     return {
         coinsGroupA: end.coinsGroupA - start.coinsGroupA,
         coinsGroupB: end.coinsGroupA - start.coinsGroupA,
@@ -237,7 +245,7 @@ function getSkillMaterials(current: number, target: number): SkillLevelCost {
 
 function getNodeMaterials(skill: SkillUpgradeConfig): SkillLevelCost[] {
     const results: SkillLevelCost[] = [];
-    
+
     if (skill.node1?.isUnlocked) {
         const m = skillTrack1Materials.find(mat => mat.node == 1);
         if (m) results.push(toSkillLevel(m));
@@ -246,7 +254,7 @@ function getNodeMaterials(skill: SkillUpgradeConfig): SkillLevelCost[] {
         const m = skillTrack1Materials.find(mat => mat.node == 2);
         if (m) results.push(toSkillLevel(m));
     }
-    
+
     return results;
 }
 
@@ -267,11 +275,11 @@ function toSkillLevel(m: SkillLevelingMaterial): SkillLevelCost {
     } as SkillLevelCost;
 }
 
-const hasAscensionMaterials = computed(() => 
+const hasAscensionMaterials = computed(() =>
     totalMaterials.value.ascensionDetails.size > 0
 );
 
-const hasForgingMaterials = computed(() => 
+const hasForgingMaterials = computed(() =>
     totalMaterials.value.forgingDetails.size > 0
 );
 
@@ -283,7 +291,7 @@ const ascensionMaterialsList = computed(() => {
         blue: 'bg-gradient-to-br from-[#60a5fa] to-[#3b82f6]',
         purple: 'bg-gradient-to-br from-[#c084fc] to-[#a855f7]'
     };
-    
+
     totalMaterials.value.ascensionDetails.forEach((detail, name) => {
         const adjustedQty = getAdjustedQuantity(name, detail.quantity);
         materials.push({
@@ -293,7 +301,7 @@ const ascensionMaterialsList = computed(() => {
             colorClass: tierColors[detail.tier as keyof typeof tierColors]
         });
     });
-    
+
     // Sort by tier (green, blue, purple) then by name
     return materials.sort((a, b) => {
         const tierA = totalMaterials.value.ascensionDetails.get(a.name)?.tier || 'green';
@@ -311,7 +319,7 @@ const forgingMaterialsList = computed(() => {
         blue: 'bg-gradient-to-br from-[#60a5fa] to-[#3b82f6]',
         purple: 'bg-gradient-to-br from-[#c084fc] to-[#a855f7]'
     };
-    
+
     totalMaterials.value.forgingDetails.forEach((detail, name) => {
         const adjustedQty = getAdjustedQuantity(name, detail.quantity);
         materials.push({
@@ -321,7 +329,7 @@ const forgingMaterialsList = computed(() => {
             colorClass: tierColors[detail.tier as keyof typeof tierColors]
         });
     });
-    
+
     // Sort by tier (green, blue, purple) then by name
     return materials.sort((a, b) => {
         const tierA = totalMaterials.value.forgingDetails.get(a.name)?.tier || 'green';

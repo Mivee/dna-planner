@@ -69,14 +69,15 @@ import {
 	skillTrack1Materials,
 } from "../definitions/skillLeveling";
 import type { SkillLevelingMaterial } from "../types/skillLeveling";
-import type { SkillLevel } from "../types/skill";
 import type { CharacterLevelingMaterial } from "../types/characterLeveling";
-import type { LevelRange, Range } from "../types/range";
+import type { LevelRange } from "../types/range";
 import { useInventory } from "../stores/inventory";
 import { useUiStore } from "../stores/ui";
+import type { CharacterUpgradeConfig, SkillUpgradeConfig } from "../types/upgradeConfig";
+import type { SkillLevelCost } from "../types/skill";
 
 interface Props {
-	upgradeConfig: UpgradeConfig;
+	upgradeConfig: CharacterUpgradeConfig;
 }
 const props = defineProps<Props>();
 
@@ -145,7 +146,7 @@ function getSkillMaterials(current: number, target: number) {
 	return mergeRange({ start, end });
 }
 
-function mergeRange(range: Range<SkillLevel>) {
+function mergeRange(range: LevelRange<SkillLevelCost>) {
 	return {
 		coinsGroupA: range.end!.coinsGroupA - range.start!.coinsGroupA,
 		coinsGroupB: range.end!.coinsGroupA - range.start!.coinsGroupA,
@@ -167,10 +168,10 @@ function mergeRange(range: Range<SkillLevel>) {
 		lunoMomento: range.end!.lunoMomento - range.start!.lunoMomento,
 		nocturnalEcho: range.end!.nocturnalEcho - range.start!.nocturnalEcho,
 		twilightTread: range.end!.nocturnalEcho - range.start!.nocturnalEcho,
-	} as SkillLevel;
+	} as SkillLevelCost;
 }
 
-function getNodeMaterials(skill: SkillUpgrade) {
+function getNodeMaterials(skill: SkillUpgradeConfig) {
 	let results: SkillLevelingMaterial[] = [];
 	let m: SkillLevelingMaterial;
 	if (skill.node1?.isUnlocked == true) {
@@ -199,7 +200,7 @@ function toSkillLevel(m: SkillLevelingMaterial) {
 		lunoMomento: 0,
 		nocturnalEcho: m.forgingMaterials.NocturnalEcho,
 		twilightTread: m.forgingMaterials.TwilightTread,
-	} as SkillLevel;
+	} as SkillLevelCost;
 }
 
 type materialColor = "Green" | "Blue" | "Purple" | "Gold";

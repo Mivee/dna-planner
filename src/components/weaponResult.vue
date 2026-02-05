@@ -1,19 +1,24 @@
 <template>
-    <div class="bg-secondary border border-white/10 rounded-lg overflow-hidden transition-all duration-300 hover:border-accent/30 hover:shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
+    <div
+        class="bg-secondary border border-white/10 rounded-lg overflow-hidden transition-all duration-300 hover:border-accent/30 hover:shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
         <!-- Title Section -->
-        <div class="flex justify-between items-center px-5 py-4 bg-gradient-to-br from-accent/10 to-info/10 border-b border-white/10">
+        <div
+            class="flex justify-between items-center px-5 py-4 bg-linear-to-br from-accent/10 to-info/10 border-b border-white/10">
             <h3 class="m-0 text-xl font-bold text-on-primary">{{ selectedWeapon || 'Select Weapon' }}</h3>
-            <button class="px-3 py-2 bg-white/5 border border-white/10 rounded-md text-on-secondary cursor-pointer transition-all duration-200 hover:bg-red-500/20 hover:border-red-500 hover:text-red-500" @click="remove" aria-label="Remove weapon">
+            <button
+                class="px-3 py-2 bg-white/5 border border-white/10 rounded-md text-on-secondary cursor-pointer transition-all duration-200 hover:bg-red-500/20 hover:border-red-500 hover:text-red-500"
+                @click="remove" aria-label="Remove weapon">
                 <i class="fa-solid fa-trash"></i>
             </button>
         </div>
 
         <!-- Image & Summary Section -->
         <div class="grid grid-cols-[120px_1fr] gap-5 p-5 border-b border-white/10">
-            <div class="w-[120px] h-[120px] flex items-center justify-center bg-white/[0.03] border-2 border-dashed border-white/10 rounded-lg">
+            <div
+                class="w-30 h-30 flex items-center justify-center bg-secondary/3 border-2 border-dashed border-white/10 rounded-lg">
                 <i class="fas fa-sword text-4xl text-white/20"></i>
             </div>
-            
+
             <div class="flex flex-col gap-3 justify-center">
                 <div class="flex justify-between items-center py-2">
                     <span class="text-sm text-on-secondary font-medium">Level</span>
@@ -32,7 +37,7 @@
 <script lang="ts" setup>
 import type { WeaponUpgradeConfig } from '../types/upgradeConfig';
 import { computed } from 'vue';
-import WeaponMaterials from './weaponMaterials.vue';
+import WeaponMaterials from './WeaponMaterials.vue';
 import { useUiStore } from '../stores/ui';
 
 interface Props {
