@@ -1,8 +1,8 @@
 <template>
-    <div class="inventory-view">
-        <div class="view-header">
-            <h2 class="view-title">
-                <i class="fas fa-box-archive"></i>
+    <div class="animate-[fadeIn_0.3s_ease]">
+        <div class="flex justify-between items-center mb-6 px-5 py-4 bg-secondary border border-white/10 rounded-lg shadow-lg">
+            <h2 class="m-0 text-2xl flex items-center gap-3 text-on-primary font-bold">
+                <i class="fas fa-box-archive text-xl text-accent"></i>
                 Inventory
             </h2>
         </div>
@@ -15,37 +15,6 @@ import Inventory from '../components/inventory.vue';
 </script>
 
 <style scoped>
-.inventory-view {
-    animation: fadeIn 0.3s ease;
-}
-
-.view-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    padding: 1.25rem;
-    background: var(--color-bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    box-shadow: var(--shadow-card);
-}
-
-.view-title {
-    margin: 0;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--color-text-primary);
-    font-weight: 700;
-}
-
-.view-title i {
-    font-size: 1.25rem;
-    color: var(--color-accent-gold);
-}
-
 @keyframes fadeIn {
     from {
         opacity: 0;

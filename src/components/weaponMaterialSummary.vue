@@ -1,52 +1,52 @@
 <template>
-    <div class="material-summary">
-        <div class="summary-header">
-            <h3 class="summary-title">
-                <i class="fas fa-list-check"></i>
+    <div class="bg-secondary border border-white/10 rounded-lg overflow-hidden sticky top-4 h-fit">
+        <div class="p-4 bg-gradient-to-br from-accent/10 to-info/10 border-b border-white/10">
+            <h3 class="text-lg font-bold text-on-primary flex items-center gap-2 m-0">
+                <i class="fas fa-list-check text-accent"></i>
                 Total Materials
             </h3>
         </div>
         
-        <div class="summary-content">
-            <div class="material-section">
-                <h4 class="section-title">Currency</h4>
-                <div class="material-item">
-                    <i class="fas fa-coins"></i>
-                    <span class="material-name">Coins</span>
-                    <span class="material-amount">{{ totalMaterials.coins }}</span>
+        <div class="p-4 flex flex-col gap-6">
+            <div class="flex flex-col gap-2">
+                <h4 class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">Currency</h4>
+                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
+                    <i class="fas fa-coins w-5 text-center text-accent"></i>
+                    <span class="flex-1 text-sm text-on-primary">Coins</span>
+                    <span class="font-bold text-accent text-sm">{{ totalMaterials.coins }}</span>
                 </div>
-                <div class="material-item">
-                    <i class="fas fa-star"></i>
-                    <span class="material-name">XP</span>
-                    <span class="material-amount">{{ totalMaterials.exp }}</span>
-                </div>
-            </div>
-
-            <div class="material-section" v-if="hasMaterials">
-                <h4 class="section-title">Ascension Materials</h4>
-                <div class="material-item" v-if="totalMaterials.green > 0">
-                    <div class="material-tier tier-green"></div>
-                    <span class="material-name">Green</span>
-                    <span class="material-amount">{{ totalMaterials.green }}</span>
-                </div>
-                <div class="material-item" v-if="totalMaterials.blue > 0">
-                    <div class="material-tier tier-blue"></div>
-                    <span class="material-name">Blue</span>
-                    <span class="material-amount">{{ totalMaterials.blue }}</span>
-                </div>
-                <div class="material-item" v-if="totalMaterials.purple > 0">
-                    <div class="material-tier tier-purple"></div>
-                    <span class="material-name">Purple</span>
-                    <span class="material-amount">{{ totalMaterials.purple }}</span>
+                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
+                    <i class="fas fa-star w-5 text-center text-accent"></i>
+                    <span class="flex-1 text-sm text-on-primary">XP</span>
+                    <span class="font-bold text-accent text-sm">{{ totalMaterials.exp }}</span>
                 </div>
             </div>
 
-            <div class="material-section" v-if="totalMaterials.forgeMaterials > 0">
-                <h4 class="section-title">Forge Materials</h4>
-                <div class="material-item">
-                    <i class="fas fa-hammer"></i>
-                    <span class="material-name">Forge</span>
-                    <span class="material-amount">{{ totalMaterials.forgeMaterials }}</span>
+            <div class="flex flex-col gap-2" v-if="hasMaterials">
+                <h4 class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">Ascension Materials</h4>
+                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors" v-if="totalMaterials.green > 0">
+                    <div class="w-5 h-5 rounded bg-gradient-to-br from-[#4ade80] to-[#22c55e] shrink-0"></div>
+                    <span class="flex-1 text-sm text-on-primary">Green</span>
+                    <span class="font-bold text-accent text-sm">{{ totalMaterials.green }}</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors" v-if="totalMaterials.blue > 0">
+                    <div class="w-5 h-5 rounded bg-gradient-to-br from-[#60a5fa] to-[#3b82f6] shrink-0"></div>
+                    <span class="flex-1 text-sm text-on-primary">Blue</span>
+                    <span class="font-bold text-accent text-sm">{{ totalMaterials.blue }}</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors" v-if="totalMaterials.purple > 0">
+                    <div class="w-5 h-5 rounded bg-gradient-to-br from-[#c084fc] to-[#a855f7] shrink-0"></div>
+                    <span class="flex-1 text-sm text-on-primary">Purple</span>
+                    <span class="font-bold text-accent text-sm">{{ totalMaterials.purple }}</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2" v-if="totalMaterials.forgeMaterials > 0">
+                <h4 class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">Forge Materials</h4>
+                <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
+                    <i class="fas fa-hammer w-5 text-center text-accent"></i>
+                    <span class="flex-1 text-sm text-on-primary">Forge</span>
+                    <span class="font-bold text-accent text-sm">{{ totalMaterials.forgeMaterials }}</span>
                 </div>
             </div>
         </div>
@@ -74,108 +74,3 @@ const hasMaterials = computed(() =>
     totalMaterials.value.purple > 0
 );
 </script>
-
-<style scoped>
-.material-summary {
-    background: var(--color-bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    height: fit-content;
-    position: sticky;
-    top: 1rem;
-}
-
-.summary-header {
-    padding: 1rem;
-    background: linear-gradient(135deg, rgba(230, 197, 116, 0.1), rgba(91, 163, 208, 0.1));
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.summary-title {
-    margin: 0;
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.summary-title i {
-    color: var(--color-accent-gold);
-}
-
-.summary-content {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.material-section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.section-title {
-    margin: 0 0 0.5rem 0;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.material-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 6px;
-    transition: background 0.2s ease;
-}
-
-.material-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.material-item i {
-    width: 1.25rem;
-    text-align: center;
-    color: var(--color-accent-gold);
-}
-
-.material-tier {
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 4px;
-    flex-shrink: 0;
-}
-
-.tier-green {
-    background: linear-gradient(135deg, #4ade80, #22c55e);
-}
-
-.tier-blue {
-    background: linear-gradient(135deg, #60a5fa, #3b82f6);
-}
-
-.tier-purple {
-    background: linear-gradient(135deg, #c084fc, #a855f7);
-}
-
-.material-name {
-    flex: 1;
-    font-size: 0.9rem;
-    color: var(--color-text-primary);
-}
-
-.material-amount {
-    font-weight: 700;
-    color: var(--color-accent-gold);
-    font-size: 0.9rem;
-}
-</style>

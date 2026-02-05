@@ -1,27 +1,27 @@
 <template>
-  <div class="app-container">
+  <div class="min-h-screen bg-primary">
     <!-- Header with navigation -->
-    <header class="app-header">
-      <div class="header-content">
-        <div class="app-branding">
-          <i class="fas fa-flask-vial"></i>
-          <h1 class="app-title">DNA Planner</h1>
+    <header class="bg-gradient-to-r from-primary via-secondary to-primary border-b border-white/10 shadow-lg sticky top-0 z-[100] backdrop-blur-[10px]">
+      <div class="max-w-[1400px] mx-auto px-6 py-4 flex items-center gap-8 flex-wrap">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-flask-vial text-[1.75rem] text-accent"></i>
+          <h1 class="text-2xl m-0 font-bold text-on-primary">DNA Planner</h1>
         </div>
-        <nav class="main-nav" role="navigation" aria-label="Main navigation">
-          <RouterLink to="/character" class="nav-link" aria-label="Navigate to characters">
-            <i class="fas fa-users"></i>
+        <nav class="flex gap-2 flex-1 flex-wrap" role="navigation" aria-label="Main navigation">
+          <RouterLink to="/character" class="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-md text-on-secondary font-semibold text-sm transition-all duration-200 ease-in-out whitespace-nowrap hover:bg-white/10 hover:text-on-primary [&.router-link-active]:bg-info [&.router-link-active]:text-white" aria-label="Navigate to characters">
+            <i class="fas fa-users text-base"></i>
             <span>Characters</span>
           </RouterLink>
-          <RouterLink to="/weapon" class="nav-link" aria-label="Navigate to weapons">
-            <i class="fas fa-sword"></i>
+          <RouterLink to="/weapon" class="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-md text-on-secondary font-semibold text-sm transition-all duration-200 ease-in-out whitespace-nowrap hover:bg-white/10 hover:text-on-primary [&.router-link-active]:bg-info [&.router-link-active]:text-white" aria-label="Navigate to weapons">
+            <i class="fas fa-sword text-base"></i>
             <span>Weapons</span>
           </RouterLink>
-          <RouterLink to="/wedges" class="nav-link" aria-label="Navigate to wedges">
-            <i class="fas fa-gem"></i>
+          <RouterLink to="/wedges" class="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-md text-on-secondary font-semibold text-sm transition-all duration-200 ease-in-out whitespace-nowrap hover:bg-white/10 hover:text-on-primary [&.router-link-active]:bg-info [&.router-link-active]:text-white" aria-label="Navigate to wedges">
+            <i class="fas fa-gem text-base"></i>
             <span>Wedges</span>
           </RouterLink>
-          <RouterLink to="/inventory" class="nav-link" aria-label="Navigate to inventory">
-            <i class="fas fa-box-archive"></i>
+          <RouterLink to="/inventory" class="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-md text-on-secondary font-semibold text-sm transition-all duration-200 ease-in-out whitespace-nowrap hover:bg-white/10 hover:text-on-primary [&.router-link-active]:bg-info [&.router-link-active]:text-white" aria-label="Navigate to inventory">
+            <i class="fas fa-box-archive text-base"></i>
             <span>Inventory</span>
           </RouterLink>
         </nav>
@@ -29,7 +29,7 @@
     </header>
 
     <!-- Main content area -->
-    <main class="main-content" role="main">
+    <main class="max-w-[1400px] mx-auto p-6" role="main">
       <Settings />
       <RouterView v-slot="{ Component }">
         <transition name="page" mode="out-in">
@@ -45,92 +45,6 @@ import Settings from './components/settings.vue';
 </script>
 
 <style scoped>
-.app-container {
-  min-height: 100vh;
-  background: var(--color-bg-primary);
-}
-
-/* Header styling */
-.app-header {
-  background: var(--gradient-header);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: var(--shadow-md);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(10px);
-}
-
-.header-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.app-branding {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.app-branding i {
-  font-size: 1.75rem;
-  color: var(--color-accent-gold);
-}
-
-.app-title {
-  font-size: 1.5rem;
-  margin: 0;
-  font-weight: 700;
-  color: var(--color-text-primary);
-}
-
-.main-nav {
-  display: flex;
-  gap: 0.5rem;
-  flex: 1;
-  flex-wrap: wrap;
-}
-
-.nav-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 6px;
-  color: var(--color-text-secondary);
-  font-weight: 600;
-  font-size: 0.875rem;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.nav-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-text-primary);
-}
-
-.nav-link.router-link-active {
-  background: var(--color-accent-blue);
-  color: white;
-}
-
-.nav-link i {
-  font-size: 1rem;
-}
-
-/* Main content */
-.main-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1.5rem;
-}
-
 /* Page transitions */
 .page-enter-active,
 .page-leave-active {
@@ -147,18 +61,18 @@ import Settings from './components/settings.vue';
 }
 
 @media (max-width: 768px) {
-  .header-content {
+  header > div {
     flex-direction: column;
     align-items: stretch;
     gap: 1rem;
   }
   
-  .main-nav {
+  nav {
     flex-direction: row;
     overflow-x: auto;
   }
   
-  .nav-link {
+  nav a {
     flex: 1;
     justify-content: center;
   }

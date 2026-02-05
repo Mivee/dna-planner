@@ -1,45 +1,48 @@
 <template>
-    <div class="bg-[var(--color-bg-card)] border border-white/10 rounded-lg overflow-hidden sticky top-4">
-        <div class="p-4 bg-gradient-to-br from-[#e6c574]/10 to-[#5ba3d0]/10 border-b border-white/10">
-            <h3 class="text-lg font-bold text-[var(--color-text-primary)] flex items-center gap-2 m-0">
-                <i class="fas fa-list-check text-[var(--color-accent-gold)]"></i>
+    <div class="bg-secondary border border-white/10 rounded-lg overflow-hidden sticky top-4 h-fit">
+        <div class="p-4 bg-gradient-to-br from-accent/10 to-info/10 border-b border-white/10">
+            <h3 class="text-lg font-bold text-on-primary flex items-center gap-2 m-0">
+                <i class="fas fa-list-check text-accent"></i>
                 Total Materials
+                <span v-if="plannerMode === 'Inventory'" class="ml-auto text-xs font-medium text-info bg-info/10 px-2 py-1 rounded border border-info/30">
+                    <i class="fas fa-box-archive mr-1"></i>Adjusted
+                </span>
             </h3>
         </div>
         
         <div class="p-4 flex flex-col gap-6">
             <div class="flex flex-col gap-2">
-                <h4 class="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider m-0 mb-2">Currency</h4>
+                <h4 class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">Currency</h4>
                 <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
-                    <i class="fas fa-coins w-5 text-center text-[var(--color-accent-gold)]"></i>
-                    <span class="flex-1 text-sm text-[var(--color-text-primary)]">Coins</span>
-                    <span class="font-bold text-[var(--color-accent-gold)] text-sm">{{ totalMaterials.coins.toLocaleString() }}</span>
+                    <i class="fas fa-coins w-5 text-center text-accent"></i>
+                    <span class="flex-1 text-sm text-on-primary">Coins</span>
+                    <span class="font-bold text-accent text-sm">{{ getAdjustedQuantity('Coins', totalMaterials.coins).toLocaleString() }}</span>
                 </div>
                 <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
-                    <i class="fas fa-star w-5 text-center text-[var(--color-accent-gold)]"></i>
-                    <span class="flex-1 text-sm text-[var(--color-text-primary)]">XP</span>
-                    <span class="font-bold text-[var(--color-accent-gold)] text-sm">{{ totalMaterials.exp.toLocaleString() }}</span>
+                    <i class="fas fa-star w-5 text-center text-accent"></i>
+                    <span class="flex-1 text-sm text-on-primary">XP</span>
+                    <span class="font-bold text-accent text-sm">{{ getAdjustedQuantity('XP', totalMaterials.exp).toLocaleString() }}</span>
                 </div>
             </div>
 
             <div class="flex flex-col gap-2" v-if="hasAscensionMaterials">
-                <h4 class="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider m-0 mb-2">Ascension Materials</h4>
+                <h4 class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">Ascension Materials</h4>
                 <template v-for="(material, key) in ascensionMaterialsList" :key="key">
                     <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
                         <div class="w-5 h-5 rounded shrink-0" :class="material.colorClass"></div>
-                        <span class="flex-1 text-sm text-[var(--color-text-primary)]">{{ material.name }}</span>
-                        <span class="font-bold text-[var(--color-accent-gold)] text-sm">{{ material.quantity }}</span>
+                        <span class="flex-1 text-sm text-on-primary">{{ material.name }}</span>
+                        <span class="font-bold text-accent text-sm">{{ material.adjustedQuantity }}</span>
                     </div>
                 </template>
             </div>
 
             <div class="flex flex-col gap-2" v-if="hasForgingMaterials">
-                <h4 class="text-xs font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider m-0 mb-2">Forging Materials</h4>
+                <h4 class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">Forging Materials</h4>
                 <template v-for="(material, key) in forgingMaterialsList" :key="key">
                     <div class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
                         <div class="w-5 h-5 rounded shrink-0" :class="material.colorClass"></div>
-                        <span class="flex-1 text-sm text-[var(--color-text-primary)]">{{ material.name }}</span>
-                        <span class="font-bold text-[var(--color-accent-gold)] text-sm">{{ material.quantity }}</span>
+                        <span class="flex-1 text-sm text-on-primary">{{ material.name }}</span>
+                        <span class="font-bold text-accent text-sm">{{ material.adjustedQuantity }}</span>
                     </div>
                 </template>
             </div>
@@ -51,6 +54,7 @@
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useUiStore } from '../stores/ui';
+import { useInventory } from '../stores/inventory';
 import { useCharacter } from '../composeables/useCharacter';
 import { characterLevelingMaterials } from '../definitions/characterAscension';
 import { CharacterSkillLevels, skillTrack1Materials } from '../definitions/skillLeveling';
@@ -61,11 +65,23 @@ import type { SkillLevelCost } from '../types/skill';
 import type { SkillLevelingMaterial } from '../types/skillLeveling';
 import type { SkillUpgradeConfig } from '../types/upgradeConfig';
 
-const { characterConfigurations } = storeToRefs(useUiStore());
+const uiStore = useUiStore();
+const { characterConfigurations, plannerMode } = storeToRefs(uiStore);
+const inventoryStore = useInventory();
+
+// Helper function to get adjusted quantity based on planner mode
+function getAdjustedQuantity(materialName: string, neededAmount: number): number {
+    if (plannerMode.value === 'Inventory') {
+        const inventoryAmount = inventoryStore.getAmount(materialName);
+        return Math.max(0, neededAmount - inventoryAmount);
+    }
+    return neededAmount;
+}
 
 interface MaterialDetail {
     name: string;
     quantity: number;
+    adjustedQuantity: number;
     colorClass: string;
 }
 
@@ -269,9 +285,11 @@ const ascensionMaterialsList = computed(() => {
     };
     
     totalMaterials.value.ascensionDetails.forEach((detail, name) => {
+        const adjustedQty = getAdjustedQuantity(name, detail.quantity);
         materials.push({
             name,
             quantity: detail.quantity,
+            adjustedQuantity: adjustedQty,
             colorClass: tierColors[detail.tier as keyof typeof tierColors]
         });
     });
@@ -295,9 +313,11 @@ const forgingMaterialsList = computed(() => {
     };
     
     totalMaterials.value.forgingDetails.forEach((detail, name) => {
+        const adjustedQty = getAdjustedQuantity(name, detail.quantity);
         materials.push({
             name,
             quantity: detail.quantity,
+            adjustedQuantity: adjustedQty,
             colorClass: tierColors[detail.tier as keyof typeof tierColors]
         });
     });
@@ -311,108 +331,3 @@ const forgingMaterialsList = computed(() => {
     });
 });
 </script>
-
-<style scoped>
-.material-summary {
-    background: var(--color-bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    height: fit-content;
-    position: sticky;
-    top: 1rem;
-}
-
-.summary-header {
-    padding: 1rem;
-    background: linear-gradient(135deg, rgba(230, 197, 116, 0.1), rgba(91, 163, 208, 0.1));
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.summary-title {
-    margin: 0;
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.summary-title i {
-    color: var(--color-accent-gold);
-}
-
-.summary-content {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.material-section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.section-title {
-    margin: 0 0 0.5rem 0;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.material-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 6px;
-    transition: background 0.2s ease;
-}
-
-.material-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.material-item i {
-    width: 1.25rem;
-    text-align: center;
-    color: var(--color-accent-gold);
-}
-
-.material-tier {
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 4px;
-    flex-shrink: 0;
-}
-
-.tier-green {
-    background: linear-gradient(135deg, #4ade80, #22c55e);
-}
-
-.tier-blue {
-    background: linear-gradient(135deg, #60a5fa, #3b82f6);
-}
-
-.tier-purple {
-    background: linear-gradient(135deg, #c084fc, #a855f7);
-}
-
-.material-name {
-    flex: 1;
-    font-size: 0.9rem;
-    color: var(--color-text-primary);
-}
-
-.material-amount {
-    font-weight: 700;
-    color: var(--color-accent-gold);
-    font-size: 0.9rem;
-}
-</style>

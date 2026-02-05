@@ -1,94 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-	/* Color system */
+	/* Color system with Tailwind naming */
 	--color-primary: #1e1e2e;
 	--color-secondary: #2a2a3e;
 	--color-tertiary: #353546;
 	
-	--color-accent-gold: #e6c574;
-	--color-accent-blue: #5ba3d0;
-	--color-accent-purple: #b794f6;
-	--color-accent-green: #73dda6;
+	--color-accent: #e6c574;
+	--color-info: #5ba3d0;
+	--color-success: #73dda6;
+	--color-warning: #b794f6;
 	
-	--color-text-primary: #ece5d8;
-	--color-text-secondary: #a79b8c;
+	/* Text colors */
+	--color-on-primary: #ece5d8;
+	--color-on-secondary: #a79b8c;
 	
-	--color-on-primary: var(--color-text-primary);
-	--color-on-secondary: var(--color-text-primary);
+	/* Legacy support - map to new names */
+	--color-bg-card: var(--color-secondary);
+	--color-bg-secondary: var(--color-tertiary);
+	--color-text-primary: var(--color-on-primary);
+	--color-text-secondary: var(--color-on-secondary);
+	--color-accent-gold: var(--color-accent);
+	--color-accent-blue: var(--color-info);
+	--color-accent-purple: var(--color-warning);
+	--color-accent-green: var(--color-success);
 }
-
-/* Card Components */
-.genshin-card {
-	background: var(--gradient-card);
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	border-radius: 8px;
-	padding: 1rem;
-	box-shadow: var(--shadow-card);
-	transition: all 0.2s ease;
-}
-
-.genshin-card:hover {
-	border-color: rgba(255, 255, 255, 0.2);
-	box-shadow: var(--shadow-md);
-	transform: translateY(-2px);
-}
-
-.genshin-panel {
-	background: var(--color-bg-card);
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	border-radius: 8px;
-	padding: 1.5rem;
-	box-shadow: var(--shadow-card);
-}
-
-.genshin-badge {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.375rem;
-	padding: 0.25rem 0.625rem;
-	background: rgba(91, 163, 208, 0.2);
-	border: 1px solid var(--color-accent-blue);
-	border-radius: 4px;
-	font-size: 0.75rem;
-	font-weight: 600;
-	color: var(--color-accent-blue);
-}
-
-.genshin-badge.gold {
-	background: rgba(230, 197, 116, 0.2);
-	border-color: var(--color-accent-gold);
-	color: var(--color-accent-gold);
-}
-
-.genshin-badge.purple {
-	background: rgba(183, 148, 246, 0.2);
-	border-color: var(--color-accent-purple);
-	color: var(--color-accent-purple);
-}
-
-.genshin-badge.green {
-	background: rgba(115, 221, 166, 0.2);
-	border-color: var(--color-accent-green);
-	color: var(--color-accent-green);
-}
-
-.genshin-divider {
-	height: 1px;
-	background: rgba(255, 255, 255, 0.1);
-	margin: 1rem 0;
-}
-
-/* Grid layouts */
-.material-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-	gap: 1rem;
-}
-
-.character-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	gap: 1rem;
-}
-

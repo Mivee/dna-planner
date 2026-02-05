@@ -1,8 +1,8 @@
 <template>
     <div class="animate-[fadeIn_0.3s_ease]">
-        <div class="flex justify-between items-center mb-6 px-5 py-4 bg-[var(--color-bg-card)] border border-white/10 rounded-lg shadow-[var(--shadow-card)] sm:flex-col sm:gap-4 sm:items-stretch">
-            <h2 class="m-0 text-2xl flex items-center gap-3 text-[var(--color-text-primary)] font-bold">
-                <i class="fas fa-users text-xl text-[var(--color-accent-gold)]"></i>
+        <div class="flex justify-between items-center mb-6 px-5 py-4 bg-secondary border border-white/10 rounded-lg shadow-lg sm:flex-col sm:gap-4 sm:items-stretch">
+            <h2 class="m-0 text-2xl flex items-center gap-3 text-on-primary font-bold">
+                <i class="fas fa-users text-xl text-accent"></i>
                 Planner
             </h2>
             <div class="flex gap-3">
@@ -24,15 +24,15 @@
             <div class="order-1 md:order-2">
                 <div class="flex flex-col gap-6">
                     <div v-if="characterConfigurations.length > 0">
-                        <h3 class="text-lg font-bold text-[var(--color-text-primary)] mb-4 flex items-center gap-2">
-                            <i class="fas fa-users text-[var(--color-accent-gold)]"></i>
+                        <h3 class="text-lg font-bold text-on-primary mb-4 flex items-center gap-2">
+                            <i class="fas fa-users text-accent"></i>
                             Characters
                         </h3>
                         <CharacterResultList />
                     </div>
                     <div v-if="weaponConfigurations.length > 0">
-                        <h3 class="text-lg font-bold text-[var(--color-text-primary)] mb-4 flex items-center gap-2">
-                            <i class="fas fa-sword text-[var(--color-accent-gold)]"></i>
+                        <h3 class="text-lg font-bold text-on-primary mb-4 flex items-center gap-2">
+                            <i class="fas fa-sword text-accent"></i>
                             Weapons
                         </h3>
                         <WeaponResultList />

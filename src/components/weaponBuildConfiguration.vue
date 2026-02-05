@@ -1,12 +1,12 @@
 <template>
         <Modal v-model:is-open="isOpen" @save="save" @closed="emit('closed')">
         <div class="p-6">
-            <h2 class="text-2xl font-bold text-[var(--color-text-primary)] mb-6">Add Weapon</h2>
+            <h2 class="text-2xl font-bold text-on-primary mb-6">Add Weapon</h2>
             
             <div class="flex flex-col gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">Weapon</label>
-                    <select v-model="config.name" class="w-full px-4 py-2 bg-[var(--color-bg-secondary)] border border-white/10 rounded-md text-[var(--color-text-primary)]">
+                    <label class="block text-sm font-medium text-on-secondary mb-2">Weapon</label>
+                    <select v-model="config.name" class="w-full px-4 py-2 bg-tertiary border border-white/10 rounded-md text-on-primary">
                         <option value="">Select a weapon</option>
                         <option v-for="weapon in weapons" :key="weapon.name" :value="weapon.name">
                             {{ weapon.name }}
@@ -15,7 +15,7 @@
                 </div>
                 
                 <div>
-                    <label class="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">Level Range</label>
+                    <label class="block text-sm font-medium text-on-secondary mb-2">Level Range</label>
                     <RangeSelect v-model:range="config.level" :options="weaponsLevels" />
                 </div>
                 
