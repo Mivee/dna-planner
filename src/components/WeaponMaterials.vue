@@ -16,7 +16,7 @@
                 "Ascension") }})
         </div>
         <div>
-            Purple Primary Mats {{ summary.ascensionMaterials.primary.T2_Blue }} ({{ getMaterialName('Primary',
+            Purple Primary Mats {{ summary.ascensionMaterials.primary.T3_Purple }} ({{ getMaterialName('Primary',
                 "Ascension") }})
         </div>
 
@@ -43,7 +43,6 @@
             Blue Secondary Mats {{ summary.ascensionMaterials.secondary.T2_Blue }} ({{ getMaterialName('Blue',
                 "Forging") }})
         </div>
-        {{ inventory }}
     </div>
 </template>
 <script lang="ts" setup>

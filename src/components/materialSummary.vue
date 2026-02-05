@@ -64,17 +64,20 @@ import { storeToRefs } from 'pinia';
 import { useUiStore } from '../stores/ui';
 import { useInventory } from '../stores/inventory';
 import { useCharacter } from '../composeables/useCharacter';
+import { useWeapon } from '../composeables/useWeapon';
 import { characterLevelingMaterials } from '../definitions/characterAscension';
+import { weaponLevelingMaterials } from '../definitions/weapon';
 import { CharacterSkillLevels, skillTrack1Materials } from '../definitions/skillLeveling';
 import { elementUpgradeMaterials } from '../definitions/character';
 import type { CharacterLevelingMaterial } from '../types/characterLeveling';
+import type { WeaponLevelingMaterial } from '../types/ascension';
 import type { LevelRange } from '../types/range';
 import type { SkillLevelCost } from '../types/skill';
 import type { SkillLevelingMaterial } from '../types/skillLeveling';
 import type { SkillUpgradeConfig } from '../types/upgradeConfig';
 
 const uiStore = useUiStore();
-const { characterConfigurations, plannerMode } = storeToRefs(uiStore);
+const { characterConfigurations, weaponConfigurations, plannerMode } = storeToRefs(uiStore);
 const inventoryStore = useInventory();
 
 // Helper function to get adjusted quantity based on planner mode
@@ -188,6 +191,103 @@ const totalMaterials = computed(() => {
         }
     });
 
+    // Process weapon configurations
+    weaponConfigurations.value.forEach(config => {
+        if (!config.name) return;
+
+        try {
+            const { weapon, upgradeMaterials, buildSummary } = useWeapon(config.name);
+
+            // Skip if weapon not found
+            if (!weapon.value || !upgradeMaterials.value) return;
+
+            // Get weapon leveling materials
+            const start = weaponLevelingMaterials.find(mat => mat.level == config.level.start);
+            const end = weaponLevelingMaterials.find(mat => mat.level == config.level.end);
+            if (!start || !end) return;
+
+            const weaponLevelRange = { start, end } as LevelRange<WeaponLevelingMaterial>;
+
+            // Get summary
+            const summary = buildSummary(weaponLevelRange);
+
+            // Add to totals
+            totals.coins += summary.coins?.default || 0;
+
+            // Add forging materials
+            totals.forging.green += summary.forgingMaterials.T1_Green || 0;
+            totals.forging.blue += summary.forgingMaterials.T2_Blue || 0;
+
+            // Track material names for forging materials (weapon forging materials)
+            if (upgradeMaterials.value && summary.forgingMaterials.T1_Green > 0) {
+                const existing = totals.forgingDetails.get(upgradeMaterials.value.forgingMaterials.t1);
+                totals.forgingDetails.set(upgradeMaterials.value.forgingMaterials.t1, {
+                    tier: 'green',
+                    quantity: (existing?.quantity || 0) + summary.forgingMaterials.T1_Green
+                });
+            }
+            if (upgradeMaterials.value && summary.forgingMaterials.T2_Blue > 0) {
+                const existing = totals.forgingDetails.get(upgradeMaterials.value.forgingMaterials.t2);
+                totals.forgingDetails.set(upgradeMaterials.value.forgingMaterials.t2, {
+                    tier: 'blue',
+                    quantity: (existing?.quantity || 0) + summary.forgingMaterials.T2_Blue
+                });
+            }
+
+            // Track weapon ascension materials (primary and secondary)
+            if (upgradeMaterials.value && summary.ascensionMaterials.primary.T1_Green > 0) {
+                const key = `${upgradeMaterials.value.ascensionMaterials.primary}-green`;
+                const existing = totals.ascensionDetails.get(key);
+                totals.ascensionDetails.set(key, {
+                    tier: 'green',
+                    quantity: (existing?.quantity || 0) + summary.ascensionMaterials.primary.T1_Green
+                });
+            }
+            if (upgradeMaterials.value && summary.ascensionMaterials.primary.T2_Blue > 0) {
+                const key = `${upgradeMaterials.value.ascensionMaterials.primary}-blue`;
+                const existing = totals.ascensionDetails.get(key);
+                totals.ascensionDetails.set(key, {
+                    tier: 'blue',
+                    quantity: (existing?.quantity || 0) + summary.ascensionMaterials.primary.T2_Blue
+                });
+            }
+            if (upgradeMaterials.value && summary.ascensionMaterials.primary.T3_Purple > 0) {
+                const key = `${upgradeMaterials.value.ascensionMaterials.primary}-purple`;
+                const existing = totals.ascensionDetails.get(key);
+                totals.ascensionDetails.set(key, {
+                    tier: 'purple',
+                    quantity: (existing?.quantity || 0) + summary.ascensionMaterials.primary.T3_Purple
+                });
+            }
+            if (upgradeMaterials.value && summary.ascensionMaterials.secondary.T1_Green > 0) {
+                const key = `${upgradeMaterials.value.ascensionMaterials.secondary}-green`;
+                const existing = totals.ascensionDetails.get(key);
+                totals.ascensionDetails.set(key, {
+                    tier: 'green',
+                    quantity: (existing?.quantity || 0) + summary.ascensionMaterials.secondary.T1_Green
+                });
+            }
+            if (upgradeMaterials.value && summary.ascensionMaterials.secondary.T2_Blue > 0) {
+                const key = `${upgradeMaterials.value.ascensionMaterials.secondary}-blue`;
+                const existing = totals.ascensionDetails.get(key);
+                totals.ascensionDetails.set(key, {
+                    tier: 'blue',
+                    quantity: (existing?.quantity || 0) + summary.ascensionMaterials.secondary.T2_Blue
+                });
+            }
+            if (upgradeMaterials.value && summary.ascensionMaterials.secondary.T3_Purple > 0) {
+                const key = `${upgradeMaterials.value.ascensionMaterials.secondary}-purple`;
+                const existing = totals.ascensionDetails.get(key);
+                totals.ascensionDetails.set(key, {
+                    tier: 'purple',
+                    quantity: (existing?.quantity || 0) + summary.ascensionMaterials.secondary.T3_Purple
+                });
+            }
+        } catch (error) {
+            console.warn(`Failed to calculate materials for weapon ${config.name}:`, error);
+        }
+    });
+
     return totals;
 });
 
@@ -292,21 +392,22 @@ const ascensionMaterialsList = computed(() => {
         purple: 'bg-gradient-to-br from-[#c084fc] to-[#a855f7]'
     };
 
-    totalMaterials.value.ascensionDetails.forEach((detail, name) => {
-        const adjustedQty = getAdjustedQuantity(name, detail.quantity);
+    totalMaterials.value.ascensionDetails.forEach((detail, key) => {
+        // Extract material name from composite key (e.g., "Frame-green" -> "Frame")
+        const materialName = key.replace(/-(?:green|blue|purple)$/, '');
+        const adjustedQty = getAdjustedQuantity(materialName, detail.quantity);
         materials.push({
-            name,
+            name: materialName,
             quantity: detail.quantity,
             adjustedQuantity: adjustedQty,
-            colorClass: tierColors[detail.tier as keyof typeof tierColors]
-        });
+            colorClass: tierColors[detail.tier as keyof typeof tierColors],
+            tier: detail.tier
+        } as any);
     });
 
     // Sort by tier (green, blue, purple) then by name
     return materials.sort((a, b) => {
-        const tierA = totalMaterials.value.ascensionDetails.get(a.name)?.tier || 'green';
-        const tierB = totalMaterials.value.ascensionDetails.get(b.name)?.tier || 'green';
-        const tierDiff = tierOrder[tierA as keyof typeof tierOrder] - tierOrder[tierB as keyof typeof tierOrder];
+        const tierDiff = tierOrder[(a as any).tier as keyof typeof tierOrder] - tierOrder[(b as any).tier as keyof typeof tierOrder];
         return tierDiff !== 0 ? tierDiff : a.name.localeCompare(b.name);
     });
 });
@@ -320,21 +421,22 @@ const forgingMaterialsList = computed(() => {
         purple: 'bg-gradient-to-br from-[#c084fc] to-[#a855f7]'
     };
 
-    totalMaterials.value.forgingDetails.forEach((detail, name) => {
-        const adjustedQty = getAdjustedQuantity(name, detail.quantity);
+    totalMaterials.value.forgingDetails.forEach((detail, key) => {
+        // Extract material name from composite key if it exists
+        const materialName = key.replace(/-(?:green|blue|purple)$/, '');
+        const adjustedQty = getAdjustedQuantity(materialName, detail.quantity);
         materials.push({
-            name,
+            name: materialName,
             quantity: detail.quantity,
             adjustedQuantity: adjustedQty,
-            colorClass: tierColors[detail.tier as keyof typeof tierColors]
-        });
+            colorClass: tierColors[detail.tier as keyof typeof tierColors],
+            tier: detail.tier
+        } as any);
     });
 
     // Sort by tier (green, blue, purple) then by name
     return materials.sort((a, b) => {
-        const tierA = totalMaterials.value.forgingDetails.get(a.name)?.tier || 'green';
-        const tierB = totalMaterials.value.forgingDetails.get(b.name)?.tier || 'green';
-        const tierDiff = tierOrder[tierA as keyof typeof tierOrder] - tierOrder[tierB as keyof typeof tierOrder];
+        const tierDiff = tierOrder[(a as any).tier as keyof typeof tierOrder] - tierOrder[(b as any).tier as keyof typeof tierOrder];
         return tierDiff !== 0 ? tierDiff : a.name.localeCompare(b.name);
     });
 });

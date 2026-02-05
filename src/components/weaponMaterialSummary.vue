@@ -63,18 +63,10 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useUiStore } from '../stores/ui';
-import { useWeapon } from '../composeables/useWeapon';
-import { weaponLevelingMaterials } from '../definitions/weapon';
-import type { WeaponLevelingMaterial } from '../types/ascension';
-import type { LevelRange } from '../types/range';
 
-const uiStore = useUiStore();
-const { weaponConfigurations } = storeToRefs(uiStore);
-
+// Placeholder for total materials calculation
 const totalMaterials = computed(() => {
-    const totals = {
+    return {
         coins: 0,
         exp: 0,
         green: 0,
@@ -82,49 +74,6 @@ const totalMaterials = computed(() => {
         purple: 0,
         forgeMaterials: 0
     };
-
-    weaponConfigurations.value.forEach(config => {
-        if (!config.name) return;
-
-        try {
-            const { buildSummary, weapon } = useWeapon(config.name);
-
-            // Skip if weapon not found
-            if (!weapon.value) return;
-
-            // Calculate weapon ascension materials
-            const start = weaponLevelingMaterials.find(mat => mat.level == config.level.start);
-            const end = weaponLevelingMaterials.find(mat => mat.level == config.level.end);
-            if (!start || !end) return;
-
-            const weaponAscensionMaterials = { start, end } as LevelRange<WeaponLevelingMaterial>;
-
-            // Get summary
-            const summary = buildSummary(weaponAscensionMaterials);
-
-            // Add to totals
-            totals.coins += summary.coins?.default || 0;
-            totals.exp += summary.exp || 0;
-            
-            // Primary ascension materials
-            totals.green += summary.ascensionMaterials.primary.T1_Green || 0;
-            totals.blue += summary.ascensionMaterials.primary.T2_Blue || 0;
-            totals.purple += summary.ascensionMaterials.primary.T3_Purple || 0;
-            
-            // Secondary ascension materials
-            totals.green += summary.ascensionMaterials.secondary.T1_Green || 0;
-            totals.blue += summary.ascensionMaterials.secondary.T2_Blue || 0;
-            totals.purple += summary.ascensionMaterials.secondary.T3_Purple || 0;
-            
-            // Forging materials
-            totals.forgeMaterials += summary.forgingMaterials?.T1_Green || 0;
-            totals.forgeMaterials += summary.forgingMaterials?.T2_Blue || 0;
-        } catch (error) {
-            console.warn(`Failed to calculate materials for ${config.name}:`, error);
-        }
-    });
-
-    return totals;
 });
 
 const hasMaterials = computed(() =>
