@@ -1,6 +1,6 @@
 import type { Character } from "../types/character";
 import type { ElementUpgradeMaterials } from "../types/elementUpgradeMaterials";
-import type { CharacterUpgrade } from "../types/upgradeConfig";
+import type { CharacterUpgradeConfig } from "../types/upgradeConfig";
 
 export const characters: Character[] = [
 	{
@@ -15,6 +15,7 @@ export const characters: Character[] = [
 			t2: "Processed Herb",
 			t3: "Compound Potion",
 		},
+		imagecode: "MC",
 	},
 	{
 		name: "Margie",
@@ -28,6 +29,7 @@ export const characters: Character[] = [
 			t2: "Gleaming Precision Scope",
 			t3: "Gleaming Quiver",
 		},
+		imagecode: "Maer",
 	},
 	{
 		name: "Berenica",
@@ -42,6 +44,7 @@ export const characters: Character[] = [
 			t3: "Gilded Emblem",
 		},
 		consonanceWeapon: "Sword",
+		imagecode: "Heitao",
 	},
 	{
 		name: "Outsider",
@@ -55,6 +58,7 @@ export const characters: Character[] = [
 			t2: "Gleaming Precision Scope",
 			t3: "Gleaming Quiver",
 		},
+		imagecode: "Aote",
 	},
 	{
 		name: "Randy",
@@ -68,6 +72,7 @@ export const characters: Character[] = [
 			t2: "Silver Emblem",
 			t3: "Gilded Emblem",
 		},
+		imagecode: "Landi",
 	},
 	{
 		name: "Daphne",
@@ -81,6 +86,7 @@ export const characters: Character[] = [
 			t2: "Processed Herb",
 			t3: "Compound Potion",
 		},
+		imagecode: "Dafu",
 	},
 	{
 		name: "Rebecca",
@@ -94,6 +100,7 @@ export const characters: Character[] = [
 			t2: "Eye of Infinity",
 			t3: "Crown of Enlightenment",
 		},
+		imagecode: "Shuimu",
 	},
 	{
 		name: "Lynn",
@@ -108,6 +115,7 @@ export const characters: Character[] = [
 			t3: "Gleaming Quiver",
 		},
 		consonanceWeapon: "Dual Pistols",
+		imagecode: "Linen",
 	},
 	{
 		name: "Sibylle",
@@ -121,6 +129,7 @@ export const characters: Character[] = [
 			t2: "Eye of Infinity",
 			t3: "Crown of Enlightenment",
 		},
+		imagecode: "Xibi",
 	},
 	{
 		name: "Lady Nifle",
@@ -134,6 +143,7 @@ export const characters: Character[] = [
 			t2: "Eye of Infinity",
 			t3: "Crown of Enlightenment",
 		},
+		imagecode: "Nifu",
 	},
 	{
 		name: "Tabethe",
@@ -147,6 +157,7 @@ export const characters: Character[] = [
 			t2: "Gleaming Precision Scope",
 			t3: "Gleaming Quiver",
 		},
+		imagecode: "Zhangyu",
 	},
 	{
 		name: "Yale and Oliver",
@@ -160,6 +171,7 @@ export const characters: Character[] = [
 			t2: "Gleaming Precision Scope",
 			t3: "Gleaming Quiver",
 		},
+		imagecode: "Yeer",
 	},
 	{
 		name: "Truffle and Filbert",
@@ -173,6 +185,7 @@ export const characters: Character[] = [
 			t2: "Processed Herb",
 			t3: "Compound Potion",
 		},
+		imagecode: "Songlu",
 	},
 	{
 		name: "Rhythm",
@@ -186,6 +199,7 @@ export const characters: Character[] = [
 			t2: "Eye of Infinity",
 			t3: "Crown of Enlightenment",
 		},
+		imagecode: "Lise",
 	},
 	{
 		name: "Hellfire",
@@ -199,6 +213,7 @@ export const characters: Character[] = [
 			t2: "Silver Emblem",
 			t3: "Gilded Emblem",
 		},
+		imagecode: "Haier",
 	},
 	{
 		name: "Lisbell",
@@ -213,6 +228,7 @@ export const characters: Character[] = [
 			t3: "Gilded Emblem",
 		},
 		consonanceWeapon: "Greatsword",
+		imagecode: "Baonu",
 	},
 	{
 		name: "Phantasio",
@@ -226,6 +242,7 @@ export const characters: Character[] = [
 			t2: "Silver Emblem",
 			t3: "Gilded Emblem",
 		},
+		imagecode: "Tuosi",
 	},
 	{
 		name: "Psyche",
@@ -240,6 +257,7 @@ export const characters: Character[] = [
 			t3: "Gleaming Quiver",
 		},
 		consonanceWeapon: "Assault Rifle",
+		imagecode: "Saiqi",
 	},
 	{
 		name: "Fina",
@@ -253,6 +271,7 @@ export const characters: Character[] = [
 			t2: "Processed Herb",
 			t3: "Compound Potion",
 		},
+		imagecode: "Feina",
 	},
 	{
 		name: "Fushu",
@@ -266,6 +285,7 @@ export const characters: Character[] = [
 			t2: "Processed Herb",
 			t3: "Compound Potion",
 		},
+		imagecode: "Baiheng",
 	},
 	{
 		name: "Kezhou",
@@ -279,6 +299,7 @@ export const characters: Character[] = [
 			t2: "Silver Emblem",
 			t3: "Gilded Emblem",
 		},
+		imagecode: "Kezhou",
 	},
 ];
 
@@ -369,7 +390,7 @@ export const elementUpgradeMaterials: ElementUpgradeMaterials[] = [
 	},
 ];
 
-export const defaultCharacterUpgrade: CharacterUpgrade = {
+export const defaultCharacterUpgrade: CharacterUpgradeConfig = {
 	name: "",
 	level: {
 		start: "1",

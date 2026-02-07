@@ -1,22 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import CharacterView from "../views/CharacterView.vue";
-import Weaponview from "../views/Weaponview.vue";
-import DeamonwedgeView from "../views/DeamonwedgeView.vue";
+import DaemonWedgeView from "../views/DaemonWedgeView.vue";
 import InventoryView from "../views/InventoryView.vue";
 
 const routes = [
+	{
+		path: "/",
+		redirect: "/character",
+	},
 	{
 		path: "/character",
 		component: CharacterView,
 	},
 	{
-		path: "/weapon",
-		component: Weaponview,
-	},
-	{
 		path: "/wedges",
-		component: DeamonwedgeView,
+		component: DaemonWedgeView,
 	},
 	{
 		path: "/inventory",

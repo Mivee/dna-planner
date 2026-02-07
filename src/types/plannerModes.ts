@@ -1,1 +1,1 @@
-export type PlannerModes = "Inventory" | "Checklist";
+export type PlannerMode = "Inventory" | "Checklist";

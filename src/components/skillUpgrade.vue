@@ -17,11 +17,11 @@
 </template>
 <script setup lang="ts">
 import { watch } from 'vue';
-import type { SkillUpgrade } from '../types/upgradeConfig';
+import type { SkillUpgradeConfig } from '../types/upgradeConfig';
 
 interface Props {
     talentName: string
-    skill: SkillUpgrade
+    skill: SkillUpgradeConfig
 }
 const props = defineProps<Props>();
 const emit = defineEmits(["update:skill"]);

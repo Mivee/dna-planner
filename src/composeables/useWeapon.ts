@@ -1,16 +1,16 @@
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { weapons } from "../definitions/weapon";
 import { weaponUpgradeMaterials } from "../definitions/weapon";
 import type { Weapon } from "../types/weapon";
-import type { WeaponLevelingMaterial } from "../types/ascention";
-import type { Range } from "../types/range";
+import type { WeaponLevelingMaterial } from "../types/ascension";
+import type { LevelRange } from "../types/range";
 
 export function useWeapon(name: string) {
 	const weapon = ref(weapons.find((w) => w.name == name));
 
 	const materials = ref(getUpgradeMaterialsForWeapon(weapon.value!)!);
 
-	function buildSummary(items: Range<WeaponLevelingMaterial>) {
+	function buildSummary(items: LevelRange<WeaponLevelingMaterial>) {
 		return {
 			ascensionMaterials: {
 				primary: {
@@ -49,14 +49,23 @@ export function useWeapon(name: string) {
 					(items.end!.coins!.default ?? 0) -
 					(items.start!.coins!.default ?? 0),
 			},
-			exp: 0,
+			exp: (items.end?.exp ?? 0) - (items.start?.exp ?? 0),
 		} as WeaponLevelingMaterial;
 	}
+
+	const imageUrl = computed(() => {
+		return (
+			"assets/weapons/" +
+			weapon.value?.name.toLowerCase().replace(" ", "-") +
+			".png"
+		);
+	});
 
 	return {
 		weapon,
 		upgradeMaterials: materials,
 		buildSummary,
+		imageUrl,
 	};
 }
 

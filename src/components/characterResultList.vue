@@ -1,5 +1,8 @@
 <template>
-    <CharacterResult v-for="(config, ci) in characterConfigurations" :config="config" :key="config.name + '_' + ci" />
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-6 md:grid-cols-1">
+        <CharacterResult v-for="(config, ci) in characterConfigurations" :config="config"
+            :key="config.name + '_' + ci" />
+    </div>
 </template>
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';

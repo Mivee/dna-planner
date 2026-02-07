@@ -16,11 +16,11 @@
 </template>
 <script lang="ts" setup generic="T">
 import { watch, ref, computed } from 'vue';
-import type { Range } from '../types/range';
+import type { LevelRange } from '../types/range';
 
 interface Props {
     options: T[];
-    range: Range<T>
+    range: LevelRange<T>
     selectColor?: "Primary" | "Secondary"
     selectText?: "Primary" | "Secondary"
 }
