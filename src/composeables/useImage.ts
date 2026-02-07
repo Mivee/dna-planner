@@ -1,7 +1,7 @@
 import { characters } from "../definitions/character";
 import { weapons } from "../definitions/weapon";
 
-const imageMap = new Map<string, string>([
+const imageMap = new Map<string | null, string>([
 	...characters.map((c) => [c.name, c.imagecode || ""] as [string, string]),
 	...weapons.map((w) => [w.name, w.imageCode || ""] as [string, string]),
 ]);

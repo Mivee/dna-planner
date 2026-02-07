@@ -7,7 +7,7 @@
                 <img v-if="elementImageUrl" :src="elementImageUrl" :alt="characterData?.element"
                     class="w-6 h-6 object-contain" />
                 <h3 class="m-0 text-xl font-bold" :class="elementTextClass">{{ selectedCharacter
-                    }}</h3>
+                }}</h3>
             </div>
             <div class="flex gap-2">
                 <button
@@ -27,7 +27,8 @@
         <div class="grid grid-cols-2 gap-0">
             <!-- Left Column: Character Image -->
             <div class="relative h-full min-h-[400px] overflow-hidden border-r border-white/20">
-                <img :src="imgSource" class="w-full h-full object-cover object-top" :alt="selectedCharacter" />
+                <img v-if="imgSource" :src="imgSource" class="w-full h-full object-cover object-top"
+                    :alt="selectedCharacter" />
                 <div class="absolute inset-0 bg-gradient-to-r from-transparent to-secondary/80"></div>
             </div>
 

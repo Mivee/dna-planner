@@ -2,7 +2,7 @@
     <div>
         <Modal v-model:is-open="isOpen" @save="onSave" @closed="emit('closed')">
 
-            <img :src="imgSource" class="w-full" />
+            <img v-if="imgSource" :src="imgSource" class="w-full" />
 
             <select v-model="internalUpgradeConfig.name">
                 <option v-for="value in characters">
@@ -30,9 +30,9 @@ import { characterLevelingMaterials } from '../definitions/characterAscension';
 import Modal from './modal.vue';
 import SkillUpgrade from './skillUpgrade.vue';
 import { useUiStore } from '../stores/ui';
-import { useCharacter } from '../composeables/useCharacter';
 import { useClone } from '../composeables/utils';
 import RangeSelect from './rangeSelect.vue';
+import { useImage } from '../composeables/useImage';
 
 interface Props {
     upgradeConfig?: CharacterUpgradeConfig,
@@ -49,17 +49,13 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(["saved", "closed"]);
 
-// const clone = JSON.parse(JSON.stringify(props.upgradeConfig))
-
 const internalUpgradeConfig = ref(useClone(props.upgradeConfig));
 
 const selectedCharacter = computed(() => internalUpgradeConfig.value.name || "");
 
 
 const imgSource = computed(() => {
-    if (selectedCharacter.value) {
-        return useCharacter(selectedCharacter.value).imageUrl.value;
-    }
+    return useImage("character", selectedCharacter.value);
 });
 const isOpen = ref(true);
 
