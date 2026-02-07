@@ -1,6 +1,7 @@
 <template>
     <div class="animate-[fadeIn_0.3s_ease]">
-        <div class="flex justify-between items-center mb-6 px-5 py-4 bg-secondary border border-white/10 rounded-lg shadow-lg sm:flex-col sm:gap-4 sm:items-stretch">
+        <div
+            class="flex justify-between items-center mb-6 px-5 py-4 bg-secondary border border-white/10 rounded-lg shadow-lg sm:flex-col sm:gap-4 sm:items-stretch">
             <h2 class="m-0 text-2xl flex items-center gap-3 text-on-primary font-bold">
                 <i class="fas fa-users text-xl text-accent"></i>
                 Planner
@@ -16,7 +17,7 @@
                 </button>
             </div>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 items-start">
             <div class="order-2 md:order-1">
                 <MaterialSummary />
@@ -32,7 +33,7 @@
                     </div>
                     <div v-if="weaponConfigurations.length > 0">
                         <h3 class="text-lg font-bold text-on-primary mb-4 flex items-center gap-2">
-                            <i class="fas fa-sword text-accent"></i>
+                            <i class="fas fa-gun text-accent"></i>
                             Weapons
                         </h3>
                         <WeaponResultList />
@@ -40,8 +41,9 @@
                 </div>
             </div>
         </div>
-        
-        <CharacterBuildConfiguration v-if="isCharacterConfigVisible" @saved="closeCharacterModal" @closed="closeCharacterModal" />
+
+        <CharacterBuildConfiguration v-if="isCharacterConfigVisible" @saved="closeCharacterModal"
+            @closed="closeCharacterModal" />
         <WeaponBuildConfiguration v-if="isWeaponConfigVisible" @saved="closeWeaponModal" @closed="closeWeaponModal" />
     </div>
 </template>
@@ -75,7 +77,7 @@ function openWeaponModal() {
 
 function closeWeaponModal() {
     console.log("df");
-    
+
     isWeaponConfigVisible.value = false;
 }
 </script>
@@ -86,6 +88,7 @@ function closeWeaponModal() {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

@@ -14,10 +14,6 @@ const routes = [
 		component: CharacterView,
 	},
 	{
-		path: "/weapon",
-		redirect: "/character",
-	},
-	{
 		path: "/wedges",
 		component: DaemonWedgeView,
 	},

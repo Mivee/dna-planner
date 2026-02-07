@@ -5,16 +5,17 @@
 	--color-primary: #1e1e2e;
 	--color-secondary: #2a2a3e;
 	--color-tertiary: #353546;
-	
+
 	--color-accent: #e6c574;
 	--color-info: #5ba3d0;
+	/* --color-info: red; */
 	--color-success: #73dda6;
 	--color-warning: #b794f6;
-	
+
 	/* Text colors */
 	--color-on-primary: #ece5d8;
 	--color-on-secondary: #a79b8c;
-	
+
 	/* Legacy support - map to new names */
 	--color-bg-card: var(--color-secondary);
 	--color-bg-secondary: var(--color-tertiary);

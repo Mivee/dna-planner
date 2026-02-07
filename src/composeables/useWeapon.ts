@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { weapons } from "../definitions/weapon";
 import { weaponUpgradeMaterials } from "../definitions/weapon";
 import type { Weapon } from "../types/weapon";
@@ -53,10 +53,19 @@ export function useWeapon(name: string) {
 		} as WeaponLevelingMaterial;
 	}
 
+	const imageUrl = computed(() => {
+		return (
+			"assets/weapons/" +
+			weapon.value?.name.toLowerCase().replace(" ", "-") +
+			".png"
+		);
+	});
+
 	return {
 		weapon,
 		upgradeMaterials: materials,
 		buildSummary,
+		imageUrl,
 	};
 }
 

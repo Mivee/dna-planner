@@ -14,9 +14,9 @@
 
         <!-- Image & Summary Section -->
         <div class="grid grid-cols-[120px_1fr] gap-5 p-5 border-b border-white/10">
-            <div
-                class="w-30 h-30 flex items-center justify-center bg-secondary/3 border-2 border-dashed border-white/10 rounded-lg">
-                <i class="fas fa-sword text-4xl text-white/20"></i>
+            <div class="w-30 h-30 flex items-center justify-center bg-secondary/3 rounded-lg">
+                <img :src="imgSource" class="w-30 h-30 object-cover rounded-lg border-2 border-white/10"
+                    :alt="selectedWeapon" />
             </div>
 
             <div class="flex flex-col gap-3 justify-center">
@@ -39,6 +39,7 @@ import type { WeaponUpgradeConfig } from '../types/upgradeConfig';
 import { computed } from 'vue';
 import WeaponMaterials from './WeaponMaterials.vue';
 import { useUiStore } from '../stores/ui';
+import { useWeapon } from '../composeables/useWeapon';
 
 interface Props {
     config: WeaponUpgradeConfig
@@ -49,6 +50,12 @@ const { removeConfiguration } = useUiStore();
 
 const hasWeaponSelected = computed(() => !!props.config.name);
 const selectedWeapon = computed(() => props.config.name || "");
+
+const imgSource = computed(() => {
+    if (!props.config.name) return "";
+    const { imageUrl } = useWeapon(props.config.name);
+    return imageUrl.value;
+});
 
 function remove() {
     if (confirm(`Remove ${selectedWeapon.value}?`)) {

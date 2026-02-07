@@ -112,8 +112,8 @@ function buildCharacterAscensionCost(
 
 	return result;
 }
-function reduceSkillItems(items: SkillLevel[]) {
-	let result: SkillLevel = {
+function reduceSkillItems(items: SkillLevelCost[]) {
+	let result: SkillLevelCost = {
 		coinsGroupA: 0,
 		coinsGroupB: 0,
 		forgingMaterials: {
