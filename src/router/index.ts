@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import CharacterView from "../views/CharacterView.vue";
+import SummaryView from "../views/SummaryView.vue";
 import DaemonWedgeView from "../views/DaemonWedgeView.vue";
 import InventoryView from "../views/InventoryView.vue";
 
@@ -11,7 +11,7 @@ const routes = [
 	},
 	{
 		path: "/character",
-		component: CharacterView,
+		component: SummaryView,
 	},
 	{
 		path: "/wedges",

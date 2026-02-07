@@ -52,7 +52,6 @@ import { useWeapon } from '../composeables/useWeapon';
 import { weaponLevelingMaterials } from '../definitions/weapon';
 import type { LevelRange } from '../types/range';
 import type { WeaponLevelingMaterial } from '../types/ascension';
-import { useInventory } from '../stores/inventory';
 
 interface Props {
     upgradeConfig: BaseUpgradeConfig
@@ -87,7 +86,5 @@ function getMaterialName(value: "Green" | "Blue" | "Primary" | "Secondary", type
     }
     return null;
 }
-
-const { items: inventory } = useInventory();
 
 </script>

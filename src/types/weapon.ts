@@ -18,5 +18,5 @@ export interface Weapon {
 		| "Shotgun";
 	range: "Melee" | "Ranged";
 	source: string;
-	imageCode: WeaponCode;
+	imageCode?: WeaponCode;
 }
