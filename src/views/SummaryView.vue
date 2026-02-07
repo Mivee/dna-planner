@@ -22,24 +22,6 @@
             <div class="order-2 md:order-1">
                 <MaterialSummary />
             </div>
-            <!-- <div class="order-1 md:order-2">
-                <div class="flex flex-col gap-6">
-                    <div v-if="characterConfigurations.length > 0">
-                        <h3 class="text-lg font-bold text-on-primary mb-4 flex items-center gap-2">
-                            <i class="fas fa-users text-accent"></i>
-                            Characters
-                        </h3>
-                        <CharacterResultList />
-                    </div>
-                    <div v-if="weaponConfigurations.length > 0">
-                        <h3 class="text-lg font-bold text-on-primary mb-4 flex items-center gap-2">
-                            <i class="fas fa-gun text-accent"></i>
-                            Weapons
-                        </h3>
-                        <WeaponResultList />
-                    </div>
-                </div>
-            </div> -->
             <DraggableResult />
         </div>
 
@@ -51,19 +33,11 @@
 
 <script lang="ts" setup>
 import CharacterBuildConfiguration from '../components/characterBuildConfiguration.vue';
-import CharacterResultList from '../components/characterResultList.vue';
-import WeaponResultList from '../components/weaponResultList.vue';
 import WeaponBuildConfiguration from '../components/weaponBuildConfiguration.vue';
 import MaterialSummary from '../components/materialSummary.vue';
 import { ref } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useUiStore } from '../stores/ui';
-import CharacterResult from '../components/characterResult.vue';
-import WeaponResult from '../components/weaponResult.vue';
-import type { CharacterUpgradeConfig, WeaponUpgradeConfig } from '../types/upgradeConfig';
 import DraggableResult from '../components/draggableResult.vue';
 
-const { characterConfigurations, weaponConfigurations, upgradeConfiguration } = storeToRefs(useUiStore());
 
 const isCharacterConfigVisible = ref(false);
 const isWeaponConfigVisible = ref(false);
@@ -81,22 +55,6 @@ function openWeaponModal() {
 }
 
 function closeWeaponModal() {
-    console.log("df");
-
     isWeaponConfigVisible.value = false;
 }
 </script>
-
-<style scoped>
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-</style>
