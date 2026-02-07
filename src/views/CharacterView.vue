@@ -22,7 +22,7 @@
             <div class="order-2 md:order-1">
                 <MaterialSummary />
             </div>
-            <div class="order-1 md:order-2">
+            <!-- <div class="order-1 md:order-2">
                 <div class="flex flex-col gap-6">
                     <div v-if="characterConfigurations.length > 0">
                         <h3 class="text-lg font-bold text-on-primary mb-4 flex items-center gap-2">
@@ -39,7 +39,8 @@
                         <WeaponResultList />
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <DraggableResult />
         </div>
 
         <CharacterBuildConfiguration v-if="isCharacterConfigVisible" @saved="closeCharacterModal"
@@ -57,8 +58,12 @@ import MaterialSummary from '../components/materialSummary.vue';
 import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useUiStore } from '../stores/ui';
+import CharacterResult from '../components/characterResult.vue';
+import WeaponResult from '../components/weaponResult.vue';
+import type { CharacterUpgradeConfig, WeaponUpgradeConfig } from '../types/upgradeConfig';
+import DraggableResult from '../components/draggableResult.vue';
 
-const { characterConfigurations, weaponConfigurations } = storeToRefs(useUiStore());
+const { characterConfigurations, weaponConfigurations, upgradeConfiguration } = storeToRefs(useUiStore());
 
 const isCharacterConfigVisible = ref(false);
 const isWeaponConfigVisible = ref(false);
