@@ -1,28 +1,51 @@
 @import "tailwindcss";
 
 @theme {
-	/* Color system with Tailwind naming */
-	--color-primary: #1e1e2e;
-	--color-secondary: #2a2a3e;
-	--color-tertiary: #353546;
+	/* Design System Colors */
+	/* Primary - Blueish dark tones for main backgrounds */
+	--color-primary: #1a1f3a;
+	--color-primary-light: #252d4a;
+	--color-primary-dark: #0f1525;
 
-	--color-accent: #e6c574;
+	/* Secondary - Black/Dark gray for cards and surfaces */
+	--color-secondary: #1c1c1e;
+	--color-secondary-light: #2c2c2e;
+	--color-secondary-dark: #0a0a0a;
+
+	/* Accent - Gold for highlights and interactive elements */
+	--color-accent: #d4af37;
+	--color-accent-light: #f0d078;
+	--color-accent-dark: #9e7f2a;
+
+	/* White - For text and contrasts */
+	--color-white: #ffffff;
+	--color-white-muted: #e0e0e0;
+	--color-white-soft: #a0a0a0;
+
+	/* Text on backgrounds */
+	--color-on-primary: #ffffff;
+	--color-on-secondary: #e0e0e0;
+	--color-on-accent: #1c1c1e;
+
+	/* Additional utility colors */
 	--color-info: #5ba3d0;
-	/* --color-info: red; */
 	--color-success: #73dda6;
-	--color-warning: #b794f6;
+	--color-warning: #f0a563;
+	--color-error: #ef4444;
 
-	/* Text colors */
-	--color-on-primary: #ece5d8;
-	--color-on-secondary: #a79b8c;
+	/* Element colors */
+	--color-pyro: #ff4444;
+	--color-anemo: #44ff88;
+	--color-hydro: #4488ff;
+	--color-lumino: #ffdd44;
+	--color-umbro: #ff44aa;
+	--color-electro: #aa44ff;
 
-	/* Legacy support - map to new names */
-	--color-bg-card: var(--color-secondary);
-	--color-bg-secondary: var(--color-tertiary);
-	--color-text-primary: var(--color-on-primary);
-	--color-text-secondary: var(--color-on-secondary);
-	--color-accent-gold: var(--color-accent);
-	--color-accent-blue: var(--color-info);
-	--color-accent-purple: var(--color-warning);
-	--color-accent-green: var(--color-success);
+	/* Text on element colors */
+	--color-on-pyro: #ffffff;
+	--color-on-anemo: #000000;
+	--color-on-hydro: #ffffff;
+	--color-on-lumino: #000000;
+	--color-on-umbro: #ffffff;
+	--color-on-electro: #ffffff;
 }

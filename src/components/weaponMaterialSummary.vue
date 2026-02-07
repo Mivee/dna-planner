@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-secondary border border-white/10 rounded-lg overflow-hidden sticky top-4 h-fit">
-        <div class="p-4 bg-gradient-to-br from-accent/10 to-info/10 border-b border-white/10">
-            <h3 class="text-lg font-bold text-on-primary flex items-center gap-2 m-0">
+    <div class="bg-secondary border border-white/20 rounded-lg overflow-hidden sticky top-4 h-fit">
+        <div class="p-4 bg-gradient-to-br from-accent/20 to-primary-light/50 border-b border-white/20">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2 m-0">
                 <i class="fas fa-list-check text-accent"></i>
                 Total Materials
             </h3>
@@ -9,15 +9,13 @@
 
         <div class="p-4 flex flex-col gap-6">
             <div class="flex flex-col gap-2">
-                <h4 class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">Currency</h4>
-                <div
-                    class="flex items-center gap-3 p-2 bg-secondary/3 rounded-md hover:bg-white/[0.05] transition-colors">
+                <h4 class="text-xs font-semibold text-white-soft uppercase tracking-wider m-0 mb-2">Currency</h4>
+                <div class="flex items-center gap-3 p-2 bg-primary rounded-md hover:bg-primary-light transition-colors">
                     <i class="fas fa-coins w-5 text-center text-accent"></i>
-                    <span class="flex-1 text-sm text-on-primary">Coins</span>
+                    <span class="flex-1 text-sm text-white">Coins</span>
                     <span class="font-bold text-accent text-sm">{{ totalMaterials.coins }}</span>
                 </div>
-                <div
-                    class="flex items-center gap-3 p-2 bg-secondary/3 rounded-md hover:bg-white/[0.05] transition-colors">
+                <div class="flex items-center gap-3 p-2 bg-primary rounded-md hover:bg-primary-light transition-colors">
                     <i class="fas fa-star w-5 text-center text-accent"></i>
                     <span class="flex-1 text-sm text-on-primary">XP</span>
                     <span class="font-bold text-accent text-sm">{{ totalMaterials.exp }}</span>
