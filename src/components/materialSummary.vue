@@ -24,9 +24,16 @@
                 <div
                     class="flex items-center gap-3 p-2 bg-secondary/3 rounded-md hover:bg-secondary/5 transition-colors">
                     <i class="fas fa-star w-5 text-center text-accent"></i>
-                    <span class="flex-1 text-sm text-on-primary">XP</span>
+                    <span class="flex-1 text-sm text-on-primary">Character XP</span>
                     <span class="font-bold text-accent text-sm">{{ getAdjustedQuantity('XP',
-                        totalMaterials.exp).toLocaleString() }}</span>
+                        totalMaterials.exp.characters).toLocaleString() }}</span>
+                </div>
+                <div
+                    class="flex items-center gap-3 p-2 bg-secondary/3 rounded-md hover:bg-secondary/5 transition-colors">
+                    <i class="fas fa-star w-5 text-center text-accent"></i>
+                    <span class="flex-1 text-sm text-on-primary">Weapon XP</span>
+                    <span class="font-bold text-accent text-sm">{{ getAdjustedQuantity('XP',
+                        totalMaterials.exp.weapons).toLocaleString() }}</span>
                 </div>
             </div>
 
@@ -99,7 +106,7 @@ interface MaterialDetail {
 const totalMaterials = computed(() => {
     const totals = {
         coins: 0,
-        exp: 0,
+        exp: { characters: 0, weapons: 0 },
         ascension: { green: 0, blue: 0, purple: 0 },
         forging: { green: 0, blue: 0, purple: 0 },
         ascensionDetails: new Map<string, { tier: string, quantity: number }>(),
@@ -133,7 +140,7 @@ const totalMaterials = computed(() => {
 
             // Add to totals
             totals.coins += summary.coins || 0;
-            totals.exp += summary.exp || 0;
+            totals.exp.characters += summary.exp || 0;
             totals.ascension.green += summary.character.ascensionMaterials.T1_Green || 0;
             totals.ascension.blue += summary.character.ascensionMaterials.T2_Blue || 0;
             totals.ascension.purple += summary.character.ascensionMaterials.T3_Purple || 0;
@@ -283,6 +290,8 @@ const totalMaterials = computed(() => {
                     quantity: (existing?.quantity || 0) + summary.ascensionMaterials.secondary.T3_Purple
                 });
             }
+
+            totals.exp.weapons += summary.exp || 0;
         } catch (error) {
             console.warn(`Failed to calculate materials for weapon ${config.name}:`, error);
         }

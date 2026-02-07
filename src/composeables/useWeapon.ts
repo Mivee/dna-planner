@@ -49,7 +49,7 @@ export function useWeapon(name: string) {
 					(items.end!.coins!.default ?? 0) -
 					(items.start!.coins!.default ?? 0),
 			},
-			exp: 0,
+			exp: (items.end?.exp ?? 0) - (items.start?.exp ?? 0),
 		} as WeaponLevelingMaterial;
 	}
 

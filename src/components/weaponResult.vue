@@ -15,14 +15,18 @@
         <!-- Image & Summary Section -->
         <div class="grid grid-cols-[120px_1fr] gap-5 p-5 border-b border-white/10">
             <div class="w-30 h-30 flex items-center justify-center bg-secondary/3 rounded-lg">
-                <img :src="imgSource" class="w-30 h-30 object-cover rounded-lg border-2 border-white/10"
-                    :alt="selectedWeapon" />
+                <img v-if="imgSource" :src="imgSource"
+                    class="w-30 h-30 object-cover rounded-lg border-2 border-white/10" :alt="selectedWeapon" />
+                <div v-else class="w-30 h-30 flex items-center justify-center bg-secondary/3 rounded-lg">
+                    <span class="text-sm text-on-secondary">No Image</span>
+                </div>
             </div>
 
             <div class="flex flex-col gap-3 justify-center">
                 <div class="flex justify-between items-center py-2">
                     <span class="text-sm text-on-secondary font-medium">Level</span>
-                    <span class="text-sm font-bold text-accent">{{ config.level.start }} → {{ config.level.end }}</span>
+                    <span class="text-sm font-bold text-accent">{{ config.level.start }} → {{ config.level.end
+                        }}</span>
                 </div>
             </div>
         </div>
@@ -39,7 +43,7 @@ import type { WeaponUpgradeConfig } from '../types/upgradeConfig';
 import { computed } from 'vue';
 import WeaponMaterials from './WeaponMaterials.vue';
 import { useUiStore } from '../stores/ui';
-import { useWeapon } from '../composeables/useWeapon';
+import { useImage } from '../composeables/useImage';
 
 interface Props {
     config: WeaponUpgradeConfig
@@ -53,8 +57,7 @@ const selectedWeapon = computed(() => props.config.name || "");
 
 const imgSource = computed(() => {
     if (!props.config.name) return "";
-    const { imageUrl } = useWeapon(props.config.name);
-    return imageUrl.value;
+    return useImage("weapon", props.config.name);
 });
 
 function remove() {

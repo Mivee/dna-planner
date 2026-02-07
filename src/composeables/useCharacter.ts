@@ -60,19 +60,10 @@ export function useCharacter(name: string) {
 		} as CharacterBuildSummary;
 	}
 
-	const imageUrl = computed(() => {
-		return (
-			"assets/characters/" +
-			character.value?.name.toLowerCase().replace(" ", "-") +
-			".png"
-		);
-	});
-
 	return {
 		character,
 		upgradeMaterials,
 		buildSummary,
-		imageUrl,
 	};
 }
 function buildCharacterAscensionCost(

@@ -10,19 +10,19 @@
         </div>
         <nav class="flex gap-2 flex-1 flex-wrap" role="navigation" aria-label="Main navigation">
           <RouterLink to="/character"
-            class="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-md text-on-secondary font-semibold text-sm transition-all duration-200 ease-in-out whitespace-nowrap hover:bg-white/10 hover:text-on-primary [&.router-link-active]:bg-info [&.router-link-active]:text-white"
+            class="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-md text-on-secondary font-semibold text-sm transition-all duration-200 ease-in-out whitespace-nowrap hover:bg-white/10 hover:text-on-primary [&.router-link-active]:bg-info [&.router-link-active]:text-accent [&.router-link-active]:border [&.router-link-active]:border-accent/40"
             aria-label="Navigate to characters">
             <i class="fas fa-users text-base"></i>
             <span>Characters</span>
           </RouterLink>
           <RouterLink to="/wedges"
-            class="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-md text-on-secondary font-semibold text-sm transition-all duration-200 ease-in-out whitespace-nowrap hover:bg-white/10 hover:text-on-primary [&.router-link-active]:bg-info [&.router-link-active]:text-white"
+            class="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-md text-on-secondary font-semibold text-sm transition-all duration-200 ease-in-out whitespace-nowrap hover:bg-white/10 hover:text-on-primary [&.router-link-active]:bg-info [&.router-link-active]:text-accent [&.router-link-active]:border [&.router-link-active]:border-accent/40"
             aria-label="Navigate to wedges">
             <i class="fas fa-gem text-base"></i>
             <span>Wedges</span>
           </RouterLink>
           <RouterLink to="/inventory"
-            class="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-md text-on-secondary font-semibold text-sm transition-all duration-200 ease-in-out whitespace-nowrap hover:bg-white/10 hover:text-on-primary [&.router-link-active]:bg-info [&.router-link-active]:text-white"
+            class="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-md text-on-secondary font-semibold text-sm transition-all duration-200 ease-in-out whitespace-nowrap hover:bg-white/10 hover:text-on-primary [&.router-link-active]:bg-info [&.router-link-active]:text-accent [&.router-link-active]:border [&.router-link-active]:border-accent/40"
             aria-label="Navigate to inventory">
             <i class="fas fa-box-archive text-base"></i>
             <span>Inventory</span>
