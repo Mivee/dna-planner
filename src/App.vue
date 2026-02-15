@@ -10,7 +10,6 @@
         <nav class="flex gap-2 flex-1 flex-wrap" role="navigation" aria-label="Main navigation">
           <NavigationItem to="/character" label="Characters" icon="fas fa-users" />
           <NavigationItem to="/wedges" label="Wedges" icon="fas fa-gem" />
-          <NavigationItem to="/inventory" label="Inventory" icon="fas fa-box-archive" />
 
           <button @click="openSettingsModal"
             class="flex items-center gap-2 px-4 py-2.5 bg-secondary rounded-md text-white-muted font-semibold text-sm transition-all duration-200 ease-in-out whitespace-nowrap hover:bg-secondary-light hover:text-white cursor-pointer border-none"
