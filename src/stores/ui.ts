@@ -5,8 +5,10 @@ import type {
 	CharacterUpgradeConfig,
 	BaseUpgradeConfig,
 	WeaponUpgradeConfig,
+	DaemonWedgeUpgradeConfig,
 } from "../types/upgradeConfig";
 import { useClone } from "../composeables/utils";
+import type { WedgeDisplayMode } from "../types/settings";
 
 const STORAGE_KEY = "dna-planner-ui";
 
@@ -19,6 +21,8 @@ export const useUiStore = defineStore("ui", () => {
 				const data = JSON.parse(stored);
 				return {
 					plannerMode: data.plannerMode || "Inventory",
+					aggregateDaemonWedges:
+						data.aggregateDaemonWedges ?? "Aggreate",
 					upgradeConfiguration: new Map<string, BaseUpgradeConfig>(
 						Object.entries(data.upgradeConfiguration || {})
 					),
@@ -29,12 +33,16 @@ export const useUiStore = defineStore("ui", () => {
 		}
 		return {
 			plannerMode: "Inventory" as PlannerMode,
+			aggregateDaemonWedges: "Aggreate" as WedgeDisplayMode,
 			upgradeConfiguration: new Map<string, BaseUpgradeConfig>(),
 		};
 	};
 
 	const initialState = loadFromStorage();
 	const plannerMode = ref<PlannerMode>(initialState.plannerMode);
+	const aggregateDaemonWedges = ref<WedgeDisplayMode>(
+		initialState.aggregateDaemonWedges
+	);
 	const upgradeConfiguration = ref(initialState.upgradeConfiguration);
 
 	// Persist state to localStorage
@@ -42,6 +50,7 @@ export const useUiStore = defineStore("ui", () => {
 		try {
 			const data = {
 				plannerMode: plannerMode.value,
+				aggregateDaemonWedges: aggregateDaemonWedges.value,
 				upgradeConfiguration: Object.fromEntries(
 					upgradeConfiguration.value
 				),
@@ -53,7 +62,11 @@ export const useUiStore = defineStore("ui", () => {
 	};
 
 	// Watch for changes and persist
-	watch([plannerMode, upgradeConfiguration], saveToStorage, { deep: true });
+	watch(
+		[plannerMode, aggregateDaemonWedges, upgradeConfiguration],
+		saveToStorage,
+		{ deep: true }
+	);
 
 	function addConfiguration(config: BaseUpgradeConfig) {
 		if (config == null || config.name == null) return;
@@ -81,6 +94,12 @@ export const useUiStore = defineStore("ui", () => {
 		) as WeaponUpgradeConfig[];
 	});
 
+	const daemonWedgeConfigurations = computed(() => {
+		return [...upgradeConfiguration.value.values()].filter(
+			(c) => c.type == "DaemonWedge"
+		) as DaemonWedgeUpgradeConfig[];
+	});
+
 	function removeConfiguration(name: string) {
 		const map = new Map(upgradeConfiguration.value);
 		map.delete(name);
@@ -89,10 +108,12 @@ export const useUiStore = defineStore("ui", () => {
 
 	return {
 		plannerMode,
+		aggregateDaemonWedges,
 		addConfiguration,
 		removeConfiguration,
 		characterConfigurations,
 		weaponConfigurations,
+		daemonWedgeConfigurations,
 		getConfiguration,
 		upgradeConfiguration,
 	};

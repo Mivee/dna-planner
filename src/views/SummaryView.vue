@@ -15,6 +15,15 @@
                     <i class="fas fa-plus"></i>
                     Add Weapon
                 </button>
+                <button class="flex items-center gap-2 whitespace-nowrap sm:justify-center"
+                    @click="openDaemonWedgeModal">
+                    <i class="fas fa-gem"></i>
+                    Add Daemon Wedge
+                </button>
+                <button class="flex items-center gap-2 whitespace-nowrap sm:justify-center" @click="openInventoryModal">
+                    <i class="fas fa-box"></i>
+                    Inventory
+                </button>
             </div>
         </div>
 
@@ -28,19 +37,29 @@
         <CharacterBuildConfiguration v-if="isCharacterConfigVisible" @saved="closeCharacterModal"
             @closed="closeCharacterModal" />
         <WeaponBuildConfiguration v-if="isWeaponConfigVisible" @saved="closeWeaponModal" @closed="closeWeaponModal" />
+        <DaemonWedgeBuildConfiguration v-if="isDaemonWedgeConfigVisible" @saved="closeDaemonWedgeModal"
+            @closed="closeDaemonWedgeModal" />
+        <Modal v-if="isInventoryVisible" v-model:is-open="isInventoryVisible">
+            <Inventory />
+        </Modal>
     </div>
 </template>
 
 <script lang="ts" setup>
 import CharacterBuildConfiguration from '../components/characterBuildConfiguration.vue';
 import WeaponBuildConfiguration from '../components/weaponBuildConfiguration.vue';
+import DaemonWedgeBuildConfiguration from '../components/daemonWedgeBuildConfiguration.vue';
 import MaterialSummary from '../components/materialSummary.vue';
+import Inventory from '../components/inventory.vue';
+import Modal from '../components/modal.vue';
 import { ref } from 'vue';
 import DraggableResult from '../components/draggableResult.vue';
 
 
 const isCharacterConfigVisible = ref(false);
 const isWeaponConfigVisible = ref(false);
+const isDaemonWedgeConfigVisible = ref(false);
+const isInventoryVisible = ref(false);
 
 function openCharacterModal() {
     isCharacterConfigVisible.value = true;
@@ -56,5 +75,17 @@ function openWeaponModal() {
 
 function closeWeaponModal() {
     isWeaponConfigVisible.value = false;
+}
+
+function openDaemonWedgeModal() {
+    isDaemonWedgeConfigVisible.value = true;
+}
+
+function closeDaemonWedgeModal() {
+    isDaemonWedgeConfigVisible.value = false;
+}
+
+function openInventoryModal() {
+    isInventoryVisible.value = true;
 }
 </script>

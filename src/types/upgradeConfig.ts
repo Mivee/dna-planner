@@ -13,7 +13,7 @@ export interface SkillUpgradeConfig {
 
 export interface BaseUpgradeConfig {
 	name: string | null;
-	type: "Character" | "Weapon";
+	type: "Character" | "Weapon" | "DaemonWedge";
 	level: LevelRange<string>;
 	skill?: SkillUpgradeConfig;
 	ult?: SkillUpgradeConfig;
@@ -29,4 +29,11 @@ export interface CharacterUpgradeConfig extends BaseUpgradeConfig {
 
 export interface WeaponUpgradeConfig extends BaseUpgradeConfig {
 	type: "Weapon";
+}
+
+export interface DaemonWedgeUpgradeConfig extends BaseUpgradeConfig {
+	type: "DaemonWedge";
+	initialLevel: number; // 0-9
+	targetLevel: number; // 1-10
+	quantity?: number; // Optional for backward compatibility, defaults to 1
 }
