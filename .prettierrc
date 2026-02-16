@@ -1,10 +1,10 @@
 {
-    "tabWidth": 4,
-    "useTabs": true,
-    "trailingComma": "es5",
-    "quoteProps": "preserve",
-    "printWidth": 80,
-    "endOfLine": "auto",
-    "bracketSameLine": true,
-    "htmlWhitespaceSensitivity": "ignore"
+	"tabWidth": 4,
+	"useTabs": true,
+	"trailingComma": "es5",
+	"quoteProps": "preserve",
+	"printWidth": 80,
+	"endOfLine": "auto",
+	"bracketSameLine": true,
+	"htmlWhitespaceSensitivity": "ignore"
 }
