@@ -97,7 +97,7 @@ export const weapons: Weapon[] = [
 		weaponType: "Polearm",
 		range: "Melee",
 		source: "Shop - Trial Rank 30",
-		imageCode: "Polearm_Chixing",
+		imageCode: "Scythe_Chixing",
 	},
 	{
 		id: 13,

@@ -24,6 +24,10 @@
                     <i class="fas fa-box"></i>
                     Inventory
                 </button>
+                <button class="flex items-center gap-2 whitespace-nowrap sm:justify-center" @click="openInventoryModal">
+                    <i class="fas fa-box"></i>
+                    Inventory
+                </button>
             </div>
         </div>
 
@@ -39,6 +43,9 @@
         <WeaponBuildConfiguration v-if="isWeaponConfigVisible" @saved="closeWeaponModal" @closed="closeWeaponModal" />
         <DaemonWedgeBuildConfiguration v-if="isDaemonWedgeConfigVisible" @saved="closeDaemonWedgeModal"
             @closed="closeDaemonWedgeModal" />
+        <Modal v-if="isInventoryVisible" v-model:is-open="isInventoryVisible">
+            <Inventory />
+        </Modal>
         <Modal v-if="isInventoryVisible" v-model:is-open="isInventoryVisible">
             <Inventory />
         </Modal>
@@ -59,6 +66,7 @@ import DraggableResult from '../components/draggableResult.vue';
 const isCharacterConfigVisible = ref(false);
 const isWeaponConfigVisible = ref(false);
 const isDaemonWedgeConfigVisible = ref(false);
+const isInventoryVisible = ref(false);
 const isInventoryVisible = ref(false);
 
 function openCharacterModal() {
@@ -83,6 +91,10 @@ function openDaemonWedgeModal() {
 
 function closeDaemonWedgeModal() {
     isDaemonWedgeConfigVisible.value = false;
+}
+
+function openInventoryModal() {
+    isInventoryVisible.value = true;
 }
 
 function openInventoryModal() {
