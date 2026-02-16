@@ -18,6 +18,7 @@ export interface BaseUpgradeConfig {
 	skill?: SkillUpgradeConfig;
 	ult?: SkillUpgradeConfig;
 	passive?: SkillUpgradeConfig;
+	id?: string; // V4 uuid
 }
 
 export interface CharacterUpgradeConfig extends BaseUpgradeConfig {

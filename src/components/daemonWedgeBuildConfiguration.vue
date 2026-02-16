@@ -1,5 +1,6 @@
 <template>
-    <Modal v-model:isOpen="isOpen" :title="isEditing ? 'Edit Daemon Wedge' : 'Add Daemon Wedge'">
+    <Modal v-model:isOpen="isOpen" :title="isEditing ? 'Edit Daemon Wedge' : 'Add Daemon Wedge'"
+        @save="saveConfiguration">
         <div class="space-y-4">
             <div>
                 <label class="block text-sm font-medium mb-2 text-white-muted">Daemon Wedge</label>
@@ -33,11 +34,11 @@
                 </div>
             </div>
 
-            <div v-if="uiStore.aggregateDaemonWedges === 'Aggreate'">
-                <label class="block text-sm font-medium mb-2 text-white-muted">Quantity</label>
-                <input v-model.number="quantity" type="number" min="1" max="99"
-                    class="w-full p-3 bg-secondary-light border border-white/20 rounded-lg text-white focus:border-accent focus:ring-1 focus:ring-accent transition-all" />
-            </div>
+            <!-- <div v-if="uiStore.aggregateDaemonWedges === 'Aggreate'"> -->
+            <!-- <label class="block text-sm font-medium mb-2 text-white-muted">Quantity</label>
+            <input v-model.number="quantity" type="number" min="1" max="99"
+                class="w-full p-3 bg-secondary-light border border-white/20 rounded-lg text-white focus:border-accent focus:ring-1 focus:ring-accent transition-all" /> -->
+            <!-- </div> -->
 
             <div class="flex justify-end gap-3 pt-4 border-t border-white/20">
                 <button @click="close"
@@ -58,6 +59,7 @@ import { ref, computed, watch } from 'vue';
 import { useUiStore } from '../stores/ui';
 import { daemonWedges } from '../definitions/daemonWedge';
 import type { DaemonWedgeUpgradeConfig } from '../types/upgradeConfig';
+import { useUUID } from '../composeables/utils';
 import Modal from './modal.vue';
 
 interface Props {
@@ -115,6 +117,7 @@ function saveConfiguration() {
     if (!canAdd.value) return;
 
     const config: DaemonWedgeUpgradeConfig = {
+        id: props.upgradeConfig?.id || useUUID(),
         name: selectedWedge.value,
         type: 'DaemonWedge',
         initialLevel: initialLevel.value,
@@ -122,9 +125,9 @@ function saveConfiguration() {
         level: { start: null, end: null }, // Not used for daemon wedges
     };
 
-    if (uiStore.aggregateDaemonWedges === 'Aggreate') {
-        config.quantity = quantity.value;
-    }
+    // if (uiStore.aggregateDaemonWedges === 'Aggreate') {
+    config.quantity = quantity.value;
+    // }
 
     uiStore.addConfiguration(config);
 

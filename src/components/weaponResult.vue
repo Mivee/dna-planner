@@ -33,7 +33,7 @@
                 <div class="flex justify-between items-center py-2">
                     <span class="text-sm text-white-muted font-medium">Level</span>
                     <span class="text-sm font-bold text-accent">{{ config.level.start }} → {{ config.level.end
-                        }}</span>
+                    }}</span>
                 </div>
             </div>
         </div>
@@ -73,8 +73,9 @@ const imgSource = computed(() => {
 });
 
 function remove() {
+    const identifier = props.config.id || props.config.name;
     if (confirm(`Remove ${selectedWeapon.value}?`)) {
-        removeConfiguration(props.config.name!);
+        removeConfiguration(identifier!);
     }
 }
 

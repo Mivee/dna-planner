@@ -7,7 +7,7 @@
                 <img v-if="elementImageUrl" :src="elementImageUrl" :alt="characterData?.element"
                     class="w-6 h-6 object-contain" />
                 <h3 class="m-0 text-xl font-bold" :class="elementTextClass">{{ selectedCharacter
-                }}</h3>
+                    }}</h3>
             </div>
             <div class="flex gap-2">
                 <button
@@ -117,8 +117,9 @@ function edit() {
 }
 
 function remove() {
+    const identifier = props.config.id || props.config.name;
     if (confirm(`Remove ${selectedCharacter.value}?`)) {
-        removeConfiguration(props.config.name!);
+        removeConfiguration(identifier!);
     }
 }
 

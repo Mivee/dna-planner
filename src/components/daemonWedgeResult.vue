@@ -28,7 +28,7 @@
                 <div class="flex justify-between items-center py-2">
                     <span class="text-sm text-white-muted font-medium">Level</span>
                     <span class="text-sm font-bold text-purple-400">+{{ config.initialLevel }} → +{{ config.targetLevel
-                    }}</span>
+                        }}</span>
                 </div>
                 <div v-if="config.quantity && config.quantity > 1" class="flex justify-between items-center py-2">
                     <span class="text-sm text-white-muted font-medium">Quantity</span>
@@ -56,7 +56,7 @@
                         <span class="text-sm text-white-muted">Carmine Globules</span>
                     </div>
                     <span class="text-sm font-bold text-purple-400">{{ summary.carmineGlobules.toLocaleString()
-                    }}</span>
+                        }}</span>
                 </div>
 
                 <!-- Blueprints -->
@@ -135,8 +135,9 @@ function getBlueprintColor(name: string): string {
 }
 
 function remove() {
+    const identifier = props.config.id || props.config.name;
     if (confirm(`Remove ${props.config.name}?`)) {
-        removeConfiguration(props.config.name!);
+        removeConfiguration(identifier!);
     }
 }
 

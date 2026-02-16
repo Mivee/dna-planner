@@ -6,11 +6,28 @@
                 <i class="fas fa-gem text-xl text-warning"></i>
                 Daemon Wedges
             </h2>
+            <button class="flex items-center gap-2 whitespace-nowrap" @click="openDaemonWedgeModal">
+                <i class="fas fa-plus"></i>
+                Add Daemon Wedge
+            </button>
         </div>
-        <DaemonWedges />
+        <DraggableResult />
+        <DaemonWedgeBuildConfiguration v-if="showModal" @saved="closeModal" @closed="closeModal" />
     </div>
 </template>
 
 <script lang="ts" setup>
-import DaemonWedges from '../components/daemonWedges.vue'
+import { ref } from 'vue';
+import DraggableResult from '../components/draggableResult.vue';
+import DaemonWedgeBuildConfiguration from '../components/daemonWedgeBuildConfiguration.vue';
+
+const showModal = ref(false);
+
+function openDaemonWedgeModal() {
+    showModal.value = true;
+}
+
+function closeModal() {
+    showModal.value = false;
+}
 </script>
