@@ -67,7 +67,6 @@ const isCharacterConfigVisible = ref(false);
 const isWeaponConfigVisible = ref(false);
 const isDaemonWedgeConfigVisible = ref(false);
 const isInventoryVisible = ref(false);
-const isInventoryVisible = ref(false);
 
 function openCharacterModal() {
     isCharacterConfigVisible.value = true;
@@ -97,7 +96,4 @@ function openInventoryModal() {
     isInventoryVisible.value = true;
 }
 
-function openInventoryModal() {
-    isInventoryVisible.value = true;
-}
 </script>
