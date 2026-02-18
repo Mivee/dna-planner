@@ -44,31 +44,15 @@ const isWeaponConfigVisible = ref(false);
 const isDaemonWedgeConfigVisible = ref(false);
 const isInventoryVisible = ref(false);
 
-function openCharacterModal() {
-	isCharacterConfigVisible.value = true;
-}
-
 function closeCharacterModal() {
 	isCharacterConfigVisible.value = false;
-}
-
-function openWeaponModal() {
-	isWeaponConfigVisible.value = true;
 }
 
 function closeWeaponModal() {
 	isWeaponConfigVisible.value = false;
 }
 
-function openDaemonWedgeModal() {
-	isDaemonWedgeConfigVisible.value = true;
-}
-
 function closeDaemonWedgeModal() {
 	isDaemonWedgeConfigVisible.value = false;
-}
-
-function openInventoryModal() {
-	isInventoryVisible.value = true;
 }
 </script>
