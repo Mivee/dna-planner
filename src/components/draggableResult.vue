@@ -33,9 +33,11 @@ import DaemonWedgeResult from "./daemonWedgeResult.vue";
 import { computed } from "vue";
 
 const uiStore = useUiStore();
-const { upgradeConfiguration, aggregateDaemonWedges } = storeToRefs(uiStore);
+const { upgradeConfiguration } = storeToRefs(uiStore);
 
-const configs = computed(() => Array.from(upgradeConfiguration.value.values()));
+const expandedConfigs = computed(() =>
+	Array.from(upgradeConfiguration.value.values())
+);
 
 // Helper to get unique key for each item
 function getKey(
@@ -52,41 +54,4 @@ function getKey(
 	// Fallback to name + index for backwards compatibility
 	return (item.name || "") + "_" + index;
 }
-
-// Expand daemon wedge configs into separate cards when aggregateDaemonWedges is false
-const expandedConfigs = computed(() => {
-	const result: Array<
-		CharacterUpgradeConfig | WeaponUpgradeConfig | DaemonWedgeUpgradeConfig
-	> = [];
-
-	for (const config of configs.value) {
-		if (
-			config.type === "DaemonWedge" &&
-			aggregateDaemonWedges.value === "Seperate"
-		) {
-			const daemonConfig = config as DaemonWedgeUpgradeConfig;
-			const quantity = daemonConfig.quantity ?? 1;
-
-			// Create individual cards for each copy
-			for (let i = 0; i < quantity; i++) {
-				const singleConfig: DaemonWedgeUpgradeConfig = {
-					...daemonConfig,
-					quantity: undefined,
-				};
-				result.push(singleConfig);
-			}
-		} else {
-			// Type narrowing for proper union type handling
-			if (config.type === "Character") {
-				result.push(config as CharacterUpgradeConfig);
-			} else if (config.type === "Weapon") {
-				result.push(config as WeaponUpgradeConfig);
-			} else {
-				result.push(config as DaemonWedgeUpgradeConfig);
-			}
-		}
-	}
-
-	return result;
-});
 </script>

@@ -8,7 +8,6 @@ import type {
 	DaemonWedgeUpgradeConfig,
 } from "../types/upgradeConfig";
 import { useClone, useUUID } from "../composeables/utils";
-import type { WedgeDisplayMode } from "../types/settings";
 
 const STORAGE_KEY = "dna-planner-ui";
 
@@ -35,8 +34,6 @@ export const useUiStore = defineStore("ui", () => {
 
 				return {
 					plannerMode: data.plannerMode || "Inventory",
-					aggregateDaemonWedges:
-						data.aggregateDaemonWedges ?? "Aggreate",
 					upgradeConfiguration: configMap,
 				};
 			}
@@ -45,16 +42,12 @@ export const useUiStore = defineStore("ui", () => {
 		}
 		return {
 			plannerMode: "Inventory" as PlannerMode,
-			aggregateDaemonWedges: "Aggreate" as WedgeDisplayMode,
 			upgradeConfiguration: new Map<string, BaseUpgradeConfig>(),
 		};
 	};
 
 	const initialState = loadFromStorage();
 	const plannerMode = ref<PlannerMode>(initialState.plannerMode);
-	const aggregateDaemonWedges = ref<WedgeDisplayMode>(
-		initialState.aggregateDaemonWedges
-	);
 	const upgradeConfiguration = ref(initialState.upgradeConfiguration);
 
 	// Persist state to localStorage
@@ -62,7 +55,6 @@ export const useUiStore = defineStore("ui", () => {
 		try {
 			const data = {
 				plannerMode: plannerMode.value,
-				aggregateDaemonWedges: aggregateDaemonWedges.value,
 				upgradeConfiguration: Object.fromEntries(
 					upgradeConfiguration.value
 				),
@@ -74,11 +66,7 @@ export const useUiStore = defineStore("ui", () => {
 	};
 
 	// Watch for changes and persist
-	watch(
-		[plannerMode, aggregateDaemonWedges, upgradeConfiguration],
-		saveToStorage,
-		{ deep: true }
-	);
+	watch([plannerMode, upgradeConfiguration], saveToStorage, { deep: true });
 
 	function addConfiguration(config: BaseUpgradeConfig) {
 		if (config == null || config.name == null) return;
@@ -138,7 +126,6 @@ export const useUiStore = defineStore("ui", () => {
 
 	return {
 		plannerMode,
-		aggregateDaemonWedges,
 		addConfiguration,
 		removeConfiguration,
 		characterConfigurations,
