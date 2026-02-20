@@ -1,35 +1,6 @@
 <template>
 	<div class="animate-[fadeIn_0.3s_ease]">
 		<div
-			class="flex justify-between items-center mb-6 px-5 py-4 bg-secondary border border-white/10 rounded-lg shadow-lg sm:flex-col sm:gap-4 sm:items-stretch">
-			<h2
-				class="m-0 text-2xl flex items-center gap-3 text-on-primary font-bold">
-				<i class="fas fa-users text-xl text-accent"></i>
-				Planner
-			</h2>
-			<div class="flex gap-3">
-				<button
-					class="flex items-center gap-2 whitespace-nowrap sm:justify-center"
-					@click="openCharacterModal">
-					<i class="fas fa-user-plus"></i>
-					Add Character
-				</button>
-				<button
-					class="flex items-center gap-2 whitespace-nowrap sm:justify-center"
-					@click="openWeaponModal">
-					<i class="fas fa-plus"></i>
-					Add Weapon
-				</button>
-				<button
-					class="flex items-center gap-2 whitespace-nowrap sm:justify-center"
-					@click="openInventoryModal">
-					<i class="fas fa-box"></i>
-					Inventory
-				</button>
-			</div>
-		</div>
-
-		<div
 			class="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 items-start">
 			<div class="order-2 md:order-1">
 				<MaterialSummary />

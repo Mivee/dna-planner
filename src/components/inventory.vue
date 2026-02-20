@@ -18,6 +18,8 @@
 			</div>
 		</div>
 
+		<InventorySearch v-model:search-query="searchQuery" />
+
 		<div class="flex flex-col gap-6 max-h-[60vh] overflow-y-auto pr-2">
 			<!-- Currency Section -->
 			<div>
@@ -47,54 +49,6 @@
 				</div>
 			</div>
 
-			<div class="flex flex-wrap items-center gap-2">
-				<input
-					v-model="searchQuery"
-					type="text"
-					placeholder="Search materials..."
-					class="flex-1 min-w-56 px-3 py-2 bg-secondary-light border border-white/20 rounded text-white focus:border-accent focus:ring-1 focus:ring-accent" />
-				<button
-					type="button"
-					class="px-3 py-2"
-					@click="showOnlyOwned = !showOnlyOwned">
-					<i
-						class="fas mr-2"
-						:class="
-							showOnlyOwned
-								? 'fa-toggle-on text-accent'
-								: 'fa-toggle-off'
-						"></i>
-					{{ showOnlyOwned ? "Owned only" : "Show all" }}
-				</button>
-				<button type="button" class="px-3 py-2" @click="clearZeroItems">
-					Clear empty
-				</button>
-				<button type="button" class="px-3 py-2" @click="resetAllItems">
-					Reset all
-				</button>
-			</div>
-
-			<div
-				class="flex flex-wrap items-center gap-2 p-3 bg-secondary/3 rounded-md">
-				<input
-					v-model="newItemName"
-					type="text"
-					placeholder="Custom item name"
-					class="flex-1 min-w-56 px-3 py-2 bg-secondary-light border border-white/20 rounded text-white focus:border-accent focus:ring-1 focus:ring-accent" />
-				<input
-					v-model.number="newItemQuantity"
-					type="number"
-					min="0"
-					step="1"
-					class="w-28 px-3 py-2 bg-secondary-light border border-white/20 rounded text-white text-right focus:border-accent focus:ring-1 focus:ring-accent" />
-				<button
-					type="button"
-					class="px-3 py-2"
-					:disabled="!newItemName.trim()"
-					@click="addCustomItem">
-					Add / Update
-				</button>
-			</div>
 			<!-- Carmine Globules -->
 			<div>
 				<h4
@@ -151,6 +105,7 @@ import { useInventory } from "../stores/inventory";
 import { elementUpgradeMaterials } from "../definitions/character";
 import { weaponUpgradeMaterials } from "../definitions/weapon";
 import InventoryMaterial from "./inventoryMaterial.vue";
+import InventorySearch from "./inventorySearch.vue";
 
 const inventoryStore = useInventory();
 const searchQuery = ref("");
