@@ -15,6 +15,23 @@
 				</span>
 			</h3>
 		</div>
+	</div>
+	<div
+		class="bg-secondary border border-white/10 rounded-lg overflow-hidden sticky top-4 h-fit">
+		<div
+			class="p-4 bg-linear-to-br from-accent/10 to-info/10 border-b border-white/10">
+			<h3
+				class="text-lg font-bold text-on-primary flex items-center gap-2 m-0">
+				<i class="fas fa-list-check text-accent"></i>
+				Total Materials
+				<span
+					v-if="plannerMode === 'Inventory'"
+					class="ml-auto text-xs font-medium text-info bg-info/10 px-2 py-1 rounded border border-info/30">
+					<i class="fas fa-box-archive mr-1"></i>
+					Adjusted
+				</span>
+			</h3>
+		</div>
 
 		<div class="p-4 flex flex-col gap-6">
 			<div class="flex flex-col gap-2">
@@ -218,6 +235,21 @@ interface MaterialDetail {
 	quantity: number;
 	adjustedQuantity: number;
 	colorClass: string;
+}
+
+function getWeaponAscensionInventoryName(
+	materialName: string,
+	tier: "green" | "blue" | "purple"
+): string {
+	if (tier === "green") {
+		return `Basic Weapon Component: ${materialName}`;
+	}
+
+	if (tier === "blue") {
+		return `Intermediate Weapon Component: ${materialName}`;
+	}
+
+	return `Advanced Weapon Component: ${materialName}`;
 }
 
 const totalMaterials = computed(() => {

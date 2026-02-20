@@ -6,19 +6,19 @@
 		<div>
 			Green Primary Mats
 			{{ summary.ascensionMaterials.primary.T1_Green }} ({{
-				getMaterialName("Primary", "Ascension")
+				getAscensionMaterialName("Primary", "green")
 			}})
 		</div>
 		<div>
 			Blue Primary Mats
 			{{ summary.ascensionMaterials.primary.T2_Blue }} ({{
-				getMaterialName("Primary", "Ascension")
+				getAscensionMaterialName("Primary", "blue")
 			}})
 		</div>
 		<div>
 			Purple Primary Mats
 			{{ summary.ascensionMaterials.primary.T3_Purple }} ({{
-				getMaterialName("Primary", "Ascension")
+				getAscensionMaterialName("Primary", "purple")
 			}})
 		</div>
 
@@ -26,19 +26,19 @@
 		<div>
 			Green Secondary Mats
 			{{ summary.ascensionMaterials.secondary.T1_Green }} ({{
-				getMaterialName("Secondary", "Ascension")
+				getAscensionMaterialName("Secondary", "green")
 			}})
 		</div>
 		<div>
 			Blue Secondary Mats
 			{{ summary.ascensionMaterials.secondary.T2_Blue }} ({{
-				getMaterialName("Secondary", "Ascension")
+				getAscensionMaterialName("Secondary", "blue")
 			}})
 		</div>
 		<div>
 			Purple Secondary Mats
 			{{ summary.ascensionMaterials.secondary.T3_Purple }} ({{
-				getMaterialName("Secondary", "Ascension")
+				getAscensionMaterialName("Secondary", "purple")
 			}})
 		</div>
 
@@ -107,5 +107,26 @@ function getMaterialName(
 		}
 	}
 	return null;
+}
+
+function getAscensionMaterialName(
+	value: "Primary" | "Secondary",
+	tier: "green" | "blue" | "purple"
+) {
+	const materialType = getMaterialName(value, "Ascension");
+
+	if (!materialType) {
+		return null;
+	}
+
+	if (tier === "green") {
+		return `Basic Weapon Component: ${materialType}`;
+	}
+
+	if (tier === "blue") {
+		return `Intermediate Weapon Component: ${materialType}`;
+	}
+
+	return `Advanced Weapon Component: ${materialType}`;
 }
 </script>

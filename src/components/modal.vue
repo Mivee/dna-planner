@@ -5,7 +5,8 @@
 			class="fixed inset-0 bg-primary/85 backdrop-blur-sm flex items-center justify-center z-1000 p-4"
 			@click.self="close">
 			<div
-				class="relative bg-secondary border border-white/10 rounded-lg max-w-[90%] max-h-[90vh] w-150 shadow-2xl overflow-hidden animate-[modalSlideIn_0.2s_ease]">
+				:class="modalSizeClass"
+				class="relative bg-secondary border border-white/10 rounded-lg max-w-[95%] max-h-[90vh] shadow-2xl overflow-hidden animate-[modalSlideIn_0.2s_ease]">
 				<!-- Header -->
 				<header
 					class="px-6 py-5 border-b border-white/10 flex items-center justify-between bg-secondary/2">
@@ -42,10 +43,32 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from "vue";
+
+type ModalSize = "sm" | "md" | "lg" | "xl";
+
 interface Props {
 	isOpen: boolean;
+	size?: ModalSize;
 }
-defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+	size: "lg",
+});
+
+const modalSizeClass = computed(() => {
+	switch (props.size) {
+		case "sm":
+			return "w-100";
+		case "md":
+			return "w-125";
+		case "lg":
+			return "w-150";
+		case "xl":
+			return "w-200";
+		default:
+			return "w-150";
+	}
+});
 
 const emit = defineEmits(["update:isOpen", "save", "closed"]);
 

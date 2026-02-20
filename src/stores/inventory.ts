@@ -5,12 +5,26 @@ import { ref, watch } from "vue";
 const STORAGE_KEY = "dna-planner-inventory";
 
 export const useInventory = defineStore("inventory", () => {
+	const sanitizeQuantity = (quantity: number): number => {
+		if (!Number.isFinite(quantity)) {
+			return 0;
+		}
+
+		return Math.max(0, Math.floor(quantity));
+	};
+
 	// Load initial state from localStorage
 	const loadFromStorage = (): InventoryItem[] => {
 		try {
 			const stored = localStorage.getItem(STORAGE_KEY);
 			if (stored) {
-				return JSON.parse(stored);
+				const parsed = JSON.parse(stored) as InventoryItem[];
+				return parsed
+					.filter((item) => typeof item.name === "string")
+					.map((item) => ({
+						name: item.name,
+						quantity: sanitizeQuantity(item.quantity),
+					}));
 			}
 		} catch (error) {
 			console.error("Failed to load inventory from localStorage:", error);
@@ -39,7 +53,7 @@ export const useInventory = defineStore("inventory", () => {
 			return false;
 		}
 
-		item.quantity = quantity;
+		item.quantity = sanitizeQuantity(quantity);
 		return true;
 	}
 
@@ -54,7 +68,52 @@ export const useInventory = defineStore("inventory", () => {
 			return false;
 		}
 
-		items.value.push(item);
+		items.value.push({
+			name: item.name,
+			quantity: sanitizeQuantity(item.quantity),
+		});
+		items.value.sort((a, b) => a.name.localeCompare(b.name));
+		return true;
+	}
+
+	function upsertItem(name: string, quantity: number): boolean {
+		const sanitizedQuantity = sanitizeQuantity(quantity);
+		const existing = items.value.find((item) => item.name === name);
+
+		if (existing) {
+			existing.quantity = sanitizedQuantity;
+			return true;
+		}
+
+		if (!name.trim()) {
+			return false;
+		}
+
+		items.value.push({ name: name.trim(), quantity: sanitizedQuantity });
+		items.value.sort((a, b) => a.name.localeCompare(b.name));
+		return true;
+	}
+
+	function removeItem(name: string): boolean {
+		const index = items.value.findIndex((item) => item.name === name);
+		if (index < 0) {
+			return false;
+		}
+
+		items.value.splice(index, 1);
+		return true;
+	}
+
+	function clearEmptyItems(): number {
+		const before = items.value.length;
+		items.value = items.value.filter(
+			(item) => sanitizeQuantity(item.quantity) > 0
+		);
+		return before - items.value.length;
+	}
+
+	function resetInventory() {
+		items.value = [];
 		return true;
 	}
 
@@ -63,5 +122,9 @@ export const useInventory = defineStore("inventory", () => {
 		setQuantity,
 		getAmount,
 		addItem,
+		upsertItem,
+		removeItem,
+		clearEmptyItems,
+		resetInventory,
 	};
 });
