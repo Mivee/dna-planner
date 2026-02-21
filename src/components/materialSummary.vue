@@ -36,6 +36,22 @@
 					</span>
 				</div>
 				<div
+					v-if="totalMaterials.carmineGlobules > 0"
+					class="flex items-center gap-3 p-2 bg-secondary/3 rounded-md hover:bg-secondary/5 transition-colors">
+					<i class="fas fa-gem w-5 text-center text-purple-400"></i>
+					<span class="flex-1 text-sm text-on-primary">
+						Carmine Globules
+					</span>
+					<span class="font-bold text-purple-400 text-sm">
+						{{
+							getAdjustedQuantity(
+								"Carmine Globule",
+								totalMaterials.carmineGlobules
+							).toLocaleString()
+						}}
+					</span>
+				</div>
+				<div
 					class="flex items-center gap-3 p-2 bg-secondary/3 rounded-md hover:bg-secondary/5 transition-colors">
 					<i class="fas fa-star w-5 text-center text-accent"></i>
 					<span class="flex-1 text-sm text-on-primary">
@@ -112,6 +128,48 @@
 					</div>
 				</template>
 			</div>
+
+			<div class="flex flex-col gap-2" v-if="hasBlueprints">
+				<h4
+					class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">
+					Blueprints
+				</h4>
+				<template v-for="(blueprint, key) in blueprintsList" :key="key">
+					<div
+						class="flex items-center gap-3 p-2 bg-secondary/3 rounded-md hover:bg-secondary/5 transition-colors">
+						<i
+							class="fas fa-scroll w-5 text-center"
+							:class="blueprint.colorClass"></i>
+						<span class="flex-1 text-sm text-on-primary">
+							{{ blueprint.name }}
+						</span>
+						<span class="font-bold text-accent text-sm">
+							{{ blueprint.adjustedQuantity }}
+						</span>
+					</div>
+				</template>
+			</div>
+
+			<div class="flex flex-col gap-2" v-if="hasDaemonWedgeMaterials">
+				<h4
+					class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">
+					Daemon Wedge Materials
+				</h4>
+				<template
+					v-for="(material, key) in daemonWedgeMaterialsList"
+					:key="key">
+					<div
+						class="flex items-center gap-3 p-2 bg-secondary/3 rounded-md hover:bg-secondary/5 transition-colors">
+						<i class="fas fa-cube w-5 text-center text-accent"></i>
+						<span class="flex-1 text-sm text-on-primary">
+							{{ material.name }}
+						</span>
+						<span class="font-bold text-accent text-sm">
+							{{ material.adjustedQuantity }}
+						</span>
+					</div>
+				</template>
+			</div>
 		</div>
 	</div>
 </template>
@@ -123,6 +181,7 @@ import { useUiStore } from "../stores/ui";
 import { useInventory } from "../stores/inventory";
 import { useCharacter } from "../composeables/useCharacter";
 import { useWeapon } from "../composeables/useWeapon";
+import { useDaemonWedge } from "../composeables/useDaemonWedge";
 import { characterLevelingMaterials } from "../definitions/characterAscension";
 import { weaponLevelingMaterials } from "../definitions/weapon";
 import {
@@ -179,11 +238,14 @@ function getWeaponAscensionInventoryName(
 const totalMaterials = computed(() => {
 	const totals = {
 		coins: 0,
+		carmineGlobules: 0,
 		exp: { characters: 0, weapons: 0 },
 		ascension: { green: 0, blue: 0, purple: 0 },
 		forging: { green: 0, blue: 0, purple: 0 },
 		ascensionDetails: new Map<string, { tier: string; quantity: number }>(),
 		forgingDetails: new Map<string, { tier: string; quantity: number }>(),
+		blueprintDetails: new Map<string, { quantity: number }>(),
+		daemonWedgeMaterials: new Map<string, { quantity: number }>(),
 	};
 
 	characterConfigurations.value.forEach((config) => {
@@ -401,10 +463,7 @@ const totalMaterials = computed(() => {
 				upgradeMaterials.value &&
 				summary.ascensionMaterials.primary.T1_Green > 0
 			) {
-				const key = getWeaponAscensionInventoryName(
-					upgradeMaterials.value.ascensionMaterials.primary,
-					"green"
-				);
+				const key = `${upgradeMaterials.value.ascensionMaterials.primary}-green`;
 				const existing = totals.ascensionDetails.get(key);
 				totals.ascensionDetails.set(key, {
 					tier: "green",
@@ -417,10 +476,7 @@ const totalMaterials = computed(() => {
 				upgradeMaterials.value &&
 				summary.ascensionMaterials.primary.T2_Blue > 0
 			) {
-				const key = getWeaponAscensionInventoryName(
-					upgradeMaterials.value.ascensionMaterials.primary,
-					"blue"
-				);
+				const key = `${upgradeMaterials.value.ascensionMaterials.primary}-blue`;
 				const existing = totals.ascensionDetails.get(key);
 				totals.ascensionDetails.set(key, {
 					tier: "blue",
@@ -433,10 +489,7 @@ const totalMaterials = computed(() => {
 				upgradeMaterials.value &&
 				summary.ascensionMaterials.primary.T3_Purple > 0
 			) {
-				const key = getWeaponAscensionInventoryName(
-					upgradeMaterials.value.ascensionMaterials.primary,
-					"purple"
-				);
+				const key = `${upgradeMaterials.value.ascensionMaterials.primary}-purple`;
 				const existing = totals.ascensionDetails.get(key);
 				totals.ascensionDetails.set(key, {
 					tier: "purple",
@@ -449,10 +502,7 @@ const totalMaterials = computed(() => {
 				upgradeMaterials.value &&
 				summary.ascensionMaterials.secondary.T1_Green > 0
 			) {
-				const key = getWeaponAscensionInventoryName(
-					upgradeMaterials.value.ascensionMaterials.secondary,
-					"green"
-				);
+				const key = `${upgradeMaterials.value.ascensionMaterials.secondary}-green`;
 				const existing = totals.ascensionDetails.get(key);
 				totals.ascensionDetails.set(key, {
 					tier: "green",
@@ -465,10 +515,7 @@ const totalMaterials = computed(() => {
 				upgradeMaterials.value &&
 				summary.ascensionMaterials.secondary.T2_Blue > 0
 			) {
-				const key = getWeaponAscensionInventoryName(
-					upgradeMaterials.value.ascensionMaterials.secondary,
-					"blue"
-				);
+				const key = `${upgradeMaterials.value.ascensionMaterials.secondary}-blue`;
 				const existing = totals.ascensionDetails.get(key);
 				totals.ascensionDetails.set(key, {
 					tier: "blue",
@@ -481,10 +528,7 @@ const totalMaterials = computed(() => {
 				upgradeMaterials.value &&
 				summary.ascensionMaterials.secondary.T3_Purple > 0
 			) {
-				const key = getWeaponAscensionInventoryName(
-					upgradeMaterials.value.ascensionMaterials.secondary,
-					"purple"
-				);
+				const key = `${upgradeMaterials.value.ascensionMaterials.secondary}-purple`;
 				const existing = totals.ascensionDetails.get(key);
 				totals.ascensionDetails.set(key, {
 					tier: "purple",
@@ -498,6 +542,55 @@ const totalMaterials = computed(() => {
 		} catch (error) {
 			console.warn(
 				`Failed to calculate materials for weapon ${config.name}:`,
+				error
+			);
+		}
+	});
+
+	// Process daemon wedge configurations
+	const daemonWedgeConfigs = uiStore.daemonWedgeConfigurations;
+	daemonWedgeConfigs.forEach((config) => {
+		if (!config.name) return;
+
+		try {
+			const { getDaemonWedge, buildSummary } = useDaemonWedge();
+			const wedge = getDaemonWedge(config.name);
+
+			if (!wedge) return;
+
+			// Get quantity (default to 1 if not specified)
+			const quantity = config.quantity ?? 1;
+
+			// Get summary
+			const summary = buildSummary(
+				wedge,
+				config.initialLevel,
+				config.targetLevel,
+				quantity
+			);
+
+			// Add to totals
+			totals.coins += summary.coins;
+			totals.carmineGlobules += summary.carmineGlobules;
+
+			// Track blueprints
+			summary.blueprints.forEach((blueprintQty, blueprintName) => {
+				const existing = totals.blueprintDetails.get(blueprintName);
+				totals.blueprintDetails.set(blueprintName, {
+					quantity: (existing?.quantity || 0) + blueprintQty,
+				});
+			});
+
+			// Track materials
+			summary.materials.forEach((materialQty, materialName) => {
+				const existing = totals.daemonWedgeMaterials.get(materialName);
+				totals.daemonWedgeMaterials.set(materialName, {
+					quantity: (existing?.quantity || 0) + materialQty,
+				});
+			});
+		} catch (error) {
+			console.warn(
+				`Failed to calculate materials for daemon wedge ${config.name}:`,
 				error
 			);
 		}
@@ -620,9 +713,11 @@ const ascensionMaterialsList = computed(() => {
 	};
 
 	totalMaterials.value.ascensionDetails.forEach((detail, key) => {
-		const adjustedQty = getAdjustedQuantity(key, detail.quantity);
+		// Extract material name from composite key (e.g., "Frame-green" -> "Frame")
+		const materialName = key.replace(/-(?:green|blue|purple)$/, "");
+		const adjustedQty = getAdjustedQuantity(materialName, detail.quantity);
 		materials.push({
-			name: key,
+			name: materialName,
 			quantity: detail.quantity,
 			adjustedQuantity: adjustedQty,
 			colorClass: tierColors[detail.tier as keyof typeof tierColors],
@@ -668,5 +763,58 @@ const forgingMaterialsList = computed(() => {
 			tierOrder[(b as any).tier as keyof typeof tierOrder];
 		return tierDiff !== 0 ? tierDiff : a.name.localeCompare(b.name);
 	});
+});
+
+const hasBlueprints = computed(
+	() => totalMaterials.value.blueprintDetails.size > 0
+);
+
+const blueprintsList = computed(() => {
+	const blueprints: MaterialDetail[] = [];
+	const rarityColors = {
+		Blue: "text-blue-400",
+		Purple: "text-purple-400",
+		Gold: "text-yellow-400",
+	};
+
+	totalMaterials.value.blueprintDetails.forEach((detail, key) => {
+		// Determine rarity from blueprint name (e.g., "[Purple]", "[Blue]", "[Gold]")
+		let colorClass = "text-gray-400";
+		if (key.includes("[Blue]")) colorClass = rarityColors.Blue;
+		else if (key.includes("[Purple]")) colorClass = rarityColors.Purple;
+		else if (key.includes("[Gold]")) colorClass = rarityColors.Gold;
+
+		const adjustedQty = getAdjustedQuantity(key, detail.quantity);
+		blueprints.push({
+			name: key,
+			quantity: detail.quantity,
+			adjustedQuantity: adjustedQty,
+			colorClass,
+		});
+	});
+
+	// Sort by name
+	return blueprints.sort((a, b) => a.name.localeCompare(b.name));
+});
+
+const hasDaemonWedgeMaterials = computed(
+	() => totalMaterials.value.daemonWedgeMaterials.size > 0
+);
+
+const daemonWedgeMaterialsList = computed(() => {
+	const materials: MaterialDetail[] = [];
+
+	totalMaterials.value.daemonWedgeMaterials.forEach((detail, key) => {
+		const adjustedQty = getAdjustedQuantity(key, detail.quantity);
+		materials.push({
+			name: key,
+			quantity: detail.quantity,
+			adjustedQuantity: adjustedQty,
+			colorClass: "",
+		});
+	});
+
+	// Sort by name
+	return materials.sort((a, b) => a.name.localeCompare(b.name));
 });
 </script>

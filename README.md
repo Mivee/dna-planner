@@ -23,7 +23,7 @@ A Vue 3 + TypeScript application for planning character and weapon upgrades in a
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or pnpm
 
 ### Installation

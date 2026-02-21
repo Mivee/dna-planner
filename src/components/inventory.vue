@@ -18,77 +18,82 @@
 			</div>
 		</div>
 
-		<div class="flex flex-wrap items-center gap-2">
-			<input
-				v-model="searchQuery"
-				type="text"
-				placeholder="Search materials..."
-				class="flex-1 min-w-56 px-3 py-2 bg-secondary-light border border-white/20 rounded text-white focus:border-accent focus:ring-1 focus:ring-accent" />
-			<button
-				type="button"
-				class="px-3 py-2"
-				@click="showOnlyOwned = !showOnlyOwned">
-				<i
-					class="fas mr-2"
-					:class="
-						showOnlyOwned
-							? 'fa-toggle-on text-accent'
-							: 'fa-toggle-off'
-					"></i>
-				{{ showOnlyOwned ? "Owned only" : "Show all" }}
-			</button>
-			<button type="button" class="px-3 py-2" @click="clearZeroItems">
-				Clear empty
-			</button>
-			<button type="button" class="px-3 py-2" @click="resetAllItems">
-				Reset all
-			</button>
-		</div>
-
-		<div
-			class="flex flex-wrap items-center gap-2 p-3 bg-secondary/3 rounded-md">
-			<input
-				v-model="newItemName"
-				type="text"
-				placeholder="Custom item name"
-				class="flex-1 min-w-56 px-3 py-2 bg-secondary-light border border-white/20 rounded text-white focus:border-accent focus:ring-1 focus:ring-accent" />
-			<input
-				v-model.number="newItemQuantity"
-				type="number"
-				min="0"
-				step="1"
-				class="w-28 px-3 py-2 bg-secondary-light border border-white/20 rounded text-white text-right focus:border-accent focus:ring-1 focus:ring-accent" />
-			<button
-				type="button"
-				class="px-3 py-2"
-				:disabled="!newItemName.trim()"
-				@click="addCustomItem">
-				Add / Update
-			</button>
-		</div>
+		<InventorySearch v-model:search-query="searchQuery" />
 
 		<div class="flex flex-col gap-6 max-h-[60vh] overflow-y-auto pr-2">
-			<div v-for="section in groupedInventorySections" :key="section.key">
+			<!-- Currency Section -->
+			<div>
 				<h4
 					class="text-xs font-semibold text-on-secondary uppercase tracking-wider mb-3">
-					{{ section.label }}
+					Currency
 				</h4>
 				<div class="flex flex-col gap-2">
 					<InventoryMaterial
-						v-for="materialName in section.materialNames"
-						:key="materialName"
-						:name="materialName"
-						:icon-class="getMaterialMeta(materialName).iconClass"
-						:icon-color="getMaterialMeta(materialName).iconColor"
-						:quantity="getItemQuantity(materialName)"
+						name="Coins"
+						icon-class="fas fa-coins"
+						icon-color="text-accent"
+						:quantity="getItemQuantity('Coins')"
+						@update="updateQuantity" />
+					<InventoryMaterial
+						name="XP"
+						icon-class="fas fa-star"
+						icon-color="text-accent"
+						:quantity="getItemQuantity('XP')"
+						@update="updateQuantity" />
+					<InventoryMaterial
+						name="Weapon XP"
+						icon-class="fas fa-hammer"
+						icon-color="text-accent"
+						:quantity="getItemQuantity('Weapon XP')"
 						@update="updateQuantity" />
 				</div>
 			</div>
 
-			<div
-				v-if="visibleItemCount === 0"
-				class="text-sm text-on-secondary p-4 bg-secondary/3 rounded-md">
-				No materials match your filters.
+			<!-- Carmine Globules -->
+			<div>
+				<h4
+					class="text-xs font-semibold text-on-secondary uppercase tracking-wider mb-3">
+					Daemon Wedge Materials
+				</h4>
+				<div class="flex flex-col gap-2">
+					<InventoryMaterial
+						name="Carmine Globules"
+						icon-class="fas fa-gem"
+						icon-color="text-purple-400"
+						:quantity="getItemQuantity('Carmine Globules')"
+						@update="updateQuantity" />
+				</div>
+			</div>
+
+			<div class="flex flex-col gap-6 max-h-[60vh] overflow-y-auto pr-2">
+				<div
+					v-for="section in groupedInventorySections"
+					:key="section.key">
+					<h4
+						class="text-xs font-semibold text-on-secondary uppercase tracking-wider mb-3">
+						{{ section.label }}
+					</h4>
+					<div class="flex flex-col gap-2">
+						<InventoryMaterial
+							v-for="materialName in section.materialNames"
+							:key="materialName"
+							:name="materialName"
+							:icon-class="
+								getMaterialMeta(materialName).iconClass
+							"
+							:icon-color="
+								getMaterialMeta(materialName).iconColor
+							"
+							:quantity="getItemQuantity(materialName)"
+							@update="updateQuantity" />
+					</div>
+				</div>
+
+				<div
+					v-if="visibleItemCount === 0"
+					class="text-sm text-on-secondary p-4 bg-secondary/3 rounded-md">
+					No materials match your filters.
+				</div>
 			</div>
 		</div>
 	</div>
@@ -100,6 +105,7 @@ import { useInventory } from "../stores/inventory";
 import { elementUpgradeMaterials } from "../definitions/character";
 import { weaponUpgradeMaterials } from "../definitions/weapon";
 import InventoryMaterial from "./inventoryMaterial.vue";
+import InventorySearch from "./inventorySearch.vue";
 
 const inventoryStore = useInventory();
 const searchQuery = ref("");

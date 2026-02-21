@@ -73,7 +73,10 @@ import type { CharacterLevelingMaterial } from "../types/characterLeveling";
 import type { LevelRange } from "../types/range";
 import { useInventory } from "../stores/inventory";
 import { useUiStore } from "../stores/ui";
-import type { CharacterUpgradeConfig, SkillUpgradeConfig } from "../types/upgradeConfig";
+import type {
+	CharacterUpgradeConfig,
+	SkillUpgradeConfig,
+} from "../types/upgradeConfig";
 import type { SkillLevelCost } from "../types/skill";
 
 interface Props {
