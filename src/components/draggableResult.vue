@@ -7,13 +7,13 @@
 				:key="getKey(item, index)">
 				<CharacterResult
 					v-if="item.type == 'Character'"
-					:config="item" />
+					:config="asConfig<CharacterUpgradeConfig>(item)" />
 				<WeaponResult
 					v-else-if="item.type == 'Weapon'"
-					:config="item" />
+					:config="asConfig<WeaponUpgradeConfig>(item)" />
 				<DaemonWedgeResult
 					v-else-if="item.type == 'DaemonWedge'"
-					:config="item" />
+					:config="asConfig<DaemonWedgeUpgradeConfig>(item)" />
 			</div>
 			<!-- </Draggable> -->
 		</div>
@@ -25,6 +25,7 @@ import type {
 	CharacterUpgradeConfig,
 	WeaponUpgradeConfig,
 	DaemonWedgeUpgradeConfig,
+	BaseUpgradeConfig,
 } from "../types/upgradeConfig";
 import { useUiStore } from "../stores/ui";
 import CharacterResult from "./characterResult.vue";
@@ -40,18 +41,11 @@ const expandedConfigs = computed(() =>
 );
 
 // Helper to get unique key for each item
-function getKey(
-	item:
-		| CharacterUpgradeConfig
-		| WeaponUpgradeConfig
-		| DaemonWedgeUpgradeConfig,
-	index: number
-): string {
-	// All configs should have UUIDs now
-	if ("id" in item && item.id) {
-		return item.id;
-	}
-	// Fallback to name + index for backwards compatibility
-	return (item.name || "") + "_" + index;
+function getKey(item: BaseUpgradeConfig, index: number): string {
+	return item.id || (item.name || "") + "_" + index;
+}
+
+function asConfig<T>(item: BaseUpgradeConfig): T {
+	return item as T;
 }
 </script>

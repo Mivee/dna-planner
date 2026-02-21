@@ -48,16 +48,6 @@ function closeCharacterModal() {
 	isCharacterConfigVisible.value = false;
 }
 
-function openWeaponModal() {
-	isWeaponConfigVisible.value = true;
-}
-function openInventoryModal() {
-	isInventoryVisible.value = true;
-}
-function openCharacterModal() {
-	isCharacterConfigVisible.value = true;
-}
-
 function closeWeaponModal() {
 	isWeaponConfigVisible.value = false;
 }

@@ -110,8 +110,6 @@ import InventorySearch from "./inventorySearch.vue";
 const inventoryStore = useInventory();
 const searchQuery = ref("");
 const showOnlyOwned = ref(false);
-const newItemName = ref("");
-const newItemQuantity = ref(0);
 
 type RarityKey = "legendary" | "epic" | "rare" | "common" | "misc";
 type AscensionTierKey = "green" | "blue" | "purple";
@@ -439,28 +437,5 @@ function getMaterialMeta(name: string): {
 		default:
 			return { iconClass: "fas fa-cube", iconColor: "text-on-secondary" };
 	}
-}
-
-function addCustomItem() {
-	const name = newItemName.value.trim();
-	if (!name) {
-		return;
-	}
-
-	inventoryStore.upsertItem(name, newItemQuantity.value);
-	newItemName.value = "";
-	newItemQuantity.value = 0;
-}
-
-function clearZeroItems() {
-	inventoryStore.clearEmptyItems();
-}
-
-function resetAllItems() {
-	if (!window.confirm("Reset the entire inventory? This cannot be undone.")) {
-		return;
-	}
-
-	inventoryStore.resetInventory();
 }
 </script>

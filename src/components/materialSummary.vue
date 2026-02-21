@@ -463,7 +463,10 @@ const totalMaterials = computed(() => {
 				upgradeMaterials.value &&
 				summary.ascensionMaterials.primary.T1_Green > 0
 			) {
-				const key = `${upgradeMaterials.value.ascensionMaterials.primary}-green`;
+				const key = getWeaponAscensionInventoryName(
+					upgradeMaterials.value.ascensionMaterials.primary,
+					"green"
+				);
 				const existing = totals.ascensionDetails.get(key);
 				totals.ascensionDetails.set(key, {
 					tier: "green",
@@ -476,7 +479,10 @@ const totalMaterials = computed(() => {
 				upgradeMaterials.value &&
 				summary.ascensionMaterials.primary.T2_Blue > 0
 			) {
-				const key = `${upgradeMaterials.value.ascensionMaterials.primary}-blue`;
+				const key = getWeaponAscensionInventoryName(
+					upgradeMaterials.value.ascensionMaterials.primary,
+					"blue"
+				);
 				const existing = totals.ascensionDetails.get(key);
 				totals.ascensionDetails.set(key, {
 					tier: "blue",
@@ -489,7 +495,10 @@ const totalMaterials = computed(() => {
 				upgradeMaterials.value &&
 				summary.ascensionMaterials.primary.T3_Purple > 0
 			) {
-				const key = `${upgradeMaterials.value.ascensionMaterials.primary}-purple`;
+				const key = getWeaponAscensionInventoryName(
+					upgradeMaterials.value.ascensionMaterials.primary,
+					"purple"
+				);
 				const existing = totals.ascensionDetails.get(key);
 				totals.ascensionDetails.set(key, {
 					tier: "purple",
@@ -502,7 +511,10 @@ const totalMaterials = computed(() => {
 				upgradeMaterials.value &&
 				summary.ascensionMaterials.secondary.T1_Green > 0
 			) {
-				const key = `${upgradeMaterials.value.ascensionMaterials.secondary}-green`;
+				const key = getWeaponAscensionInventoryName(
+					upgradeMaterials.value.ascensionMaterials.secondary,
+					"green"
+				);
 				const existing = totals.ascensionDetails.get(key);
 				totals.ascensionDetails.set(key, {
 					tier: "green",
@@ -515,7 +527,10 @@ const totalMaterials = computed(() => {
 				upgradeMaterials.value &&
 				summary.ascensionMaterials.secondary.T2_Blue > 0
 			) {
-				const key = `${upgradeMaterials.value.ascensionMaterials.secondary}-blue`;
+				const key = getWeaponAscensionInventoryName(
+					upgradeMaterials.value.ascensionMaterials.secondary,
+					"blue"
+				);
 				const existing = totals.ascensionDetails.get(key);
 				totals.ascensionDetails.set(key, {
 					tier: "blue",
@@ -528,7 +543,10 @@ const totalMaterials = computed(() => {
 				upgradeMaterials.value &&
 				summary.ascensionMaterials.secondary.T3_Purple > 0
 			) {
-				const key = `${upgradeMaterials.value.ascensionMaterials.secondary}-purple`;
+				const key = getWeaponAscensionInventoryName(
+					upgradeMaterials.value.ascensionMaterials.secondary,
+					"purple"
+				);
 				const existing = totals.ascensionDetails.get(key);
 				totals.ascensionDetails.set(key, {
 					tier: "purple",

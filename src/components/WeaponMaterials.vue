@@ -5,55 +5,87 @@
 		<!-- Primary -->
 		<div>
 			Green Primary Mats
-			{{ summary.ascensionMaterials.primary.T1_Green }} ({{
-				getAscensionMaterialName("Primary", "green")
-			}})
+			{{
+				getMissingAmount(
+					summary.ascensionMaterials.primary.T1_Green,
+					getAscensionMaterialName("Primary", "green")
+				)
+			}}
+			({{ getAscensionMaterialName("Primary", "green") }})
 		</div>
 		<div>
 			Blue Primary Mats
-			{{ summary.ascensionMaterials.primary.T2_Blue }} ({{
-				getAscensionMaterialName("Primary", "blue")
-			}})
+			{{
+				getMissingAmount(
+					summary.ascensionMaterials.primary.T2_Blue,
+					getAscensionMaterialName("Primary", "blue")
+				)
+			}}
+			({{ getAscensionMaterialName("Primary", "blue") }})
 		</div>
 		<div>
 			Purple Primary Mats
-			{{ summary.ascensionMaterials.primary.T3_Purple }} ({{
-				getAscensionMaterialName("Primary", "purple")
-			}})
+			{{
+				getMissingAmount(
+					summary.ascensionMaterials.primary.T3_Purple,
+					getAscensionMaterialName("Primary", "purple")
+				)
+			}}
+			({{ getAscensionMaterialName("Primary", "purple") }})
 		</div>
 
 		<!-- Seconary -->
 		<div>
 			Green Secondary Mats
-			{{ summary.ascensionMaterials.secondary.T1_Green }} ({{
-				getAscensionMaterialName("Secondary", "green")
-			}})
+			{{
+				getMissingAmount(
+					summary.ascensionMaterials.secondary.T1_Green,
+					getAscensionMaterialName("Secondary", "green")
+				)
+			}}
+			({{ getAscensionMaterialName("Secondary", "green") }})
 		</div>
 		<div>
 			Blue Secondary Mats
-			{{ summary.ascensionMaterials.secondary.T2_Blue }} ({{
-				getAscensionMaterialName("Secondary", "blue")
-			}})
+			{{
+				getMissingAmount(
+					summary.ascensionMaterials.secondary.T2_Blue,
+					getAscensionMaterialName("Secondary", "blue")
+				)
+			}}
+			({{ getAscensionMaterialName("Secondary", "blue") }})
 		</div>
 		<div>
 			Purple Secondary Mats
-			{{ summary.ascensionMaterials.secondary.T3_Purple }} ({{
-				getAscensionMaterialName("Secondary", "purple")
-			}})
+			{{
+				getMissingAmount(
+					summary.ascensionMaterials.secondary.T3_Purple,
+					getAscensionMaterialName("Secondary", "purple")
+				)
+			}}
+			({{ getAscensionMaterialName("Secondary", "purple") }})
 		</div>
 
 		<!-- Forging -->
 		<div>
 			Green Secondary Mats
-			{{ summary.ascensionMaterials.secondary.T1_Green }} ({{
-				getMaterialName("Green", "Forging")
-			}})
+			{{
+				getMissingAmount(
+					summary.ascensionMaterials.secondary.T1_Green,
+					getMaterialName("Green", "Forging")
+				)
+			}}
+			({{ getMaterialName("Green", "Forging") }})
 		</div>
 		<div>
 			Blue Secondary Mats
-			{{ summary.ascensionMaterials.secondary.T2_Blue }} ({{
-				getMaterialName("Blue", "Forging")
-			}})
+			{{
+				getMissingAmount(
+					summary.ascensionMaterials.secondary.T2_Blue,
+					getMaterialName("Blue", "Forging")
+				)
+			}}
+			({{ getMaterialName("Blue", "Forging") }})
 		</div>
 	</div>
 </template>
@@ -64,6 +96,8 @@ import { useWeapon } from "../composeables/useWeapon";
 import { weaponLevelingMaterials } from "../definitions/weapon";
 import type { LevelRange } from "../types/range";
 import type { WeaponLevelingMaterial } from "../types/ascension";
+import { useInventory } from "../stores/inventory";
+import { useUiStore } from "../stores/ui";
 
 interface Props {
 	upgradeConfig: BaseUpgradeConfig;
@@ -114,7 +148,6 @@ function getAscensionMaterialName(
 	tier: "green" | "blue" | "purple"
 ) {
 	const materialType = getMaterialName(value, "Ascension");
-
 	if (!materialType) {
 		return null;
 	}
@@ -128,5 +161,17 @@ function getAscensionMaterialName(
 	}
 
 	return `Advanced Weapon Component: ${materialType}`;
+}
+
+const { getAmount } = useInventory();
+const uiStore = useUiStore();
+
+function getMissingAmount(amount: number, materialName: string | null) {
+	if (uiStore.plannerMode !== "Inventory" || !materialName) {
+		return amount;
+	}
+
+	const inventoryAmount = getAmount(materialName);
+	return Math.max(amount - inventoryAmount, 0);
 }
 </script>
