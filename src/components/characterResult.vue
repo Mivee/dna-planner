@@ -3,33 +3,24 @@
 		class="relative border border-white/20 rounded-lg overflow-hidden transition-all duration-300 character-card"
 		:style="cardStyles">
 		<!-- Title Section -->
-		<div
-			class="flex justify-between items-center px-5 py-4 border-b border-white/20">
-			<div class="flex items-center gap-3">
-				<img
-					v-if="elementImageUrl"
-					:src="elementImageUrl"
-					:alt="characterData?.element"
-					class="w-6 h-6 object-contain" />
-				<h3 class="m-0 text-xl font-bold" :class="elementTextClass">
-					{{ selectedCharacter }}
-				</h3>
-			</div>
-			<div class="flex gap-2">
-				<button
-					class="px-3 py-2 bg-secondary-light border border-white/20 rounded-md text-white-muted cursor-pointer transition-all duration-200 hover:bg-accent/20 hover:border-accent hover:text-accent"
-					@click="edit"
-					aria-label="Edit character">
-					<i class="fa-solid fa-pencil"></i>
-				</button>
-				<button
-					class="px-3 py-2 bg-secondary-light border border-white/20 rounded-md text-white-muted cursor-pointer transition-all duration-200 hover:bg-error/20 hover:border-error hover:text-error"
-					@click="remove"
-					aria-label="Remove character">
-					<i class="fa-solid fa-trash"></i>
-				</button>
-			</div>
-		</div>
+		<ResultCardHeader
+			edit-aria-label="Edit character"
+			remove-aria-label="Remove character"
+			@edit="edit"
+			@remove="remove">
+			<template #title>
+				<div class="flex items-center gap-3">
+					<img
+						v-if="elementImageUrl"
+						:src="elementImageUrl"
+						:alt="characterData?.element"
+						class="w-6 h-6 object-contain" />
+					<h3 class="m-0 text-xl font-bold" :class="elementTextClass">
+						{{ selectedCharacter }}
+					</h3>
+				</div>
+			</template>
+		</ResultCardHeader>
 
 		<!-- Main Content: Image and Details Grid -->
 		<div class="grid grid-cols-2 gap-0">
@@ -50,47 +41,44 @@
 				<!-- Summary Section -->
 				<div class="p-5 border-b border-white/20">
 					<div class="flex flex-col gap-3">
-						<div class="flex justify-between items-center py-2">
-							<span class="text-sm font-medium opacity-80">
-								Level
-							</span>
-							<span class="text-sm font-bold">
+						<ResultStatRow
+							label="Level"
+							label-class="opacity-80"
+							value-class="">
+							<template #value>
 								{{ props.config.level.start }} →
 								{{ props.config.level.end }}
-							</span>
+							</template>
+						</ResultStatRow>
+						<div class="py-2" v-if="props.config.skill">
+							<ResultStatRow
+								label="Skill"
+								label-class="opacity-80">
+								<template #value>
+									{{ props.config.skill.current }} →
+									{{ props.config.skill.target }}
+								</template>
+							</ResultStatRow>
 						</div>
-						<div
-							class="flex justify-between items-center py-2"
-							v-if="props.config.skill">
-							<span class="text-sm font-medium opacity-80">
-								Skill
-							</span>
-							<span class="text-sm font-bold">
-								{{ props.config.skill.current }} →
-								{{ props.config.skill.target }}
-							</span>
+						<div class="py-2" v-if="props.config.ult">
+							<ResultStatRow
+								label="Ultimate"
+								label-class="opacity-80">
+								<template #value>
+									{{ props.config.ult.current }} →
+									{{ props.config.ult.target }}
+								</template>
+							</ResultStatRow>
 						</div>
-						<div
-							class="flex justify-between items-center py-2"
-							v-if="props.config.ult">
-							<span class="text-sm font-medium opacity-80">
-								Ultimate
-							</span>
-							<span class="text-sm font-bold">
-								{{ props.config.ult.current }} →
-								{{ props.config.ult.target }}
-							</span>
-						</div>
-						<div
-							class="flex justify-between items-center py-2"
-							v-if="props.config.passive">
-							<span class="text-sm font-medium opacity-80">
-								Passive
-							</span>
-							<span class="text-sm font-bold">
-								{{ props.config.passive.current }} →
-								{{ props.config.passive.target }}
-							</span>
+						<div class="py-2" v-if="props.config.passive">
+							<ResultStatRow
+								label="Passive"
+								label-class="opacity-80">
+								<template #value>
+									{{ props.config.passive.current }} →
+									{{ props.config.passive.target }}
+								</template>
+							</ResultStatRow>
 						</div>
 					</div>
 				</div>
@@ -114,26 +102,31 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import CharacterMaterials from "./characterMaterials.vue";
 import type { CharacterUpgradeConfig } from "../types/upgradeConfig";
 import { useCharacter } from "../composeables/useCharacter";
 import CharacterBuildConfiguration from "./characterBuildConfiguration.vue";
-import { useUiStore } from "../stores/ui";
 import { useImage } from "../composeables/useImage";
+import ResultCardHeader from "./resultCardHeader.vue";
+import ResultStatRow from "./resultStatRow.vue";
+import { useResultCardActions } from "../composeables/useResultCardActions";
 
 interface Props {
 	config: CharacterUpgradeConfig;
 }
 const props = defineProps<Props>();
 
-const { removeConfiguration } = useUiStore();
-
 const hasCharacterSelected = computed(
 	() => props.config.name != "" && props.config.name != null
 );
 
 const selectedCharacter = computed(() => props.config.name || "Berenica");
+
+const { isEditing, edit, remove, toggleIsEditing } = useResultCardActions({
+	name: () => selectedCharacter.value,
+	identifier: () => props.config.id || props.config.name,
+});
 
 const characterComposable = computed(() => {
 	if (selectedCharacter.value) {
@@ -152,22 +145,6 @@ const elementImageUrl = computed(() =>
 		characterComposable.value?.character.value?.element || ""
 	)
 );
-
-const isEditing = ref(false);
-function toggleIsEditing() {
-	isEditing.value = !isEditing.value;
-}
-
-function edit() {
-	isEditing.value = true;
-}
-
-function remove() {
-	const identifier = props.config.id || props.config.name;
-	if (confirm(`Remove ${selectedCharacter.value}?`)) {
-		removeConfiguration(identifier!);
-	}
-}
 
 // Element colors and icons
 const characterData = computed(() => {
