@@ -1,43 +1,84 @@
 import { characters } from "../definitions/character";
 import { weapons } from "../definitions/weapon";
 
-const imageMap = new Map<string | null, string>([
-	...characters.map((c) => [c.name, c.imagecode || ""] as [string, string]),
-	...weapons.map((w) => [w.name, w.imageCode || ""] as [string, string]),
+type ImageType = "character" | "weapon" | "element";
+export type CharacterImageVariant = "portrait" | "splashart";
+
+interface ImageEntry {
+	type: ImageType;
+	imageCode: string;
+}
+
+const elements = ["Pyro", "Anemo", "Hydro", "Lumino", "Umbro", "Electro"];
+
+const imageMap = new Map<string, ImageEntry>([
+	...characters.map(
+		(c) =>
+			[
+				c.name,
+				{
+					type: "character",
+					imageCode: c.imagecode || "",
+				} as ImageEntry,
+			] as [string, ImageEntry]
+	),
+	...weapons.map(
+		(w) =>
+			[
+				w.name,
+				{ type: "weapon", imageCode: w.imageCode || "" } as ImageEntry,
+			] as [string, ImageEntry]
+	),
+	...elements.map(
+		(e) =>
+			[
+				e,
+				{ type: "element", imageCode: e.toLowerCase() } as ImageEntry,
+			] as [string, ImageEntry]
+	),
 ]);
 
-export function useImage(
-	type: "character" | "weapon" | "element",
-	name: string
-) {
-	switch (type) {
+export function useImage(name: string, variant?: CharacterImageVariant) {
+	const entry = imageMap.get(name);
+	if (!entry?.imageCode) {
+		return null;
+	}
+
+	switch (entry.type) {
 		case "character":
-			return getCharacterImage(name);
+			return getCharacterImage(entry.imageCode, variant);
 		case "weapon":
-			return getWeaponImage(name);
+			return getWeaponImage(entry.imageCode);
 		case "element":
-			return getElementImage(name);
+			return getElementImage(entry.imageCode);
 		default:
 			return null;
 	}
 }
 
-function getCharacterImage(name: string) {
-	const imagecode = imageMap.get(name);
-	if (imagecode) {
-		return "assets/characters/T_Bust_" + imagecode + ".png";
+function getCharacterImage(imageCode: string, variant?: CharacterImageVariant) {
+	const imagePrefix = getPrefix(variant);
+	return (
+		"assets/characters/" + variant + "/" + imagePrefix + imageCode + ".png"
+	);
+}
+
+function getWeaponImage(imageCode: string) {
+	if (imageCode) {
+		return "assets/weapons/T_Bust_" + imageCode + ".png";
 	}
 	return null;
 }
 
-function getWeaponImage(name: string) {
-	const imagecode = imageMap.get(name);
-	if (imagecode) {
-		return "assets/weapons/T_Bust_" + imagecode + ".png";
-	}
-	return null;
+function getElementImage(imageCode: string) {
+	return "assets/elements/" + imageCode + ".png";
 }
 
-function getElementImage(name: string) {
-	return "assets/elements/" + name.toLowerCase() + ".png";
+function getPrefix(variant?: CharacterImageVariant) {
+	switch (variant) {
+		case "portrait":
+			return "T_Head_";
+		default:
+			return "T_Bust_";
+	}
 }

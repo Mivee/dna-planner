@@ -58,6 +58,9 @@
 									{{ props.config.skill.current }} →
 									{{ props.config.skill.target }}
 								</template>
+								<template #node>
+									<SkillNodes :skill="props.config.skill" />
+								</template>
 							</ResultStatRow>
 						</div>
 						<div class="py-2" v-if="props.config.ult">
@@ -68,6 +71,9 @@
 									{{ props.config.ult.current }} →
 									{{ props.config.ult.target }}
 								</template>
+								<template #node>
+									<SkillNodes :skill="props.config.ult" />
+								</template>
 							</ResultStatRow>
 						</div>
 						<div class="py-2" v-if="props.config.passive">
@@ -77,6 +83,9 @@
 								<template #value>
 									{{ props.config.passive.current }} →
 									{{ props.config.passive.target }}
+								</template>
+								<template #node>
+									<SkillNodes :skill="props.config.passive" />
 								</template>
 							</ResultStatRow>
 						</div>
@@ -110,6 +119,7 @@ import CharacterBuildConfiguration from "./characterBuildConfiguration.vue";
 import { useImage } from "../composeables/useImage";
 import ResultCardHeader from "./resultCardHeader.vue";
 import ResultStatRow from "./resultStatRow.vue";
+import SkillNodes from "./skillNodes.vue";
 import { useResultCardActions } from "../composeables/useResultCardActions";
 
 interface Props {
@@ -135,15 +145,10 @@ const characterComposable = computed(() => {
 	return null;
 });
 
-const imgSource = computed(() =>
-	useImage("character", selectedCharacter.value)
-);
+const imgSource = computed(() => useImage(selectedCharacter.value, "portrait"));
 
 const elementImageUrl = computed(() =>
-	useImage(
-		"element",
-		characterComposable.value?.character.value?.element || ""
-	)
+	useImage(characterComposable.value?.character.value?.element || "")
 );
 
 // Element colors and icons

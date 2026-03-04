@@ -103,7 +103,7 @@ const selectedCharacter = computed(
 );
 
 const imgSource = computed(() => {
-	return useImage("character", selectedCharacter.value);
+	return useImage(selectedCharacter.value);
 });
 const isOpen = ref(false);
 

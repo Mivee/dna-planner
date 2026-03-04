@@ -82,6 +82,6 @@ const { isEditing, edit, remove, toggleIsEditing } = useResultCardActions({
 
 const imgSource = computed(() => {
 	if (!props.config.name) return "";
-	return useImage("weapon", props.config.name);
+	return useImage(props.config.name);
 });
 </script>

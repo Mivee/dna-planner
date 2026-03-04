@@ -63,7 +63,7 @@ const selectedCharacter = computed(
 );
 
 const imgSource = computed(() => {
-	return useImage("character", selectedCharacter.value);
+	return useImage(selectedCharacter.value, "splashart");
 });
 const isOpen = ref(true);
 

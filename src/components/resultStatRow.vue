@@ -7,9 +7,22 @@
 			<slot name="value">{{ value }}</slot>
 		</span>
 	</div>
+	<template v-if="hasNodeSlot">
+		<div class="flex justify-between items-center py-2 text-xs">
+			<!-- <span class="text-sm font-medium" :class="labelClass">
+				<slot name="label">s</slot>
+			</span>
+			<span class="text-sm font-bold" :class="valueClass">
+				<slot name="value">ss</slot>
+			</span> -->
+			<slot name="node"></slot>
+		</div>
+	</template>
 </template>
 
 <script setup lang="ts">
+import { computed, useSlots } from "vue";
+
 interface Props {
 	label?: string;
 	value?: string | number;
@@ -23,4 +36,8 @@ withDefaults(defineProps<Props>(), {
 	labelClass: "text-white-muted",
 	valueClass: "",
 });
+
+const slots = useSlots();
+
+const hasNodeSlot = computed(() => !!slots.node);
 </script>
