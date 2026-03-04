@@ -1,43 +1,48 @@
 <template>
-	<div
-		class="bg-secondary border border-white/20 rounded-lg overflow-hidden transition-all duration-300 hover:border-purple-500/50 hover:shadow-[0_8px_24px_rgba(168,85,247,0.2)]">
-		<!-- Title Section -->
-		<ResultCardHeader
-			container-class="bg-gradient-to-br from-purple-500/20 to-blue-500/20"
-			edit-hover-class="hover:bg-purple-500/20 hover:border-purple-500 hover:text-purple-400"
-			edit-aria-label="Edit daemon wedge"
-			remove-aria-label="Remove daemon wedge"
-			@edit="edit"
-			@remove="remove">
-			<template #title>
-				<h3
-					class="m-0 text-xl font-bold text-white flex items-center gap-2">
-					<i class="fas fa-gem text-purple-400"></i>
-					{{ config.name || "Daemon Wedge" }}
-				</h3>
-			</template>
-		</ResultCardHeader>
+	<BaseResultCard
+		container-class="bg-secondary hover:border-purple-500/50 hover:shadow-[0_8px_24px_rgba(168,85,247,0.2)]"
+		header-container-class="bg-gradient-to-br from-purple-500/20 to-blue-500/20"
+		edit-hover-class="hover:bg-purple-500/20 hover:border-purple-500 hover:text-purple-400"
+		edit-aria-label="Edit daemon wedge"
+		remove-aria-label="Remove daemon wedge"
+		@edit="edit"
+		@remove="remove">
+		<template #title>
+			<h3
+				class="m-0 text-xl font-bold text-white flex items-center gap-2">
+				<i class="fas fa-gem text-purple-400"></i>
+				{{ config.name || "Daemon Wedge" }}
+			</h3>
+		</template>
 
-		<!-- Summary Section -->
-		<div class="p-5 border-b border-white/20">
-			<div class="flex flex-col gap-3">
-				<ResultStatRow label="Level" value-class="text-purple-400">
-					<template #value>
-						+{{ config.initialLevel }} → +{{ config.targetLevel }}
-					</template>
-				</ResultStatRow>
-				<div v-if="config.quantity && config.quantity > 1" class="py-2">
-					<ResultStatRow label="Quantity" value-class="text-blue-400">
-						<template #value>×{{ config.quantity }}</template>
-					</ResultStatRow>
-				</div>
+		<template #media>
+			<img
+				v-if="imgSource"
+				:src="imgSource"
+				class="w-30 h-30 object-cover rounded-lg border-2 border-purple-400/30"
+				:alt="config.name || 'Daemon Wedge'" />
+			<div
+				v-else
+				class="w-30 h-30 flex items-center justify-center bg-primary rounded-lg">
+				<span class="text-sm text-white-soft">No Image</span>
 			</div>
-		</div>
+		</template>
 
-		<!-- Materials Section -->
-		<div class="p-5" v-if="summary">
-			<div class="flex flex-col gap-3">
-				<!-- Coins -->
+		<template #summary>
+			<ResultStatRow label="Level" value-class="text-purple-400">
+				<template #value>
+					+{{ config.initialLevel }} → +{{ config.targetLevel }}
+				</template>
+			</ResultStatRow>
+			<div v-if="config.quantity && config.quantity > 1" class="py-2">
+				<ResultStatRow label="Quantity" value-class="text-blue-400">
+					<template #value>×{{ config.quantity }}</template>
+				</ResultStatRow>
+			</div>
+		</template>
+
+		<template #materials>
+			<div class="flex flex-col gap-3" v-if="summary">
 				<ResultStatRow value-class="text-accent">
 					<template #label>
 						<div class="flex items-center gap-2">
@@ -50,7 +55,6 @@
 					</template>
 				</ResultStatRow>
 
-				<!-- Carmine Globules -->
 				<ResultStatRow value-class="text-purple-400">
 					<template #label>
 						<div class="flex items-center gap-2">
@@ -65,7 +69,6 @@
 					</template>
 				</ResultStatRow>
 
-				<!-- Blueprints -->
 				<div
 					v-if="summary.blueprints.size > 0"
 					class="border-t border-white/10 pt-3 mt-2">
@@ -89,7 +92,6 @@
 					</div>
 				</div>
 
-				<!-- Materials -->
 				<div
 					v-if="materialsArray.length > 0"
 					class="border-t border-white/10 pt-3 mt-2">
@@ -113,14 +115,16 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</template>
 
-		<DaemonWedgeBuildConfiguration
-			v-if="isEditing"
-			:upgrade-config="props.config"
-			@saved="toggleIsEditing"
-			@closed="toggleIsEditing" />
-	</div>
+		<template #editor>
+			<DaemonWedgeBuildConfiguration
+				v-if="isEditing"
+				:upgrade-config="props.config"
+				@saved="toggleIsEditing"
+				@closed="toggleIsEditing" />
+		</template>
+	</BaseResultCard>
 </template>
 
 <script lang="ts" setup>
@@ -128,9 +132,10 @@ import type { DaemonWedgeUpgradeConfig } from "../types/upgradeConfig";
 import { computed } from "vue";
 import { useDaemonWedge } from "../composeables/useDaemonWedge";
 import DaemonWedgeBuildConfiguration from "./daemonWedgeBuildConfiguration.vue";
-import ResultCardHeader from "./resultCardHeader.vue";
 import ResultStatRow from "./resultStatRow.vue";
 import { useResultCardActions } from "../composeables/useResultCardActions";
+import { useImage } from "../composeables/useImage";
+import BaseResultCard from "./baseResultCard.vue";
 
 interface Props {
 	config: DaemonWedgeUpgradeConfig;
@@ -157,6 +162,11 @@ const summary = computed(() => {
 		props.config.targetLevel,
 		quantity
 	);
+});
+
+const imgSource = computed(() => {
+	if (!props.config.name) return null;
+	return useImage(props.config.name);
 });
 
 const materialsArray = computed(() => {

@@ -1,60 +1,53 @@
 <template>
-	<div
-		class="bg-secondary border border-white/20 rounded-lg overflow-hidden transition-all duration-300 hover:border-accent/50 hover:shadow-[0_8px_24px_rgba(212,175,55,0.2)]">
-		<!-- Title Section -->
-		<ResultCardHeader
-			container-class="bg-gradient-to-br from-accent/20 to-primary-light/50"
-			edit-aria-label="Edit weapon"
-			remove-aria-label="Remove weapon"
-			@edit="edit"
-			@remove="remove">
-			<template #title>
-				<h3 class="m-0 text-xl font-bold text-white">
-					{{ selectedWeapon || "Select Weapon" }}
-				</h3>
-			</template>
-		</ResultCardHeader>
+	<BaseResultCard
+		container-class="bg-secondary hover:border-accent/50 hover:shadow-[0_8px_24px_rgba(212,175,55,0.2)]"
+		header-container-class="bg-gradient-to-br from-accent/20 to-primary-light/50"
+		edit-aria-label="Edit weapon"
+		remove-aria-label="Remove weapon"
+		@edit="edit"
+		@remove="remove">
+		<template #title>
+			<h3 class="m-0 text-xl font-bold text-white">
+				{{ selectedWeapon || "Select Weapon" }}
+			</h3>
+		</template>
 
-		<!-- Image & Summary Section -->
-		<div
-			class="grid grid-cols-[120px_1fr] gap-5 p-5 border-b border-white/20">
+		<template #media>
+			<img
+				v-if="imgSource"
+				:src="imgSource"
+				class="w-30 h-30 object-cover rounded-lg border-2 border-accent/30"
+				:alt="selectedWeapon" />
 			<div
+				v-else
 				class="w-30 h-30 flex items-center justify-center bg-primary rounded-lg">
-				<img
-					v-if="imgSource"
-					:src="imgSource"
-					class="w-30 h-30 object-cover rounded-lg border-2 border-accent/30"
-					:alt="selectedWeapon" />
-				<div
-					v-else
-					class="w-30 h-30 flex items-center justify-center bg-primary rounded-lg">
-					<span class="text-sm text-white-soft">No Image</span>
-				</div>
+				<span class="text-sm text-white-soft">No Image</span>
 			</div>
+		</template>
 
-			<div class="flex flex-col gap-3 justify-center">
-				<ResultStatRow label="Level" value-class="text-accent">
-					<template #value>
-						{{ config.level.start }} → {{ config.level.end }}
-					</template>
-				</ResultStatRow>
-			</div>
-		</div>
+		<template #summary>
+			<ResultStatRow label="Level" value-class="text-accent">
+				<template #value>
+					{{ config.level.start }} → {{ config.level.end }}
+				</template>
+			</ResultStatRow>
+		</template>
 
-		<!-- Materials Section -->
-		<div class="p-5">
+		<template #materials>
 			<WeaponMaterials
 				v-if="hasWeaponSelected"
 				:upgrade-config="config"
 				:key="selectedWeapon" />
-		</div>
+		</template>
 
-		<WeaponBuildConfiguration
-			v-if="isEditing"
-			:upgrade-config="props.config"
-			@saved="toggleIsEditing"
-			@closed="toggleIsEditing" />
-	</div>
+		<template #editor>
+			<WeaponBuildConfiguration
+				v-if="isEditing"
+				:upgrade-config="props.config"
+				@saved="toggleIsEditing"
+				@closed="toggleIsEditing" />
+		</template>
+	</BaseResultCard>
 </template>
 
 <script lang="ts" setup>
@@ -63,9 +56,9 @@ import { computed } from "vue";
 import WeaponMaterials from "./WeaponMaterials.vue";
 import WeaponBuildConfiguration from "./weaponBuildConfiguration.vue";
 import { useImage } from "../composeables/useImage";
-import ResultCardHeader from "./resultCardHeader.vue";
 import ResultStatRow from "./resultStatRow.vue";
 import { useResultCardActions } from "../composeables/useResultCardActions";
+import BaseResultCard from "./baseResultCard.vue";
 
 interface Props {
 	config: WeaponUpgradeConfig;
