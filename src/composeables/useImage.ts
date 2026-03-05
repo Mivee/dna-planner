@@ -1,7 +1,8 @@
 import { characters } from "../definitions/character";
+import { daemonWedges } from "../definitions/daemonWedge";
 import { weapons } from "../definitions/weapon";
 
-type ImageType = "character" | "weapon" | "element";
+type ImageType = "character" | "weapon" | "element" | "wedge";
 export type CharacterImageVariant = "portrait" | "splashart";
 
 interface ImageEntry {
@@ -10,6 +11,7 @@ interface ImageEntry {
 }
 
 const elements = ["Pyro", "Anemo", "Hydro", "Lumino", "Umbro", "Electro"];
+const defaultWedgeImageCode = "T_Mod_Mephisto01_Purple";
 
 const imageMap = new Map<string, ImageEntry>([
 	...characters.map(
@@ -36,6 +38,16 @@ const imageMap = new Map<string, ImageEntry>([
 				{ type: "element", imageCode: e.toLowerCase() } as ImageEntry,
 			] as [string, ImageEntry]
 	),
+	...daemonWedges.map(
+		(w) =>
+			[
+				w.displayName,
+				{
+					type: "wedge",
+					imageCode: defaultWedgeImageCode,
+				} as ImageEntry,
+			] as [string, ImageEntry]
+	),
 ]);
 
 export function useImage(name: string, variant?: CharacterImageVariant) {
@@ -51,6 +63,8 @@ export function useImage(name: string, variant?: CharacterImageVariant) {
 			return getWeaponImage(entry.imageCode);
 		case "element":
 			return getElementImage(entry.imageCode);
+		case "wedge":
+			return getWedgeImage(entry.imageCode);
 		default:
 			return null;
 	}
@@ -72,6 +86,13 @@ function getWeaponImage(imageCode: string) {
 
 function getElementImage(imageCode: string) {
 	return "assets/elements/" + imageCode + ".png";
+}
+
+function getWedgeImage(imageCode: string) {
+	if (imageCode) {
+		return "assets/wedges/" + imageCode + ".png";
+	}
+	return null;
 }
 
 function getPrefix(variant?: CharacterImageVariant) {
