@@ -8,13 +8,7 @@
 		</span>
 	</div>
 	<template v-if="hasNodeSlot">
-		<div class="flex justify-between items-center py-2 text-xs">
-			<!-- <span class="text-sm font-medium" :class="labelClass">
-				<slot name="label">s</slot>
-			</span>
-			<span class="text-sm font-bold" :class="valueClass">
-				<slot name="value">ss</slot>
-			</span> -->
+		<div class="flex justify-between items-center text-xs">
 			<slot name="node"></slot>
 		</div>
 	</template>

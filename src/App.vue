@@ -1,8 +1,7 @@
 <template>
-	<div class="min-h-screen bg-primary">
+	<div class="min-h-screen">
 		<!-- Header with navigation -->
-		<header
-			class="bg-primary-dark border-b border-white/20 shadow-lg sticky top-0 z-[100] backdrop-blur-sm">
+		<header class="shadow-lg sticky top-0 z-[100] backdrop-blur-sm">
 			<div
 				class="flex justify-between items-center mb-6! px-5 py-4 bg-secondary border border-white/10 rounded-lg shadow-lg sm:flex-col sm:gap-4 sm:items-stretch">
 				<h2

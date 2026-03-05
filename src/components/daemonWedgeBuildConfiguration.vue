@@ -19,7 +19,7 @@
 						:label="category.label">
 						<option
 							v-for="wedge in category.wedges"
-							:key="wedge.id"
+							:key="wedge.displayName"
 							:value="wedge.displayName">
 							{{ wedge.displayName }}
 						</option>

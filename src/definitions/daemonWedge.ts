@@ -15,49 +15,44 @@ export const DAEMON_WEDGE_COSTS: DaemonWedgeLevelCost[] = [
 	{ level: 10, coins: 672000, carmineGlobules: 34500, blueprintCopies: 10 },
 ];
 
-export const daemonWedges: DaemonWedge[] = [
-	// === Non-Element Specific Characters ===
-	// Phoenix V
+const phoenixV: DaemonWedge[] = [
 	{
-		id: 1,
-		type: "Phoenix V",
+		type: "Phoenix",
 		name: "Nirvana",
 		displayName: "Phoenix V Nirvana",
 		category: "Characters",
 		blueprintSource: {
-			name: "Phoenix's Nirvana [Purple]",
+			name: "Phoenix's Nirvana",
 			rarity: "Purple",
 			materialsPerCopy: 5,
 		},
 	},
 	{
-		id: 2,
-		type: "Phoenix V",
+		type: "Phoenix",
 		name: "Blessing",
 		displayName: "Phoenix V Blessing",
 		category: "Characters",
 		blueprintSource: {
-			name: "Phoenix's Blessing [Purple]",
+			name: "Phoenix's Blessing",
 			rarity: "Purple",
 			materialsPerCopy: 5,
 		},
 	},
 	{
-		id: 3,
-		type: "Phoenix V",
+		type: "Phoenix",
 		name: "Standfast",
 		displayName: "Phoenix V Standfast",
 		category: "Characters",
 		blueprintSource: {
-			name: "Phoenix's Standfast [Purple]",
+			name: "Phoenix's Standfast",
 			rarity: "Purple",
 			materialsPerCopy: 5,
 		},
 	},
-	// Siren II
+];
+const SirenII: DaemonWedge[] = [
 	{
-		id: 4,
-		type: "Siren II",
+		type: "Siren",
 		name: "Wings • Inspo",
 		displayName: "Siren II Wings • Inspo",
 		category: "Characters",
@@ -67,10 +62,10 @@ export const daemonWedges: DaemonWedge[] = [
 			materialsPerCopy: 5,
 		},
 	},
-	// Sphinx II
+];
+const sphinxII: DaemonWedge[] = [
 	{
-		id: 5,
-		type: "Sphinx II",
+		type: "Sphinx",
 		name: "Onslaught",
 		displayName: "Sphinx II Onslaught",
 		category: "Characters",
@@ -81,8 +76,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 6,
-		type: "Sphinx II",
+		type: "Sphinx",
 		name: "Intrepidity",
 		displayName: "Sphinx II Intrepidity",
 		category: "Characters",
@@ -93,8 +87,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 7,
-		type: "Sphinx II",
+		type: "Sphinx",
 		name: "Duel",
 		displayName: "Sphinx II Duel",
 		category: "Characters",
@@ -105,8 +98,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 8,
-		type: "Sphinx II",
+		type: "Sphinx",
 		name: "Trapped",
 		displayName: "Sphinx II Trapped",
 		category: "Characters",
@@ -117,8 +109,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 9,
-		type: "Sphinx II",
+		type: "Sphinx",
 		name: "Surge",
 		displayName: "Sphinx II Surge",
 		category: "Characters",
@@ -129,8 +120,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 10,
-		type: "Sphinx II",
+		type: "Sphinx",
 		name: "Relentless",
 		displayName: "Sphinx II Relentless",
 		category: "Characters",
@@ -140,9 +130,9 @@ export const daemonWedges: DaemonWedge[] = [
 			materialsPerCopy: 5,
 		},
 	},
-	// Jormungand (weapon-specific)
+];
+const Jormungand: DaemonWedge[] = [
 	{
-		id: 11,
 		type: "Jormungand",
 		name: "Gleaming Sword",
 		displayName: "Jormungand Gleaming Sword",
@@ -154,7 +144,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 12,
 		type: "Jormungand",
 		name: "Gleaming Polearm",
 		displayName: "Jormungand Gleaming Polearm",
@@ -166,7 +155,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 13,
 		type: "Jormungand",
 		name: "Gleaming Greatsword",
 		displayName: "Jormungand Gleaming Greatsword",
@@ -178,7 +166,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 14,
 		type: "Jormungand",
 		name: "Gleaming Dual Blades",
 		displayName: "Jormungand Gleaming Dual Blades",
@@ -190,7 +177,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 15,
 		type: "Jormungand",
 		name: "Gleaming Whipblade",
 		displayName: "Jormungand Gleaming Whipblade",
@@ -202,7 +188,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 16,
 		type: "Jormungand",
 		name: "Gleaming Katana",
 		displayName: "Jormungand Gleaming Katana",
@@ -214,7 +199,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 17,
 		type: "Jormungand",
 		name: "Gleaming Pistol",
 		displayName: "Jormungand Gleaming Pistol",
@@ -226,7 +210,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 18,
 		type: "Jormungand",
 		name: "Gleaming Dual Pistols",
 		displayName: "Jormungand Gleaming Dual Pistols",
@@ -238,7 +221,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 19,
 		type: "Jormungand",
 		name: "Gleaming Grenade Launcher",
 		displayName: "Jormungand Gleaming Grenade Launcher",
@@ -250,7 +232,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 20,
 		type: "Jormungand",
 		name: "Gleaming Shotgun",
 		displayName: "Jormungand Gleaming Shotgun",
@@ -262,7 +243,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 21,
 		type: "Jormungand",
 		name: "Gleaming Assault Rifle",
 		displayName: "Jormungand Gleaming Assault Rifle",
@@ -274,7 +254,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 22,
 		type: "Jormungand",
 		name: "Gleaming Bow",
 		displayName: "Jormungand Gleaming Bow",
@@ -285,11 +264,10 @@ export const daemonWedges: DaemonWedge[] = [
 			materialsPerCopy: 5,
 		},
 	},
+];
 
-	// === Anemo Characters ===
-	// Griffin
+const anemo: DaemonWedge[] = [
 	{
-		id: 23,
 		type: "Griffin",
 		name: "Squall • Wildfire",
 		displayName: "Griffin Squall • Wildfire",
@@ -302,7 +280,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 24,
 		type: "Griffin",
 		name: "Squall • Midnight Sun",
 		displayName: "Griffin Squall • Midnight Sun",
@@ -316,7 +293,6 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Typhon
 	{
-		id: 25,
 		type: "Typhon",
 		name: "Prime • Morale",
 		displayName: "Typhon Prime • Morale",
@@ -329,7 +305,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 26,
 		type: "Typhon",
 		name: "Prime • Resolve",
 		displayName: "Typhon Prime • Resolve",
@@ -342,7 +317,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 27,
 		type: "Typhon",
 		name: "Prime • Huntdown",
 		displayName: "Typhon Prime • Huntdown",
@@ -355,7 +329,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 28,
 		type: "Typhon",
 		name: "Prime • Serenity",
 		displayName: "Typhon Prime • Serenity",
@@ -368,7 +341,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 29,
 		type: "Typhon",
 		name: "Prime • Uplift",
 		displayName: "Typhon Prime • Uplift",
@@ -382,8 +354,7 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Covenanter
 	{
-		id: 30,
-		type: "Covenanter",
+		type: "Mephisto",
 		name: "Blaze • Standfast",
 		displayName: "Covenanter Blaze • Standfast",
 		category: "Characters",
@@ -395,8 +366,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 31,
-		type: "Covenanter",
+		type: "Mephisto",
 		name: "Blaze • Resolve",
 		displayName: "Covenanter Blaze • Resolve",
 		category: "Characters",
@@ -408,8 +378,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 32,
-		type: "Covenanter",
+		type: "Mephisto",
 		name: "Blaze • Volition",
 		displayName: "Covenanter Blaze • Volition",
 		category: "Characters",
@@ -421,8 +390,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 33,
-		type: "Covenanter",
+		type: "Mephisto",
 		name: "Wings • Eternity",
 		displayName: "Covenanter Wings • Eternity",
 		category: "Characters",
@@ -435,7 +403,6 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Hastur
 	{
-		id: 34,
 		type: "Hastur",
 		name: "Whispering Zephyr",
 		displayName: "Hastur Whispering Zephyr",
@@ -448,7 +415,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 35,
 		type: "Hastur",
 		name: "Turbulent Cyclone",
 		displayName: "Hastur Turbulent Cyclone",
@@ -462,8 +428,7 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Kukulkan (with Track-Shift Module)
 	{
-		id: 36,
-		type: "Kukulkan",
+		type: "FeatheredSnake",
 		name: "Resolve",
 		displayName: "Kukulkan Resolve",
 		category: "Characters",
@@ -478,8 +443,7 @@ export const daemonWedges: DaemonWedge[] = [
 		],
 	},
 	{
-		id: 37,
-		type: "Kukulkan",
+		type: "FeatheredSnake",
 		name: "Eternity",
 		displayName: "Kukulkan Eternity",
 		category: "Characters",
@@ -495,7 +459,6 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Changeling (Blue blueprints)
 	{
-		id: 38,
 		type: "Changeling",
 		name: "Volition",
 		displayName: "Changeling Volition",
@@ -508,7 +471,6 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 39,
 		type: "Changeling",
 		name: "Resolve",
 		displayName: "Changeling Resolve",
@@ -522,7 +484,6 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Siren (Gold blueprints with additional materials)
 	{
-		id: 40,
 		type: "Siren",
 		name: "Wings • Inspo • Volition",
 		displayName: "Siren Wings • Inspo • Volition",
@@ -539,7 +500,6 @@ export const daemonWedges: DaemonWedge[] = [
 		],
 	},
 	{
-		id: 41,
 		type: "Siren",
 		name: "Wings • Inspo • Resolve",
 		displayName: "Siren Wings • Inspo • Resolve",
@@ -555,12 +515,873 @@ export const daemonWedges: DaemonWedge[] = [
 			{ name: "Filthoid Tentacle", quantityPerCopy: 20 },
 		],
 	},
+];
 
-	// === Melee Weapons ===
-	// Cerberus V
+const electro: DaemonWedge[] = [
 	{
-		id: 100,
-		type: "Cerberus V",
+		type: "Griffin",
+		name: "Thunder • Wildfire",
+		displayName: "Griffin Thunder • Wildfire",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Griffin's Thunder • Wildfire [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Griffin",
+		name: "Thunder • Midnight Sun",
+		displayName: "Griffin Thunder • Midnight Sun",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Griffin's Squall • Midnight Sun [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Typhon
+	{
+		type: "Typhon",
+		name: "Prime • Morale",
+		displayName: "Typhon Prime • Morale",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Typhon's Prime • Morale [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Resolve",
+		displayName: "Typhon Prime • Resolve",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Typhon's Prime • Resolve [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Huntdown",
+		displayName: "Typhon Prime • Huntdown",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Typhon's Prime • Huntdown [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Serenity",
+		displayName: "Typhon Prime • Serenity",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Typhon's Prime • Serenity [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Uplift",
+		displayName: "Typhon Prime • Uplift",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Typhon's Prime • Uplift [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Covenanter
+	{
+		type: "Mephisto",
+		name: "Blaze • Nirvana",
+		displayName: "Covenanter Blaze • Nirvana",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Nirvana [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Blaze • Morale",
+		displayName: "Covenanter Blaze • Morale",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Morale [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Blaze • Volition",
+		displayName: "Covenanter Blaze • Volition",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Volition [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Standfast • Eternity",
+		displayName: "Covenanter Standfast • Eternity",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Covenanter's Standfast • Eternity [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Hastur
+	{
+		type: "Summanus",
+		name: "Ravaging Thunder",
+		displayName: "Summanus Ravaging Thunder",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Summanus's Ravaging Thunder [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Kukulkan (with Track-Shift Module)
+	{
+		type: "FeatheredSnake",
+		name: "Spectrum",
+		displayName: "Kukulkan Spectrum",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Feathered Serpent's Spectrum [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+		additionalMaterials: [
+			{ name: "Track-Shift Module", quantityPerCopy: 2 },
+		],
+	},
+	{
+		type: "FeatheredSnake",
+		name: "Volition",
+		displayName: "Kukulkan Volition",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Feathered Serpent's Volition [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+		additionalMaterials: [
+			{ name: "Track-Shift Module", quantityPerCopy: 2 },
+		],
+	},
+	// Changeling (Blue blueprints)
+	{
+		type: "Changeling",
+		name: "Volition",
+		displayName: "Changeling Volition",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Pan's Volition [Blue]",
+			rarity: "Blue",
+			materialsPerCopy: 10,
+		},
+	},
+	{
+		type: "Changeling",
+		name: "Morale",
+		displayName: "Changeling Morale",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Phoenix's Blaze [Blue]",
+			rarity: "Blue",
+			materialsPerCopy: 10,
+		},
+	},
+	// Siren (Gold blueprints with additional materials)
+	{
+		type: "Siren",
+		name: "Wings • Inspo • Volition",
+		displayName: "Siren Wings • Inspo • Volition",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Changeling's Volition [Gold]",
+			rarity: "Gold",
+			materialsPerCopy: 1,
+		},
+		additionalMaterials: [
+			{ name: "Siren's Wings • Inspo [Blue]", quantityPerCopy: 10 },
+			{ name: "Sacred Candle", quantityPerCopy: 20 },
+		],
+	},
+	{
+		type: "Siren",
+		name: "Wings • Inspo • Morale",
+		displayName: "Siren Wings • Inspo • Morale",
+		category: "Characters",
+		element: "Electro",
+		blueprintSource: {
+			name: "Changeling's Morale [Gold]",
+			rarity: "Gold",
+			materialsPerCopy: 1,
+		},
+		additionalMaterials: [
+			{ name: "Siren's Wings • Inspo [Blue]", quantityPerCopy: 10 },
+			{ name: "Filthoid Tentacle", quantityPerCopy: 20 },
+		],
+	},
+];
+
+const pyro: DaemonWedge[] = [
+	{
+		type: "Griffin",
+		name: "Inferno • Wildfire",
+		displayName: "Griffin Inferno • Wildfire",
+		category: "Characters",
+		element: "Pyro",
+		blueprintSource: {
+			name: "Griffin's Inferno • Wildfire [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Griffin",
+		name: "Inferno • Midnight Sun",
+		displayName: "Griffin Inferno • Midnight Sun",
+		category: "Characters",
+		element: "Pyro",
+		blueprintSource: {
+			name: "Griffin's Inferno • Midnight Sun [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Typhon
+	{
+		type: "Typhon",
+		name: "Prime • Morale",
+		displayName: "Typhon Prime • Morale",
+		category: "Characters",
+		element: "Pyro",
+		blueprintSource: {
+			name: "Typhon's Prime • Morale [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Resolve",
+		displayName: "Typhon Prime • Resolve",
+		category: "Characters",
+		element: "Pyro",
+		blueprintSource: {
+			name: "Typhon's Prime • Resolve [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Huntdown",
+		displayName: "Typhon Prime • Huntdown",
+		category: "Characters",
+		element: "Pyro",
+		blueprintSource: {
+			name: "Typhon's Prime • Huntdown [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Serenity",
+		displayName: "Typhon Prime • Serenity",
+		category: "Characters",
+		element: "Pyro",
+		blueprintSource: {
+			name: "Typhon's Prime • Serenity [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Uplift",
+		displayName: "Typhon Prime • Uplift",
+		category: "Characters",
+		element: "Pyro",
+		blueprintSource: {
+			name: "Typhon's Prime • Uplift [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Covenanter
+	{
+		type: "Mephisto",
+		name: "Blaze • Standfast",
+		displayName: "Covenanter Blaze • Standfast",
+		category: "Characters",
+		element: "Pyro",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Standfast [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Blaze • Inspo",
+		displayName: "Covenanter Blaze • Inspo",
+		category: "Characters",
+		element: "Pyro",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Inspo [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Blaze • Spectrum",
+		displayName: "Covenanter Blaze • Spectrum",
+		category: "Characters",
+		element: "Pyro",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Spectrum [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Blaze • Eternity",
+		displayName: "Covenanter Blaze • Eternity",
+		category: "Characters",
+		element: "Pyro",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Eternity [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Ifrit
+	{
+		type: "Ifrit",
+		name: "Devouring Wildfire",
+		displayName: "Ifrit Devouring Wildfire",
+		category: "Characters",
+		element: "Pyro",
+		blueprintSource: {
+			name: "Ifrit's Devouring Wildfire [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+];
+
+const hydro: DaemonWedge[] = [
+	{
+		type: "Griffin",
+		name: "Seawave • Wildfire",
+		displayName: "Griffin Seawave • Wildfire",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Griffin's Seawave • Wildfire [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Griffin",
+		name: "Seawave • Midnight Sun",
+		displayName: "Griffin Seawave • Midnight Sun",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Griffin's Seawave • Midnight Sun [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Typhon
+	{
+		type: "Typhon",
+		name: "Prime • Morale",
+		displayName: "Typhon Prime • Morale",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Typhon's Prime • Morale [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Resolve",
+		displayName: "Typhon Prime • Resolve",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Typhon's Prime • Resolve [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Huntdown",
+		displayName: "Typhon Prime • Huntdown",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Typhon's Prime • Huntdown [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Serenity",
+		displayName: "Typhon Prime • Serenity",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Typhon's Prime • Serenity [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Uplift",
+		displayName: "Typhon Prime • Uplift",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Typhon's Prime • Uplift [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Covenanter
+	{
+		type: "Mephisto",
+		name: "Blaze • Nirvana",
+		displayName: "Covenanter Blaze • Nirvana",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Nirvana [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Blaze • Inspo",
+		displayName: "Covenanter Blaze • Inspo",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Inspo [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Blaze • Spectrum",
+		displayName: "Covenanter Blaze • Spectrum",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Spectrum [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Wings • Volition",
+		displayName: "Covenanter Wings • Volition",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Covenanter's Wings • Volition [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Bahamut
+	{
+		type: "Bahamut",
+		name: "Misty Veil",
+		displayName: "Bahamut Misty Veil",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Bahamut's Misty Veil [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Bahamut",
+		name: "Frosty Torrent",
+		displayName: "Bahamut Frosty Torrent",
+		category: "Characters",
+		element: "Hydro",
+		blueprintSource: {
+			name: "Bahamut's Frosty Torrent [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+];
+
+const lumino: DaemonWedge[] = [
+	{
+		type: "Griffin",
+		name: "Skylume • Wildfire",
+		displayName: "Griffin Skylume • Wildfire",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Griffin's Skylume • Wildfire [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Griffin",
+		name: "Skylume • Midnight Sun",
+		displayName: "Griffin Skylume • Midnight Sun",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Griffin's Skylume • Midnight Sun [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Typhon
+	{
+		type: "Typhon",
+		name: "Prime • Morale",
+		displayName: "Typhon Prime • Morale",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Typhon's Prime • Morale [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Resolve",
+		displayName: "Typhon Prime • Resolve",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Typhon's Prime • Resolve [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Huntdown",
+		displayName: "Typhon Prime • Huntdown",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Typhon's Prime • Huntdown [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Serenity",
+		displayName: "Typhon Prime • Serenity",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Typhon's Prime • Serenity [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Uplift",
+		displayName: "Typhon Prime • Uplift",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Typhon's Prime • Uplift [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Covenanter
+	{
+		type: "Mephisto",
+		name: "Scorch",
+		displayName: "Covenanter Blaze • Scorch",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Covenanter's Scorch [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Blaze • Resolve",
+		displayName: "Covenanter Blaze • Resolve",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Resolve [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Blaze • Eternity",
+		displayName: "Covenanter Blaze • Eternity",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Eternity [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Nirvana • Volition",
+		displayName: "Covenanter Nirvana • Volition",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Covenanter's Nirvana • Volition [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Helios
+	{
+		type: "Yatagarasus",
+		name: "Prismatic Neon",
+		displayName: "Helios Prismatic Neon",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Helios's Prismatic Neon [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Yatagarasus",
+		name: "Gleam & Glimmer",
+		displayName: "Helios Gleam & Glimmer",
+		category: "Characters",
+		element: "Lumino",
+		blueprintSource: {
+			name: "Helios's Gleam & Glimmer [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+];
+
+const umbro: DaemonWedge[] = [
+	{
+		type: "Griffin",
+		name: "Nihility • Wildfire",
+		displayName: "Griffin Nihility • Wildfire",
+		category: "Characters",
+		element: "Umbro",
+		blueprintSource: {
+			name: "Griffin's Nihility • Wildfire [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Griffin",
+		name: "Nihility • Midnight Sun",
+		displayName: "Griffin Nihility • Midnight Sun",
+		category: "Characters",
+		element: "Umbro",
+		blueprintSource: {
+			name: "Griffin's Nihility • Midnight Sun [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Typhon
+	{
+		type: "Typhon",
+		name: "Prime • Morale",
+		displayName: "Typhon Prime • Morale",
+		category: "Characters",
+		element: "Umbro",
+		blueprintSource: {
+			name: "Typhon's Prime • Morale [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Resolve",
+		displayName: "Typhon Prime • Resolve",
+		category: "Characters",
+		element: "Umbro",
+		blueprintSource: {
+			name: "Typhon's Prime • Resolve [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Huntdown",
+		displayName: "Typhon Prime • Huntdown",
+		category: "Characters",
+		element: "Umbro",
+		blueprintSource: {
+			name: "Typhon's Prime • Huntdown [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Serenity",
+		displayName: "Typhon Prime • Serenity",
+		category: "Characters",
+		element: "Umbro",
+		blueprintSource: {
+			name: "Typhon's Prime • Serenity [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Typhon",
+		name: "Prime • Uplift",
+		displayName: "Typhon Prime • Uplift",
+		category: "Characters",
+		element: "Umbro",
+		blueprintSource: {
+			name: "Typhon's Prime • Uplift [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Covenanter
+	{
+		type: "Mephisto",
+		name: "Scorch",
+		displayName: "Covenanter Blaze • Scorch",
+		category: "Characters",
+		element: "Umbro",
+		blueprintSource: {
+			name: "Covenanter's Scorch [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Blaze • Morale",
+		displayName: "Covenanter Blaze • Morale",
+		category: "Characters",
+		element: "Umbro",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Morale [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Blaze • Spectrum",
+		displayName: "Covenanter Blaze • Spectrum",
+		category: "Characters",
+		element: "Umbro",
+		blueprintSource: {
+			name: "Covenanter's Blaze • Spectrum [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	{
+		type: "Mephisto",
+		name: "Standfast • Inspo",
+		displayName: "Covenanter Standfast • Inspo",
+		category: "Characters",
+		element: "Umbro",
+		blueprintSource: {
+			name: "Covenanter's Standfast • Inspo [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+	// Arbiter
+	{
+		type: "Anubis",
+		name: "Illusionary Sacrifice",
+		displayName: "Arbiter Illusionary Sacrifice",
+		category: "Characters",
+		element: "Umbro",
+		blueprintSource: {
+			name: "Arbiter's Illusionary Sacrifice [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 5,
+		},
+	},
+];
+const meele: DaemonWedge[] = [
+	{
+		type: "Cerberus",
 		name: "Impetus",
 		displayName: "Cerberus V Impetus",
 		category: "Melee Weapon",
@@ -571,8 +1392,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 101,
-		type: "Cerberus V",
+		type: "Cerberus",
 		name: "Impetus • Focus",
 		displayName: "Cerberus V Impetus • Focus",
 		category: "Melee Weapon",
@@ -586,8 +1406,7 @@ export const daemonWedges: DaemonWedge[] = [
 		],
 	},
 	{
-		id: 102,
-		type: "Cerberus V",
+		type: "Cerberus",
 		name: "Rage • Trammel",
 		displayName: "Cerberus V Rage • Trammel",
 		category: "Melee Weapon",
@@ -602,8 +1421,7 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Cerberus VI
 	{
-		id: 103,
-		type: "Cerberus VI",
+		type: "Cerberus",
 		name: "Celerity",
 		displayName: "Cerberus VI Celerity",
 		category: "Melee Weapon",
@@ -614,8 +1432,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 104,
-		type: "Cerberus VI",
+		type: "Cerberus",
 		name: "Threshold",
 		displayName: "Cerberus VI Threshold",
 		category: "Melee Weapon",
@@ -627,8 +1444,7 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Cerberus VIII (with Blue materials)
 	{
-		id: 105,
-		type: "Cerberus VIII",
+		type: "Cerberus",
 		name: "Edge",
 		displayName: "Cerberus VIII Edge",
 		category: "Melee Weapon",
@@ -642,8 +1458,7 @@ export const daemonWedges: DaemonWedge[] = [
 		],
 	},
 	{
-		id: 106,
-		type: "Cerberus VIII",
+		type: "Cerberus",
 		name: "Penetration",
 		displayName: "Cerberus VIII Penetration",
 		category: "Melee Weapon",
@@ -657,8 +1472,7 @@ export const daemonWedges: DaemonWedge[] = [
 		],
 	},
 	{
-		id: 107,
-		type: "Cerberus VIII",
+		type: "Cerberus",
 		name: "Crusher",
 		displayName: "Cerberus VIII Crusher",
 		category: "Melee Weapon",
@@ -671,12 +1485,11 @@ export const daemonWedges: DaemonWedge[] = [
 			{ name: "Cerberus's Crusher [Blue]", quantityPerCopy: 5 },
 		],
 	},
-
-	// === Ranged Weapons ===
+];
+const ranged: DaemonWedge[] = [
 	// Lilith VII
 	{
-		id: 200,
-		type: "Lilith VII",
+		type: "Lilith",
 		name: "Impetus",
 		displayName: "Lilith VII Impetus",
 		category: "Ranged Weapon",
@@ -687,8 +1500,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 201,
-		type: "Lilith VII",
+		type: "Lilith",
 		name: "Impetus • Focus",
 		displayName: "Lilith VII Impetus • Focus",
 		category: "Ranged Weapon",
@@ -702,8 +1514,7 @@ export const daemonWedges: DaemonWedge[] = [
 		],
 	},
 	{
-		id: 202,
-		type: "Lilith VII",
+		type: "Lilith",
 		name: "Rage • Trammel",
 		displayName: "Lilith VII Rage • Trammel",
 		category: "Ranged Weapon",
@@ -718,8 +1529,7 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Lilith VIII
 	{
-		id: 203,
-		type: "Lilith VIII",
+		type: "Lilith",
 		name: "Celerity",
 		displayName: "Lilith VIII Celerity",
 		category: "Ranged Weapon",
@@ -730,8 +1540,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 204,
-		type: "Lilith VIII",
+		type: "Lilith",
 		name: "Foldover",
 		displayName: "Lilith VIII Foldover",
 		category: "Ranged Weapon",
@@ -746,8 +1555,7 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Lilith IX
 	{
-		id: 205,
-		type: "Lilith IX",
+		type: "Lilith",
 		name: "Edge",
 		displayName: "Lilith IX Edge",
 		category: "Ranged Weapon",
@@ -761,8 +1569,7 @@ export const daemonWedges: DaemonWedge[] = [
 		],
 	},
 	{
-		id: 206,
-		type: "Lilith IX",
+		type: "Lilith",
 		name: "Penetration",
 		displayName: "Lilith IX Penetration",
 		category: "Ranged Weapon",
@@ -776,8 +1583,7 @@ export const daemonWedges: DaemonWedge[] = [
 		],
 	},
 	{
-		id: 207,
-		type: "Lilith IX",
+		type: "Lilith",
 		name: "Crusher",
 		displayName: "Lilith IX Crusher",
 		category: "Ranged Weapon",
@@ -790,12 +1596,10 @@ export const daemonWedges: DaemonWedge[] = [
 			{ name: "Lilith's Crusher [Blue]", quantityPerCopy: 5 },
 		],
 	},
-
-	// === Melee Consonance Weapons ===
-	// Eldritch Cerberus VIII
+];
+const meeleCosonance: DaemonWedge[] = [
 	{
-		id: 300,
-		type: "Eldritch Cerberus VIII",
+		type: "Cerberus",
 		name: "Impetus",
 		displayName: "Eldritch Cerberus VIII Impetus",
 		category: "Melee Consonance Weapon",
@@ -806,8 +1610,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 301,
-		type: "Eldritch Cerberus VIII",
+		type: "Cerberus",
 		name: "Focus",
 		displayName: "Eldritch Cerberus VIII Focus",
 		category: "Melee Consonance Weapon",
@@ -818,8 +1621,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 302,
-		type: "Eldritch Cerberus VIII",
+		type: "Cerberus",
 		name: "Rage",
 		displayName: "Eldritch Cerberus VIII Rage",
 		category: "Melee Consonance Weapon",
@@ -830,8 +1632,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 303,
-		type: "Eldritch Cerberus VIII",
+		type: "Cerberus",
 		name: "Celerity",
 		displayName: "Eldritch Cerberus VIII Celerity",
 		category: "Melee Consonance Weapon",
@@ -843,8 +1644,7 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Eldritch Cerberus IX
 	{
-		id: 304,
-		type: "Eldritch Cerberus IX",
+		type: "Cerberus",
 		name: "Threshold",
 		displayName: "Eldritch Cerberus IX Threshold",
 		category: "Melee Consonance Weapon",
@@ -855,8 +1655,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 305,
-		type: "Eldritch Cerberus IX",
+		type: "Cerberus",
 		name: "Trammel",
 		displayName: "Eldritch Cerberus IX Trammel",
 		category: "Melee Consonance Weapon",
@@ -868,8 +1667,7 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Eldritch Cerberus X
 	{
-		id: 306,
-		type: "Eldritch Cerberus X",
+		type: "Cerberus",
 		name: "Edge",
 		displayName: "Eldritch Cerberus X Edge",
 		category: "Melee Consonance Weapon",
@@ -880,8 +1678,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 307,
-		type: "Eldritch Cerberus X",
+		type: "Cerberus",
 		name: "Penetration",
 		displayName: "Eldritch Cerberus X Penetration",
 		category: "Melee Consonance Weapon",
@@ -892,8 +1689,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 308,
-		type: "Eldritch Cerberus X",
+		type: "Cerberus",
 		name: "Crusher",
 		displayName: "Eldritch Cerberus X Crusher",
 		category: "Melee Consonance Weapon",
@@ -903,12 +1699,96 @@ export const daemonWedges: DaemonWedge[] = [
 			materialsPerCopy: 3,
 		},
 	},
-
-	// === Ranged Consonance Weapons ===
-	// Eldritch Lilith VIII
+	// Eldritch Cerberus XI
 	{
-		id: 400,
-		type: "Eldritch Lilith VIII",
+		type: "Cerberus",
+		name: "Impact • Threshold",
+		displayName: "Eldritch Cerberus XI Impact • Threshold",
+		category: "Melee Consonance Weapon",
+		blueprintSource: {
+			name: "Eldritch Cerberus's Threshold [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 2,
+		},
+		additionalMaterials: [
+			{
+				name: "Eldritch Cerberus's Impetus [Purple]",
+				quantityPerCopy: 1,
+			},
+		],
+	},
+	{
+		type: "Cerberus",
+		name: "Dropshot • Swift Dropshot",
+		displayName: "Eldritch Cerberus XI Dropshot • Swift Dropshot",
+		category: "Melee Consonance Weapon",
+		blueprintSource: {
+			name: "Eldritch Cerberus's Edge [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 2,
+		},
+		additionalMaterials: [
+			{
+				name: "Eldritch Cerberus's Celerity [Purple]",
+				quantityPerCopy: 1,
+			},
+		],
+	},
+	{
+		type: "Cerberus",
+		name: "Blitz • Flash Strike",
+		displayName: "Eldritch Cerberus XI Blitz • Flash Strike",
+		category: "Melee Consonance Weapon",
+		blueprintSource: {
+			name: "Eldritch Cerberus's Edge [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 2,
+		},
+		additionalMaterials: [
+			{
+				name: "Eldritch Cerberus's Celerity [Purple]",
+				quantityPerCopy: 1,
+			},
+		],
+	},
+	{
+		type: "Cerberus",
+		name: "Respite",
+		displayName: "Eldritch Cerberus XI Respite",
+		category: "Melee Consonance Weapon",
+		blueprintSource: {
+			name: "Eldritch Cerberus's Crusher [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 2,
+		},
+		additionalMaterials: [
+			{
+				name: "Eldritch Cerberus's Focus [Purple]",
+				quantityPerCopy: 1,
+			},
+		],
+	},
+	{
+		type: "Cerberus",
+		name: "Fervor",
+		displayName: "Eldritch Cerberus XI Respite",
+		category: "Melee Consonance Weapon",
+		blueprintSource: {
+			name: "Eldritch Cerberus's Rage [Purple]",
+			rarity: "Purple",
+			materialsPerCopy: 2,
+		},
+		additionalMaterials: [
+			{
+				name: "Eldritch Cerberus's Focus [Purple]",
+				quantityPerCopy: 1,
+			},
+		],
+	},
+];
+const rangedCosonance: DaemonWedge[] = [
+	{
+		type: "Lilith",
 		name: "Impetus",
 		displayName: "Eldritch Lilith VIII Impetus",
 		category: "Ranged Consonance Weapon",
@@ -919,8 +1799,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 401,
-		type: "Eldritch Lilith VIII",
+		type: "Lilith",
 		name: "Focus",
 		displayName: "Eldritch Lilith VIII Focus",
 		category: "Ranged Consonance Weapon",
@@ -931,8 +1810,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 402,
-		type: "Eldritch Lilith VIII",
+		type: "Lilith",
 		name: "Rage",
 		displayName: "Eldritch Lilith VIII Rage",
 		category: "Ranged Consonance Weapon",
@@ -943,8 +1821,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 403,
-		type: "Eldritch Lilith VIII",
+		type: "Lilith",
 		name: "Celerity",
 		displayName: "Eldritch Lilith VIII Celerity",
 		category: "Ranged Consonance Weapon",
@@ -956,8 +1833,7 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Eldritch Lilith IX
 	{
-		id: 404,
-		type: "Eldritch Lilith IX",
+		type: "Lilith",
 		name: "Foldover",
 		displayName: "Eldritch Lilith IX Foldover",
 		category: "Ranged Consonance Weapon",
@@ -968,8 +1844,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 405,
-		type: "Eldritch Lilith IX",
+		type: "Lilith",
 		name: "Trammel",
 		displayName: "Eldritch Lilith IX Trammel",
 		category: "Ranged Consonance Weapon",
@@ -981,8 +1856,7 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 	// Eldritch Lilith X
 	{
-		id: 406,
-		type: "Eldritch Lilith X",
+		type: "Lilith",
 		name: "Edge",
 		displayName: "Eldritch Lilith X Edge",
 		category: "Ranged Consonance Weapon",
@@ -993,8 +1867,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 407,
-		type: "Eldritch Lilith X",
+		type: "Lilith",
 		name: "Penetration",
 		displayName: "Eldritch Lilith X Penetration",
 		category: "Ranged Consonance Weapon",
@@ -1005,8 +1878,7 @@ export const daemonWedges: DaemonWedge[] = [
 		},
 	},
 	{
-		id: 408,
-		type: "Eldritch Lilith X",
+		type: "Lilith",
 		name: "Crusher",
 		displayName: "Eldritch Lilith X Crusher",
 		category: "Ranged Consonance Weapon",
@@ -1018,5 +1890,19 @@ export const daemonWedges: DaemonWedge[] = [
 	},
 ];
 
-// Note: This is a representative subset. Full implementation would include all element variations
-// for Griffin, Typhon, Covenanter and element-specific bosses (Summanus, Ifrit, Bahamut, Helios, Arbiter)
+export const daemonWedges = [
+	...phoenixV,
+	...SirenII,
+	...sphinxII,
+	...Jormungand,
+	...anemo,
+	...electro,
+	...pyro,
+	...hydro,
+	...lumino,
+	...umbro,
+	...meele,
+	...ranged,
+	...meeleCosonance,
+	...rangedCosonance,
+];

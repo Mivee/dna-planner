@@ -42,38 +42,20 @@
 					{{ props.config.level.end }}
 				</template>
 			</ResultStatRow>
-			<div class="py-2" v-if="props.config.skill">
-				<ResultStatRow label="Skill" label-class="opacity-80">
-					<template #value>
-						{{ props.config.skill.current }} →
-						{{ props.config.skill.target }}
-					</template>
-					<template #node>
-						<SkillNodes :skill="props.config.skill" />
-					</template>
-				</ResultStatRow>
+
+			<div v-if="props.config.skill">
+				<SkillResultStatRow :skill="props.config.skill" label="Skill" />
 			</div>
-			<div class="py-2" v-if="props.config.ult">
-				<ResultStatRow label="Ultimate" label-class="opacity-80">
-					<template #value>
-						{{ props.config.ult.current }} →
-						{{ props.config.ult.target }}
-					</template>
-					<template #node>
-						<SkillNodes :skill="props.config.ult" />
-					</template>
-				</ResultStatRow>
+
+			<div v-if="props.config.ult">
+				<SkillResultStatRow
+					:skill="props.config.ult"
+					label="Ultimate" />
 			</div>
-			<div class="py-2" v-if="props.config.passive">
-				<ResultStatRow label="Passive" label-class="opacity-80">
-					<template #value>
-						{{ props.config.passive.current }} →
-						{{ props.config.passive.target }}
-					</template>
-					<template #node>
-						<SkillNodes :skill="props.config.passive" />
-					</template>
-				</ResultStatRow>
+			<div v-if="props.config.passive">
+				<SkillResultStatRow
+					:skill="props.config.passive"
+					label="Passive" />
 			</div>
 		</template>
 
@@ -102,9 +84,9 @@ import { useCharacter } from "../composeables/useCharacter";
 import CharacterBuildConfiguration from "./characterBuildConfiguration.vue";
 import { useImage } from "../composeables/useImage";
 import ResultStatRow from "./resultStatRow.vue";
-import SkillNodes from "./skillNodes.vue";
 import { useResultCardActions } from "../composeables/useResultCardActions";
 import BaseResultCard from "./baseResultCard.vue";
+import SkillResultStatRow from "./skillResultStatRow.vue";
 
 interface Props {
 	config: CharacterUpgradeConfig;

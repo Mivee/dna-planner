@@ -15,6 +15,28 @@ export type DaemonWedgeCategory =
 
 export type BlueprintRarity = "Blue" | "Purple" | "Gold";
 
+export type DaemonWedgeType =
+	| "Anubis"
+	| "Cerberus"
+	| "Bahamut"
+	| "Barbatos"
+	| "Fafnir"
+	| "FeatheredSnake"
+	| "Fenrir"
+	| "Griffin"
+	| "Hastur"
+	| "Ifrit"
+	| "Jormungand"
+	| "Lilith"
+	| "Mephisto"
+	| "Pan"
+	| "Phoenix"
+	| "Siren"
+	| "Sphinx"
+	| "Summanus"
+	| "Typhon"
+	| "Yatagarasus";
+
 export interface BlueprintSource {
 	name: string;
 	rarity: BlueprintRarity;
@@ -27,8 +49,7 @@ export interface AdditionalMaterial {
 }
 
 export interface DaemonWedge {
-	id: number;
-	type: string; // e.g., "Phoenix V", "Siren II", "Cerberus VIII"
+	type: DaemonWedgeType; // e.g., "Phoenix V", "Siren II", "Cerberus VIII"
 	name: string; // e.g., "Nirvana", "Blessing", "Impetus"
 	displayName: string; // Combined: "Phoenix V Nirvana"
 	category: DaemonWedgeCategory;

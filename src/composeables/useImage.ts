@@ -44,7 +44,7 @@ const imageMap = new Map<string, ImageEntry>([
 				w.displayName,
 				{
 					type: "wedge",
-					imageCode: defaultWedgeImageCode,
+					imageCode: w.type,
 				} as ImageEntry,
 			] as [string, ImageEntry]
 	),
@@ -90,8 +90,9 @@ function getElementImage(imageCode: string) {
 
 function getWedgeImage(imageCode: string) {
 	if (imageCode) {
-		return "assets/wedges/" + imageCode + ".png";
+		return "assets/wedges/T_Mod_" + imageCode + "01.png";
 	}
+
 	return null;
 }
 
