@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="border border-white/20 rounded-lg overflow-hidden transition-all duration-300"
+		class="border border-white/20 rounded-lg overflow-hidden transition-all duration-300 w-full max-w-[600px]"
 		:class="containerClass"
 		:style="containerStyle">
 		<ResultCardHeader

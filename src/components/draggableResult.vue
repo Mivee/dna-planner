@@ -28,7 +28,8 @@ import type {
 	BaseUpgradeConfig,
 } from "../types/upgradeConfig";
 import { useUiStore } from "../stores/ui";
-import CharacterResult from "./characterResult.vue";
+// import CharacterResult from "./characterResult.vue";
+import CharacterResult from "./characterResult copy.vue";
 import WeaponResult from "./weaponResult.vue";
 import DaemonWedgeResult from "./daemonWedgeResult.vue";
 import { computed } from "vue";

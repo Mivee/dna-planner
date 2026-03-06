@@ -1,6 +1,6 @@
 <template>
 	<BaseResultCard
-		container-class="relative character-card w-full max-w-[600px]"
+		container-class="relative character-card"
 		:container-style="cardStyles"
 		edit-aria-label="Edit character"
 		remove-aria-label="Remove character"
