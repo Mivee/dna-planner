@@ -83,11 +83,11 @@
 import { computed } from "vue";
 import CharacterMaterials from "./characterMaterials.vue";
 import type { CharacterUpgradeConfig } from "../types/upgradeConfig";
-import { useCharacter } from "../composeables/useCharacter";
+import { useCharacter } from "../composables/useCharacter";
 import CharacterBuildConfiguration from "./characterBuildConfiguration.vue";
-import { useImage } from "../composeables/useImage";
+import { useImage } from "../composables/useImage";
 import ResultStatRow from "./resultStatRow.vue";
-import { useResultCardActions } from "../composeables/useResultCardActions";
+import { useResultCardActions } from "../composables/useResultCardActions";
 import BaseResultCard from "./baseResultCard.vue";
 import SkillResultStatRow from "./skillResultStatRow.vue";
 

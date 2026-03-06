@@ -7,7 +7,7 @@ import type {
 	WeaponUpgradeConfig,
 	DaemonWedgeUpgradeConfig,
 } from "../types/upgradeConfig";
-import { useClone, useUUID } from "../composeables/utils";
+import { useClone, useUUID } from "../composables/utils";
 
 const STORAGE_KEY = "dna-planner-ui";
 

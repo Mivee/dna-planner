@@ -55,9 +55,9 @@ import type { WeaponUpgradeConfig } from "../types/upgradeConfig";
 import { computed } from "vue";
 import WeaponMaterials from "./WeaponMaterials.vue";
 import WeaponBuildConfiguration from "./weaponBuildConfiguration.vue";
-import { useImage } from "../composeables/useImage";
+import { useImage } from "../composables/useImage";
 import ResultStatRow from "./resultStatRow.vue";
-import { useResultCardActions } from "../composeables/useResultCardActions";
+import { useResultCardActions } from "../composables/useResultCardActions";
 import BaseResultCard from "./baseResultCard.vue";
 
 interface Props {

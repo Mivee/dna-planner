@@ -130,13 +130,13 @@
 <script lang="ts" setup>
 import type { DaemonWedgeUpgradeConfig } from "../types/upgradeConfig";
 import { computed } from "vue";
-import { useDaemonWedge } from "../composeables/useDaemonWedge";
+import { useDaemonWedge } from "../composables/useDaemonWedge";
 import DaemonWedgeBuildConfiguration from "./daemonWedgeBuildConfiguration.vue";
 import ResultStatRow from "./resultStatRow.vue";
-import { useResultCardActions } from "../composeables/useResultCardActions";
-import { useImage } from "../composeables/useImage";
+import { useResultCardActions } from "../composables/useResultCardActions";
+import { useImage } from "../composables/useImage";
 import BaseResultCard from "./baseResultCard.vue";
-import { useElementColor } from "../composeables/useElementColor";
+import { useElementColor } from "../composables/useElementColor";
 
 interface Props {
 	config: DaemonWedgeUpgradeConfig;

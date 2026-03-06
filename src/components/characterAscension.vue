@@ -43,7 +43,7 @@ import SkillUpgrade from "./skillUpgrade.vue";
 import { useUiStore } from "../stores/ui";
 import CharacterResultList from "./characterResultList.vue";
 import RangeSelect from "./rangeSelect.vue";
-import { useImage } from "../composeables/useImage";
+import { useImage } from "../composables/useImage";
 
 interface Props {
 	upgradeConfig: CharacterUpgradeConfig;

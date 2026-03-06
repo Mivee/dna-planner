@@ -53,7 +53,7 @@ import { weapons, weaponLevelingMaterials } from "../definitions/weapon";
 import RangeSelect from "./rangeSelect.vue";
 import Modal from "./modal.vue";
 import { useUiStore } from "../stores/ui";
-import { useUUID } from "../composeables/utils";
+import { useUUID } from "../composables/utils";
 
 interface Props {
 	upgradeConfig?: WeaponUpgradeConfig;

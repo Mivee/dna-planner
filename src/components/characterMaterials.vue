@@ -61,7 +61,7 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { useCharacter } from "../composeables/useCharacter";
+import { useCharacter } from "../composables/useCharacter";
 import { characterLevelingMaterials } from "../definitions/characterAscension";
 import { computed } from "vue";
 import {

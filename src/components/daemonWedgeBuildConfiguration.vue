@@ -85,7 +85,7 @@ import { ref, computed, watch } from "vue";
 import { useUiStore } from "../stores/ui";
 import { daemonWedges } from "../definitions/daemonWedge";
 import type { DaemonWedgeUpgradeConfig } from "../types/upgradeConfig";
-import { useUUID } from "../composeables/utils";
+import { useUUID } from "../composables/utils";
 import Modal from "./modal.vue";
 
 interface Props {

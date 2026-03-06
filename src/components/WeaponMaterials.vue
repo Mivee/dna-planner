@@ -92,7 +92,7 @@
 <script lang="ts" setup>
 import type { BaseUpgradeConfig } from "../types/upgradeConfig";
 import { computed } from "vue";
-import { useWeapon } from "../composeables/useWeapon";
+import { useWeapon } from "../composables/useWeapon";
 import { weaponLevelingMaterials } from "../definitions/weapon";
 import type { LevelRange } from "../types/range";
 import type { WeaponLevelingMaterial } from "../types/ascension";

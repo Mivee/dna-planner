@@ -35,9 +35,9 @@ import { characterLevelingMaterials } from "../definitions/characterAscension";
 import Modal from "./modal.vue";
 import SkillUpgrade from "./skillUpgrade.vue";
 import { useUiStore } from "../stores/ui";
-import { useClone, useUUID } from "../composeables/utils";
+import { useClone, useUUID } from "../composables/utils";
 import RangeSelect from "./rangeSelect.vue";
-import { useImage } from "../composeables/useImage";
+import { useImage } from "../composables/useImage";
 
 interface Props {
 	upgradeConfig?: CharacterUpgradeConfig;

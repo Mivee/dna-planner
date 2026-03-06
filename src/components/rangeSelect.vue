@@ -1,13 +1,25 @@
 <template>
 	<select v-model="internalRange.start" :class="selectClasses">
 		<option v-for="o in props.options">
-			{{ o }}
+			<template v-if="isAscension(o)">
+				{{ (o as string).split(",")[0] }}
+				⭐
+			</template>
+			<template v-else>
+				{{ o }}
+			</template>
 		</option>
 	</select>
 
 	<select v-model="internalRange.end" :class="selectClasses">
 		<option v-for="o in props.options">
-			{{ o }}
+			<template v-if="isAscension(o)">
+				{{ (o as string).split(",")[0] }}
+				⭐
+			</template>
+			<template v-else>
+				{{ o }}
+			</template>
 		</option>
 	</select>
 </template>
@@ -42,5 +54,10 @@ const selectClasses = computed(() => {
 const emit = defineEmits(["update:range"]);
 
 const internalRange = ref(props.range);
+
+function isAscension(item: T) {
+	return typeof item === "string" && item.endsWith(",1");
+}
+
 watch(internalRange, (n) => emit("update:range", n), { deep: true });
 </script>

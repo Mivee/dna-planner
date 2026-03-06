@@ -179,9 +179,9 @@ import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useUiStore } from "../stores/ui";
 import { useInventory } from "../stores/inventory";
-import { useCharacter } from "../composeables/useCharacter";
-import { useWeapon } from "../composeables/useWeapon";
-import { useDaemonWedge } from "../composeables/useDaemonWedge";
+import { useCharacter } from "../composables/useCharacter";
+import { useWeapon } from "../composables/useWeapon";
+import { useDaemonWedge } from "../composables/useDaemonWedge";
 import { characterLevelingMaterials } from "../definitions/characterAscension";
 import { weaponLevelingMaterials } from "../definitions/weapon";
 import {
