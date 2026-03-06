@@ -1,5 +1,10 @@
 import { demonWedges, demon_WEDGE_COSTS } from "../definitions/demonWedge";
-import type { DemonWedge, DemonWedgeCostSummary } from "../types/demonWedge";
+import type {
+	DemonWedge,
+	DemonWedgeCostAdditionalMaterials,
+	DemonWedgeCostBluePrint,
+	DemonWedgeCostSummary,
+} from "../types/demonWedge";
 
 export function useDemonWedge() {
 	/**
@@ -41,14 +46,15 @@ export function useDemonWedge() {
 			endCost.blueprintCopies - startCost.blueprintCopies;
 
 		// Create maps for blueprints and materials
-		const blueprints = new Map<string, number>();
-		const materials = new Map<string, number>();
+		const blueprints = new Map<string, DemonWedgeCostBluePrint>();
+		const materials = new Map<string, DemonWedgeCostAdditionalMaterials>();
 
 		// Add blueprint to blueprints map
-		blueprints.set(
-			wedge.blueprintSource.name,
-			blueprintCopiesDelta * quantity
-		);
+		const bluePrintResult: DemonWedgeCostBluePrint = {
+			quantity: blueprintCopiesDelta * quantity,
+			source: wedge.blueprint.source,
+		};
+		blueprints.set(wedge.blueprint.name, bluePrintResult);
 
 		// Add additional materials if they exist
 		if (wedge.additionalMaterials) {
@@ -59,11 +65,12 @@ export function useDemonWedge() {
 					quantity;
 
 				// Add to materials
-				const existing = materials.get(additionalMaterial.name) || 0;
-				materials.set(
-					additionalMaterial.name,
-					existing + additionalQuantity
-				);
+				const existing = materials.get(additionalMaterial.name) || {
+					quantity: 0,
+					rarity: additionalMaterial.rarity,
+				};
+				existing.quantity = existing.quantity + additionalQuantity;
+				materials.set(additionalMaterial.name, existing);
 			}
 		}
 

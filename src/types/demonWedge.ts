@@ -43,6 +43,7 @@ export interface BlueprintSource {
 	name: string;
 	rarity?: BlueprintRarity;
 	materialsPerCopy: number; // Materials needed per blueprint copy
+	source?: string;
 }
 
 export interface AdditionalMaterial {
@@ -57,7 +58,7 @@ export interface DemonWedge {
 	displayName: string; // Combined: "Phoenix V Nirvana"
 	category: DemonWedgeCategory;
 	element?: ElementType; // Only for Characters category
-	blueprintSource: BlueprintSource;
+	blueprint: BlueprintSource;
 	additionalMaterials?: AdditionalMaterial[]; // Optional material2, material3
 }
 
@@ -73,6 +74,15 @@ export interface DemonWedgeLevelCost {
 export interface DemonWedgeCostSummary {
 	coins: number;
 	carmineGlobules: number;
-	blueprints: Map<string, number>; // Blueprint name -> quantity
-	materials: Map<string, number>; // Material name -> quantity
+	blueprints: Map<string, DemonWedgeCostBluePrint>; // Blueprint name -> quantity
+	materials: Map<string, DemonWedgeCostAdditionalMaterials>; // Material name -> quantity
+}
+
+export interface DemonWedgeCostBluePrint {
+	quantity: number;
+	source?: string;
+}
+export interface DemonWedgeCostAdditionalMaterials {
+	quantity: number;
+	rarity?: Rarity;
 }

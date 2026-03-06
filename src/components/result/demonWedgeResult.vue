@@ -72,12 +72,12 @@
 				<div
 					v-if="summary.blueprints.size > 0"
 					class="border-t border-white/10 pt-3 mt-2">
-					<h3
+					<span
 						class="text-xs font-semibold text-white-muted uppercase mb-2">
 						Blueprints
-					</h3>
+					</span>
 					<div
-						v-for="[name, qty] in summary.blueprints"
+						v-for="[name, cost] in summary.blueprints"
 						:key="name"
 						class="flex justify-between items-center py-1">
 						<div class="flex items-center gap-2">
@@ -85,8 +85,18 @@
 							<span class="text-xs text-white-muted">
 								{{ name }}
 							</span>
+
+							<Tooltip icon="fas fa-info" v-if="cost.source">
+								<template #text>
+									<div>
+										{{ cost.source }}
+									</div>
+								</template>
+							</Tooltip>
 						</div>
-						<span class="text-xs font-bold">{{ qty }}</span>
+						<span class="text-xs font-bold">
+							{{ cost.quantity }}
+						</span>
 					</div>
 				</div>
 
@@ -105,10 +115,13 @@
 							<i class="fas fa-cube text-accent w-5"></i>
 							<span class="text-xs text-white-muted">
 								{{ material.name }}
+								<span v-if="material.cost.rarity">
+									[{{ material.cost.rarity }}]
+								</span>
 							</span>
 						</div>
 						<span class="text-xs font-bold">
-							{{ material.quantity }}
+							{{ material.cost.quantity }}
 						</span>
 					</div>
 				</div>
@@ -135,6 +148,7 @@ import { useResultCardActions } from "../../composables/useResultCardActions";
 import { useImage } from "../../composables/useImage";
 import BaseResultCard from "./baseResultCard.vue";
 import { useElementColor } from "../../composables/useElementColor";
+import Tooltip from "../ui/tooltip.vue";
 
 interface Props {
 	config: DemonWedgeUpgradeConfig;
@@ -175,9 +189,9 @@ const imgSource = computed(() => {
 const materialsArray = computed(() => {
 	if (!summary.value) return [];
 	return Array.from(summary.value.materials.entries()).map(
-		([name, quantity]) => ({
+		([name, cost]) => ({
 			name,
-			quantity,
+			cost,
 		})
 	);
 });

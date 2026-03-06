@@ -21,7 +21,7 @@ const phoenixV: DemonWedge[] = [
 		name: "Nirvana",
 		displayName: "Phoenix V Nirvana",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Phoenix's Nirvana",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -32,7 +32,7 @@ const phoenixV: DemonWedge[] = [
 		name: "Blessing",
 		displayName: "Phoenix V Blessing",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Phoenix's Blessing",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -43,7 +43,7 @@ const phoenixV: DemonWedge[] = [
 		name: "Standfast",
 		displayName: "Phoenix V Standfast",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Phoenix's Standfast",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -56,7 +56,7 @@ const SirenII: DemonWedge[] = [
 		name: "Wings • Inspo",
 		displayName: "Siren II Wings • Inspo",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Phoenix's Wings [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -69,7 +69,7 @@ const sphinxII: DemonWedge[] = [
 		name: "Onslaught",
 		displayName: "Sphinx II Onslaught",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Phoenix's Blaze [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -80,7 +80,7 @@ const sphinxII: DemonWedge[] = [
 		name: "Intrepidity",
 		displayName: "Sphinx II Intrepidity",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Phoenix's Blaze [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -91,7 +91,7 @@ const sphinxII: DemonWedge[] = [
 		name: "Duel",
 		displayName: "Sphinx II Duel",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Sphinx's Duel [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -102,7 +102,7 @@ const sphinxII: DemonWedge[] = [
 		name: "Trapped",
 		displayName: "Sphinx II Trapped",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Sphinx's Trapped [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -113,7 +113,7 @@ const sphinxII: DemonWedge[] = [
 		name: "Surge",
 		displayName: "Sphinx II Surge",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Sphinx's Surge [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -124,7 +124,7 @@ const sphinxII: DemonWedge[] = [
 		name: "Relentless",
 		displayName: "Sphinx II Relentless",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Sphinx's Relentless [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -137,7 +137,7 @@ const Jormungand: DemonWedge[] = [
 		name: "Gleaming Sword",
 		displayName: "Jormungand Gleaming Sword",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Jormungand's Gleaming Sword [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -148,7 +148,7 @@ const Jormungand: DemonWedge[] = [
 		name: "Gleaming Polearm",
 		displayName: "Jormungand Gleaming Polearm",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Jormungand's Gleaming Polearm [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -159,7 +159,7 @@ const Jormungand: DemonWedge[] = [
 		name: "Gleaming Greatsword",
 		displayName: "Jormungand Gleaming Greatsword",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Jormungand's Gleaming Greatsword [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -170,7 +170,7 @@ const Jormungand: DemonWedge[] = [
 		name: "Gleaming Dual Blades",
 		displayName: "Jormungand Gleaming Dual Blades",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Jormungand's Gleaming Dual Blades [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -181,7 +181,7 @@ const Jormungand: DemonWedge[] = [
 		name: "Gleaming Whipblade",
 		displayName: "Jormungand Gleaming Whipblade",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Jormungand's Gleaming Whipblade [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -192,7 +192,7 @@ const Jormungand: DemonWedge[] = [
 		name: "Gleaming Katana",
 		displayName: "Jormungand Gleaming Katana",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Jormungand's Gleaming Katana [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -203,7 +203,7 @@ const Jormungand: DemonWedge[] = [
 		name: "Gleaming Pistol",
 		displayName: "Jormungand Gleaming Pistol",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Jormungand's Gleaming Pistol [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -214,7 +214,7 @@ const Jormungand: DemonWedge[] = [
 		name: "Gleaming Dual Pistols",
 		displayName: "Jormungand Gleaming Dual Pistols",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Jormungand's Gleaming Dual Pistols [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -225,7 +225,7 @@ const Jormungand: DemonWedge[] = [
 		name: "Gleaming Grenade Launcher",
 		displayName: "Jormungand Gleaming Grenade Launcher",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Jormungand's Gleaming Grenade Launcher [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -236,7 +236,7 @@ const Jormungand: DemonWedge[] = [
 		name: "Gleaming Shotgun",
 		displayName: "Jormungand Gleaming Shotgun",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Jormungand's Gleaming Shotgun [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -247,7 +247,7 @@ const Jormungand: DemonWedge[] = [
 		name: "Gleaming Assault Rifle",
 		displayName: "Jormungand Gleaming Assault Rifle",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Jormungand's Gleaming Assault Rifle [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -258,7 +258,7 @@ const Jormungand: DemonWedge[] = [
 		name: "Gleaming Bow",
 		displayName: "Jormungand Gleaming Bow",
 		category: "Characters",
-		blueprintSource: {
+		blueprint: {
 			name: "Jormungand's Gleaming Bow [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -273,7 +273,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Griffin Squall • Wildfire",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Griffin's Squall • Wildfire [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -285,7 +285,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Griffin Squall • Midnight Sun",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Griffin's Squall • Midnight Sun [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -298,7 +298,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Typhon Prime • Morale",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Morale [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -310,7 +310,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Typhon Prime • Resolve",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Resolve [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -322,7 +322,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Typhon Prime • Huntdown",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Huntdown [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -334,7 +334,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Typhon Prime • Serenity",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Serenity [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -346,7 +346,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Typhon Prime • Uplift",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Uplift [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -359,7 +359,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Standfast",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Standfast [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -371,7 +371,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Resolve",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Resolve [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -383,7 +383,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Volition",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Volition [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -395,7 +395,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Covenanter Wings • Eternity",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Wings • Eternity [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -408,7 +408,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Hastur Whispering Zephyr",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Hastur's Whispering Zephyr [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -420,7 +420,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Hastur Turbulent Cyclone",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Hastur's Turbulent Cyclone [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -433,7 +433,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Feathered Serpent's Resolve",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Feathered Serpent's Resolve [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -448,9 +448,10 @@ const anemo: DemonWedge[] = [
 		displayName: "Feathered Serpent's Eternity",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
-			name: "Shop - Trail Rank 50",
+		blueprint: {
+			name: "Feathered Serpent's Eternity",
 			materialsPerCopy: 1,
+			source: "Shop - Trail Rank 50",
 		},
 		additionalMaterials: [
 			{ name: "Track-Shift Module", quantityPerCopy: 2 },
@@ -468,7 +469,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Changeling Volition",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Pan's Inspo [Blue]",
 			rarity: "Blue",
 			materialsPerCopy: 10,
@@ -480,7 +481,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Changeling Resolve",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Phoenix's Wings [Blue]",
 			rarity: "Blue",
 			materialsPerCopy: 10,
@@ -493,7 +494,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Siren Wings • Inspo • Volition",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Changeling's Volition [Gold]",
 			rarity: "Gold",
 			materialsPerCopy: 1,
@@ -509,7 +510,7 @@ const anemo: DemonWedge[] = [
 		displayName: "Siren Wings • Inspo • Resolve",
 		category: "Characters",
 		element: "Anemo",
-		blueprintSource: {
+		blueprint: {
 			name: "Changeling's Resolve [Gold]",
 			rarity: "Gold",
 			materialsPerCopy: 1,
@@ -528,7 +529,7 @@ const electro: DemonWedge[] = [
 		displayName: "Griffin Thunder • Wildfire",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Griffin's Thunder • Wildfire [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -540,7 +541,7 @@ const electro: DemonWedge[] = [
 		displayName: "Griffin Thunder • Midnight Sun",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Griffin's Squall • Midnight Sun [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -553,7 +554,7 @@ const electro: DemonWedge[] = [
 		displayName: "Typhon Prime • Morale",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Morale [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -565,7 +566,7 @@ const electro: DemonWedge[] = [
 		displayName: "Typhon Prime • Resolve",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Resolve [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -577,7 +578,7 @@ const electro: DemonWedge[] = [
 		displayName: "Typhon Prime • Huntdown",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Huntdown [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -589,7 +590,7 @@ const electro: DemonWedge[] = [
 		displayName: "Typhon Prime • Serenity",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Serenity [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -601,7 +602,7 @@ const electro: DemonWedge[] = [
 		displayName: "Typhon Prime • Uplift",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Uplift [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -614,7 +615,7 @@ const electro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Nirvana",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Nirvana [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -626,7 +627,7 @@ const electro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Morale",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Morale [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -638,7 +639,7 @@ const electro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Volition",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Volition [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -650,7 +651,7 @@ const electro: DemonWedge[] = [
 		displayName: "Covenanter Standfast • Eternity",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Standfast • Eternity [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -663,7 +664,7 @@ const electro: DemonWedge[] = [
 		displayName: "Summanus Ravaging Thunder",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Summanus's Ravaging Thunder [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -676,7 +677,7 @@ const electro: DemonWedge[] = [
 		displayName: "Kukulkan Spectrum",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Feathered Serpent's Spectrum [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -691,7 +692,7 @@ const electro: DemonWedge[] = [
 		displayName: "Kukulkan Volition",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Feathered Serpent's Volition [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -707,7 +708,7 @@ const electro: DemonWedge[] = [
 		displayName: "Changeling Volition",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Pan's Volition [Blue]",
 			rarity: "Blue",
 			materialsPerCopy: 10,
@@ -719,7 +720,7 @@ const electro: DemonWedge[] = [
 		displayName: "Changeling Morale",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Phoenix's Blaze [Blue]",
 			rarity: "Blue",
 			materialsPerCopy: 10,
@@ -732,7 +733,7 @@ const electro: DemonWedge[] = [
 		displayName: "Siren Wings • Inspo • Volition",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Changeling's Volition [Gold]",
 			rarity: "Gold",
 			materialsPerCopy: 1,
@@ -748,7 +749,7 @@ const electro: DemonWedge[] = [
 		displayName: "Siren Wings • Inspo • Morale",
 		category: "Characters",
 		element: "Electro",
-		blueprintSource: {
+		blueprint: {
 			name: "Changeling's Morale [Gold]",
 			rarity: "Gold",
 			materialsPerCopy: 1,
@@ -767,7 +768,7 @@ const pyro: DemonWedge[] = [
 		displayName: "Griffin Inferno • Wildfire",
 		category: "Characters",
 		element: "Pyro",
-		blueprintSource: {
+		blueprint: {
 			name: "Griffin's Inferno • Wildfire [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -779,7 +780,7 @@ const pyro: DemonWedge[] = [
 		displayName: "Griffin Inferno • Midnight Sun",
 		category: "Characters",
 		element: "Pyro",
-		blueprintSource: {
+		blueprint: {
 			name: "Griffin's Inferno • Midnight Sun [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -792,7 +793,7 @@ const pyro: DemonWedge[] = [
 		displayName: "Typhon Prime • Morale",
 		category: "Characters",
 		element: "Pyro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Morale [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -804,7 +805,7 @@ const pyro: DemonWedge[] = [
 		displayName: "Typhon Prime • Resolve",
 		category: "Characters",
 		element: "Pyro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Resolve [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -816,7 +817,7 @@ const pyro: DemonWedge[] = [
 		displayName: "Typhon Prime • Huntdown",
 		category: "Characters",
 		element: "Pyro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Huntdown [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -828,7 +829,7 @@ const pyro: DemonWedge[] = [
 		displayName: "Typhon Prime • Serenity",
 		category: "Characters",
 		element: "Pyro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Serenity [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -840,7 +841,7 @@ const pyro: DemonWedge[] = [
 		displayName: "Typhon Prime • Uplift",
 		category: "Characters",
 		element: "Pyro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Uplift [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -853,7 +854,7 @@ const pyro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Standfast",
 		category: "Characters",
 		element: "Pyro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Standfast [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -865,7 +866,7 @@ const pyro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Inspo",
 		category: "Characters",
 		element: "Pyro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Inspo [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -877,7 +878,7 @@ const pyro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Spectrum",
 		category: "Characters",
 		element: "Pyro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Spectrum [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -889,7 +890,7 @@ const pyro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Eternity",
 		category: "Characters",
 		element: "Pyro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Eternity [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -902,7 +903,7 @@ const pyro: DemonWedge[] = [
 		displayName: "Ifrit Devouring Wildfire",
 		category: "Characters",
 		element: "Pyro",
-		blueprintSource: {
+		blueprint: {
 			name: "Ifrit's Devouring Wildfire [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -917,7 +918,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Griffin Seawave • Wildfire",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Griffin's Seawave • Wildfire [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -929,7 +930,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Griffin Seawave • Midnight Sun",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Griffin's Seawave • Midnight Sun [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -942,7 +943,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Typhon Prime • Morale",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Morale [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -954,7 +955,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Typhon Prime • Resolve",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Resolve [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -966,7 +967,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Typhon Prime • Huntdown",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Huntdown [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -978,7 +979,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Typhon Prime • Serenity",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Serenity [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -990,7 +991,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Typhon Prime • Uplift",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Uplift [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1003,7 +1004,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Nirvana",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Nirvana [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1015,7 +1016,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Inspo",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Inspo [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1027,7 +1028,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Spectrum",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Spectrum [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1039,7 +1040,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Covenanter Wings • Volition",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Wings • Volition [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1052,7 +1053,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Bahamut Misty Veil",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Bahamut's Misty Veil [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1064,7 +1065,7 @@ const hydro: DemonWedge[] = [
 		displayName: "Bahamut Frosty Torrent",
 		category: "Characters",
 		element: "Hydro",
-		blueprintSource: {
+		blueprint: {
 			name: "Bahamut's Frosty Torrent [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1079,7 +1080,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Griffin Skylume • Wildfire",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Griffin's Skylume • Wildfire [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1091,7 +1092,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Griffin Skylume • Midnight Sun",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Griffin's Skylume • Midnight Sun [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1104,7 +1105,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Typhon Prime • Morale",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Morale [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1116,7 +1117,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Typhon Prime • Resolve",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Resolve [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1128,7 +1129,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Typhon Prime • Huntdown",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Huntdown [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1140,7 +1141,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Typhon Prime • Serenity",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Serenity [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1152,7 +1153,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Typhon Prime • Uplift",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Uplift [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1165,7 +1166,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Scorch",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Scorch [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1177,7 +1178,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Resolve",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Resolve [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1189,7 +1190,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Eternity",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Eternity [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1201,7 +1202,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Covenanter Nirvana • Volition",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Nirvana • Volition [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1214,7 +1215,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Helios Prismatic Neon",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Helios's Prismatic Neon [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1226,7 +1227,7 @@ const lumino: DemonWedge[] = [
 		displayName: "Helios Gleam & Glimmer",
 		category: "Characters",
 		element: "Lumino",
-		blueprintSource: {
+		blueprint: {
 			name: "Helios's Gleam & Glimmer [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1241,7 +1242,7 @@ const umbro: DemonWedge[] = [
 		displayName: "Griffin Nihility • Wildfire",
 		category: "Characters",
 		element: "Umbro",
-		blueprintSource: {
+		blueprint: {
 			name: "Griffin's Nihility • Wildfire [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1253,7 +1254,7 @@ const umbro: DemonWedge[] = [
 		displayName: "Griffin Nihility • Midnight Sun",
 		category: "Characters",
 		element: "Umbro",
-		blueprintSource: {
+		blueprint: {
 			name: "Griffin's Nihility • Midnight Sun [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1266,7 +1267,7 @@ const umbro: DemonWedge[] = [
 		displayName: "Typhon Prime • Morale",
 		category: "Characters",
 		element: "Umbro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Morale [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1278,7 +1279,7 @@ const umbro: DemonWedge[] = [
 		displayName: "Typhon Prime • Resolve",
 		category: "Characters",
 		element: "Umbro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Resolve [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1290,7 +1291,7 @@ const umbro: DemonWedge[] = [
 		displayName: "Typhon Prime • Huntdown",
 		category: "Characters",
 		element: "Umbro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Huntdown [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1302,7 +1303,7 @@ const umbro: DemonWedge[] = [
 		displayName: "Typhon Prime • Serenity",
 		category: "Characters",
 		element: "Umbro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Serenity [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1314,7 +1315,7 @@ const umbro: DemonWedge[] = [
 		displayName: "Typhon Prime • Uplift",
 		category: "Characters",
 		element: "Umbro",
-		blueprintSource: {
+		blueprint: {
 			name: "Typhon's Prime • Uplift [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1327,7 +1328,7 @@ const umbro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Scorch",
 		category: "Characters",
 		element: "Umbro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Scorch [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1339,7 +1340,7 @@ const umbro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Morale",
 		category: "Characters",
 		element: "Umbro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Morale [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1351,7 +1352,7 @@ const umbro: DemonWedge[] = [
 		displayName: "Covenanter Blaze • Spectrum",
 		category: "Characters",
 		element: "Umbro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Blaze • Spectrum [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1363,7 +1364,7 @@ const umbro: DemonWedge[] = [
 		displayName: "Covenanter Standfast • Inspo",
 		category: "Characters",
 		element: "Umbro",
-		blueprintSource: {
+		blueprint: {
 			name: "Covenanter's Standfast • Inspo [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1376,7 +1377,7 @@ const umbro: DemonWedge[] = [
 		displayName: "Arbiter Illusionary Sacrifice",
 		category: "Characters",
 		element: "Umbro",
-		blueprintSource: {
+		blueprint: {
 			name: "Arbiter's Illusionary Sacrifice [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 5,
@@ -1389,7 +1390,7 @@ const meele: DemonWedge[] = [
 		name: "Impetus",
 		displayName: "Cerberus V Impetus",
 		category: "Melee Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Cerberus's Impetus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1400,7 +1401,7 @@ const meele: DemonWedge[] = [
 		name: "Impetus • Focus",
 		displayName: "Cerberus V Impetus • Focus",
 		category: "Melee Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Cerberus's Impetus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 2,
@@ -1414,7 +1415,7 @@ const meele: DemonWedge[] = [
 		name: "Rage • Trammel",
 		displayName: "Cerberus V Rage • Trammel",
 		category: "Melee Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Cerberus's Rage [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1429,7 +1430,7 @@ const meele: DemonWedge[] = [
 		name: "Celerity",
 		displayName: "Cerberus VI Celerity",
 		category: "Melee Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Fenrir's Brutality [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1440,7 +1441,7 @@ const meele: DemonWedge[] = [
 		name: "Threshold",
 		displayName: "Cerberus VI Threshold",
 		category: "Melee Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Fenrir's Patrol [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1452,7 +1453,7 @@ const meele: DemonWedge[] = [
 		name: "Edge",
 		displayName: "Cerberus VIII Edge",
 		category: "Melee Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Cerberus's Impetus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1466,7 +1467,7 @@ const meele: DemonWedge[] = [
 		name: "Penetration",
 		displayName: "Cerberus VIII Penetration",
 		category: "Melee Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Cerberus's Impetus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1480,7 +1481,7 @@ const meele: DemonWedge[] = [
 		name: "Crusher",
 		displayName: "Cerberus VIII Crusher",
 		category: "Melee Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Cerberus's Impetus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1497,7 +1498,7 @@ const ranged: DemonWedge[] = [
 		name: "Impetus",
 		displayName: "Lilith VII Impetus",
 		category: "Ranged Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Lilith's Impetus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1508,7 +1509,7 @@ const ranged: DemonWedge[] = [
 		name: "Impetus • Focus",
 		displayName: "Lilith VII Impetus • Focus",
 		category: "Ranged Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Lilith's Impetus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 2,
@@ -1522,7 +1523,7 @@ const ranged: DemonWedge[] = [
 		name: "Rage • Trammel",
 		displayName: "Lilith VII Rage • Trammel",
 		category: "Ranged Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Lilith's Rage [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1537,7 +1538,7 @@ const ranged: DemonWedge[] = [
 		name: "Celerity",
 		displayName: "Lilith VIII Celerity",
 		category: "Ranged Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Fafnir's Frugality [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1548,7 +1549,7 @@ const ranged: DemonWedge[] = [
 		name: "Foldover",
 		displayName: "Lilith VIII Foldover",
 		category: "Ranged Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Fafnir's Loadout [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1563,7 +1564,7 @@ const ranged: DemonWedge[] = [
 		name: "Edge",
 		displayName: "Lilith IX Edge",
 		category: "Ranged Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Lilith's Impetus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1577,7 +1578,7 @@ const ranged: DemonWedge[] = [
 		name: "Penetration",
 		displayName: "Lilith IX Penetration",
 		category: "Ranged Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Lilith's Impetus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1591,7 +1592,7 @@ const ranged: DemonWedge[] = [
 		name: "Crusher",
 		displayName: "Lilith IX Crusher",
 		category: "Ranged Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Lilith's Impetus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1607,7 +1608,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Impetus",
 		displayName: "Eldritch Cerberus VIII Impetus",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Impetus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1618,7 +1619,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Focus",
 		displayName: "Eldritch Cerberus VIII Focus",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Focus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1629,7 +1630,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Rage",
 		displayName: "Eldritch Cerberus VIII Rage",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Rage [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1640,7 +1641,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Celerity",
 		displayName: "Eldritch Cerberus VIII Celerity",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Celerity [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1652,7 +1653,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Threshold",
 		displayName: "Eldritch Cerberus IX Threshold",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Threshold [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1663,7 +1664,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Trammel",
 		displayName: "Eldritch Cerberus IX Trammel",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Trammel [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1675,7 +1676,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Edge",
 		displayName: "Eldritch Cerberus X Edge",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Edge [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1686,7 +1687,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Penetration",
 		displayName: "Eldritch Cerberus X Penetration",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Penetration [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1697,7 +1698,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Crusher",
 		displayName: "Eldritch Cerberus X Crusher",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Crusher [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1709,7 +1710,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Impact • Threshold",
 		displayName: "Eldritch Cerberus XI Impact • Threshold",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Threshold [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 2,
@@ -1726,7 +1727,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Dropshot • Swift Dropshot",
 		displayName: "Eldritch Cerberus XI Dropshot • Swift Dropshot",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Edge [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 2,
@@ -1743,7 +1744,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Blitz • Flash Strike",
 		displayName: "Eldritch Cerberus XI Blitz • Flash Strike",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Edge [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 2,
@@ -1760,7 +1761,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Respite",
 		displayName: "Eldritch Cerberus XI Respite",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Crusher [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 2,
@@ -1777,7 +1778,7 @@ const meeleCosonance: DemonWedge[] = [
 		name: "Fervor",
 		displayName: "Eldritch Cerberus XI Respite",
 		category: "Melee Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Cerberus's Rage [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 2,
@@ -1796,7 +1797,7 @@ const rangedCosonance: DemonWedge[] = [
 		name: "Impetus",
 		displayName: "Eldritch Lilith VIII Impetus",
 		category: "Ranged Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Lilith's Impetus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1807,7 +1808,7 @@ const rangedCosonance: DemonWedge[] = [
 		name: "Focus",
 		displayName: "Eldritch Lilith VIII Focus",
 		category: "Ranged Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Lilith's Focus [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1818,7 +1819,7 @@ const rangedCosonance: DemonWedge[] = [
 		name: "Rage",
 		displayName: "Eldritch Lilith VIII Rage",
 		category: "Ranged Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Lilith's Rage [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1829,7 +1830,7 @@ const rangedCosonance: DemonWedge[] = [
 		name: "Celerity",
 		displayName: "Eldritch Lilith VIII Celerity",
 		category: "Ranged Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Lilith's Celerity [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1841,7 +1842,7 @@ const rangedCosonance: DemonWedge[] = [
 		name: "Foldover",
 		displayName: "Eldritch Lilith IX Foldover",
 		category: "Ranged Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Lilith's Foldover [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1852,7 +1853,7 @@ const rangedCosonance: DemonWedge[] = [
 		name: "Trammel",
 		displayName: "Eldritch Lilith IX Trammel",
 		category: "Ranged Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Lilith's Trammel [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1864,7 +1865,7 @@ const rangedCosonance: DemonWedge[] = [
 		name: "Edge",
 		displayName: "Eldritch Lilith X Edge",
 		category: "Ranged Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Lilith's Edge [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1875,7 +1876,7 @@ const rangedCosonance: DemonWedge[] = [
 		name: "Penetration",
 		displayName: "Eldritch Lilith X Penetration",
 		category: "Ranged Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Lilith's Penetration [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
@@ -1886,7 +1887,7 @@ const rangedCosonance: DemonWedge[] = [
 		name: "Crusher",
 		displayName: "Eldritch Lilith X Crusher",
 		category: "Ranged Consonance Weapon",
-		blueprintSource: {
+		blueprint: {
 			name: "Eldritch Lilith's Crusher [Purple]",
 			rarity: "Purple",
 			materialsPerCopy: 3,
