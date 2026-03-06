@@ -78,6 +78,7 @@ import type {
 	SkillUpgradeConfig,
 } from "../types/upgradeConfig";
 import type { SkillLevelCost } from "../types/skill";
+import type { Rarity } from "../types/rarities";
 
 interface Props {
 	upgradeConfig: CharacterUpgradeConfig;
@@ -206,10 +207,9 @@ function toSkillLevel(m: SkillLevelingMaterial) {
 	} as SkillLevelCost;
 }
 
-type materialColor = "Green" | "Blue" | "Purple" | "Gold";
 type materialType = "Ascension" | "Forging";
 
-function getMaterialName(color: materialColor, type: "Ascension" | "Forging") {
+function getMaterialName(color: Rarity, type: "Ascension" | "Forging") {
 	if (type == "Ascension") {
 		switch (color) {
 			case "Green":
@@ -242,7 +242,7 @@ const { getAmount } = useInventory();
 
 function getMissingMaterialString(
 	amount: number,
-	color: materialColor,
+	color: Rarity,
 	type: materialType
 ) {
 	const { plannerMode } = useUiStore();

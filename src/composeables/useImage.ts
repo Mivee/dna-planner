@@ -1,9 +1,12 @@
 import { characters } from "../definitions/character";
 import { daemonWedges } from "../definitions/daemonWedge";
 import { weapons } from "../definitions/weapon";
+import type { ElementColor } from "../types/elementColor";
+import type { Rarity } from "../types/rarities";
 
 type ImageType = "character" | "weapon" | "element" | "wedge";
 export type CharacterImageVariant = "portrait" | "splashart";
+export type ImageVariant = CharacterImageVariant | ElementColor | null;
 
 interface ImageEntry {
 	type: ImageType;
@@ -11,7 +14,6 @@ interface ImageEntry {
 }
 
 const elements = ["Pyro", "Anemo", "Hydro", "Lumino", "Umbro", "Electro"];
-const defaultWedgeImageCode = "T_Mod_Mephisto01_Purple";
 
 const imageMap = new Map<string, ImageEntry>([
 	...characters.map(
@@ -50,7 +52,7 @@ const imageMap = new Map<string, ImageEntry>([
 	),
 ]);
 
-export function useImage(name: string, variant?: CharacterImageVariant) {
+export function useImage(name: string, variant?: ImageVariant) {
 	const entry = imageMap.get(name);
 	if (!entry?.imageCode) {
 		return null;
@@ -58,13 +60,16 @@ export function useImage(name: string, variant?: CharacterImageVariant) {
 
 	switch (entry.type) {
 		case "character":
-			return getCharacterImage(entry.imageCode, variant);
+			return getCharacterImage(
+				entry.imageCode,
+				variant as CharacterImageVariant
+			);
 		case "weapon":
 			return getWeaponImage(entry.imageCode);
 		case "element":
 			return getElementImage(entry.imageCode);
 		case "wedge":
-			return getWedgeImage(entry.imageCode);
+			return getWedgeImage(entry.imageCode, variant as Rarity);
 		default:
 			return null;
 	}
@@ -88,12 +93,14 @@ function getElementImage(imageCode: string) {
 	return "assets/elements/" + imageCode + ".png";
 }
 
-function getWedgeImage(imageCode: string) {
-	if (imageCode) {
-		return "assets/wedges/T_Mod_" + imageCode + "01.png";
+function getWedgeImage(imageCode: string, rarity?: Rarity) {
+	if (!imageCode) return null;
+
+	if (rarity) {
+		return "assets/wedges/T_Mod_" + imageCode + "01_" + rarity + ".png";
 	}
 
-	return null;
+	return "assets/wedges/T_Mod_" + imageCode + "01.png";
 }
 
 function getPrefix(variant?: CharacterImageVariant) {

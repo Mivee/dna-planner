@@ -35,8 +35,8 @@ export type DaemonWedgeType =
 	| "Sphinx"
 	| "Summanus"
 	| "Typhon"
-	| "Yatagarasus";
-
+	| "Yatagarasus"
+	| "Changeling"; // manually added
 export interface BlueprintSource {
 	name: string;
 	rarity: BlueprintRarity;

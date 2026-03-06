@@ -136,6 +136,7 @@ import ResultStatRow from "./resultStatRow.vue";
 import { useResultCardActions } from "../composeables/useResultCardActions";
 import { useImage } from "../composeables/useImage";
 import BaseResultCard from "./baseResultCard.vue";
+import { useElementColor } from "../composeables/useElementColor";
 
 interface Props {
 	config: DaemonWedgeUpgradeConfig;
@@ -166,6 +167,10 @@ const summary = computed(() => {
 
 const imgSource = computed(() => {
 	if (!props.config.name) return null;
+	if (wedge.value) {
+		const color = useElementColor(wedge.value.element);
+		return useImage(props.config.name, color);
+	}
 	return useImage(props.config.name);
 });
 
