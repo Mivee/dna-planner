@@ -49,22 +49,6 @@
 				</div>
 			</div>
 
-			<!-- Carmine Globules -->
-			<div>
-				<h4
-					class="text-xs font-semibold text-on-secondary uppercase tracking-wider mb-3">
-					Demon Wedge Materials
-				</h4>
-				<div class="flex flex-col gap-2">
-					<InventoryMaterial
-						name="Carmine Globules"
-						icon-class="fas fa-gem"
-						icon-color="text-purple-400"
-						:quantity="getItemQuantity('Carmine Globules')"
-						@update="updateQuantity" />
-				</div>
-			</div>
-
 			<div class="flex flex-col gap-6 max-h-[60vh] overflow-y-auto pr-2">
 				<div
 					v-for="section in groupedInventorySections"
@@ -103,6 +87,7 @@
 import { computed, ref } from "vue";
 import { useInventory } from "../stores/inventory";
 import { elementUpgradeMaterials } from "../definitions/character";
+import { demonWedges } from "../definitions/demonWedge";
 import { weaponUpgradeMaterials } from "../definitions/weapon";
 import InventoryMaterial from "./inventoryMaterial.vue";
 import InventorySearch from "./inventorySearch.vue";
@@ -143,7 +128,19 @@ const rarityLabels: Record<RarityKey, string> = {
 };
 
 const baseCurrencyItems = ["Coins", "XP", "Weapon XP"];
-const demonWedgeItems = ["Carmine Globules"];
+const demonWedgeItems = computed(() => {
+	const items = new Set<string>(["Carmine Globules"]);
+
+	for (const wedge of demonWedges) {
+		items.add(wedge.displayName);
+
+		for (const material of wedge.additionalMaterials ?? []) {
+			items.add(material.name);
+		}
+	}
+
+	return Array.from(items).sort((a, b) => a.localeCompare(b));
+});
 
 function getTieredWeaponAscensionName(
 	materialName: string,
@@ -303,14 +300,36 @@ const materialRarityMap = computed(() => {
 		);
 	});
 
+	const rarityToKey: Record<string, RarityKey> = {
+		Green: "common",
+		Blue: "rare",
+		Purple: "epic",
+		Gold: "legendary",
+	};
+
+	for (const wedge of demonWedges) {
+		setRarity(wedge.displayName, "legendary");
+
+		for (const material of wedge.additionalMaterials ?? []) {
+			const rarity = material.rarity
+				? (rarityToKey[material.rarity] ?? "misc")
+				: "misc";
+			setRarity(material.name, rarity);
+		}
+	}
+
 	baseCurrencyItems.forEach((name) => setRarity(name, "misc"));
-	demonWedgeItems.forEach((name) => setRarity(name, "misc"));
+	demonWedgeItems.value.forEach((name) => {
+		if (!rarityByName.has(name)) {
+			setRarity(name, "misc");
+		}
+	});
 
 	return rarityByName;
 });
 
 const knownItems = computed(() => {
-	const items = [...baseCurrencyItems, ...demonWedgeItems];
+	const items = [...baseCurrencyItems, ...demonWedgeItems.value];
 	return [
 		...items,
 		...ascensionMaterialNames.value,
@@ -329,6 +348,10 @@ const groupedInventorySections = computed<RaritySection[]>(() => {
 	const seen = new Set<string>();
 
 	knownItems.value.forEach((name) => {
+		if (baseCurrencyItems.includes(name)) {
+			return;
+		}
+
 		if (seen.has(name)) {
 			return;
 		}
@@ -339,6 +362,7 @@ const groupedInventorySections = computed<RaritySection[]>(() => {
 		}
 
 		const rarity = materialRarityMap.value.get(name) ?? "misc";
+
 		buckets[rarity].push(name);
 		seen.add(name);
 	});
@@ -418,7 +442,7 @@ function getMaterialMeta(name: string): {
 		return { iconClass: "fas fa-coins", iconColor: "text-accent" };
 	}
 
-	if (demonWedgeItems.includes(name)) {
+	if (demonWedgeItems.value.includes(name)) {
 		return { iconClass: "fas fa-gem", iconColor: "text-purple-400" };
 	}
 

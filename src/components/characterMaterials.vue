@@ -62,6 +62,7 @@
 </template>
 <script lang="ts" setup>
 import { useCharacter } from "../composables/useCharacter";
+import { useInventoryModeAdjustment } from "../composables/useInventoryModeAdjustment";
 import { characterLevelingMaterials } from "../definitions/characterAscension";
 import { computed } from "vue";
 import {
@@ -71,15 +72,12 @@ import {
 import type { SkillLevelingMaterial } from "../types/skillLeveling";
 import type { CharacterLevelingMaterial } from "../types/characterLeveling";
 import type { LevelRange } from "../types/range";
-import { useInventory } from "../stores/inventory";
-import { useUiStore } from "../stores/ui";
 import type {
 	CharacterUpgradeConfig,
 	SkillUpgradeConfig,
 } from "../types/upgradeConfig";
 import type { SkillLevelCost } from "../types/skill";
 import type { Rarity } from "../types/rarities";
-import { storeToRefs } from "pinia";
 
 interface Props {
 	upgradeConfig: CharacterUpgradeConfig;
@@ -239,20 +237,15 @@ function getMaterialName(color: Rarity, type: "Ascension" | "Forging") {
 	return null;
 }
 
-const { getAmount } = useInventory();
-const { plannerMode } = storeToRefs(useUiStore());
+const { getAdjustedAmount } = useInventoryModeAdjustment();
+
 function getMissingMaterialString(
 	amount: number,
 	color: Rarity,
 	type: materialType
 ) {
 	const materialName = getMaterialName(color, type);
-
-	let missing = amount;
-	if (plannerMode.value == "Inventory") {
-		const inventoryAmount = getAmount(materialName!);
-		missing = Math.max(amount - inventoryAmount, 0);
-	}
+	const missing = getAdjustedAmount(materialName, amount);
 
 	return `${missing}x ${materialName}`;
 }

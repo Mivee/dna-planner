@@ -78,10 +78,10 @@
 			v-if="isDemonWedgeConfigVisible"
 			@saved="closeDemonWedgeModal"
 			@closed="closeDemonWedgeModal" />
-		<Modal v-if="isInventoryVisible" v-model:is-open="isInventoryVisible">
-			<Inventory />
-		</Modal>
-		<Modal v-if="isInventoryVisible" v-model:is-open="isInventoryVisible">
+		<Modal
+			v-if="isInventoryVisible"
+			v-model:is-open="isInventoryVisible"
+			:size="'xl'">
 			<Inventory />
 		</Modal>
 	</div>

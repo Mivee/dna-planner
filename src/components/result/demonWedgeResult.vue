@@ -65,37 +65,37 @@
 						</div>
 					</template>
 					<template #value>
-						{{ summary.carmineGlobules.toLocaleString() }}
+						{{ adjustedCarmineGlobules.toLocaleString() }}
 					</template>
 				</ResultStatRow>
 
 				<div
-					v-if="summary.blueprints.size > 0"
+					v-if="blueprintsArray.length > 0"
 					class="border-t border-white/10 pt-3 mt-2">
 					<span
 						class="text-xs font-semibold text-white-muted uppercase mb-2">
 						Blueprints
 					</span>
 					<div
-						v-for="[name, cost] in summary.blueprints"
-						:key="name"
+						v-for="blueprint in blueprintsArray"
+						:key="blueprint.name"
 						class="flex justify-between items-center py-1">
 						<div class="flex items-center gap-2">
 							<i class="fas fa-scroll w-5 text-yellow-400"></i>
 							<span class="text-xs text-white-muted">
-								{{ name }}
+								{{ blueprint.name }}
 							</span>
 
-							<Tooltip icon="fas fa-info" v-if="cost.source">
+							<Tooltip icon="fas fa-info" v-if="blueprint.source">
 								<template #text>
 									<div>
-										{{ cost.source }}
+										{{ blueprint.source }}
 									</div>
 								</template>
 							</Tooltip>
 						</div>
 						<span class="text-xs font-bold">
-							{{ cost.quantity }}
+							{{ blueprint.quantity }}
 						</span>
 					</div>
 				</div>
@@ -142,19 +142,21 @@
 import type { DemonWedgeUpgradeConfig } from "../../types/upgradeConfig";
 import { computed } from "vue";
 import { useDemonWedge } from "../../composables/useDemonWedge";
+import { useInventoryModeAdjustment } from "../../composables/useInventoryModeAdjustment";
 import DemonWedgeBuildConfiguration from "../demonWedgeBuildConfiguration.vue";
 import ResultStatRow from "./resultStatRow.vue";
 import { useResultCardActions } from "../../composables/useResultCardActions";
 import { useImage } from "../../composables/useImage";
 import BaseResultCard from "./baseResultCard.vue";
 import { useElementColor } from "../../composables/useElementColor";
-import Tooltip from "../ui/tooltip.vue";
+import Tooltip from "../tooltip.vue";
 
 interface Props {
 	config: DemonWedgeUpgradeConfig;
 }
 const props = defineProps<Props>();
 const { getDemonWedge, buildSummary } = useDemonWedge();
+const { getAdjustedAmount } = useInventoryModeAdjustment();
 
 const { isEditing, edit, remove, toggleIsEditing } = useResultCardActions({
 	name: () => props.config.name || "Demon Wedge",
@@ -186,12 +188,44 @@ const imgSource = computed(() => {
 	return useImage(props.config.name);
 });
 
+function getAdjustedQuantity(name: string, amount: number): number {
+	return getAdjustedAmount(name, amount);
+}
+
+const adjustedCarmineGlobules = computed(() => {
+	if (!summary.value) {
+		return 0;
+	}
+
+	return getAdjustedQuantity(
+		"Carmine Globules",
+		summary.value.carmineGlobules
+	);
+});
+
+const blueprintsArray = computed(() => {
+	if (!summary.value) {
+		return [];
+	}
+
+	return Array.from(summary.value.blueprints.entries()).map(
+		([name, cost]) => ({
+			name,
+			source: cost.source,
+			quantity: getAdjustedQuantity(name, cost.quantity),
+		})
+	);
+});
+
 const materialsArray = computed(() => {
 	if (!summary.value) return [];
 	return Array.from(summary.value.materials.entries()).map(
 		([name, cost]) => ({
 			name,
-			cost,
+			cost: {
+				...cost,
+				quantity: getAdjustedQuantity(name, cost.quantity),
+			},
 		})
 	);
 });

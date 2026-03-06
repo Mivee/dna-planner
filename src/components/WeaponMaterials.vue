@@ -93,11 +93,10 @@
 import type { BaseUpgradeConfig } from "../types/upgradeConfig";
 import { computed } from "vue";
 import { useWeapon } from "../composables/useWeapon";
+import { useInventoryModeAdjustment } from "../composables/useInventoryModeAdjustment";
 import { weaponLevelingMaterials } from "../definitions/weapon";
 import type { LevelRange } from "../types/range";
 import type { WeaponLevelingMaterial } from "../types/ascension";
-import { useInventory } from "../stores/inventory";
-import { useUiStore } from "../stores/ui";
 
 interface Props {
 	upgradeConfig: BaseUpgradeConfig;
@@ -163,15 +162,9 @@ function getAscensionMaterialName(
 	return `Advanced Weapon Component: ${materialType}`;
 }
 
-const { getAmount } = useInventory();
-const uiStore = useUiStore();
+const { getAdjustedAmount } = useInventoryModeAdjustment();
 
 function getMissingAmount(amount: number, materialName: string | null) {
-	if (uiStore.plannerMode !== "Inventory" || !materialName) {
-		return amount;
-	}
-
-	const inventoryAmount = getAmount(materialName);
-	return Math.max(amount - inventoryAmount, 0);
+	return getAdjustedAmount(materialName, amount);
 }
 </script>

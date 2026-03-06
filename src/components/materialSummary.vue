@@ -45,7 +45,7 @@
 					<span class="font-bold text-purple-400 text-sm">
 						{{
 							getAdjustedQuantity(
-								"Carmine Globule",
+								"Carmine Globules",
 								totalMaterials.carmineGlobules
 							).toLocaleString()
 						}}
@@ -595,7 +595,7 @@ const totalMaterials = computed(() => {
 			summary.blueprints.forEach((blueprintQty, blueprintName) => {
 				const existing = totals.blueprintDetails.get(blueprintName);
 				totals.blueprintDetails.set(blueprintName, {
-					quantity: (existing?.quantity || 0) + blueprintQty,
+					quantity: (existing?.quantity || 0) + blueprintQty.quantity,
 				});
 			});
 
@@ -603,7 +603,7 @@ const totalMaterials = computed(() => {
 			summary.materials.forEach((materialQty, materialName) => {
 				const existing = totals.demonWedgeMaterials.get(materialName);
 				totals.demonWedgeMaterials.set(materialName, {
-					quantity: (existing?.quantity || 0) + materialQty,
+					quantity: (existing?.quantity || 0) + materialQty.quantity,
 				});
 			});
 		} catch (error) {

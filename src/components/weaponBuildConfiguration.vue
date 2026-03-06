@@ -11,12 +11,17 @@
 						v-model="config.name"
 						class="w-full px-4 py-2 bg-tertiary border border-white/10 rounded-md text-on-primary disabled:opacity-60 disabled:cursor-not-allowed">
 						<option value="">Select a weapon</option>
-						<option
-							v-for="weapon in weapons"
-							:key="weapon.name"
-							:value="weapon.name">
-							{{ weapon.name }}
-						</option>
+						<optgroup
+							v-for="group in groupedWeapons"
+							:key="group.weaponType"
+							:label="group.weaponType">
+							<option
+								v-for="weapon in group.weapons"
+								:key="weapon.name"
+								:value="weapon.name">
+								{{ weapon.name }}
+							</option>
+						</optgroup>
 					</select>
 				</div>
 
@@ -38,6 +43,7 @@
 import { ref, computed } from "vue";
 import type { WeaponUpgradeConfig } from "../types/upgradeConfig";
 import { weapons, weaponLevelingMaterials } from "../definitions/weapon";
+import type { Weapon } from "../types/weapon";
 import RangeSelect from "./rangeSelect.vue";
 import Modal from "./modal.vue";
 import { useUiStore } from "../stores/ui";
@@ -55,6 +61,24 @@ const emit = defineEmits<{
 }>();
 
 const { addConfiguration } = useUiStore();
+
+const groupedWeapons = computed(() => {
+	const grouped = new Map<Weapon["weaponType"], Weapon[]>();
+
+	for (const weapon of weapons) {
+		if (!grouped.has(weapon.weaponType)) {
+			grouped.set(weapon.weaponType, []);
+		}
+		grouped.get(weapon.weaponType)!.push(weapon);
+	}
+
+	return Array.from(grouped.entries()).map(
+		([weaponType, groupedWeapons]) => ({
+			weaponType,
+			weapons: groupedWeapons,
+		})
+	);
+});
 
 const weaponsLevels = computed(() =>
 	weaponLevelingMaterials.map((x) => x.level)
