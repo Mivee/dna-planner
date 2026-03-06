@@ -8,7 +8,7 @@ export type ElementType =
 	| "Lumino"
 	| "Umbro";
 
-export type DaemonWedgeCategory =
+export type DemonWedgeCategory =
 	| "Characters"
 	| "Melee Weapon"
 	| "Ranged Weapon"
@@ -17,7 +17,7 @@ export type DaemonWedgeCategory =
 
 export type BlueprintRarity = "Blue" | "Purple" | "Gold";
 
-export type DaemonWedgeType =
+export type DemonWedgeType =
 	| "Anubis"
 	| "Cerberus"
 	| "Bahamut"
@@ -51,26 +51,26 @@ export interface AdditionalMaterial {
 	rarity?: Rarity;
 }
 
-export interface DaemonWedge {
-	type: DaemonWedgeType; // e.g., "Phoenix V", "Siren II", "Cerberus VIII"
+export interface DemonWedge {
+	type: DemonWedgeType; // e.g., "Phoenix V", "Siren II", "Cerberus VIII"
 	name: string; // e.g., "Nirvana", "Blessing", "Impetus"
 	displayName: string; // Combined: "Phoenix V Nirvana"
-	category: DaemonWedgeCategory;
+	category: DemonWedgeCategory;
 	element?: ElementType; // Only for Characters category
 	blueprintSource: BlueprintSource;
 	additionalMaterials?: AdditionalMaterial[]; // Optional material2, material3
 }
 
 // Cumulative costs including forging
-export interface DaemonWedgeLevelCost {
+export interface DemonWedgeLevelCost {
 	level: number; // 0-10
 	coins: number;
 	carmineGlobules: number;
 	blueprintCopies: number; // Number of blueprint copies needed
 }
 
-// Daemon wedge cost summary
-export interface DaemonWedgeCostSummary {
+// Demon wedge cost summary
+export interface DemonWedgeCostSummary {
 	coins: number;
 	carmineGlobules: number;
 	blueprints: Map<string, number>; // Blueprint name -> quantity
