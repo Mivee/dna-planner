@@ -4,9 +4,10 @@
 			<img v-if="imgSource" :src="imgSource" class="w-full" />
 
 			<select v-model="internalUpgradeConfig.name">
-				<option v-for="value in characters">
-					{{ value.name }}
-				</option>
+				<option
+					v-for="value in sortedCharacters"
+					:label="value.name"
+					:value="value.name"></option>
 			</select>
 			<div>
 				<RangeSelect
@@ -38,6 +39,7 @@ import { useUiStore } from "../stores/ui";
 import { useClone, useUUID } from "../composables/utils";
 import RangeSelect from "./rangeSelect.vue";
 import { useImage } from "../composables/useImage";
+import { sortBy } from "../composables/utils";
 
 interface Props {
 	upgradeConfig?: CharacterUpgradeConfig;
@@ -68,6 +70,10 @@ const imgSource = computed(() => {
 const isOpen = ref(true);
 
 const hasConfigSelected = ref(false);
+
+const sortedCharacters = computed(() => {
+	return sortBy(characters, "name");
+});
 
 function onSave() {
 	hasConfigSelected.value = true;

@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, onMounted, onUnmounted } from "vue";
 
 type ModalSize = "sm" | "md" | "lg" | "xl";
 
@@ -81,6 +81,19 @@ function save() {
 	emit("update:isOpen", false);
 	emit("save");
 }
+
+function closeOnEscape(event: KeyboardEvent) {
+	if (event.key === "Escape") {
+		close();
+	}
+}
+
+onMounted(() => {
+	document.addEventListener("keydown", closeOnEscape);
+});
+onUnmounted(() => {
+	document.removeEventListener("keydown", closeOnEscape);
+});
 </script>
 
 <style scoped>

@@ -15,7 +15,7 @@
 			Blue Elem Mats
 			{{
 				getMissingMaterialString(
-					summary.character.ascensionMaterials.T1_Green,
+					summary.character.ascensionMaterials.T2_Blue,
 					"Blue",
 					"Ascension"
 				)
@@ -24,7 +24,7 @@
 		<div>
 			Purple Elem Mats ({{
 				getMissingMaterialString(
-					summary.character.ascensionMaterials.T1_Green,
+					summary.character.ascensionMaterials.T3_Purple,
 					"Purple",
 					"Ascension"
 				)
@@ -79,6 +79,7 @@ import type {
 } from "../types/upgradeConfig";
 import type { SkillLevelCost } from "../types/skill";
 import type { Rarity } from "../types/rarities";
+import { storeToRefs } from "pinia";
 
 interface Props {
 	upgradeConfig: CharacterUpgradeConfig;
@@ -239,18 +240,16 @@ function getMaterialName(color: Rarity, type: "Ascension" | "Forging") {
 }
 
 const { getAmount } = useInventory();
-
+const { plannerMode } = storeToRefs(useUiStore());
 function getMissingMaterialString(
 	amount: number,
 	color: Rarity,
 	type: materialType
 ) {
-	const { plannerMode } = useUiStore();
-
 	const materialName = getMaterialName(color, type);
 
 	let missing = amount;
-	if (plannerMode == "Inventory") {
+	if (plannerMode.value == "Inventory") {
 		const inventoryAmount = getAmount(materialName!);
 		missing = Math.max(amount - inventoryAmount, 0);
 	}

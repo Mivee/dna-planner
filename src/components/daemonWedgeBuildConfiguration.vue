@@ -1,8 +1,5 @@
 <template>
-	<Modal
-		v-model:isOpen="isOpen"
-		:title="isEditing ? 'Edit Daemon Wedge' : 'Add Daemon Wedge'"
-		@save="saveConfiguration">
+	<Modal v-model:isOpen="isOpen" @save="saveConfiguration">
 		<div class="space-y-4">
 			<div>
 				<label class="block text-sm font-medium mb-2 text-white-muted">
@@ -10,7 +7,6 @@
 				</label>
 				<select
 					v-model="selectedWedge"
-					:disabled="isEditing"
 					class="w-full p-3 bg-secondary-light border border-white/20 rounded-lg text-white focus:border-accent focus:ring-1 focus:ring-accent transition-all disabled:opacity-60 disabled:cursor-not-allowed">
 					<option value="">Select a daemon wedge...</option>
 					<optgroup
@@ -62,20 +58,6 @@
 					</select>
 				</div>
 			</div>
-
-			<div class="flex justify-end gap-3 pt-4 border-t border-white/20">
-				<button
-					@click="close"
-					class="px-5 py-2 bg-secondary-light border border-white/20 rounded-lg text-white-muted hover:bg-secondary hover:border-white/30 transition-all">
-					Cancel
-				</button>
-				<button
-					@click="saveConfiguration"
-					:disabled="!canAdd"
-					class="px-5 py-2 bg-accent text-primary font-bold rounded-lg hover:bg-accent-light transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-accent">
-					{{ isEditing ? "Save" : "Add" }}
-				</button>
-			</div>
 		</div>
 	</Modal>
 </template>
@@ -101,7 +83,6 @@ const emit = defineEmits<{
 
 const uiStore = useUiStore();
 const isOpen = ref(true);
-const isEditing = computed(() => !!props.upgradeConfig);
 
 // Initialize form values from prop if editing
 const selectedWedge = ref(props.upgradeConfig?.name || "");
