@@ -1,4 +1,4 @@
-import { demonWedges, DAEMON_WEDGE_COSTS } from "../definitions/demonWedge";
+import { demonWedges, demon_WEDGE_COSTS } from "../definitions/demonWedge";
 import type { DemonWedge, DemonWedgeCostSummary } from "../types/demonWedge";
 
 export function useDemonWedge() {
@@ -13,7 +13,7 @@ export function useDemonWedge() {
 	 * Get cumulative cost at a specific level
 	 */
 	function getCostAtLevel(level: number) {
-		const cost = DAEMON_WEDGE_COSTS.find((c) => c.level === level);
+		const cost = demon_WEDGE_COSTS.find((c) => c.level === level);
 		if (!cost) {
 			throw new Error(`Invalid demon wedge level: ${level}`);
 		}

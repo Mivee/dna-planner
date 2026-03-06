@@ -1,7 +1,7 @@
 import type { DemonWedge, DemonWedgeLevelCost } from "../types/demonWedge";
 
 // Cumul ative costs including forging costs
-export const DAEMON_WEDGE_COSTS: DemonWedgeLevelCost[] = [
+export const demon_WEDGE_COSTS: DemonWedgeLevelCost[] = [
 	{ level: 0, coins: 50000, carmineGlobules: 0, blueprintCopies: 1 },
 	{ level: 1, coins: 51500, carmineGlobules: 300, blueprintCopies: 1 },
 	{ level: 2, coins: 54500, carmineGlobules: 900, blueprintCopies: 1 },
