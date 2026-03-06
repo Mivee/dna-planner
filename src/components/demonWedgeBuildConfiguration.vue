@@ -3,12 +3,12 @@
 		<div class="space-y-4">
 			<div>
 				<label class="block text-sm font-medium mb-2 text-white-muted">
-					Daemon Wedge
+					Demon Wedge
 				</label>
 				<select
 					v-model="selectedWedge"
 					class="w-full p-3 bg-secondary-light border border-white/20 rounded-lg text-white focus:border-accent focus:ring-1 focus:ring-accent transition-all disabled:opacity-60 disabled:cursor-not-allowed">
-					<option value="">Select a daemon wedge...</option>
+					<option value="">Select a demon wedge...</option>
 					<optgroup
 						v-for="category in groupedWedges"
 						:key="category.label"
@@ -65,13 +65,13 @@
 <script lang="ts" setup>
 import { ref, computed, watch } from "vue";
 import { useUiStore } from "../stores/ui";
-import { daemonWedges } from "../definitions/daemonWedge";
-import type { DaemonWedgeUpgradeConfig } from "../types/upgradeConfig";
+import { demonWedges } from "../definitions/demonWedge";
+import type { DemonWedgeUpgradeConfig } from "../types/upgradeConfig";
 import { useUUID } from "../composables/utils";
 import Modal from "./modal.vue";
 
 interface Props {
-	upgradeConfig?: DaemonWedgeUpgradeConfig;
+	upgradeConfig?: DemonWedgeUpgradeConfig;
 }
 
 const props = defineProps<Props>();
@@ -91,9 +91,9 @@ const targetLevel = ref(props.upgradeConfig?.targetLevel ?? 10);
 const quantity = ref(props.upgradeConfig?.quantity ?? 1);
 
 const groupedWedges = computed(() => {
-	const groups = new Map<string, typeof daemonWedges>();
+	const groups = new Map<string, typeof demonWedges>();
 
-	for (const wedge of daemonWedges) {
+	for (const wedge of demonWedges) {
 		const key = wedge.element
 			? `${wedge.category} - ${wedge.element}`
 			: wedge.category;
@@ -123,13 +123,13 @@ watch(isOpen, (newValue) => {
 function saveConfiguration() {
 	if (!canAdd.value) return;
 
-	const config: DaemonWedgeUpgradeConfig = {
+	const config: DemonWedgeUpgradeConfig = {
 		id: props.upgradeConfig?.id || useUUID(),
 		name: selectedWedge.value,
-		type: "DaemonWedge",
+		type: "DemonWedge",
 		initialLevel: initialLevel.value,
 		targetLevel: targetLevel.value,
-		level: { start: null, end: null }, // Not used for daemon wedges
+		level: { start: null, end: null }, // Not used for demon wedges
 		quantity: quantity.value,
 	};
 

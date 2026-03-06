@@ -1,5 +1,5 @@
 import { characters } from "../definitions/character";
-import { daemonWedges } from "../definitions/daemonWedge";
+import { demonWedges } from "../definitions/demonWedge";
 import { weapons } from "../definitions/weapon";
 import type { ElementColor } from "../types/elementColor";
 import type { Rarity } from "../types/rarities";
@@ -40,7 +40,7 @@ const imageMap = new Map<string | null | undefined, ImageEntry>([
 				{ type: "element", imageCode: e.toLowerCase() } as ImageEntry,
 			] as [string, ImageEntry]
 	),
-	...daemonWedges.map(
+	...demonWedges.map(
 		(w) =>
 			[
 				w.displayName,

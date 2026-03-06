@@ -1,7 +1,7 @@
-import type { DaemonWedge, DaemonWedgeLevelCost } from "../types/daemonWedge";
+import type { DemonWedge, DemonWedgeLevelCost } from "../types/demonWedge";
 
 // Cumul ative costs including forging costs
-export const DAEMON_WEDGE_COSTS: DaemonWedgeLevelCost[] = [
+export const DAEMON_WEDGE_COSTS: DemonWedgeLevelCost[] = [
 	{ level: 0, coins: 50000, carmineGlobules: 0, blueprintCopies: 1 },
 	{ level: 1, coins: 51500, carmineGlobules: 300, blueprintCopies: 1 },
 	{ level: 2, coins: 54500, carmineGlobules: 900, blueprintCopies: 1 },
@@ -15,7 +15,7 @@ export const DAEMON_WEDGE_COSTS: DaemonWedgeLevelCost[] = [
 	{ level: 10, coins: 672000, carmineGlobules: 34500, blueprintCopies: 10 },
 ];
 
-const phoenixV: DaemonWedge[] = [
+const phoenixV: DemonWedge[] = [
 	{
 		type: "Phoenix",
 		name: "Nirvana",
@@ -50,7 +50,7 @@ const phoenixV: DaemonWedge[] = [
 		},
 	},
 ];
-const SirenII: DaemonWedge[] = [
+const SirenII: DemonWedge[] = [
 	{
 		type: "Siren",
 		name: "Wings • Inspo",
@@ -63,7 +63,7 @@ const SirenII: DaemonWedge[] = [
 		},
 	},
 ];
-const sphinxII: DaemonWedge[] = [
+const sphinxII: DemonWedge[] = [
 	{
 		type: "Sphinx",
 		name: "Onslaught",
@@ -131,7 +131,7 @@ const sphinxII: DaemonWedge[] = [
 		},
 	},
 ];
-const Jormungand: DaemonWedge[] = [
+const Jormungand: DemonWedge[] = [
 	{
 		type: "Jormungand",
 		name: "Gleaming Sword",
@@ -266,7 +266,7 @@ const Jormungand: DaemonWedge[] = [
 	},
 ];
 
-const anemo: DaemonWedge[] = [
+const anemo: DemonWedge[] = [
 	{
 		type: "Griffin",
 		name: "Squall • Wildfire",
@@ -521,7 +521,7 @@ const anemo: DaemonWedge[] = [
 	},
 ];
 
-const electro: DaemonWedge[] = [
+const electro: DemonWedge[] = [
 	{
 		type: "Griffin",
 		name: "Thunder • Wildfire",
@@ -760,7 +760,7 @@ const electro: DaemonWedge[] = [
 	},
 ];
 
-const pyro: DaemonWedge[] = [
+const pyro: DemonWedge[] = [
 	{
 		type: "Griffin",
 		name: "Inferno • Wildfire",
@@ -910,7 +910,7 @@ const pyro: DaemonWedge[] = [
 	},
 ];
 
-const hydro: DaemonWedge[] = [
+const hydro: DemonWedge[] = [
 	{
 		type: "Griffin",
 		name: "Seawave • Wildfire",
@@ -1072,7 +1072,7 @@ const hydro: DaemonWedge[] = [
 	},
 ];
 
-const lumino: DaemonWedge[] = [
+const lumino: DemonWedge[] = [
 	{
 		type: "Griffin",
 		name: "Skylume • Wildfire",
@@ -1234,7 +1234,7 @@ const lumino: DaemonWedge[] = [
 	},
 ];
 
-const umbro: DaemonWedge[] = [
+const umbro: DemonWedge[] = [
 	{
 		type: "Griffin",
 		name: "Nihility • Wildfire",
@@ -1383,7 +1383,7 @@ const umbro: DaemonWedge[] = [
 		},
 	},
 ];
-const meele: DaemonWedge[] = [
+const meele: DemonWedge[] = [
 	{
 		type: "Cerberus",
 		name: "Impetus",
@@ -1490,7 +1490,7 @@ const meele: DaemonWedge[] = [
 		],
 	},
 ];
-const ranged: DaemonWedge[] = [
+const ranged: DemonWedge[] = [
 	// Lilith VII
 	{
 		type: "Lilith",
@@ -1601,7 +1601,7 @@ const ranged: DaemonWedge[] = [
 		],
 	},
 ];
-const meeleCosonance: DaemonWedge[] = [
+const meeleCosonance: DemonWedge[] = [
 	{
 		type: "Cerberus",
 		name: "Impetus",
@@ -1790,7 +1790,7 @@ const meeleCosonance: DaemonWedge[] = [
 		],
 	},
 ];
-const rangedCosonance: DaemonWedge[] = [
+const rangedCosonance: DemonWedge[] = [
 	{
 		type: "Lilith",
 		name: "Impetus",
@@ -1894,7 +1894,7 @@ const rangedCosonance: DaemonWedge[] = [
 	},
 ];
 
-export const daemonWedges = [
+export const demonWedges = [
 	...phoenixV,
 	...SirenII,
 	...sphinxII,

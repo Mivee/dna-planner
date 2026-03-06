@@ -1,12 +1,12 @@
-import { daemonWedges, DAEMON_WEDGE_COSTS } from "../definitions/daemonWedge";
-import type { DaemonWedge, DaemonWedgeCostSummary } from "../types/daemonWedge";
+import { demonWedges, DAEMON_WEDGE_COSTS } from "../definitions/demonWedge";
+import type { DemonWedge, DemonWedgeCostSummary } from "../types/demonWedge";
 
-export function useDaemonWedge() {
+export function useDemonWedge() {
 	/**
-	 * Find a daemon wedge by its display name
+	 * Find a demon wedge by its display name
 	 */
-	function getDaemonWedge(displayName: string): DaemonWedge | undefined {
-		return daemonWedges.find((w) => w.displayName === displayName);
+	function getDemonWedge(displayName: string): DemonWedge | undefined {
+		return demonWedges.find((w) => w.displayName === displayName);
 	}
 
 	/**
@@ -15,21 +15,21 @@ export function useDaemonWedge() {
 	function getCostAtLevel(level: number) {
 		const cost = DAEMON_WEDGE_COSTS.find((c) => c.level === level);
 		if (!cost) {
-			throw new Error(`Invalid daemon wedge level: ${level}`);
+			throw new Error(`Invalid demon wedge level: ${level}`);
 		}
 		return cost;
 	}
 
 	/**
-	 * Build a cost summary for upgrading a daemon wedge from initialLevel to targetLevel
+	 * Build a cost summary for upgrading a demon wedge from initialLevel to targetLevel
 	 * with the specified quantity
 	 */
 	function buildSummary(
-		wedge: DaemonWedge,
+		wedge: DemonWedge,
 		initialLevel: number,
 		targetLevel: number,
 		quantity: number = 1
-	): DaemonWedgeCostSummary {
+	): DemonWedgeCostSummary {
 		const startCost = getCostAtLevel(initialLevel);
 		const endCost = getCostAtLevel(targetLevel);
 
@@ -76,7 +76,7 @@ export function useDaemonWedge() {
 	}
 
 	return {
-		getDaemonWedge,
+		getDemonWedge,
 		getCostAtLevel,
 		buildSummary,
 	};

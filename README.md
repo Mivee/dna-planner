@@ -6,7 +6,7 @@ A Vue 3 + TypeScript application for planning character and weapon upgrades in a
 
 - **Character Management** - Plan character level and skill upgrades
 - **Weapon Planning** - Track weapon ascension and forging materials
-- **Daemon Wedges** - Manage daemon wedge resources
+- **Demon Wedges** - Manage demon wedge resources
 - **Inventory System** - Keep track of available materials with persistent storage
 - **Material Calculator** - Calculate required materials for upgrades
 

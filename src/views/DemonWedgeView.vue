@@ -5,17 +5,17 @@
 			<h2
 				class="m-0 text-2xl flex items-center gap-3 text-on-primary font-bold">
 				<i class="fas fa-gem text-xl text-warning"></i>
-				Daemon Wedges
+				Demon Wedges
 			</h2>
 			<button
 				class="flex items-center gap-2 whitespace-nowrap"
-				@click="openDaemonWedgeModal">
+				@click="openDemonWedgeModal">
 				<i class="fas fa-plus"></i>
-				Add Daemon Wedge
+				Add Demon Wedge
 			</button>
 		</div>
 		<DraggableResult />
-		<DaemonWedgeBuildConfiguration
+		<DemonWedgeBuildConfiguration
 			v-if="showModal"
 			@saved="closeModal"
 			@closed="closeModal" />
@@ -25,11 +25,11 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import DraggableResult from "../components/result/draggableResult.vue";
-import DaemonWedgeBuildConfiguration from "../components/daemonWedgeBuildConfiguration.vue";
+import DemonWedgeBuildConfiguration from "../components/demonWedgeBuildConfiguration.vue";
 
 const showModal = ref(false);
 
-function openDaemonWedgeModal() {
+function openDemonWedgeModal() {
 	showModal.value = true;
 }
 

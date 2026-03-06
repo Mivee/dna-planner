@@ -3,15 +3,15 @@
 		container-class="bg-secondary hover:border-purple-500/50 hover:shadow-[0_8px_24px_rgba(168,85,247,0.2)]"
 		header-container-class="bg-gradient-to-br from-purple-500/20 to-blue-500/20"
 		edit-hover-class="hover:bg-purple-500/20 hover:border-purple-500 hover:text-purple-400"
-		edit-aria-label="Edit daemon wedge"
-		remove-aria-label="Remove daemon wedge"
+		edit-aria-label="Edit demon wedge"
+		remove-aria-label="Remove demon wedge"
 		@edit="edit"
 		@remove="remove">
 		<template #title>
 			<h3
 				class="m-0 text-xl font-bold text-white flex items-center gap-2">
 				<i class="fas fa-gem text-purple-400"></i>
-				{{ config.name || "Daemon Wedge" }}
+				{{ config.name || "Demon Wedge" }}
 			</h3>
 		</template>
 
@@ -20,7 +20,7 @@
 				v-if="imgSource"
 				:src="imgSource"
 				class="w-30 h-30 object-cover rounded-lg border-2 border-purple-400/30"
-				:alt="config.name || 'Daemon Wedge'" />
+				:alt="config.name || 'Demon Wedge'" />
 			<div
 				v-else
 				class="w-30 h-30 flex items-center justify-center bg-primary rounded-lg">
@@ -116,7 +116,7 @@
 		</template>
 
 		<template #editor>
-			<DaemonWedgeBuildConfiguration
+			<DemonWedgeBuildConfiguration
 				v-if="isEditing"
 				:upgrade-config="props.config"
 				@saved="toggleIsEditing"
@@ -126,10 +126,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { DaemonWedgeUpgradeConfig } from "../../types/upgradeConfig";
+import type { DemonWedgeUpgradeConfig } from "../../types/upgradeConfig";
 import { computed } from "vue";
-import { useDaemonWedge } from "../../composables/useDaemonWedge";
-import DaemonWedgeBuildConfiguration from "../daemonWedgeBuildConfiguration.vue";
+import { useDemonWedge } from "../../composables/useDemonWedge";
+import DemonWedgeBuildConfiguration from "../demonWedgeBuildConfiguration.vue";
 import ResultStatRow from "./resultStatRow.vue";
 import { useResultCardActions } from "../../composables/useResultCardActions";
 import { useImage } from "../../composables/useImage";
@@ -137,19 +137,19 @@ import BaseResultCard from "./baseResultCard.vue";
 import { useElementColor } from "../../composables/useElementColor";
 
 interface Props {
-	config: DaemonWedgeUpgradeConfig;
+	config: DemonWedgeUpgradeConfig;
 }
 const props = defineProps<Props>();
-const { getDaemonWedge, buildSummary } = useDaemonWedge();
+const { getDemonWedge, buildSummary } = useDemonWedge();
 
 const { isEditing, edit, remove, toggleIsEditing } = useResultCardActions({
-	name: () => props.config.name || "Daemon Wedge",
+	name: () => props.config.name || "Demon Wedge",
 	identifier: () => props.config.id || props.config.name,
 });
 
 const wedge = computed(() => {
 	if (!props.config.name) return null;
-	return getDaemonWedge(props.config.name);
+	return getDemonWedge(props.config.name);
 });
 
 const summary = computed(() => {

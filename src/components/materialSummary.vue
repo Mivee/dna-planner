@@ -150,13 +150,13 @@
 				</template>
 			</div>
 
-			<div class="flex flex-col gap-2" v-if="hasDaemonWedgeMaterials">
+			<div class="flex flex-col gap-2" v-if="hasDemonWedgeMaterials">
 				<h4
 					class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">
-					Daemon Wedge Materials
+					Demon Wedge Materials
 				</h4>
 				<template
-					v-for="(material, key) in daemonWedgeMaterialsList"
+					v-for="(material, key) in demonWedgeMaterialsList"
 					:key="key">
 					<div
 						class="flex items-center gap-3 p-2 bg-secondary/3 rounded-md hover:bg-secondary/5 transition-colors">
@@ -181,7 +181,7 @@ import { useUiStore } from "../stores/ui";
 import { useInventory } from "../stores/inventory";
 import { useCharacter } from "../composables/useCharacter";
 import { useWeapon } from "../composables/useWeapon";
-import { useDaemonWedge } from "../composables/useDaemonWedge";
+import { useDemonWedge } from "../composables/useDemonWedge";
 import { characterLevelingMaterials } from "../definitions/characterAscension";
 import { weaponLevelingMaterials } from "../definitions/weapon";
 import {
@@ -245,7 +245,7 @@ const totalMaterials = computed(() => {
 		ascensionDetails: new Map<string, { tier: string; quantity: number }>(),
 		forgingDetails: new Map<string, { tier: string; quantity: number }>(),
 		blueprintDetails: new Map<string, { quantity: number }>(),
-		daemonWedgeMaterials: new Map<string, { quantity: number }>(),
+		demonWedgeMaterials: new Map<string, { quantity: number }>(),
 	};
 
 	characterConfigurations.value.forEach((config) => {
@@ -565,14 +565,14 @@ const totalMaterials = computed(() => {
 		}
 	});
 
-	// Process daemon wedge configurations
-	const daemonWedgeConfigs = uiStore.daemonWedgeConfigurations;
-	daemonWedgeConfigs.forEach((config) => {
+	// Process demon wedge configurations
+	const demonWedgeConfigs = uiStore.demonWedgeConfigurations;
+	demonWedgeConfigs.forEach((config) => {
 		if (!config.name) return;
 
 		try {
-			const { getDaemonWedge, buildSummary } = useDaemonWedge();
-			const wedge = getDaemonWedge(config.name);
+			const { getDemonWedge, buildSummary } = useDemonWedge();
+			const wedge = getDemonWedge(config.name);
 
 			if (!wedge) return;
 
@@ -601,14 +601,14 @@ const totalMaterials = computed(() => {
 
 			// Track materials
 			summary.materials.forEach((materialQty, materialName) => {
-				const existing = totals.daemonWedgeMaterials.get(materialName);
-				totals.daemonWedgeMaterials.set(materialName, {
+				const existing = totals.demonWedgeMaterials.get(materialName);
+				totals.demonWedgeMaterials.set(materialName, {
 					quantity: (existing?.quantity || 0) + materialQty,
 				});
 			});
 		} catch (error) {
 			console.warn(
-				`Failed to calculate materials for daemon wedge ${config.name}:`,
+				`Failed to calculate materials for demon wedge ${config.name}:`,
 				error
 			);
 		}
@@ -815,14 +815,14 @@ const blueprintsList = computed(() => {
 	return blueprints.sort((a, b) => a.name.localeCompare(b.name));
 });
 
-const hasDaemonWedgeMaterials = computed(
-	() => totalMaterials.value.daemonWedgeMaterials.size > 0
+const hasDemonWedgeMaterials = computed(
+	() => totalMaterials.value.demonWedgeMaterials.size > 0
 );
 
-const daemonWedgeMaterialsList = computed(() => {
+const demonWedgeMaterialsList = computed(() => {
 	const materials: MaterialDetail[] = [];
 
-	totalMaterials.value.daemonWedgeMaterials.forEach((detail, key) => {
+	totalMaterials.value.demonWedgeMaterials.forEach((detail, key) => {
 		const adjustedQty = getAdjustedQuantity(key, detail.quantity);
 		materials.push({
 			name: key,

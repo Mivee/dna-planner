@@ -53,7 +53,7 @@
 			<div>
 				<h4
 					class="text-xs font-semibold text-on-secondary uppercase tracking-wider mb-3">
-					Daemon Wedge Materials
+					Demon Wedge Materials
 				</h4>
 				<div class="flex flex-col gap-2">
 					<InventoryMaterial
@@ -143,7 +143,7 @@ const rarityLabels: Record<RarityKey, string> = {
 };
 
 const baseCurrencyItems = ["Coins", "XP", "Weapon XP"];
-const daemonWedgeItems = ["Carmine Globules"];
+const demonWedgeItems = ["Carmine Globules"];
 
 function getTieredWeaponAscensionName(
 	materialName: string,
@@ -304,13 +304,13 @@ const materialRarityMap = computed(() => {
 	});
 
 	baseCurrencyItems.forEach((name) => setRarity(name, "misc"));
-	daemonWedgeItems.forEach((name) => setRarity(name, "misc"));
+	demonWedgeItems.forEach((name) => setRarity(name, "misc"));
 
 	return rarityByName;
 });
 
 const knownItems = computed(() => {
-	const items = [...baseCurrencyItems, ...daemonWedgeItems];
+	const items = [...baseCurrencyItems, ...demonWedgeItems];
 	return [
 		...items,
 		...ascensionMaterialNames.value,
@@ -418,7 +418,7 @@ function getMaterialMeta(name: string): {
 		return { iconClass: "fas fa-coins", iconColor: "text-accent" };
 	}
 
-	if (daemonWedgeItems.includes(name)) {
+	if (demonWedgeItems.includes(name)) {
 		return { iconClass: "fas fa-gem", iconColor: "text-purple-400" };
 	}
 

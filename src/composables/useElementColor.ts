@@ -1,4 +1,4 @@
-import type { ElementType } from "../types/daemonWedge";
+import type { ElementType } from "../types/demonWedge";
 import type { ElementColor } from "../types/elementColor";
 
 export function useElementColor(

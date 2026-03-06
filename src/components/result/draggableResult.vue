@@ -11,9 +11,9 @@
 				<WeaponResult
 					v-else-if="item.type == 'Weapon'"
 					:config="asConfig<WeaponUpgradeConfig>(item)" />
-				<DaemonWedgeResult
-					v-else-if="item.type == 'DaemonWedge'"
-					:config="asConfig<DaemonWedgeUpgradeConfig>(item)" />
+				<DemonWedgeResult
+					v-else-if="item.type == 'DemonWedge'"
+					:config="asConfig<DemonWedgeUpgradeConfig>(item)" />
 			</div>
 			<!-- </Draggable> -->
 		</div>
@@ -24,13 +24,13 @@ import { storeToRefs } from "pinia";
 import type {
 	CharacterUpgradeConfig,
 	WeaponUpgradeConfig,
-	DaemonWedgeUpgradeConfig,
+	DemonWedgeUpgradeConfig,
 	BaseUpgradeConfig,
 } from "../../types/upgradeConfig";
 import { useUiStore } from "../../stores/ui";
 import CharacterResult from "./characterResult.vue";
 import WeaponResult from "./weaponResult.vue";
-import DaemonWedgeResult from "./daemonWedgeResult.vue";
+import DemonWedgeResult from "./demonWedgeResult.vue";
 import { computed } from "vue";
 
 const uiStore = useUiStore();

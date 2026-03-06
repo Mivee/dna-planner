@@ -25,9 +25,9 @@
 						</button>
 						<button
 							class="flex items-center gap-2 whitespace-nowrap sm:justify-center"
-							@click="openDaemonWedgeModal">
+							@click="openDemonWedgeModal">
 							<i class="fas fa-gem"></i>
-							Add Daemon Wedge
+							Add Demon Wedge
 						</button>
 						<button
 							class="flex items-center gap-2 whitespace-nowrap sm:justify-center"
@@ -74,10 +74,10 @@
 			v-if="isWeaponConfigVisible"
 			@saved="closeWeaponModal"
 			@closed="closeWeaponModal" />
-		<DaemonWedgeBuildConfiguration
-			v-if="isDaemonWedgeConfigVisible"
-			@saved="closeDaemonWedgeModal"
-			@closed="closeDaemonWedgeModal" />
+		<DemonWedgeBuildConfiguration
+			v-if="isDemonWedgeConfigVisible"
+			@saved="closeDemonWedgeModal"
+			@closed="closeDemonWedgeModal" />
 		<Modal v-if="isInventoryVisible" v-model:is-open="isInventoryVisible">
 			<Inventory />
 		</Modal>
@@ -93,7 +93,7 @@ import Settings from "./components/settings.vue";
 import Modal from "./components/modal.vue";
 import CharacterBuildConfiguration from "./components/characterBuildConfiguration.vue";
 import WeaponBuildConfiguration from "./components/weaponBuildConfiguration.vue";
-import DaemonWedgeBuildConfiguration from "./components/daemonWedgeBuildConfiguration.vue";
+import DemonWedgeBuildConfiguration from "./components/demonWedgeBuildConfiguration.vue";
 import Inventory from "./components/inventory.vue";
 
 const showSettings = ref(false);
@@ -108,7 +108,7 @@ function openSettingsModal() {
 
 const isCharacterConfigVisible = ref(false);
 const isWeaponConfigVisible = ref(false);
-const isDaemonWedgeConfigVisible = ref(false);
+const isDemonWedgeConfigVisible = ref(false);
 const isInventoryVisible = ref(false);
 
 function openCharacterModal() {
@@ -127,12 +127,12 @@ function closeWeaponModal() {
 	isWeaponConfigVisible.value = false;
 }
 
-function openDaemonWedgeModal() {
-	isDaemonWedgeConfigVisible.value = true;
+function openDemonWedgeModal() {
+	isDemonWedgeConfigVisible.value = true;
 }
 
-function closeDaemonWedgeModal() {
-	isDaemonWedgeConfigVisible.value = false;
+function closeDemonWedgeModal() {
+	isDemonWedgeConfigVisible.value = false;
 }
 
 function openInventoryModal() {
