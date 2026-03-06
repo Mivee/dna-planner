@@ -51,13 +51,13 @@
 </template>
 
 <script lang="ts" setup>
-import type { WeaponUpgradeConfig } from "../types/upgradeConfig";
+import type { WeaponUpgradeConfig } from "../../types/upgradeConfig";
 import { computed } from "vue";
-import WeaponMaterials from "./WeaponMaterials.vue";
-import WeaponBuildConfiguration from "./weaponBuildConfiguration.vue";
-import { useImage } from "../composables/useImage";
+import WeaponMaterials from "../WeaponMaterials.vue";
+import WeaponBuildConfiguration from "../weaponBuildConfiguration.vue";
+import { useImage } from "../../composables/useImage";
 import ResultStatRow from "./resultStatRow.vue";
-import { useResultCardActions } from "../composables/useResultCardActions";
+import { useResultCardActions } from "../../composables/useResultCardActions";
 import BaseResultCard from "./baseResultCard.vue";
 
 interface Props {

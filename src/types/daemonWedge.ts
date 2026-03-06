@@ -1,3 +1,5 @@
+import type { Rarity } from "./rarities";
+
 export type ElementType =
 	| "Anemo"
 	| "Electro"
@@ -39,13 +41,14 @@ export type DaemonWedgeType =
 	| "Changeling"; // manually added
 export interface BlueprintSource {
 	name: string;
-	rarity: BlueprintRarity;
+	rarity?: BlueprintRarity;
 	materialsPerCopy: number; // Materials needed per blueprint copy
 }
 
 export interface AdditionalMaterial {
 	name: string;
 	quantityPerCopy: number; // Quantity needed per blueprint copy
+	rarity?: Rarity;
 }
 
 export interface DaemonWedge {

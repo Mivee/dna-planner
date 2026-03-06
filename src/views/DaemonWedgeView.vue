@@ -24,7 +24,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import DraggableResult from "../components/draggableResult.vue";
+import DraggableResult from "../components/result/draggableResult.vue";
 import DaemonWedgeBuildConfiguration from "../components/daemonWedgeBuildConfiguration.vue";
 
 const showModal = ref(false);

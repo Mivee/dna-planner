@@ -37,7 +37,7 @@ import MaterialSummary from "../components/materialSummary.vue";
 import Inventory from "../components/inventory.vue";
 import Modal from "../components/modal.vue";
 import { ref } from "vue";
-import DraggableResult from "../components/draggableResult.vue";
+import DraggableResult from "../components/result/draggableResult.vue";
 
 const isCharacterConfigVisible = ref(false);
 const isWeaponConfigVisible = ref(false);

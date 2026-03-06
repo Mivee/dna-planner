@@ -26,10 +26,9 @@ import type {
 	WeaponUpgradeConfig,
 	DaemonWedgeUpgradeConfig,
 	BaseUpgradeConfig,
-} from "../types/upgradeConfig";
-import { useUiStore } from "../stores/ui";
-// import CharacterResult from "./characterResult.vue";
-import CharacterResult from "./characterResult copy.vue";
+} from "../../types/upgradeConfig";
+import { useUiStore } from "../../stores/ui";
+import CharacterResult from "./characterResult.vue";
 import WeaponResult from "./weaponResult.vue";
 import DaemonWedgeResult from "./daemonWedgeResult.vue";
 import { computed } from "vue";
@@ -46,7 +45,7 @@ function getKey(item: BaseUpgradeConfig, index: number): string {
 	return item.id || (item.name || "") + "_" + index;
 }
 
-function asConfig<T>(item: BaseUpgradeConfig): T {
+function asConfig<T extends BaseUpgradeConfig>(item: BaseUpgradeConfig): T {
 	return item as T;
 }
 </script>

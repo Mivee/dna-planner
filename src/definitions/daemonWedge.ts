@@ -430,7 +430,7 @@ const anemo: DaemonWedge[] = [
 	{
 		type: "FeatheredSnake",
 		name: "Resolve",
-		displayName: "Kukulkan Resolve",
+		displayName: "Feathered Serpent's Resolve",
 		category: "Characters",
 		element: "Anemo",
 		blueprintSource: {
@@ -445,16 +445,20 @@ const anemo: DaemonWedge[] = [
 	{
 		type: "FeatheredSnake",
 		name: "Eternity",
-		displayName: "Kukulkan Eternity",
+		displayName: "Feathered Serpent's Eternity",
 		category: "Characters",
 		element: "Anemo",
 		blueprintSource: {
-			name: "Feathered Serpent's Eternity [Purple]",
-			rarity: "Purple",
-			materialsPerCopy: 5,
+			name: "Shop - Trail Rank 50",
+			materialsPerCopy: 1,
 		},
 		additionalMaterials: [
 			{ name: "Track-Shift Module", quantityPerCopy: 2 },
+			{
+				name: "Feathered Serpent's Eternity",
+				quantityPerCopy: 5,
+				rarity: "Purple",
+			},
 		],
 	},
 	// Changeling (Blue blueprints)

@@ -72,18 +72,16 @@
 				<div
 					v-if="summary.blueprints.size > 0"
 					class="border-t border-white/10 pt-3 mt-2">
-					<h4
+					<h3
 						class="text-xs font-semibold text-white-muted uppercase mb-2">
 						Blueprints
-					</h4>
+					</h3>
 					<div
 						v-for="[name, qty] in summary.blueprints"
 						:key="name"
 						class="flex justify-between items-center py-1">
 						<div class="flex items-center gap-2">
-							<i
-								class="fas fa-scroll w-5"
-								:class="getBlueprintColor(name)"></i>
+							<i class="fas fa-scroll w-5 text-yellow-400"></i>
 							<span class="text-xs text-white-muted">
 								{{ name }}
 							</span>
@@ -128,15 +126,15 @@
 </template>
 
 <script lang="ts" setup>
-import type { DaemonWedgeUpgradeConfig } from "../types/upgradeConfig";
+import type { DaemonWedgeUpgradeConfig } from "../../types/upgradeConfig";
 import { computed } from "vue";
-import { useDaemonWedge } from "../composables/useDaemonWedge";
-import DaemonWedgeBuildConfiguration from "./daemonWedgeBuildConfiguration.vue";
+import { useDaemonWedge } from "../../composables/useDaemonWedge";
+import DaemonWedgeBuildConfiguration from "../daemonWedgeBuildConfiguration.vue";
 import ResultStatRow from "./resultStatRow.vue";
-import { useResultCardActions } from "../composables/useResultCardActions";
-import { useImage } from "../composables/useImage";
+import { useResultCardActions } from "../../composables/useResultCardActions";
+import { useImage } from "../../composables/useImage";
 import BaseResultCard from "./baseResultCard.vue";
-import { useElementColor } from "../composables/useElementColor";
+import { useElementColor } from "../../composables/useElementColor";
 
 interface Props {
 	config: DaemonWedgeUpgradeConfig;
@@ -183,11 +181,4 @@ const materialsArray = computed(() => {
 		})
 	);
 });
-
-function getBlueprintColor(name: string): string {
-	if (name.includes("[Blue]")) return "text-blue-400";
-	if (name.includes("[Purple]")) return "text-purple-400";
-	if (name.includes("[Gold]")) return "text-yellow-400";
-	return "text-gray-400";
-}
 </script>

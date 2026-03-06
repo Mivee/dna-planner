@@ -81,15 +81,15 @@
 </template>
 <script lang="ts" setup>
 import { computed } from "vue";
-import CharacterMaterials from "./characterMaterials.vue";
-import type { CharacterUpgradeConfig } from "../types/upgradeConfig";
-import { useCharacter } from "../composables/useCharacter";
-import CharacterBuildConfiguration from "./characterBuildConfiguration.vue";
-import { useImage } from "../composables/useImage";
+import CharacterMaterials from "../characterMaterials.vue";
+import type { CharacterUpgradeConfig } from "../../types/upgradeConfig";
+import { useCharacter } from "../../composables/useCharacter";
+import CharacterBuildConfiguration from "../characterBuildConfiguration.vue";
+import { useImage } from "../../composables/useImage";
 import ResultStatRow from "./resultStatRow.vue";
-import { useResultCardActions } from "../composables/useResultCardActions";
+import { useResultCardActions } from "../../composables/useResultCardActions";
 import BaseResultCard from "./baseResultCard.vue";
-import SkillResultStatRow from "./skillResultStatRow.vue";
+import SkillResultStatRow from "../skillResultStatRow.vue";
 
 interface Props {
 	config: CharacterUpgradeConfig;
@@ -100,7 +100,7 @@ const hasCharacterSelected = computed(
 	() => props.config.name != "" && props.config.name != null
 );
 
-const selectedCharacter = computed(() => props.config.name || "Berenica");
+const selectedCharacter = computed(() => props.config.name);
 
 const { isEditing, edit, remove, toggleIsEditing } = useResultCardActions({
 	name: () => selectedCharacter.value,

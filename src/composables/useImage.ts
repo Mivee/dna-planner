@@ -15,7 +15,7 @@ interface ImageEntry {
 
 const elements = ["Pyro", "Anemo", "Hydro", "Lumino", "Umbro", "Electro"];
 
-const imageMap = new Map<string, ImageEntry>([
+const imageMap = new Map<string | null | undefined, ImageEntry>([
 	...characters.map(
 		(c) =>
 			[
@@ -52,7 +52,10 @@ const imageMap = new Map<string, ImageEntry>([
 	),
 ]);
 
-export function useImage(name: string, variant?: ImageVariant) {
+export function useImage(
+	name: string | null | undefined,
+	variant?: ImageVariant
+) {
 	const entry = imageMap.get(name);
 	if (!entry?.imageCode) {
 		return null;

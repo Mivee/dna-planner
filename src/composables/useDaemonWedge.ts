@@ -50,13 +50,6 @@ export function useDaemonWedge() {
 			blueprintCopiesDelta * quantity
 		);
 
-		// Add blueprint materials to materials map
-		const blueprintMaterialQuantity =
-			blueprintCopiesDelta *
-			wedge.blueprintSource.materialsPerCopy *
-			quantity;
-		materials.set(wedge.blueprintSource.name, blueprintMaterialQuantity);
-
 		// Add additional materials if they exist
 		if (wedge.additionalMaterials) {
 			for (const additionalMaterial of wedge.additionalMaterials) {

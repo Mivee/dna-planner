@@ -13,7 +13,7 @@
 </template>
 <script lang="ts" setup>
 import type { SkillUpgradeConfig } from "../types/upgradeConfig";
-import ResultStatRow from "./resultStatRow.vue";
+import ResultStatRow from "./result/resultStatRow.vue";
 import SkillNodes from "./skillNodes.vue";
 
 interface Props {

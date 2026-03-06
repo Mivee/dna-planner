@@ -30,7 +30,7 @@
 				)
 			}})
 		</div>
-		<!-- Talens -->
+		<!-- Talents -->
 		<div>
 			Green Elem Mats ({{
 				getMissingMaterialString(
