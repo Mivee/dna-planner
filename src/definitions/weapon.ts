@@ -393,6 +393,7 @@ export const weapons: Weapon[] = [
 		weaponType: "Polearm",
 		range: "Melee",
 		source: "Nocturnal Echoes",
+		imageCode: "Scythe_Yihe",
 	},
 	{
 		id: 50,
