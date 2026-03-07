@@ -1,29 +1,37 @@
 <template>
 	<div>
 		<Modal v-model:is-open="isOpen" @save="onSave" @closed="emit('closed')">
-			<img v-if="imgSource" :src="imgSource" class="w-full" />
+			<div class="flex flex-col">
+				<div>
+					<img
+						v-if="imgSource"
+						:src="imgSource"
+						class="max-h-100 w-auto flex place-self-center" />
+				</div>
+				<div class="flex flex-col gap-4">
+					<select v-model="internalUpgradeConfig.name">
+						<option
+							v-for="value in sortedCharacters"
+							:label="value.name"
+							:value="value.name"></option>
+					</select>
 
-			<select v-model="internalUpgradeConfig.name">
-				<option
-					v-for="value in sortedCharacters"
-					:label="value.name"
-					:value="value.name"></option>
-			</select>
-			<div>
-				<RangeSelect
-					v-model:range="internalUpgradeConfig.level"
-					:options="possibleCharacterLevels" />
-			</div>
-			<div class="flex flex-col gap-4">
-				<SkillUpgrade
-					v-model:skill="internalUpgradeConfig.skill"
-					talentName="Skill" />
-				<SkillUpgrade
-					v-model:skill="internalUpgradeConfig.ult"
-					talentName="Ult" />
-				<SkillUpgrade
-					v-model:skill="internalUpgradeConfig.passive"
-					talentName="Passive" />
+					<RangeSelect
+						v-model:range="internalUpgradeConfig.level"
+						:options="possibleCharacterLevels" />
+
+					<div class="flex flex-col gap-4">
+						<SkillUpgrade
+							v-model:skill="internalUpgradeConfig.skill"
+							talentName="Skill" />
+						<SkillUpgrade
+							v-model:skill="internalUpgradeConfig.ult"
+							talentName="Ult" />
+						<SkillUpgrade
+							v-model:skill="internalUpgradeConfig.passive"
+							talentName="Passive" />
+					</div>
+				</div>
 			</div>
 		</Modal>
 	</div>

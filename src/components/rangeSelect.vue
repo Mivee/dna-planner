@@ -1,15 +1,17 @@
 <template>
-	<select v-model="internalRange.start" :class="selectClasses">
-		<option v-for="o in selectOptions" :value="o.value">
-			{{ o.label }}
-		</option>
-	</select>
+	<div class="flex gap-4">
+		<select v-model="internalRange.start" :class="selectClasses">
+			<option v-for="o in selectOptions" :value="o.value">
+				{{ o.label }}
+			</option>
+		</select>
 
-	<select v-model="internalRange.end" :class="selectClasses">
-		<option v-for="o in selectOptions" :value="o.value">
-			{{ o.label }}
-		</option>
-	</select>
+		<select v-model="internalRange.end" :class="selectClasses">
+			<option v-for="o in selectOptions" :value="o.value">
+				{{ o.label }}
+			</option>
+		</select>
+	</div>
 </template>
 <script lang="ts" setup generic="T">
 import { watch, ref, computed } from "vue";
