@@ -39,11 +39,17 @@ export type DemonWedgeType =
 	| "Typhon"
 	| "Yatagarasus"
 	| "Changeling"; // manually added
-export interface BlueprintSource {
+
+export type DemonWedgeBlueprintSource =
+	| "Noctoyager Manual"
+	| "Shop"
+	| "Mystic Maze"
+	| "Chase";
+export interface DemonWedgeBlueprint {
 	name: string;
 	rarity?: BlueprintRarity;
 	materialsPerCopy: number; // Materials needed per blueprint copy
-	source?: string;
+	source?: DemonWedgeBlueprintSource;
 }
 
 export interface AdditionalMaterial {
@@ -58,7 +64,7 @@ export interface DemonWedge {
 	displayName: string; // Combined: "Phoenix V Nirvana"
 	category: DemonWedgeCategory;
 	element?: ElementType; // Only for Characters category
-	blueprint: BlueprintSource;
+	blueprint: DemonWedgeBlueprint;
 	additionalMaterials?: AdditionalMaterial[]; // Optional material2, material3
 }
 
@@ -80,7 +86,7 @@ export interface DemonWedgeCostSummary {
 
 export interface DemonWedgeCostBluePrint {
 	quantity: number;
-	source?: string;
+	source?: DemonWedgeBlueprintSource;
 }
 export interface DemonWedgeCostAdditionalMaterials {
 	quantity: number;

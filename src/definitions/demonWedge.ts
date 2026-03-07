@@ -24,6 +24,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Phoenix V Nirvana",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -41,6 +42,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Phoenix V Blessing",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -58,6 +60,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Phoenix V Standfast",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -75,6 +78,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Siren II Wings • Inspo",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -92,6 +96,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Sphinx II Onslaught",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -109,6 +114,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Sphinx II Intrepidity",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -126,6 +132,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Sphinx II Duel",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -143,6 +150,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Sphinx II Trapped",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -160,6 +168,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Sphinx II Surge",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -177,6 +186,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Sphinx II Relentless",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -194,6 +204,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Jormungand Gleaming Sword",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -211,6 +222,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Jormungand Gleaming Polearm",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -228,6 +240,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Jormungand Gleaming Greatsword",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -245,6 +258,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Jormungand Gleaming Dual Blades",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -262,6 +276,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Jormungand Gleaming Whipblade",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -279,6 +294,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Jormungand Gleaming Katana",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -296,6 +312,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Jormungand Gleaming Pistol",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -313,6 +330,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Jormungand Gleaming Dual Pistols",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -330,6 +348,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Jormungand Gleaming Grenade Launcher",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -347,6 +366,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Jormungand Gleaming Shotgun",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -364,6 +384,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Jormungand Gleaming Assault Rifle",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -381,6 +402,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Jormungand Gleaming Bow",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -399,6 +421,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Griffin Squall • Wildfire",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -417,6 +440,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Griffin Squall • Midnight Sun",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -530,6 +554,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Standfast",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -548,6 +573,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Resolve",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -566,6 +592,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Volition",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -584,6 +611,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Wings • Eternity",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -602,6 +630,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Hastur Whispering Zephyr",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -620,6 +649,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Hastur Turbulent Cyclone",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -638,6 +668,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Feathered Serpent's Resolve",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -660,7 +691,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Feathered Serpent's Eternity",
 			materialsPerCopy: 1,
-			source: "Shop - Trail Rank 50",
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -683,6 +714,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Changeling Volition",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -701,6 +733,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Changeling Resolve",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -719,6 +752,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Siren Wings • Inspo • Volition",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -747,6 +781,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Siren Wings • Inspo • Resolve",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -775,6 +810,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Griffin Thunder • Wildfire",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -793,6 +829,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Griffin Thunder • Midnight Sun",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -906,6 +943,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Nirvana",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -924,6 +962,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Morale",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -942,6 +981,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Volition",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -960,6 +1000,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Standfast • Eternity",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -978,6 +1019,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Summanus Ravaging Thunder",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -996,6 +1038,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Kukulkan Spectrum",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1018,6 +1061,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Kukulkan Volition",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1040,6 +1084,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Changeling Volition",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -1058,6 +1103,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Changeling Morale",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -1076,6 +1122,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Siren Wings • Inspo • Volition",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -1104,6 +1151,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Siren Wings • Inspo • Morale",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -1132,6 +1180,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Griffin Inferno • Wildfire",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1150,6 +1199,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Griffin Inferno • Midnight Sun",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1263,6 +1313,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Standfast",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1281,6 +1332,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Inspo",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1299,6 +1351,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Spectrum",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1317,6 +1370,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Eternity",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1335,6 +1389,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Ifrit Devouring Wildfire",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1353,6 +1408,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Griffin Seawave • Wildfire",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1371,6 +1427,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Griffin Seawave • Midnight Sun",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1484,6 +1541,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Nirvana",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1502,6 +1560,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Inspo",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1520,6 +1579,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Spectrum",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1538,6 +1598,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Wings • Volition",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1556,6 +1617,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Bahamut Misty Veil",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1574,6 +1636,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Bahamut Frosty Torrent",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1592,6 +1655,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Griffin Skylume • Wildfire",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1610,6 +1674,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Griffin Skylume • Midnight Sun",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1723,6 +1788,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Scorch",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1741,6 +1807,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Resolve",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1759,6 +1826,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Eternity",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1777,6 +1845,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Nirvana • Volition",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1795,6 +1864,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Helios Prismatic Neon",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1813,6 +1883,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Helios Gleam & Glimmer",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1831,6 +1902,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Griffin Nihility • Wildfire",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1849,6 +1921,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Griffin Nihility • Midnight Sun",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1962,6 +2035,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Scorch",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1980,6 +2054,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Morale",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -1998,6 +2073,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Blaze • Spectrum",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -2016,6 +2092,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Covenanter Standfast • Inspo",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -2034,6 +2111,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Arbiter Illusionary Sacrifice",
 			materialsPerCopy: 1,
+			source: "Shop",
 		},
 		additionalMaterials: [
 			{
@@ -2051,6 +2129,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Cerberus V Impetus",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2068,6 +2147,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Cerberus V Impetus • Focus",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2090,6 +2170,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Cerberus V Rage • Trammel",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2112,6 +2193,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Cerberus VI Celerity",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2129,6 +2211,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Cerberus VI Threshold",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2146,6 +2229,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Cerberus VIII Edge",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2168,6 +2252,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Cerberus VIII Penetration",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2190,6 +2275,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Cerberus VIII Crusher",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2212,6 +2298,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Lilith VII Impetus",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2229,6 +2316,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Lilith VII Impetus • Focus",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2251,6 +2339,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Lilith VII Rage • Trammel",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2273,6 +2362,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Lilith VIII Celerity",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2290,6 +2380,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Lilith VIII Foldover",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2312,6 +2403,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Lilith IX Edge",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2334,6 +2426,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Lilith IX Penetration",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
@@ -2356,6 +2449,7 @@ export const demonWedges: DemonWedge[] = [
 		blueprint: {
 			name: "Lilith IX Crusher",
 			materialsPerCopy: 1,
+			source: "Noctoyager Manual",
 		},
 		additionalMaterials: [
 			{
