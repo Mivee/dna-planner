@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { useUiStore } from "../stores/ui";
 
 interface UseResultCardActionsOptions {
-	name: () => string;
+	name: () => string | null;
 	identifier: () => string | null | undefined;
 }
 

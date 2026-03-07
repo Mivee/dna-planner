@@ -100,7 +100,7 @@ const hasCharacterSelected = computed(
 	() => props.config.name != "" && props.config.name != null
 );
 
-const selectedCharacter = computed(() => props.config.name);
+const selectedCharacter = computed(() => props.config.name!);
 
 const { isEditing, edit, remove, toggleIsEditing } = useResultCardActions({
 	name: () => selectedCharacter.value,

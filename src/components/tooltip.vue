@@ -20,7 +20,7 @@
 </template>
 <script lang="ts" setup>
 import { computed } from "vue";
-import type { Direction } from "../../definitions/directions";
+import type { Direction } from "../definitions/directions";
 
 interface Props {
 	icon?: string;
