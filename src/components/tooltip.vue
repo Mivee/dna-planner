@@ -21,6 +21,7 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import type { Direction } from "../definitions/directions";
+import { useUUID } from "../composables/utils";
 
 interface Props {
 	icon?: string;
@@ -32,7 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
 	icon: "fas fa-info",
 });
 
-const tooltipId = `tooltip-${Math.random().toString(36).slice(2, 10)}`;
+const tooltipId = `tooltip-${useUUID()}`;
 
 const positionClass = computed(() => {
 	switch (props.direction) {

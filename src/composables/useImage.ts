@@ -1,12 +1,12 @@
 import { characters } from "../definitions/character";
 import { demonWedges } from "../definitions/demonWedge";
 import { weapons } from "../definitions/weapon";
-import type { ElementColor } from "../types/elementColor";
+import type { ImageSuffix } from "../types/ImageSuffix";
 import type { Rarity } from "../types/rarities";
 
 type ImageType = "character" | "weapon" | "element" | "wedge";
 export type CharacterImageVariant = "portrait" | "splashart";
-export type ImageVariant = CharacterImageVariant | ElementColor | null;
+export type ImageVariant = CharacterImageVariant | ImageSuffix | null;
 
 interface ImageEntry {
 	type: ImageType;
@@ -72,6 +72,7 @@ export function useImage(
 		case "element":
 			return getElementImage(entry.imageCode);
 		case "wedge":
+			debugger;
 			return getWedgeImage(entry.imageCode, variant as Rarity);
 		default:
 			return null;

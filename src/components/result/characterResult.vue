@@ -90,6 +90,7 @@ import ResultStatRow from "./resultStatRow.vue";
 import { useResultCardActions } from "../../composables/useResultCardActions";
 import BaseResultCard from "./baseResultCard.vue";
 import SkillResultStatRow from "../skillResultStatRow.vue";
+import { useElementColor } from "../../composables/useElementColor";
 
 interface Props {
 	config: CharacterUpgradeConfig;
@@ -128,33 +129,21 @@ const characterData = computed(() => {
 	return null;
 });
 
-const elementColors = {
-	Pyro: { from: "#ff4444", to: "#cc0000", textColor: "#ffffff" },
-	Anemo: { from: "#44ff88", to: "#00cc44", textColor: "#000000" },
-	Hydro: { from: "#4488ff", to: "#0044cc", textColor: "#ffffff" },
-	Lumino: { from: "#ffdd44", to: "#cc9900", textColor: "#000000" },
-	Umbro: { from: "#ff44aa", to: "#cc0088", textColor: "#ffffff" },
-	Electro: { from: "#aa44ff", to: "#6600cc", textColor: "#ffffff" },
-};
-
 const elementBackgroundGradient = computed(() => {
-	const element = characterData.value?.element;
-	if (element && elementColors[element]) {
-		const colors = elementColors[element];
-		return colors.from;
-	}
+	const hexCode = useElementColor(characterData.value?.element)?.hexCode;
 
-	return "#1c1c1e";
+	return hexCode || "#1c1c1e";
 });
 
 const cardStyles = computed(() => {
-	const element = characterData.value?.element;
-	if (element && elementColors[element]) {
-		const colors = elementColors[element];
+	const { hexCode, textColor } =
+		useElementColor(characterData.value?.element) || {};
+
+	if (hexCode && textColor) {
 		return {
 			background: elementBackgroundGradient.value,
-			"--element-color": colors.from,
-			color: colors.textColor,
+			"--element-color": hexCode,
+			color: textColor,
 		};
 	}
 	return {

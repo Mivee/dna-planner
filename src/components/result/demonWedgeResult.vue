@@ -181,11 +181,9 @@ const summary = computed(() => {
 
 const imgSource = computed(() => {
 	if (!props.config.name) return null;
-	if (wedge.value) {
-		const color = useElementColor(wedge.value.element);
-		return useImage(props.config.name, color);
-	}
-	return useImage(props.config.name);
+
+	const color = useElementColor(wedge.value?.element)?.image;
+	return useImage(props.config.name, color);
 });
 
 function getAdjustedQuantity(name: string, amount: number): number {

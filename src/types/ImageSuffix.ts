@@ -1,4 +1,4 @@
-export type ElementColor =
+export type ImageSuffix =
 	| "Green"
 	| "Purple"
 	| "Red"
