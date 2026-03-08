@@ -5,9 +5,9 @@ import type {
 	CharacterUpgradeConfig,
 	BaseUpgradeConfig,
 	WeaponUpgradeConfig,
-	DaemonWedgeUpgradeConfig,
+	DemonWedgeUpgradeConfig,
 } from "../types/upgradeConfig";
-import { useClone, useUUID } from "../composeables/utils";
+import { useClone, useUUID } from "../composables/utils";
 
 const STORAGE_KEY = "dna-planner-ui";
 
@@ -83,9 +83,9 @@ export const useUiStore = defineStore("ui", () => {
 		} else if (config.type === "Weapon") {
 			const weaponConfig = config as WeaponUpgradeConfig;
 			key = weaponConfig.id || config.name;
-		} else if (config.type === "DaemonWedge") {
-			const daemonConfig = config as DaemonWedgeUpgradeConfig;
-			key = daemonConfig.id || config.name;
+		} else if (config.type === "DemonWedge") {
+			const demonConfig = config as DemonWedgeUpgradeConfig;
+			key = demonConfig.id || config.name;
 		} else {
 			// Fallback to name
 			key = config.name;
@@ -112,10 +112,10 @@ export const useUiStore = defineStore("ui", () => {
 		) as WeaponUpgradeConfig[];
 	});
 
-	const daemonWedgeConfigurations = computed(() => {
+	const demonWedgeConfigurations = computed(() => {
 		return [...upgradeConfiguration.value.values()].filter(
-			(c) => c.type == "DaemonWedge"
-		) as DaemonWedgeUpgradeConfig[];
+			(c) => c.type == "DemonWedge"
+		) as DemonWedgeUpgradeConfig[];
 	});
 
 	function removeConfiguration(nameOrId: string) {
@@ -130,7 +130,7 @@ export const useUiStore = defineStore("ui", () => {
 		removeConfiguration,
 		characterConfigurations,
 		weaponConfigurations,
-		daemonWedgeConfigurations,
+		demonWedgeConfigurations,
 		getConfiguration,
 		upgradeConfiguration,
 	};

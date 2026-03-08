@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
 import { useUiStore } from "../stores/ui";
-import CharacterResult from "./characterResult.vue";
+import CharacterResult from "./result/characterResult.vue";
 
 const { characterConfigurations } = storeToRefs(useUiStore());
 </script>

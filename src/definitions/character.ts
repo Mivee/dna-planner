@@ -292,7 +292,7 @@ export const characters: Character[] = [
 		rank: "B",
 		id: 21,
 		element: "Lumino",
-		source: "Immersive Theater",
+		source: "Nocturnal Echoes",
 		nocturnalEchoMaterial: "Ring of Chronal Reversion",
 		skillUpgradeMaterials: {
 			t1: "Iron Emblem",
@@ -300,6 +300,20 @@ export const characters: Character[] = [
 			t3: "Gilded Emblem",
 		},
 		imagecode: "Kezhou",
+	},
+	{
+		name: "Zhiliu",
+		rank: "B",
+		id: 22,
+		element: "Electro",
+		source: "Immersive Theater",
+		nocturnalEchoMaterial: "Ring of Justice Rekindled",
+		skillUpgradeMaterials: {
+			t1: "Veil of Silence",
+			t2: "Eye of Infinity",
+			t3: "Crown of Enlightenment",
+		},
+		imagecode: "Zhiliu",
 	},
 ];
 

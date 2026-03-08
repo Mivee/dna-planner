@@ -9,7 +9,7 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { useWeapon } from "../composeables/useWeapon";
+import { useWeapon } from "../composables/useWeapon";
 
 interface Props {
 	weapon: string;

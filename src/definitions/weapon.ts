@@ -384,7 +384,7 @@ export const weapons: Weapon[] = [
 		name: "Ephemeral Lumina",
 		weaponType: "Assault Rifle",
 		range: "Ranged",
-		source: "Immersive Theater",
+		source: "Nocturnal Echoes",
 		imageCode: "Machinegun_Ruohua",
 	},
 	{
@@ -393,6 +393,15 @@ export const weapons: Weapon[] = [
 		weaponType: "Polearm",
 		range: "Melee",
 		source: "Nocturnal Echoes",
+		imageCode: "Scythe_Yihe",
+	},
+	{
+		id: 50,
+		name: "Eternal Farewell",
+		weaponType: "Greatsword",
+		range: "Melee",
+		source: "Immersive Theater",
+		imageCode: "Claymore_Wangu",
 	},
 ];
 

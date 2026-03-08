@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
 import { useUiStore } from "../stores/ui";
-import WeaponResult from "./weaponResult.vue";
+import WeaponResult from "./result/weaponResult.vue";
 
 const { weaponConfigurations } = storeToRefs(useUiStore());
 </script>

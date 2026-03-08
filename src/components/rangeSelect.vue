@@ -1,15 +1,17 @@
 <template>
-	<select v-model="internalRange.start" :class="selectClasses">
-		<option v-for="o in props.options">
-			{{ o }}
-		</option>
-	</select>
+	<div class="flex gap-4">
+		<select v-model="internalRange.start" :class="selectClasses">
+			<option v-for="o in selectOptions" :value="o.value">
+				{{ o.label }}
+			</option>
+		</select>
 
-	<select v-model="internalRange.end" :class="selectClasses">
-		<option v-for="o in props.options">
-			{{ o }}
-		</option>
-	</select>
+		<select v-model="internalRange.end" :class="selectClasses">
+			<option v-for="o in selectOptions" :value="o.value">
+				{{ o.label }}
+			</option>
+		</select>
+	</div>
 </template>
 <script lang="ts" setup generic="T">
 import { watch, ref, computed } from "vue";
@@ -42,5 +44,26 @@ const selectClasses = computed(() => {
 const emit = defineEmits(["update:range"]);
 
 const internalRange = ref(props.range);
+
+function isAscension(item: T) {
+	return typeof item === "string" && item.endsWith(",1");
+}
+
+const selectOptions = computed(() => {
+	return props.options.map((o) => {
+		if (isAscension(o)) {
+			return {
+				value: o,
+				label: (o as string).split(",")[0] + " ⭐",
+			};
+		}
+
+		return {
+			value: o,
+			label: o,
+		};
+	});
+});
+
 watch(internalRange, (n) => emit("update:range", n), { deep: true });
 </script>
