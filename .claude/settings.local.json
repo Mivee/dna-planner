@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "Bash(npm list vitest)",
+      "Bash(npm list @vue/test-utils happy-dom)",
+      "Bash(npm install --save-dev vitest @vue/test-utils happy-dom)",
+      "Bash(npm test)"
     ]
   }
 }
