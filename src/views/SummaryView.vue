@@ -23,9 +23,6 @@
 		<Modal v-if="isInventoryVisible" v-model:is-open="isInventoryVisible">
 			<Inventory />
 		</Modal>
-		<Modal v-if="isInventoryVisible" v-model:is-open="isInventoryVisible">
-			<Inventory />
-		</Modal>
 	</div>
 </template>
 

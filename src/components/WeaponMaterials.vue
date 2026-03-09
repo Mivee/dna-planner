@@ -164,7 +164,7 @@ function getAscensionMaterialName(
 
 const { getAdjustedAmount } = useInventoryModeAdjustment();
 
-function getMissingAmount(amount: number, materialName: string | null) {
+function getMissingAmount(amount: number, materialName: string | null | undefined) {
 	return getAdjustedAmount(materialName, amount);
 }
 </script>

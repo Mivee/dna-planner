@@ -6,9 +6,9 @@ import type { WeaponLevelingMaterial } from "../types/ascension";
 import type { LevelRange } from "../types/range";
 
 export function useWeapon(name: string) {
-	const weapon = ref(weapons.find((w) => w.name == name));
+	const weapon = ref(weapons.find((w) => w.name === name));
 
-	const materials = ref(getUpgradeMaterialsForWeapon(weapon.value!)!);
+	const materials = ref(weapon.value ? getUpgradeMaterialsForWeapon(weapon.value) : undefined);
 
 	function buildSummary(items: LevelRange<WeaponLevelingMaterial>) {
 		return {

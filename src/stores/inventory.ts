@@ -47,8 +47,8 @@ export const useInventory = defineStore("inventory", () => {
 	watch(items, saveToStorage, { deep: true });
 
 	function setQuantity(name: string, quantity: number): boolean {
-		const item = items.value.find((i) => i.name == name);
-		if (item == null) {
+		const item = items.value.find((i) => i.name === name);
+		if (item === null || item === undefined) {
 			console.warn(`Item "${name}" not found in inventory`);
 			return false;
 		}
@@ -58,12 +58,12 @@ export const useInventory = defineStore("inventory", () => {
 	}
 
 	function getAmount(name: string) {
-		const item = items.value.find((i) => i.name == name);
+		const item = items.value.find((i) => i.name === name);
 		return item?.quantity ?? 0;
 	}
 
 	function addItem(item: InventoryItem): boolean {
-		if (items.value.some((i) => i.name == item.name)) {
+		if (items.value.some((i) => i.name === item.name)) {
 			console.warn(`Item "${item.name}" already exists in inventory`);
 			return false;
 		}

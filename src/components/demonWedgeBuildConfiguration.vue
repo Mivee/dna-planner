@@ -33,7 +33,7 @@
 						v-model.number="initialLevel"
 						class="w-full p-3 bg-secondary-light border border-white/20 rounded-lg text-white focus:border-accent focus:ring-1 focus:ring-accent transition-all">
 						<option
-							v-for="level in 10"
+							v-for="level in MAX_DEMONWEDGE_LEVEL"
 							:key="level - 1"
 							:value="level - 1">
 							+{{ level - 1 }}
@@ -49,7 +49,7 @@
 						v-model.number="targetLevel"
 						class="w-full p-3 bg-secondary-light border border-white/20 rounded-lg text-white focus:border-accent focus:ring-1 focus:ring-accent transition-all">
 						<option
-							v-for="level in 11"
+							v-for="level in MAX_DEMONWEDGE_LEVEL + 1"
 							:key="level - 1"
 							:value="level - 1"
 							:disabled="level - 1 <= initialLevel">
@@ -68,6 +68,7 @@ import { useUiStore } from "../stores/ui";
 import { demonWedges } from "../definitions/demonWedge";
 import type { DemonWedgeUpgradeConfig } from "../types/upgradeConfig";
 import { useUUID } from "../composables/utils";
+import { MAX_DEMONWEDGE_LEVEL } from "../definitions/constants";
 import Modal from "./modal.vue";
 
 interface Props {
@@ -87,7 +88,7 @@ const isOpen = ref(true);
 // Initialize form values from prop if editing
 const selectedWedge = ref(props.upgradeConfig?.name || "");
 const initialLevel = ref(props.upgradeConfig?.initialLevel ?? 0);
-const targetLevel = ref(props.upgradeConfig?.targetLevel ?? 10);
+const targetLevel = ref(props.upgradeConfig?.targetLevel ?? MAX_DEMONWEDGE_LEVEL);
 const quantity = ref(props.upgradeConfig?.quantity ?? 1);
 
 const groupedWedges = computed(() => {

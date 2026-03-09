@@ -72,7 +72,6 @@ export function useImage(
 		case "element":
 			return getElementImage(entry.imageCode);
 		case "wedge":
-			debugger;
 			return getWedgeImage(entry.imageCode, variant as Rarity);
 		default:
 			return null;

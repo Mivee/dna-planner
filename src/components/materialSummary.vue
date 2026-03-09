@@ -179,22 +179,10 @@ import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useUiStore } from "../stores/ui";
 import { useInventory } from "../stores/inventory";
-import { useCharacter } from "../composables/useCharacter";
-import { useWeapon } from "../composables/useWeapon";
-import { useDemonWedge } from "../composables/useDemonWedge";
-import { characterLevelingMaterials } from "../definitions/characterAscension";
-import { weaponLevelingMaterials } from "../definitions/weapon";
-import {
-	CharacterSkillLevels,
-	skillTrack1Materials,
-} from "../definitions/skillLeveling";
-import { elementUpgradeMaterials } from "../definitions/character";
-import type { CharacterLevelingMaterial } from "../types/characterLeveling";
-import type { WeaponLevelingMaterial } from "../types/ascension";
-import type { LevelRange } from "../types/range";
-import type { SkillLevelCost } from "../types/skill";
-import type { SkillLevelingMaterial } from "../types/skillLeveling";
-import type { SkillUpgradeConfig } from "../types/upgradeConfig";
+import { accumulateCharacterMaterials } from "../composables/useCharacterMaterialAccumulator";
+import { accumulateWeaponMaterials } from "../composables/useWeaponMaterialAccumulator";
+import { accumulateDemonWedgeMaterials } from "../composables/useDemonWedgeMaterialAccumulator";
+import { createEmptyTotals } from "../composables/useMaterialTotals";
 
 const uiStore = useUiStore();
 const { characterConfigurations, weaponConfigurations, plannerMode } =
@@ -218,500 +206,32 @@ interface MaterialDetail {
 	quantity: number;
 	adjustedQuantity: number;
 	colorClass: string;
-}
-
-function getWeaponAscensionInventoryName(
-	materialName: string,
-	tier: "green" | "blue" | "purple"
-): string {
-	if (tier === "green") {
-		return `Basic Weapon Component: ${materialName}`;
-	}
-
-	if (tier === "blue") {
-		return `Intermediate Weapon Component: ${materialName}`;
-	}
-
-	return `Advanced Weapon Component: ${materialName}`;
+	tier?: string;
 }
 
 const totalMaterials = computed(() => {
-	const totals = {
-		coins: 0,
-		carmineGlobules: 0,
-		exp: { characters: 0, weapons: 0 },
-		ascension: { green: 0, blue: 0, purple: 0 },
-		forging: { green: 0, blue: 0, purple: 0 },
-		ascensionDetails: new Map<string, { tier: string; quantity: number }>(),
-		forgingDetails: new Map<string, { tier: string; quantity: number }>(),
-		blueprintDetails: new Map<string, { quantity: number }>(),
-		demonWedgeMaterials: new Map<string, { quantity: number }>(),
-	};
+	const totals = createEmptyTotals();
 
 	characterConfigurations.value.forEach((config) => {
-		if (!config.name) return;
-
 		try {
-			const { buildSummary, character } = useCharacter(config.name);
-
-			// Skip if character not found
-			if (!character.value) return;
-
-			// Get element materials for this character
-			const elementMats = elementUpgradeMaterials.find(
-				(m) => m.element === character.value?.element
-			);
-
-			// Calculate character ascension materials
-			const start = characterLevelingMaterials.find(
-				(mat) => mat.level == config.level.start
-			);
-			const end = characterLevelingMaterials.find(
-				(mat) => mat.level == config.level.end
-			);
-			if (!start || !end) return;
-
-			const characterAscensionMaterials = {
-				start,
-				end,
-			} as LevelRange<CharacterLevelingMaterial>;
-
-			// Calculate skill materials
-			const skillMaterials = calculateSkillMaterials(config);
-
-			// Get summary
-			const summary = buildSummary(
-				characterAscensionMaterials,
-				skillMaterials
-			);
-
-			// Add to totals
-			totals.coins += summary.coins || 0;
-			totals.exp.characters += summary.exp || 0;
-			totals.ascension.green +=
-				summary.character.ascensionMaterials.T1_Green || 0;
-			totals.ascension.blue +=
-				summary.character.ascensionMaterials.T2_Blue || 0;
-			totals.ascension.purple +=
-				summary.character.ascensionMaterials.T3_Purple || 0;
-			totals.forging.green +=
-				summary.skills.forgingMaterials.T1Green || 0;
-			totals.forging.blue += summary.skills.forgingMaterials.T2Blue || 0;
-			totals.forging.purple +=
-				summary.skills.forgingMaterials.T3Purple || 0;
-
-			// Track material names for ascension materials
-			if (
-				elementMats &&
-				summary.character.ascensionMaterials.T1_Green > 0
-			) {
-				const existing = totals.ascensionDetails.get(
-					elementMats.ascensionMaterials.t1
-				);
-				totals.ascensionDetails.set(elementMats.ascensionMaterials.t1, {
-					tier: "green",
-					quantity:
-						(existing?.quantity || 0) +
-						summary.character.ascensionMaterials.T1_Green,
-				});
-			}
-			if (
-				elementMats &&
-				summary.character.ascensionMaterials.T2_Blue > 0
-			) {
-				const existing = totals.ascensionDetails.get(
-					elementMats.ascensionMaterials.t2
-				);
-				totals.ascensionDetails.set(elementMats.ascensionMaterials.t2, {
-					tier: "blue",
-					quantity:
-						(existing?.quantity || 0) +
-						summary.character.ascensionMaterials.T2_Blue,
-				});
-			}
-			if (
-				elementMats &&
-				summary.character.ascensionMaterials.T3_Purple > 0
-			) {
-				const existing = totals.ascensionDetails.get(
-					elementMats.ascensionMaterials.t3
-				);
-				totals.ascensionDetails.set(elementMats.ascensionMaterials.t3, {
-					tier: "purple",
-					quantity:
-						(existing?.quantity || 0) +
-						summary.character.ascensionMaterials.T3_Purple,
-				});
-			}
-
-			// Track material names for forging materials
-			if (elementMats && summary.skills.forgingMaterials.T1Green > 0) {
-				const existing = totals.forgingDetails.get(
-					elementMats.forgingMaterials.t1
-				);
-				totals.forgingDetails.set(elementMats.forgingMaterials.t1, {
-					tier: "green",
-					quantity:
-						(existing?.quantity || 0) +
-						summary.skills.forgingMaterials.T1Green,
-				});
-			}
-			if (elementMats && summary.skills.forgingMaterials.T2Blue > 0) {
-				const existing = totals.forgingDetails.get(
-					elementMats.forgingMaterials.t2
-				);
-				totals.forgingDetails.set(elementMats.forgingMaterials.t2, {
-					tier: "blue",
-					quantity:
-						(existing?.quantity || 0) +
-						summary.skills.forgingMaterials.T2Blue,
-				});
-			}
-			if (elementMats && summary.skills.forgingMaterials.T3Purple > 0) {
-				const existing = totals.forgingDetails.get(
-					elementMats.forgingMaterials.t3
-				);
-				totals.forgingDetails.set(elementMats.forgingMaterials.t3, {
-					tier: "purple",
-					quantity:
-						(existing?.quantity || 0) +
-						summary.skills.forgingMaterials.T3Purple,
-				});
-			}
-		} catch (error) {
-			console.warn(
-				`Failed to calculate materials for ${config.name}:`,
-				error
-			);
-		}
+			accumulateCharacterMaterials(config, totals);
+		} catch { /* skip invalid config */ }
 	});
 
-	// Process weapon configurations
 	weaponConfigurations.value.forEach((config) => {
-		if (!config.name) return;
-
 		try {
-			const { weapon, upgradeMaterials, buildSummary } = useWeapon(
-				config.name
-			);
-
-			// Skip if weapon not found
-			if (!weapon.value || !upgradeMaterials.value) return;
-
-			// Get weapon leveling materials
-			const start = weaponLevelingMaterials.find(
-				(mat) => mat.level == config.level.start
-			);
-			const end = weaponLevelingMaterials.find(
-				(mat) => mat.level == config.level.end
-			);
-			if (!start || !end) return;
-
-			const weaponLevelRange = {
-				start,
-				end,
-			} as LevelRange<WeaponLevelingMaterial>;
-
-			// Get summary
-			const summary = buildSummary(weaponLevelRange);
-
-			// Add to totals
-			totals.coins += summary.coins?.default || 0;
-
-			// Add forging materials
-			totals.forging.green += summary.forgingMaterials.T1_Green || 0;
-			totals.forging.blue += summary.forgingMaterials.T2_Blue || 0;
-
-			// Track material names for forging materials (weapon forging materials)
-			if (
-				upgradeMaterials.value &&
-				summary.forgingMaterials.T1_Green > 0
-			) {
-				const existing = totals.forgingDetails.get(
-					upgradeMaterials.value.forgingMaterials.t1
-				);
-				totals.forgingDetails.set(
-					upgradeMaterials.value.forgingMaterials.t1,
-					{
-						tier: "green",
-						quantity:
-							(existing?.quantity || 0) +
-							summary.forgingMaterials.T1_Green,
-					}
-				);
-			}
-			if (
-				upgradeMaterials.value &&
-				summary.forgingMaterials.T2_Blue > 0
-			) {
-				const existing = totals.forgingDetails.get(
-					upgradeMaterials.value.forgingMaterials.t2
-				);
-				totals.forgingDetails.set(
-					upgradeMaterials.value.forgingMaterials.t2,
-					{
-						tier: "blue",
-						quantity:
-							(existing?.quantity || 0) +
-							summary.forgingMaterials.T2_Blue,
-					}
-				);
-			}
-
-			// Track weapon ascension materials (primary and secondary)
-			if (
-				upgradeMaterials.value &&
-				summary.ascensionMaterials.primary.T1_Green > 0
-			) {
-				const key = getWeaponAscensionInventoryName(
-					upgradeMaterials.value.ascensionMaterials.primary,
-					"green"
-				);
-				const existing = totals.ascensionDetails.get(key);
-				totals.ascensionDetails.set(key, {
-					tier: "green",
-					quantity:
-						(existing?.quantity || 0) +
-						summary.ascensionMaterials.primary.T1_Green,
-				});
-			}
-			if (
-				upgradeMaterials.value &&
-				summary.ascensionMaterials.primary.T2_Blue > 0
-			) {
-				const key = getWeaponAscensionInventoryName(
-					upgradeMaterials.value.ascensionMaterials.primary,
-					"blue"
-				);
-				const existing = totals.ascensionDetails.get(key);
-				totals.ascensionDetails.set(key, {
-					tier: "blue",
-					quantity:
-						(existing?.quantity || 0) +
-						summary.ascensionMaterials.primary.T2_Blue,
-				});
-			}
-			if (
-				upgradeMaterials.value &&
-				summary.ascensionMaterials.primary.T3_Purple > 0
-			) {
-				const key = getWeaponAscensionInventoryName(
-					upgradeMaterials.value.ascensionMaterials.primary,
-					"purple"
-				);
-				const existing = totals.ascensionDetails.get(key);
-				totals.ascensionDetails.set(key, {
-					tier: "purple",
-					quantity:
-						(existing?.quantity || 0) +
-						summary.ascensionMaterials.primary.T3_Purple,
-				});
-			}
-			if (
-				upgradeMaterials.value &&
-				summary.ascensionMaterials.secondary.T1_Green > 0
-			) {
-				const key = getWeaponAscensionInventoryName(
-					upgradeMaterials.value.ascensionMaterials.secondary,
-					"green"
-				);
-				const existing = totals.ascensionDetails.get(key);
-				totals.ascensionDetails.set(key, {
-					tier: "green",
-					quantity:
-						(existing?.quantity || 0) +
-						summary.ascensionMaterials.secondary.T1_Green,
-				});
-			}
-			if (
-				upgradeMaterials.value &&
-				summary.ascensionMaterials.secondary.T2_Blue > 0
-			) {
-				const key = getWeaponAscensionInventoryName(
-					upgradeMaterials.value.ascensionMaterials.secondary,
-					"blue"
-				);
-				const existing = totals.ascensionDetails.get(key);
-				totals.ascensionDetails.set(key, {
-					tier: "blue",
-					quantity:
-						(existing?.quantity || 0) +
-						summary.ascensionMaterials.secondary.T2_Blue,
-				});
-			}
-			if (
-				upgradeMaterials.value &&
-				summary.ascensionMaterials.secondary.T3_Purple > 0
-			) {
-				const key = getWeaponAscensionInventoryName(
-					upgradeMaterials.value.ascensionMaterials.secondary,
-					"purple"
-				);
-				const existing = totals.ascensionDetails.get(key);
-				totals.ascensionDetails.set(key, {
-					tier: "purple",
-					quantity:
-						(existing?.quantity || 0) +
-						summary.ascensionMaterials.secondary.T3_Purple,
-				});
-			}
-
-			totals.exp.weapons += summary.exp || 0;
-		} catch (error) {
-			console.warn(
-				`Failed to calculate materials for weapon ${config.name}:`,
-				error
-			);
-		}
+			accumulateWeaponMaterials(config, totals);
+		} catch { /* skip invalid config */ }
 	});
 
-	// Process demon wedge configurations
-	const demonWedgeConfigs = uiStore.demonWedgeConfigurations;
-	demonWedgeConfigs.forEach((config) => {
-		if (!config.name) return;
-
+	uiStore.demonWedgeConfigurations.forEach((config) => {
 		try {
-			const { getDemonWedge, buildSummary } = useDemonWedge();
-			const wedge = getDemonWedge(config.name);
-
-			if (!wedge) return;
-
-			// Get quantity (default to 1 if not specified)
-			const quantity = config.quantity ?? 1;
-
-			// Get summary
-			const summary = buildSummary(
-				wedge,
-				config.initialLevel,
-				config.targetLevel,
-				quantity
-			);
-
-			// Add to totals
-			totals.coins += summary.coins;
-			totals.carmineGlobules += summary.carmineGlobules;
-
-			// Track blueprints
-			summary.blueprints.forEach((blueprintQty, blueprintName) => {
-				const existing = totals.blueprintDetails.get(blueprintName);
-				totals.blueprintDetails.set(blueprintName, {
-					quantity: (existing?.quantity || 0) + blueprintQty.quantity,
-				});
-			});
-
-			// Track materials
-			summary.materials.forEach((materialQty, materialName) => {
-				const existing = totals.demonWedgeMaterials.get(materialName);
-				totals.demonWedgeMaterials.set(materialName, {
-					quantity: (existing?.quantity || 0) + materialQty.quantity,
-				});
-			});
-		} catch (error) {
-			console.warn(
-				`Failed to calculate materials for demon wedge ${config.name}:`,
-				error
-			);
-		}
+			accumulateDemonWedgeMaterials(config, totals);
+		} catch { /* skip invalid config */ }
 	});
 
 	return totals;
 });
-
-function calculateSkillMaterials(config: any) {
-	const skillMaterials: SkillLevelCost[] = [];
-
-	// Skill
-	if (config.skill) {
-		skillMaterials.push(
-			getSkillMaterials(config.skill.current, config.skill.target)
-		);
-		skillMaterials.push(...getNodeMaterials(config.skill));
-	}
-
-	// Ultimate
-	if (config.ult) {
-		skillMaterials.push(
-			getSkillMaterials(config.ult.current, config.ult.target)
-		);
-		skillMaterials.push(...getNodeMaterials(config.ult));
-	}
-
-	// Passive
-	if (config.passive) {
-		skillMaterials.push(
-			getSkillMaterials(config.passive.current, config.passive.target)
-		);
-		skillMaterials.push(...getNodeMaterials(config.passive));
-	}
-
-	return skillMaterials;
-}
-
-function getSkillMaterials(current: number, target: number): SkillLevelCost {
-	const start = CharacterSkillLevels.find((mat) => mat.level == current);
-	const end = CharacterSkillLevels.find((mat) => mat.level == target);
-
-	if (!start || !end) {
-		return {
-			coinsGroupA: 0,
-			coinsGroupB: 0,
-			forgingMaterials: { T1Green: 0, T2Blue: 0, T3Purple: 0, T4Gold: 0 },
-			level: 0,
-			lunoMomento: 0,
-			nocturnalEcho: 0,
-			twilightTread: 0,
-		} as SkillLevelCost;
-	}
-
-	return {
-		coinsGroupA: end.coinsGroupA - start.coinsGroupA,
-		coinsGroupB: end.coinsGroupA - start.coinsGroupA,
-		forgingMaterials: {
-			T1Green:
-				end.forgingMaterials.T1Green - start.forgingMaterials.T1Green,
-			T2Blue: end.forgingMaterials.T2Blue - start.forgingMaterials.T2Blue,
-			T3Purple:
-				end.forgingMaterials.T3Purple - start.forgingMaterials.T3Purple,
-			T4Gold: end.forgingMaterials.T4Gold - start.forgingMaterials.T4Gold,
-		},
-		level: end.level - start.level,
-		lunoMomento: end.lunoMomento - start.lunoMomento,
-		nocturnalEcho: end.nocturnalEcho - start.nocturnalEcho,
-		twilightTread: end.twilightTread - start.twilightTread,
-	} as SkillLevelCost;
-}
-
-function getNodeMaterials(skill: SkillUpgradeConfig): SkillLevelCost[] {
-	const results: SkillLevelCost[] = [];
-
-	if (skill.node1?.isUnlocked) {
-		const m = skillTrack1Materials.find((mat) => mat.node == 1);
-		if (m) results.push(toSkillLevel(m));
-	}
-	if (skill.node2?.isUnlocked) {
-		const m = skillTrack1Materials.find((mat) => mat.node == 2);
-		if (m) results.push(toSkillLevel(m));
-	}
-
-	return results;
-}
-
-function toSkillLevel(m: SkillLevelingMaterial): SkillLevelCost {
-	return {
-		coinsGroupA: m.coins.default,
-		coinsGroupB: m.coins.default,
-		forgingMaterials: {
-			T1Green: m.ascensionMaterials.T1_Green,
-			T2Blue: m.ascensionMaterials.T2_Blue,
-			T3Purple: m.ascensionMaterials.T3_Purple,
-			T4Gold: 0,
-		},
-		level: 0,
-		lunoMomento: 0,
-		nocturnalEcho: m.forgingMaterials.NocturnalEcho,
-		twilightTread: m.forgingMaterials.TwilightTread,
-	} as SkillLevelCost;
-}
 
 const hasAscensionMaterials = computed(
 	() => totalMaterials.value.ascensionDetails.size > 0
@@ -740,14 +260,14 @@ const ascensionMaterialsList = computed(() => {
 			adjustedQuantity: adjustedQty,
 			colorClass: tierColors[detail.tier as keyof typeof tierColors],
 			tier: detail.tier,
-		} as any);
+		});
 	});
 
 	// Sort by tier (green, blue, purple) then by name
 	return materials.sort((a, b) => {
 		const tierDiff =
-			tierOrder[(a as any).tier as keyof typeof tierOrder] -
-			tierOrder[(b as any).tier as keyof typeof tierOrder];
+			tierOrder[(a.tier ?? "") as keyof typeof tierOrder] -
+			tierOrder[(b.tier ?? "") as keyof typeof tierOrder];
 		return tierDiff !== 0 ? tierDiff : a.name.localeCompare(b.name);
 	});
 });
@@ -771,14 +291,14 @@ const forgingMaterialsList = computed(() => {
 			adjustedQuantity: adjustedQty,
 			colorClass: tierColors[detail.tier as keyof typeof tierColors],
 			tier: detail.tier,
-		} as any);
+		});
 	});
 
 	// Sort by tier (green, blue, purple) then by name
 	return materials.sort((a, b) => {
 		const tierDiff =
-			tierOrder[(a as any).tier as keyof typeof tierOrder] -
-			tierOrder[(b as any).tier as keyof typeof tierOrder];
+			tierOrder[(a.tier ?? "") as keyof typeof tierOrder] -
+			tierOrder[(b.tier ?? "") as keyof typeof tierOrder];
 		return tierDiff !== 0 ? tierDiff : a.name.localeCompare(b.name);
 	});
 });

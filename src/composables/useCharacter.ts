@@ -12,10 +12,10 @@ export function getElementMaterials(character: Character) {
 }
 
 export function useCharacter(name: string) {
-	const character = ref(characters.find((x) => x.name == name));
+	const character = ref(characters.find((x) => x.name === name));
 	const upgradeMaterials = computed(() =>
 		elementUpgradeMaterials.find(
-			(eu) => eu.element == character.value?.element
+			(eu) => eu.element === character.value?.element
 		)
 	);
 
@@ -25,7 +25,7 @@ export function useCharacter(name: string) {
 	) {
 		let skillCosts = reduceSkillItems(skillMaterials);
 		let characterItems = buildCharacterAscensionCost(materials);
-		const isA = character.value?.rank == "A";
+		const isA = character.value?.rank === "A";
 		return {
 			character: {
 				ascensionMaterials: {

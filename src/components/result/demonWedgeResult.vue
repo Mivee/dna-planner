@@ -136,6 +136,13 @@
 				@closed="toggleIsEditing" />
 		</template>
 	</BaseResultCard>
+
+	<ConfirmDeleteDialog
+		v-if="showConfirmDelete"
+		:name="props.config.name || 'Demon Wedge'"
+		:image-url="imgSource"
+		@confirm="confirmRemove"
+		@cancel="cancelRemove" />
 </template>
 
 <script lang="ts" setup>
@@ -150,6 +157,7 @@ import { useImage } from "../../composables/useImage";
 import BaseResultCard from "./baseResultCard.vue";
 import { useElementColor } from "../../composables/useElementColor";
 import Tooltip from "../tooltip.vue";
+import ConfirmDeleteDialog from "../confirmDeleteDialog.vue";
 
 interface Props {
 	config: DemonWedgeUpgradeConfig;
@@ -158,7 +166,15 @@ const props = defineProps<Props>();
 const { getDemonWedge, buildSummary } = useDemonWedge();
 const { getAdjustedAmount } = useInventoryModeAdjustment();
 
-const { isEditing, edit, remove, toggleIsEditing } = useResultCardActions({
+const {
+	isEditing,
+	showConfirmDelete,
+	edit,
+	remove,
+	confirmRemove,
+	cancelRemove,
+	toggleIsEditing,
+} = useResultCardActions({
 	name: () => props.config.name || "Demon Wedge",
 	identifier: () => props.config.id || props.config.name,
 });
