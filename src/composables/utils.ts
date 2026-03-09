@@ -1,8 +1,8 @@
 import { v4 as uuid } from "uuid";
 import type { SortDirection } from "../types/sortDirection";
 
-export function isNullOrEmpty(str: string | null | undefined) {
-	return str && str.trim() != "";
+export function isNullOrEmpty(str: string | null | undefined): boolean {
+	return !str || str.trim() === "";
 }
 
 export function useClone<T>(obj: T): T {

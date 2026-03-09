@@ -5,7 +5,7 @@
 			placeholder="current skill level"
 			v-model="skill.current"
 			type="number"
-			max="10"
+			:max="MAX_SKILL_LEVEL"
 			min="0"
 			:id="talentName + ' current skill'"
 			class="w-16" />
@@ -13,8 +13,8 @@
 			placeholder="target skill level"
 			v-model="skill.target"
 			type="number"
-			max="10"
-			1
+			:max="MAX_SKILL_LEVEL"
+			min="0"
 			:id="talentName + ' target skill'"
 			class="w-16" />
 

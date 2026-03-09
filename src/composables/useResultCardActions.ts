@@ -9,6 +9,7 @@ interface UseResultCardActionsOptions {
 export function useResultCardActions(options: UseResultCardActionsOptions) {
 	const { removeConfiguration } = useUiStore();
 	const isEditing = ref(false);
+	const showConfirmDelete = ref(false);
 
 	function edit() {
 		isEditing.value = true;
@@ -21,16 +22,28 @@ export function useResultCardActions(options: UseResultCardActionsOptions) {
 	function remove() {
 		const identifier = options.identifier();
 		if (!identifier) return;
+		showConfirmDelete.value = true;
+	}
 
-		if (confirm(`Remove ${options.name()}?`)) {
+	function confirmRemove() {
+		const identifier = options.identifier();
+		if (identifier) {
 			removeConfiguration(identifier);
 		}
+		showConfirmDelete.value = false;
+	}
+
+	function cancelRemove() {
+		showConfirmDelete.value = false;
 	}
 
 	return {
 		isEditing,
+		showConfirmDelete,
 		edit,
 		remove,
+		confirmRemove,
+		cancelRemove,
 		toggleIsEditing,
 	};
 }

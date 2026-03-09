@@ -9,7 +9,8 @@
 					</label>
 					<select
 						v-model="config.name"
-						class="w-full px-4 py-2 bg-tertiary border border-white/10 rounded-md text-on-primary disabled:opacity-60 disabled:cursor-not-allowed">
+						class="w-full px-4 py-2 bg-tertiary border border-white/10 rounded-md text-on-primary disabled:opacity-60 disabled:cursor-not-allowed"
+						:class="{ 'border-red-500': validationError }">
 						<option value="">Select a weapon</option>
 						<optgroup
 							v-for="group in groupedWeapons"
@@ -23,6 +24,9 @@
 							</option>
 						</optgroup>
 					</select>
+					<p v-if="validationError" class="mt-1 text-xs text-red-400">
+						{{ validationError }}
+					</p>
 				</div>
 
 				<div>
@@ -40,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import type { WeaponUpgradeConfig } from "../types/upgradeConfig";
 import { weapons, weaponLevelingMaterials } from "../definitions/weapon";
 import type { Weapon } from "../types/weapon";
@@ -84,6 +88,7 @@ const weaponsLevels = computed(() =>
 	weaponLevelingMaterials.map((x) => x.level)
 );
 const isOpen = ref(true);
+const validationError = ref("");
 
 const config = ref<WeaponUpgradeConfig>(
 	props.upgradeConfig || {
@@ -96,9 +101,15 @@ const config = ref<WeaponUpgradeConfig>(
 	}
 );
 
+watch(() => config.value.name, () => {
+	if (config.value.name) {
+		validationError.value = "";
+	}
+});
+
 function save() {
 	if (!config.value.name) {
-		alert("Please select a weapon");
+		validationError.value = "Please select a weapon.";
 		return;
 	}
 

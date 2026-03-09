@@ -48,6 +48,13 @@
 				@closed="toggleIsEditing" />
 		</template>
 	</BaseResultCard>
+
+	<ConfirmDeleteDialog
+		v-if="showConfirmDelete"
+		:name="selectedWeapon"
+		:image-url="imgSource"
+		@confirm="confirmRemove"
+		@cancel="cancelRemove" />
 </template>
 
 <script lang="ts" setup>
@@ -59,6 +66,7 @@ import { useImage } from "../../composables/useImage";
 import ResultStatRow from "./resultStatRow.vue";
 import { useResultCardActions } from "../../composables/useResultCardActions";
 import BaseResultCard from "./baseResultCard.vue";
+import ConfirmDeleteDialog from "../confirmDeleteDialog.vue";
 
 interface Props {
 	config: WeaponUpgradeConfig;
@@ -68,7 +76,15 @@ const props = defineProps<Props>();
 const hasWeaponSelected = computed(() => !!props.config.name);
 const selectedWeapon = computed(() => props.config.name || "");
 
-const { isEditing, edit, remove, toggleIsEditing } = useResultCardActions({
+const {
+	isEditing,
+	showConfirmDelete,
+	edit,
+	remove,
+	confirmRemove,
+	cancelRemove,
+	toggleIsEditing,
+} = useResultCardActions({
 	name: () => selectedWeapon.value,
 	identifier: () => props.config.id || props.config.name,
 });

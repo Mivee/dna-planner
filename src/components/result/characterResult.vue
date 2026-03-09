@@ -78,6 +78,13 @@
 				@closed="toggleIsEditing" />
 		</template>
 	</BaseResultCard>
+
+	<ConfirmDeleteDialog
+		v-if="showConfirmDelete"
+		:name="selectedCharacter"
+		:image-url="imgSource"
+		@confirm="confirmRemove"
+		@cancel="cancelRemove" />
 </template>
 <script lang="ts" setup>
 import { computed } from "vue";
@@ -91,6 +98,7 @@ import { useResultCardActions } from "../../composables/useResultCardActions";
 import BaseResultCard from "./baseResultCard.vue";
 import SkillResultStatRow from "../skillResultStatRow.vue";
 import { useElementColor } from "../../composables/useElementColor";
+import ConfirmDeleteDialog from "../confirmDeleteDialog.vue";
 
 interface Props {
 	config: CharacterUpgradeConfig;
@@ -103,7 +111,15 @@ const hasCharacterSelected = computed(
 
 const selectedCharacter = computed(() => props.config.name!);
 
-const { isEditing, edit, remove, toggleIsEditing } = useResultCardActions({
+const {
+	isEditing,
+	showConfirmDelete,
+	edit,
+	remove,
+	confirmRemove,
+	cancelRemove,
+	toggleIsEditing,
+} = useResultCardActions({
 	name: () => selectedCharacter.value,
 	identifier: () => props.config.id || props.config.name,
 });

@@ -69,7 +69,7 @@ export const useUiStore = defineStore("ui", () => {
 	watch([plannerMode, upgradeConfiguration], saveToStorage, { deep: true });
 
 	function addConfiguration(config: BaseUpgradeConfig) {
-		if (config == null || config.name == null) return;
+		if (config === null || config === undefined || config.name == null) return;
 
 		const map = new Map(upgradeConfiguration.value);
 
@@ -102,21 +102,25 @@ export const useUiStore = defineStore("ui", () => {
 
 	const characterConfigurations = computed(() => {
 		return [...upgradeConfiguration.value.values()].filter(
-			(c) => c.type == "Character"
+			(c) => c.type === "Character"
 		) as CharacterUpgradeConfig[];
 	});
 
 	const weaponConfigurations = computed(() => {
 		return [...upgradeConfiguration.value.values()].filter(
-			(c) => c.type == "Weapon"
+			(c) => c.type === "Weapon"
 		) as WeaponUpgradeConfig[];
 	});
 
 	const demonWedgeConfigurations = computed(() => {
 		return [...upgradeConfiguration.value.values()].filter(
-			(c) => c.type == "DemonWedge"
+			(c) => c.type === "DemonWedge"
 		) as DemonWedgeUpgradeConfig[];
 	});
+
+	function updateConfiguration(config: BaseUpgradeConfig) {
+		addConfiguration(config);
+	}
 
 	function removeConfiguration(nameOrId: string) {
 		const map = new Map(upgradeConfiguration.value);
@@ -127,6 +131,7 @@ export const useUiStore = defineStore("ui", () => {
 	return {
 		plannerMode,
 		addConfiguration,
+		updateConfiguration,
 		removeConfiguration,
 		characterConfigurations,
 		weaponConfigurations,

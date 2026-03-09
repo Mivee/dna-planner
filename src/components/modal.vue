@@ -5,6 +5,7 @@
 			class="fixed inset-0 bg-primary/85 backdrop-blur-sm flex items-center justify-center z-1000 p-4"
 			@click.self="close">
 			<div
+				ref="modalPanelRef"
 				:class="modalSizeClass"
 				class="relative bg-secondary border border-white/10 rounded-lg max-w-[95%] max-h-[90vh] shadow-2xl overflow-hidden animate-[modalSlideIn_0.2s_ease]">
 				<!-- Header -->
@@ -43,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted } from "vue";
+import { computed, onMounted, onUnmounted, ref, nextTick, watch } from "vue";
 
 type ModalSize = "sm" | "md" | "lg" | "xl";
 
@@ -54,6 +55,8 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
 	size: "lg",
 });
+
+const modalPanelRef = ref<HTMLElement | null>(null);
 
 const modalSizeClass = computed(() => {
 	switch (props.size) {
@@ -72,6 +75,15 @@ const modalSizeClass = computed(() => {
 
 const emit = defineEmits(["update:isOpen", "save", "closed"]);
 
+function getFocusableElements(): HTMLElement[] {
+	if (!modalPanelRef.value) return [];
+	return Array.from(
+		modalPanelRef.value.querySelectorAll<HTMLElement>(
+			'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+		)
+	).filter((el) => !el.hasAttribute("disabled"));
+}
+
 function close() {
 	emit("update:isOpen", false);
 	emit("closed");
@@ -82,17 +94,48 @@ function save() {
 	emit("save");
 }
 
-function closeOnEscape(event: KeyboardEvent) {
+function handleKeydown(event: KeyboardEvent) {
 	if (event.key === "Escape") {
 		close();
+		return;
+	}
+
+	if (event.key !== "Tab") return;
+
+	const focusable = getFocusableElements();
+	if (focusable.length === 0) return;
+
+	const first = focusable[0]!;
+	const last = focusable[focusable.length - 1]!;
+
+	if (event.shiftKey) {
+		if (document.activeElement === first) {
+			event.preventDefault();
+			last.focus();
+		}
+	} else {
+		if (document.activeElement === last) {
+			event.preventDefault();
+			first.focus();
+		}
 	}
 }
 
+watch(
+	() => props.isOpen,
+	async (open) => {
+		if (open) {
+			await nextTick();
+			getFocusableElements()[0]?.focus();
+		}
+	}
+);
+
 onMounted(() => {
-	document.addEventListener("keydown", closeOnEscape);
+	document.addEventListener("keydown", handleKeydown);
 });
 onUnmounted(() => {
-	document.removeEventListener("keydown", closeOnEscape);
+	document.removeEventListener("keydown", handleKeydown);
 });
 </script>
 

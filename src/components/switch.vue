@@ -4,6 +4,8 @@
 		<label class="relative inline-block w-14 h-7 cursor-pointer">
 			<input
 				type="checkbox"
+				role="switch"
+				:aria-checked="internalValue"
 				v-model="internalValue"
 				class="opacity-0 w-0 h-0 peer" />
 			<span
