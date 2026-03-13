@@ -13,6 +13,7 @@ import { useToastStore } from "./toast";
 const STORAGE_KEY = "dna-planner-ui";
 
 export const useUiStore = defineStore("ui", () => {
+	const { show: showToast } = useToastStore();
 	// Load initial state from localStorage
 	const loadFromStorage = () => {
 		try {
@@ -62,7 +63,7 @@ export const useUiStore = defineStore("ui", () => {
 			};
 			localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 		} catch {
-			useToastStore().show(
+			showToast(
 				"Failed to save planner data — storage may be full",
 				"error"
 			);
@@ -73,7 +74,8 @@ export const useUiStore = defineStore("ui", () => {
 	watch([plannerMode, upgradeConfiguration], saveToStorage, { deep: true });
 
 	function addConfiguration(config: BaseUpgradeConfig) {
-		if (config === null || config === undefined || config.name == null) return;
+		if (config === null || config === undefined || config.name == null)
+			return;
 
 		const map = new Map(upgradeConfiguration.value);
 

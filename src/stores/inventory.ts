@@ -6,6 +6,8 @@ import { useToastStore } from "./toast";
 const STORAGE_KEY = "dna-planner-inventory";
 
 export const useInventory = defineStore("inventory", () => {
+	const { show: showToast } = useToastStore();
+
 	const sanitizeQuantity = (quantity: number): number => {
 		if (!Number.isFinite(quantity)) {
 			return 0;
@@ -40,7 +42,7 @@ export const useInventory = defineStore("inventory", () => {
 		try {
 			localStorage.setItem(STORAGE_KEY, JSON.stringify(items.value));
 		} catch {
-			useToastStore().show(
+			showToast(
 				"Failed to save inventory — storage may be full",
 				"error"
 			);
