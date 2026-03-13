@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
 import { useToastStore } from "../stores/toast";
-import type { Toast } from "../stores/toast";
+import type { Toast } from "../types/toast";
 
 const toastStore = useToastStore();
 
