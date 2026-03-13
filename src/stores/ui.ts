@@ -8,6 +8,7 @@ import type {
 	DemonWedgeUpgradeConfig,
 } from "../types/upgradeConfig";
 import { useClone, useUUID } from "../composables/utils";
+import { useToastStore } from "./toast";
 
 const STORAGE_KEY = "dna-planner-ui";
 
@@ -37,8 +38,8 @@ export const useUiStore = defineStore("ui", () => {
 					upgradeConfiguration: configMap,
 				};
 			}
-		} catch (error) {
-			console.error("Failed to load UI state from localStorage:", error);
+		} catch {
+			// Toast store may not be available during initial load
 		}
 		return {
 			plannerMode: "Inventory" as PlannerMode,
@@ -60,8 +61,11 @@ export const useUiStore = defineStore("ui", () => {
 				),
 			};
 			localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-		} catch (error) {
-			console.error("Failed to save UI state to localStorage:", error);
+		} catch {
+			useToastStore().show(
+				"Failed to save planner data — storage may be full",
+				"error"
+			);
 		}
 	};
 

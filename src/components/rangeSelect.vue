@@ -1,12 +1,12 @@
 <template>
 	<div class="flex gap-4">
-		<select v-model="internalRange.start" :class="selectClasses">
+		<select v-model="internalRange.start" :class="selectClasses" :aria-label="props.startLabel || 'Start level'">
 			<option v-for="o in selectOptions" :value="o.value">
 				{{ o.label }}
 			</option>
 		</select>
 
-		<select v-model="internalRange.end" :class="selectClasses">
+		<select v-model="internalRange.end" :class="selectClasses" :aria-label="props.endLabel || 'Target level'">
 			<option v-for="o in selectOptions" :value="o.value">
 				{{ o.label }}
 			</option>
@@ -22,6 +22,8 @@ interface Props {
 	range: LevelRange<T>;
 	selectColor?: "Primary" | "Secondary";
 	selectText?: "Primary" | "Secondary";
+	startLabel?: string;
+	endLabel?: string;
 }
 const props = defineProps<Props>();
 

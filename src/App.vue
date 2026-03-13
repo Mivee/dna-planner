@@ -51,11 +51,7 @@
 
 		<!-- Main content area -->
 		<main class="max-w-[1400px] mx-auto p-6" role="main">
-			<RouterView v-slot="{ Component }">
-				<transition name="page" mode="out-in">
-					<component :is="Component" />
-				</transition>
-			</RouterView>
+			<SummaryView />
 		</main>
 
 		<!-- Settings Modal -->
@@ -84,17 +80,21 @@
 			:size="'xl'">
 			<Inventory />
 		</Modal>
+
+		<ToastContainer />
 	</div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import SummaryView from "./views/SummaryView.vue";
 import Settings from "./components/settings.vue";
 import Modal from "./components/modal.vue";
 import CharacterBuildConfiguration from "./components/characterBuildConfiguration.vue";
 import WeaponBuildConfiguration from "./components/weaponBuildConfiguration.vue";
 import DemonWedgeBuildConfiguration from "./components/demonWedgeBuildConfiguration.vue";
 import Inventory from "./components/inventory.vue";
+import ToastContainer from "./components/toastContainer.vue";
 
 const showSettings = ref(false);
 
@@ -141,21 +141,6 @@ function openInventoryModal() {
 </script>
 
 <style scoped>
-/* Page transitions */
-.page-enter-active,
-.page-leave-active {
-	transition: all 0.2s ease;
-}
-
-.page-enter-from {
-	opacity: 0;
-	transform: translateY(10px);
-}
-
-.page-leave-to {
-	opacity: 0;
-}
-
 @media (max-width: 768px) {
 	header > div {
 		flex-direction: column;

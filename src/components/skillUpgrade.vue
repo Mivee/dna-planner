@@ -1,6 +1,7 @@
 <template>
 	<div class="flex flex-row gap-4 items-center">
-		{{ props.talentName }}
+		<span>{{ props.talentName }}</span>
+		<label :for="talentName + ' current skill'" class="sr-only">{{ talentName }} current level</label>
 		<input
 			placeholder="current skill level"
 			v-model="skill.current"
@@ -8,7 +9,9 @@
 			:max="MAX_SKILL_LEVEL"
 			min="0"
 			:id="talentName + ' current skill'"
+			:aria-label="talentName + ' current level'"
 			class="w-16" />
+		<label :for="talentName + ' target skill'" class="sr-only">{{ talentName }} target level</label>
 		<input
 			placeholder="target skill level"
 			v-model="skill.target"
@@ -16,6 +19,7 @@
 			:max="MAX_SKILL_LEVEL"
 			min="0"
 			:id="talentName + ' target skill'"
+			:aria-label="talentName + ' target level'"
 			class="w-16" />
 
 		<!-- node 1 -->
