@@ -23,8 +23,8 @@ export function useCharacter(name: string) {
 		materials: LevelRange<CharacterLevelingMaterial>,
 		skillMaterials: SkillLevelCost[]
 	) {
-		let skillCosts = reduceSkillItems(skillMaterials);
-		let characterItems = buildCharacterAscensionCost(materials);
+		const skillCosts = reduceSkillItems(skillMaterials);
+		const characterItems = buildCharacterAscensionCost(materials);
 		const isA = character.value?.rank === "A";
 		return {
 			character: {
@@ -69,7 +69,7 @@ export function useCharacter(name: string) {
 function buildCharacterAscensionCost(
 	materials: LevelRange<CharacterLevelingMaterial>
 ) {
-	let result: CharacterLevelingMaterial = {
+	const result: CharacterLevelingMaterial = {
 		ascensionMaterials: {
 			T1_Green:
 				(materials.end?.ascensionMaterials?.T1_Green ?? 0) -
@@ -104,7 +104,7 @@ function buildCharacterAscensionCost(
 	return result;
 }
 function reduceSkillItems(items: SkillLevelCost[]) {
-	let result: SkillLevelCost = {
+	const result: SkillLevelCost = {
 		coinsGroupA: 0,
 		coinsGroupB: 0,
 		forgingMaterials: {
@@ -119,7 +119,7 @@ function reduceSkillItems(items: SkillLevelCost[]) {
 		twilightTread: 0,
 	};
 
-	for (let item of items) {
+	for (const item of items) {
 		result.coinsGroupA += item.coinsGroupA;
 		result.coinsGroupB += item.coinsGroupB;
 		result.forgingMaterials.T1Green += item.forgingMaterials.T1Green;

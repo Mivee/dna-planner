@@ -1,5 +1,5 @@
 <template>
-	<Modal v-model:isOpen="isOpen" @save="saveConfiguration">
+	<Modal v-model:is-open="isOpen" @save="saveConfiguration">
 		<div class="space-y-4">
 			<div>
 				<label class="block text-sm font-medium mb-2 text-white-muted">

@@ -4,8 +4,8 @@
 			<img :src="imgSource" />
 		</div>
 		<select v-model="upgradeConfig.name" class="bg-primary text-on-primary">
-			<option v-for="value in weapons">
-				{{ value.name }}
+			<option v-for="wepon in weapons" :key="wepon.name">
+				{{ wepon.name }}
 			</option>
 		</select>
 		<div>
@@ -17,9 +17,9 @@
 		</div>
 		<WeaponMaterials
 			v-if="hasWeaponSelected"
-			:upgrade-config="upgradeConfig"
-			:key="selectedWeapon" />
-		<input type="checkbox" v-model="includeForge" />
+			:key="selectedWeapon"
+			:upgrade-config="upgradeConfig" />
+		<input v-model="includeForge" type="checkbox" />
 		<Forge v-if="selectedWeapon && includeForge" :weapon="selectedWeapon" />
 	</div>
 </template>
@@ -32,7 +32,7 @@ import { weapons, weaponLevelingMaterials } from "../definitions/weapon";
 import RangeSelect from "./rangeSelect.vue";
 
 const weaponsLevels = computed(() =>
-	weaponLevelingMaterials.map((x) => x.level)
+	weaponLevelingMaterials.map((x) => x.level!)
 );
 
 const imgSource = computed(() => "");

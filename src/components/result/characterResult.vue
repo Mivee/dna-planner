@@ -65,8 +65,8 @@
 		<template #materials>
 			<CharacterMaterials
 				v-if="hasCharacterSelected"
-				:upgrade-config="props.config"
-				:key="selectedCharacter" />
+				:key="selectedCharacter"
+				:upgrade-config="props.config" />
 		</template>
 
 		<template #editor>
@@ -124,8 +124,8 @@ const {
 	identifier: () => props.config.id || props.config.name,
 });
 
-const characterData = computed(() =>
-	characters.find((x) => x.name === selectedCharacter.value) ?? null
+const characterData = computed(
+	() => characters.find((x) => x.name === selectedCharacter.value) ?? null
 );
 
 const imgSource = computed(() => useImage(selectedCharacter.value, "portrait"));

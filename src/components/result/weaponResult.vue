@@ -36,8 +36,8 @@
 		<template #materials>
 			<WeaponMaterials
 				v-if="hasWeaponSelected"
-				:upgrade-config="config"
-				:key="selectedWeapon" />
+				:key="selectedWeapon"
+				:upgrade-config="config" />
 		</template>
 
 		<template #editor>

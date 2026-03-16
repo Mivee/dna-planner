@@ -101,11 +101,14 @@ const config = ref<WeaponUpgradeConfig>(
 	}
 );
 
-watch(() => config.value.name, () => {
-	if (config.value.name) {
-		validationError.value = "";
+watch(
+	() => config.value.name,
+	() => {
+		if (config.value.name) {
+			validationError.value = "";
+		}
 	}
-});
+);
 
 function save() {
 	if (!config.value.name) {

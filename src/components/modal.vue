@@ -18,8 +18,8 @@
 					</slot>
 					<button
 						class="p-2 bg-transparent border-none text-on-secondary text-xl cursor-pointer transition-all duration-200 rounded flex items-center justify-center w-9 h-9 hover:text-on-primary hover:bg-white/10"
-						@click="close"
-						aria-label="Close modal">
+						aria-label="Close modal"
+						@click="close">
 						<i class="fa-solid fa-xmark"></i>
 					</button>
 				</header>

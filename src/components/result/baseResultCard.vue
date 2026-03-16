@@ -73,6 +73,7 @@ withDefaults(defineProps<Props>(), {
 	summaryContentClass: "flex flex-col gap-3 justify-center",
 	materialsContainerClass: "p-5",
 	noImageText: "No Image",
+	containerStyle: null,
 });
 
 defineEmits<{ edit: []; remove: [] }>();

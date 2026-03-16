@@ -1,19 +1,25 @@
 <template>
 	<div class="flex gap-4">
-		<select v-model="internalRange.start" :class="selectClasses" :aria-label="props.startLabel || 'Start level'">
-			<option v-for="o in selectOptions" :value="o.value">
+		<select
+			v-model="internalRange.start"
+			:class="selectClasses"
+			:aria-label="props.startLabel || 'Start level'">
+			<option v-for="o in selectOptions" :key="o.label" :value="o.value">
 				{{ o.label }}
 			</option>
 		</select>
 
-		<select v-model="internalRange.end" :class="selectClasses" :aria-label="props.endLabel || 'Target level'">
-			<option v-for="o in selectOptions" :value="o.value">
+		<select
+			v-model="internalRange.end"
+			:class="selectClasses"
+			:aria-label="props.endLabel || 'Target level'">
+			<option v-for="o in selectOptions" :key="o.label" :value="o.value">
 				{{ o.label }}
 			</option>
 		</select>
 	</div>
 </template>
-<script lang="ts" setup generic="T">
+<script lang="ts" setup generic="T extends string | number">
 import { watch, ref, computed } from "vue";
 import type { LevelRange } from "../types/range";
 

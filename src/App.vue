@@ -38,9 +38,9 @@
 					</div>
 					<div class="flex">
 						<button
-							@click="openSettingsModal"
 							class="flex items-center gap-2 whitespace-nowrap sm:justify-center"
-							aria-label="Open settings">
+							aria-label="Open settings"
+							@click="openSettingsModal">
 							<i class="fas fa-cog text-base"></i>
 							<span>Settings</span>
 						</button>
@@ -55,7 +55,7 @@
 		</main>
 
 		<!-- Settings Modal -->
-		<Modal v-model:isOpen="showSettings" @save="handleSaveSettings">
+		<Modal v-model:is-open="showSettings" @save="handleSaveSettings">
 			<template #header>
 				<h2 class="m-0 text-xl text-white font-bold">Settings</h2>
 			</template>

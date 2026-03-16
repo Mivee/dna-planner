@@ -42,7 +42,7 @@
 		</template>
 
 		<template #materials>
-			<div class="flex flex-col gap-3" v-if="summary">
+			<div v-if="summary" class="flex flex-col gap-3">
 				<ResultStatRow value-class="text-accent">
 					<template #label>
 						<div class="flex items-center gap-2">
@@ -86,7 +86,7 @@
 								{{ blueprint.name }}
 							</span>
 
-							<Tooltip icon="fas fa-info" v-if="blueprint.source">
+							<Tooltip v-if="blueprint.source" icon="fas fa-info">
 								<template #text>
 									<div>
 										{{ blueprint.source }}

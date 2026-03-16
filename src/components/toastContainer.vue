@@ -11,9 +11,9 @@
 			<i :class="toastIcon(toast.type)"></i>
 			<span class="flex-1">{{ toast.message }}</span>
 			<button
-				@click="toastStore.dismiss(toast.id)"
 				class="opacity-60 hover:opacity-100 transition-opacity"
-				aria-label="Dismiss notification">
+				aria-label="Dismiss notification"
+				@click="toastStore.dismiss(toast.id)">
 				<i class="fas fa-xmark"></i>
 			</button>
 		</div>

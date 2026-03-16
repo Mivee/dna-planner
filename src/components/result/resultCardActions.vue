@@ -3,14 +3,14 @@
 		<button
 			class="px-3 py-2 bg-secondary-light border border-white/20 rounded-md text-white-muted cursor-pointer transition-all duration-200"
 			:class="editHoverClass"
-			@click="$emit('edit')"
-			:aria-label="editAriaLabel">
+			:aria-label="editAriaLabel"
+			@click="$emit('edit')">
 			<i class="fa-solid fa-pencil"></i>
 		</button>
 		<button
 			class="px-3 py-2 bg-secondary-light border border-white/20 rounded-md text-white-muted cursor-pointer transition-all duration-200 hover:bg-error/20 hover:border-error hover:text-error"
-			@click="$emit('remove')"
-			:aria-label="removeAriaLabel">
+			:aria-label="removeAriaLabel"
+			@click="$emit('remove')">
 			<i class="fa-solid fa-trash"></i>
 		</button>
 	</div>

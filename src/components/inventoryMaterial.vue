@@ -21,8 +21,8 @@
 				min="0"
 				step="1"
 				:value="quantity"
-				@input="handleInput"
-				class="w-24 px-3 py-2 bg-secondary-light border border-white/20 rounded text-white text-right focus:border-accent focus:ring-1 focus:ring-accent" />
+				class="w-24 px-3 py-2 bg-secondary-light border border-white/20 rounded text-white text-right focus:border-accent focus:ring-1 focus:ring-accent"
+				@input="handleInput" />
 			<button
 				type="button"
 				class="px-2 py-1 min-w-8"
