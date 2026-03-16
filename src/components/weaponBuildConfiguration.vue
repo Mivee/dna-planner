@@ -85,7 +85,7 @@ const groupedWeapons = computed(() => {
 });
 
 const weaponsLevels = computed(() =>
-	weaponLevelingMaterials.map((x) => x.level)
+	weaponLevelingMaterials.map((x) => x.level!)
 );
 const isOpen = ref(true);
 const validationError = ref("");
