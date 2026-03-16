@@ -117,7 +117,7 @@ export function useForge(itemName: string) {
 				(targetItem as Weapon).range == "Melee"
 					? "Sharpening Potion"
 					: "Projectile";
-			let o = {
+			const o = {
 				"Gold Sand": 3,
 				"Repulsive Crystal": 5,
 				"Sharpening Potion": 0,

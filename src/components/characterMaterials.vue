@@ -106,33 +106,33 @@ const characterAscensionMaterials = computed(() => {
 
 const skillLevelMaterials = computed(() => {
 	// skill
-	let skillMaterials = [
+	const skillMaterials = [
 		getSkillMaterials(
 			props.upgradeConfig.skill!.current,
 			props.upgradeConfig.skill!.target
 		),
 	];
-	let skillNodeMaterials = getNodeMaterials(props.upgradeConfig.skill!);
+	const skillNodeMaterials = getNodeMaterials(props.upgradeConfig.skill!);
 	skillMaterials.push(...skillNodeMaterials.map((oo) => toSkillLevel(oo)));
 
 	// ult
-	let ultimateMaterials = [
+	const ultimateMaterials = [
 		getSkillMaterials(
 			props.upgradeConfig.ult!.current,
 			props.upgradeConfig.ult!.target
 		),
 	];
-	let ultimateNodeMaterials = getNodeMaterials(props.upgradeConfig.ult!);
+	const ultimateNodeMaterials = getNodeMaterials(props.upgradeConfig.ult!);
 	skillMaterials.push(...ultimateNodeMaterials.map((oo) => toSkillLevel(oo)));
 
 	//passive
-	let passiveMaterials = [
+	const passiveMaterials = [
 		getSkillMaterials(
 			props.upgradeConfig.passive!.current,
 			props.upgradeConfig.passive!.target
 		),
 	];
-	let passiveNodeMaterials = getNodeMaterials(props.upgradeConfig.passive!);
+	const passiveNodeMaterials = getNodeMaterials(props.upgradeConfig.passive!);
 	skillMaterials.push(...passiveNodeMaterials.map((oo) => toSkillLevel(oo)));
 
 	return {
@@ -175,7 +175,7 @@ function mergeRange(range: LevelRange<SkillLevelCost>) {
 }
 
 function getNodeMaterials(skill: SkillUpgradeConfig) {
-	let results: SkillLevelingMaterial[] = [];
+	const results: SkillLevelingMaterial[] = [];
 	let m: SkillLevelingMaterial;
 	if (skill.node1?.isUnlocked == true) {
 		m = skillTrack1Materials.find((mat) => mat.node == 1)!;

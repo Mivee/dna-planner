@@ -34,14 +34,14 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col gap-2" v-if="hasMaterials">
+			<div v-if="hasMaterials" class="flex flex-col gap-2">
 				<h4
 					class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">
 					Ascension Materials
 				</h4>
 				<div
-					class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors"
-					v-if="totalMaterials.green > 0">
+					v-if="totalMaterials.green > 0"
+					class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
 					<div
 						class="w-5 h-5 rounded bg-gradient-to-br from-[#4ade80] to-[#22c55e] shrink-0"></div>
 					<span class="flex-1 text-sm text-on-primary">Green</span>
@@ -50,8 +50,8 @@
 					</span>
 				</div>
 				<div
-					class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors"
-					v-if="totalMaterials.blue > 0">
+					v-if="totalMaterials.blue > 0"
+					class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
 					<div
 						class="w-5 h-5 rounded bg-gradient-to-br from-[#60a5fa] to-[#3b82f6] shrink-0"></div>
 					<span class="flex-1 text-sm text-on-primary">Blue</span>
@@ -60,8 +60,8 @@
 					</span>
 				</div>
 				<div
-					class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors"
-					v-if="totalMaterials.purple > 0">
+					v-if="totalMaterials.purple > 0"
+					class="flex items-center gap-3 p-2 bg-white/[0.03] rounded-md hover:bg-white/[0.05] transition-colors">
 					<div
 						class="w-5 h-5 rounded bg-gradient-to-br from-[#c084fc] to-[#a855f7] shrink-0"></div>
 					<span class="flex-1 text-sm text-on-primary">Purple</span>
@@ -72,8 +72,8 @@
 			</div>
 
 			<div
-				class="flex flex-col gap-2"
-				v-if="totalMaterials.forgeMaterials > 0">
+				v-if="totalMaterials.forgeMaterials > 0"
+				class="flex flex-col gap-2">
 				<h4
 					class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">
 					Forge Materials

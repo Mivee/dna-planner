@@ -85,7 +85,7 @@ const groupedWeapons = computed(() => {
 });
 
 const weaponsLevels = computed(() =>
-	weaponLevelingMaterials.map((x) => x.level)
+	weaponLevelingMaterials.map((x) => x.level!)
 );
 const isOpen = ref(true);
 const validationError = ref("");
@@ -101,11 +101,14 @@ const config = ref<WeaponUpgradeConfig>(
 	}
 );
 
-watch(() => config.value.name, () => {
-	if (config.value.name) {
-		validationError.value = "";
+watch(
+	() => config.value.name,
+	() => {
+		if (config.value.name) {
+			validationError.value = "";
+		}
 	}
-});
+);
 
 function save() {
 	if (!config.value.name) {

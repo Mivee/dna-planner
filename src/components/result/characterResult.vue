@@ -65,8 +65,8 @@
 		<template #materials>
 			<CharacterMaterials
 				v-if="hasCharacterSelected"
-				:upgrade-config="props.config"
-				:key="selectedCharacter" />
+				:key="selectedCharacter"
+				:upgrade-config="props.config" />
 		</template>
 
 		<template #editor>
@@ -90,7 +90,7 @@
 import { computed } from "vue";
 import CharacterMaterials from "../characterMaterials.vue";
 import type { CharacterUpgradeConfig } from "../../types/upgradeConfig";
-import { useCharacter } from "../../composables/useCharacter";
+import { characters } from "../../definitions/character";
 import CharacterBuildConfiguration from "../characterBuildConfiguration.vue";
 import { useImage } from "../../composables/useImage";
 import ResultStatRow from "./resultStatRow.vue";
@@ -124,26 +124,15 @@ const {
 	identifier: () => props.config.id || props.config.name,
 });
 
-const characterComposable = computed(() => {
-	if (selectedCharacter.value) {
-		return useCharacter(selectedCharacter.value);
-	}
-	return null;
-});
+const characterData = computed(
+	() => characters.find((x) => x.name === selectedCharacter.value) ?? null
+);
 
 const imgSource = computed(() => useImage(selectedCharacter.value, "portrait"));
 
 const elementImageUrl = computed(() =>
-	useImage(characterComposable.value?.character.value?.element || "")
+	useImage(characterData.value?.element || "")
 );
-
-// Element colors and icons
-const characterData = computed(() => {
-	if (selectedCharacter.value) {
-		return useCharacter(selectedCharacter.value).character.value;
-	}
-	return null;
-});
 
 const elementBackgroundGradient = computed(() => {
 	const hexCode = useElementColor(characterData.value?.element)?.hexCode;

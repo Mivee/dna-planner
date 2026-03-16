@@ -12,6 +12,7 @@
 					<select v-model="internalUpgradeConfig.name">
 						<option
 							v-for="value in sortedCharacters"
+							:key="value.name"
 							:label="value.name"
 							:value="value.name"></option>
 					</select>
@@ -23,13 +24,13 @@
 					<div class="flex flex-col gap-4">
 						<SkillUpgrade
 							v-model:skill="internalUpgradeConfig.skill"
-							talentName="Skill" />
+							talent-name="Skill" />
 						<SkillUpgrade
 							v-model:skill="internalUpgradeConfig.ult"
-							talentName="Ult" />
+							talent-name="Ult" />
 						<SkillUpgrade
 							v-model:skill="internalUpgradeConfig.passive"
-							talentName="Passive" />
+							talent-name="Passive" />
 					</div>
 				</div>
 			</div>

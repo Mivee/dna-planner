@@ -3,7 +3,7 @@
 		{{ props.weapon }}
 	</div>
 	<div>
-		<div v-for="value in itemsNeeded">
+		<div v-for="value in itemsNeeded" :key="value">
 			{{ value }}
 		</div>
 	</div>

@@ -1,10 +1,13 @@
 import { defineStore } from "pinia";
 import type { InventoryItem } from "../types/inventoryItem";
 import { ref, watch } from "vue";
+import { useToastStore } from "./toast";
 
 const STORAGE_KEY = "dna-planner-inventory";
 
 export const useInventory = defineStore("inventory", () => {
+	const { show: showToast } = useToastStore();
+
 	const sanitizeQuantity = (quantity: number): number => {
 		if (!Number.isFinite(quantity)) {
 			return 0;
@@ -26,8 +29,8 @@ export const useInventory = defineStore("inventory", () => {
 						quantity: sanitizeQuantity(item.quantity),
 					}));
 			}
-		} catch (error) {
-			console.error("Failed to load inventory from localStorage:", error);
+		} catch {
+			// Toast store may not be available during initial load
 		}
 		return [];
 	};
@@ -38,8 +41,11 @@ export const useInventory = defineStore("inventory", () => {
 	const saveToStorage = () => {
 		try {
 			localStorage.setItem(STORAGE_KEY, JSON.stringify(items.value));
-		} catch (error) {
-			console.error("Failed to save inventory to localStorage:", error);
+		} catch {
+			showToast(
+				"Failed to save inventory — storage may be full",
+				"error"
+			);
 		}
 	};
 
@@ -49,7 +55,6 @@ export const useInventory = defineStore("inventory", () => {
 	function setQuantity(name: string, quantity: number): boolean {
 		const item = items.value.find((i) => i.name === name);
 		if (item === null || item === undefined) {
-			console.warn(`Item "${name}" not found in inventory`);
 			return false;
 		}
 
@@ -64,7 +69,6 @@ export const useInventory = defineStore("inventory", () => {
 
 	function addItem(item: InventoryItem): boolean {
 		if (items.value.some((i) => i.name === item.name)) {
-			console.warn(`Item "${item.name}" already exists in inventory`);
 			return false;
 		}
 

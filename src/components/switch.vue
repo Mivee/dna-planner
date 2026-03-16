@@ -3,10 +3,10 @@
 		<span class="text-sm text-white-muted">{{ props.labelInactive }}</span>
 		<label class="relative inline-block w-14 h-7 cursor-pointer">
 			<input
+				v-model="internalValue"
 				type="checkbox"
 				role="switch"
 				:aria-checked="internalValue"
-				v-model="internalValue"
 				class="opacity-0 w-0 h-0 peer" />
 			<span
 				class="absolute inset-0 bg-secondary-light border border-white/20 rounded-full transition-all duration-300 peer-checked:bg-accent peer-checked:border-accent peer-focus:ring-2 peer-focus:ring-accent/50"></span>

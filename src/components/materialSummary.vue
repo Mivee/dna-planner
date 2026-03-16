@@ -83,7 +83,7 @@
 				</div>
 			</div>
 
-			<div class="flex flex-col gap-2" v-if="hasAscensionMaterials">
+			<div v-if="hasAscensionMaterials" class="flex flex-col gap-2">
 				<h4
 					class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">
 					Ascension Materials
@@ -106,7 +106,7 @@
 				</template>
 			</div>
 
-			<div class="flex flex-col gap-2" v-if="hasForgingMaterials">
+			<div v-if="hasForgingMaterials" class="flex flex-col gap-2">
 				<h4
 					class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">
 					Forging Materials
@@ -129,7 +129,7 @@
 				</template>
 			</div>
 
-			<div class="flex flex-col gap-2" v-if="hasBlueprints">
+			<div v-if="hasBlueprints" class="flex flex-col gap-2">
 				<h4
 					class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">
 					Blueprints
@@ -150,7 +150,7 @@
 				</template>
 			</div>
 
-			<div class="flex flex-col gap-2" v-if="hasDemonWedgeMaterials">
+			<div v-if="hasDemonWedgeMaterials" class="flex flex-col gap-2">
 				<h4
 					class="text-xs font-semibold text-on-secondary uppercase tracking-wider m-0 mb-2">
 					Demon Wedge Materials
@@ -215,19 +215,25 @@ const totalMaterials = computed(() => {
 	characterConfigurations.value.forEach((config) => {
 		try {
 			accumulateCharacterMaterials(config, totals);
-		} catch { /* skip invalid config */ }
+		} catch {
+			/* skip invalid config */
+		}
 	});
 
 	weaponConfigurations.value.forEach((config) => {
 		try {
 			accumulateWeaponMaterials(config, totals);
-		} catch { /* skip invalid config */ }
+		} catch {
+			/* skip invalid config */
+		}
 	});
 
 	uiStore.demonWedgeConfigurations.forEach((config) => {
 		try {
 			accumulateDemonWedgeMaterials(config, totals);
-		} catch { /* skip invalid config */ }
+		} catch {
+			/* skip invalid config */
+		}
 	});
 
 	return totals;
