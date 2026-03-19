@@ -1,18 +1,31 @@
 import type { DemonWedge, DemonWedgeLevelCost } from "../types/demonWedge";
 
 // Cumulative costs including forging costs
+// export const demon_WEDGE_COSTS_With_Forging: DemonWedgeLevelCost[] = [
+// 	{ level: 0, coins: 50000, carmineGlobules: 0, blueprintCopies: 1 },
+// 	{ level: 1, coins: 51500, carmineGlobules: 300, blueprintCopies: 1 },
+// 	{ level: 2, coins: 54500, carmineGlobules: 900, blueprintCopies: 1 },
+// 	{ level: 3, coins: 59000, carmineGlobules: 1800, blueprintCopies: 1 },
+// 	{ level: 4, coins: 65000, carmineGlobules: 3000, blueprintCopies: 1 },
+// 	{ level: 5, coins: 72500, carmineGlobules: 4500, blueprintCopies: 1 },
+// 	{ level: 6, coins: 137500, carmineGlobules: 7500, blueprintCopies: 2 },
+// 	{ level: 7, coins: 209500, carmineGlobules: 12000, blueprintCopies: 3 },
+// 	{ level: 8, coins: 339500, carmineGlobules: 18000, blueprintCopies: 5 },
+// 	{ level: 9, coins: 477000, carmineGlobules: 25500, blueprintCopies: 7 },
+// 	{ level: 10, coins: 672000, carmineGlobules: 34500, blueprintCopies: 10 },
+// ];
 export const demon_WEDGE_COSTS: DemonWedgeLevelCost[] = [
-	{ level: 0, coins: 50000, carmineGlobules: 0, blueprintCopies: 1 },
-	{ level: 1, coins: 51500, carmineGlobules: 300, blueprintCopies: 1 },
-	{ level: 2, coins: 54500, carmineGlobules: 900, blueprintCopies: 1 },
-	{ level: 3, coins: 59000, carmineGlobules: 1800, blueprintCopies: 1 },
-	{ level: 4, coins: 65000, carmineGlobules: 3000, blueprintCopies: 1 },
-	{ level: 5, coins: 72500, carmineGlobules: 4500, blueprintCopies: 1 },
-	{ level: 6, coins: 137500, carmineGlobules: 7500, blueprintCopies: 2 },
-	{ level: 7, coins: 209500, carmineGlobules: 12000, blueprintCopies: 3 },
-	{ level: 8, coins: 339500, carmineGlobules: 18000, blueprintCopies: 5 },
-	{ level: 9, coins: 477000, carmineGlobules: 25500, blueprintCopies: 7 },
-	{ level: 10, coins: 672000, carmineGlobules: 34500, blueprintCopies: 10 },
+	{ level: 0, coins: 0, carmineGlobules: 0, blueprintCopies: 1 },
+	{ level: 1, coins: 1500, carmineGlobules: 300, blueprintCopies: 1 },
+	{ level: 2, coins: 4500, carmineGlobules: 900, blueprintCopies: 1 },
+	{ level: 3, coins: 9000, carmineGlobules: 1800, blueprintCopies: 1 },
+	{ level: 4, coins: 15000, carmineGlobules: 3000, blueprintCopies: 1 },
+	{ level: 5, coins: 22500, carmineGlobules: 4500, blueprintCopies: 1 },
+	{ level: 6, coins: 37500, carmineGlobules: 7500, blueprintCopies: 2 },
+	{ level: 7, coins: 59500, carmineGlobules: 12000, blueprintCopies: 3 },
+	{ level: 8, coins: 89500, carmineGlobules: 18000, blueprintCopies: 5 },
+	{ level: 9, coins: 127_000, carmineGlobules: 25500, blueprintCopies: 7 },
+	{ level: 10, coins: 172_000, carmineGlobules: 34500, blueprintCopies: 10 },
 ];
 
 export const demonWedges: DemonWedge[] = [
