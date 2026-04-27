@@ -315,6 +315,19 @@ export const characters: Character[] = [
 		},
 		imagecode: "Zhiliu",
 	},
+	{
+		name: "Su Yi",
+		rank: "B",
+		id: 23,
+		element: "Lumino",
+		source: "Nocturnal Echoes",
+		nocturnalEchoMaterial: "Ring of Severed Fear",
+		skillUpgradeMaterials: {
+			t1: "Gleaming Arrow",
+			t2: "Gleaming Precision Scope",
+			t3: "Gleaming Quiver",
+		},
+	},
 ];
 
 export const elementUpgradeMaterials: ElementUpgradeMaterials[] = [

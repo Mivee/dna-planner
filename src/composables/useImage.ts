@@ -81,29 +81,29 @@ export function useImage(
 function getCharacterImage(imageCode: string, variant?: CharacterImageVariant) {
 	const imagePrefix = getPrefix(variant);
 	return (
-		"assets/characters/" + variant + "/" + imagePrefix + imageCode + ".png"
+		"assets/characters/" + variant + "/" + imagePrefix + imageCode + ".webp"
 	);
 }
 
 function getWeaponImage(imageCode: string) {
 	if (imageCode) {
-		return "assets/weapons/T_Bust_" + imageCode + ".png";
+		return "assets/weapons/T_Bust_" + imageCode + ".webp";
 	}
 	return null;
 }
 
 function getElementImage(imageCode: string) {
-	return "assets/elements/" + imageCode + ".png";
+	return "assets/elements/" + imageCode + ".webp";
 }
 
 function getWedgeImage(imageCode: string, rarity?: Rarity) {
 	if (!imageCode) return null;
 
 	if (rarity) {
-		return "assets/wedges/T_Mod_" + imageCode + "01_" + rarity + ".png";
+		return "assets/wedges/T_Mod_" + imageCode + "01_" + rarity + ".webp";
 	}
 
-	return "assets/wedges/T_Mod_" + imageCode + "01.png";
+	return "assets/wedges/T_Mod_" + imageCode + "01.webp";
 }
 
 function getPrefix(variant?: CharacterImageVariant) {

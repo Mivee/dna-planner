@@ -403,6 +403,14 @@ export const weapons: Weapon[] = [
 		source: "Immersive Theater",
 		imageCode: "Claymore_Wangu",
 	},
+	{
+		id: 51,
+		name: "Fledgling's Gleam",
+		weaponType: "Shotgun",
+		range: "Ranged",
+		source: "Nocturnal Echoes",
+		imageCode: "Shotgun_Guchu",
+	},
 ];
 
 export const weaponLevelingMaterials: WeaponLevelingMaterial[] = [
